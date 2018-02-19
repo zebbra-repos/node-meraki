@@ -1,0 +1,15 @@
+{
+  "plugins": [
+      "jest"
+  ],
+  "extends": [
+      "plugin:jest/recommended"
+  ],
+  "globals": {
+    "set": true,
+    "context": true,
+    "its": true,
+    "subject": true,
+    "isExpected": true
+  }
+}
