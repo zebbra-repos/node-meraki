@@ -1,0 +1,28 @@
+{
+  "name": "node-meraki",
+  "version": "1.0.0",
+  "description": "Meraki wrapper for nodejs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mbaertschi/node-meraki.git"
+  },
+  "keywords": [
+    "meraki",
+    "polling",
+    "rest",
+    "api"
+  ],
+  "author": "Michael Bärtschi <michael.baertschi@zebbra.ch> (http://zebbra.ch)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mbaertschi/node-meraki/issues"
+  },
+  "homepage": "https://github.com/mbaertschi/node-meraki#readme",
+  "engines": {
+    "node": ">= 8.9.x"
+  }
+}
