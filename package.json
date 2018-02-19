@@ -4,7 +4,8 @@
   "description": "Meraki wrapper for nodejs",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint ."
   },
   "repository": {
     "type": "git",
@@ -24,5 +25,14 @@
   "homepage": "https://github.com/mbaertschi/node-meraki#readme",
   "engines": {
     "node": ">= 8.9.x"
+  },
+  "dependencies": {
+    "eslint": "^4.18.0",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jest": "^21.12.2",
+    "eslint-plugin-node": "^6.0.0",
+    "eslint-plugin-promise": "^3.6.0",
+    "eslint-plugin-standard": "^3.0.1"
   }
 }
