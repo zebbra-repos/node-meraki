@@ -1,6 +1,8 @@
 # node-meraki
 Nodejs wrapper module for [Cisco Meraki](https://meraki.cisco.com/) network manager. Currentyl we support the Meraki API version `v0`.
 
+[![Build Status](https://travis-ci.org/zebbra-repos/node-meraki.svg?branch=master)](https://travis-ci.org/zebbra-repos/node-meraki)
+
 ## Installation
 ```bash
 npm install --save node-meraki
