@@ -9,7 +9,7 @@ npm install --save node-meraki
 ```
 
 ## Documentation
-The jsdoc documentation can be found [here](docs/node-meraki/1.0.0/index)
+The jsdoc documentation can be found [here](https://zebbra-repos.github.io/node-meraki/)
 
 ## Usage
 ```javascript
