@@ -1,0 +1,1767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>lib/rest/clients - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-lib_rest.html">lib/rest</a></li><li><a href="module-lib_rest_admins.html">lib/rest/admins</a><ul class='methods'><li data-type='method'><a href="module-lib_rest_admins.html#.createAdmin">createAdmin</a></li><li data-type='method'><a href="module-lib_rest_admins.html#.deleteAdmin">deleteAdmin</a></li><li data-type='method'><a href="module-lib_rest_admins.html#.listAdmins">listAdmins</a></li><li data-type='method'><a href="module-lib_rest_admins.html#.updateAdmin">updateAdmin</a></li></ul></li><li><a href="module-lib_rest_clients.html">lib/rest/clients</a><ul class='methods'><li data-type='method'><a href="module-lib_rest_clients.html#.listClients">listClients</a></li><li data-type='method'><a href="module-lib_rest_clients.html#.showClientPolicy">showClientPolicy</a></li><li data-type='method'><a href="module-lib_rest_clients.html#.showClientSplashAuthorization">showClientSplashAuthorization</a></li><li data-type='method'><a href="module-lib_rest_clients.html#.updateClientPolicy">updateClientPolicy</a></li><li data-type='method'><a href="module-lib_rest_clients.html#.updateClientSplashAuthorization">updateClientSplashAuthorization</a></li></ul></li><li><a href="module-lib_rest_config-templates.html">lib/rest/config-templates</a><ul class='methods'><li data-type='method'><a href="module-lib_rest_config-templates.html#.deleteConfigurationTemplate">deleteConfigurationTemplate</a></li><li data-type='method'><a href="module-lib_rest_config-templates.html#.listConfigurationTemplates">listConfigurationTemplates</a></li></ul></li><li><a href="module-lib_rest_devices.html">lib/rest/devices</a><ul class='methods'><li data-type='method'><a href="module-lib_rest_devices.html#.claimNetworkDevice">claimNetworkDevice</a></li><li data-type='method'><a href="module-lib_rest_devices.html#.deleteNetworkDevice">deleteNetworkDevice</a></li><li data-type='method'><a href="module-lib_rest_devices.html#.listNetworkDevices">listNetworkDevices</a></li><li data-type='method'><a href="module-lib_rest_devices.html#.listNetworkDeviceUplinks">listNetworkDeviceUplinks</a></li><li data-type='method'><a href="module-lib_rest_devices.html#.showNetworkDevice">showNetworkDevice</a></li><li data-type='method'><a href="module-lib_rest_devices.html#.showNetworkDeviceLLDPandCDP">showNetworkDeviceLLDPandCDP</a></li><li data-type='method'><a href="module-lib_rest_devices.html#.updateNetworkDevice">updateNetworkDevice</a></li></ul></li><li><a href="module-lib_rest_group-policies.html">lib/rest/group-policies</a><ul class='methods'><li data-type='method'><a href="module-lib_rest_group-policies.html#.listNetworkGroupPolicies">listNetworkGroupPolicies</a></li></ul></li><li><a href="module-lib_rest_networks.html">lib/rest/networks</a><ul class='methods'><li data-type='method'><a href="module-lib_rest_networks.html#.bindNetworkToTemplate">bindNetworkToTemplate</a></li><li data-type='method'><a href="module-lib_rest_networks.html#.createNetwork">createNetwork</a></li><li data-type='method'><a href="module-lib_rest_networks.html#.deleteNetwork">deleteNetwork</a></li><li data-type='method'><a href="module-lib_rest_networks.html#.listNetworkAccessPolicies">listNetworkAccessPolicies</a></li><li data-type='method'><a href="module-lib_rest_networks.html#.listNetworks">listNetworks</a></li><li data-type='method'><a href="module-lib_rest_networks.html#.listTrafficAnalysis">listTrafficAnalysis</a></li><li data-type='method'><a href="module-lib_rest_networks.html#.showNetwork">showNetwork</a></li><li data-type='method'><a href="module-lib_rest_networks.html#.unbindNetworkFromTemplate">unbindNetworkFromTemplate</a></li><li data-type='method'><a href="module-lib_rest_networks.html#.updateNetwork">updateNetwork</a></li></ul></li><li><a href="module-lib_rest_organizations.html">lib/rest/organizations</a><ul class='methods'><li data-type='method'><a href="module-lib_rest_organizations.html#.claimOrganization">claimOrganization</a></li><li data-type='method'><a href="module-lib_rest_organizations.html#.cloneOrganization">cloneOrganization</a></li><li data-type='method'><a href="module-lib_rest_organizations.html#.createOrganization">createOrganization</a></li><li data-type='method'><a href="module-lib_rest_organizations.html#.listOrganizationInventory">listOrganizationInventory</a></li><li data-type='method'><a href="module-lib_rest_organizations.html#.listOrganizations">listOrganizations</a></li><li data-type='method'><a href="module-lib_rest_organizations.html#.showOrganization">showOrganization</a></li><li data-type='method'><a href="module-lib_rest_organizations.html#.showOrganizationLicense">showOrganizationLicense</a></li><li data-type='method'><a href="module-lib_rest_organizations.html#.showOrganizationSNMP">showOrganizationSNMP</a></li><li data-type='method'><a href="module-lib_rest_organizations.html#.updateOrganization">updateOrganization</a></li><li data-type='method'><a href="module-lib_rest_organizations.html#.updateOrganizationSNMP">updateOrganizationSNMP</a></li></ul></li><li><a href="module-lib_rest_ssids.html">lib/rest/ssids</a><ul class='methods'><li data-type='method'><a href="module-lib_rest_ssids.html#.listNetworkSSIDs">listNetworkSSIDs</a></li><li data-type='method'><a href="module-lib_rest_ssids.html#.showNetworkSSID">showNetworkSSID</a></li><li data-type='method'><a href="module-lib_rest_ssids.html#.updateNetworkSSID">updateNetworkSSID</a></li></ul></li><li><a href="module-lib_rest_static-routes.html">lib/rest/static-routes</a><ul class='methods'><li data-type='method'><a href="module-lib_rest_static-routes.html#.createStaticNetworkRoute">createStaticNetworkRoute</a></li><li data-type='method'><a href="module-lib_rest_static-routes.html#.deleteStaticNetworkRoute">deleteStaticNetworkRoute</a></li><li data-type='method'><a href="module-lib_rest_static-routes.html#.listStaticNetworkRoutes">listStaticNetworkRoutes</a></li><li data-type='method'><a href="module-lib_rest_static-routes.html#.showStaticNetworkRoute">showStaticNetworkRoute</a></li><li data-type='method'><a href="module-lib_rest_static-routes.html#.updateStaticNetworkRoute">updateStaticNetworkRoute</a></li></ul></li><li><a href="module-lib_rest_switch-ports.html">lib/rest/switch-ports</a><ul class='methods'><li data-type='method'><a href="module-lib_rest_switch-ports.html#.listSwitchPorts">listSwitchPorts</a></li><li data-type='method'><a href="module-lib_rest_switch-ports.html#.showSwitchPort">showSwitchPort</a></li><li data-type='method'><a href="module-lib_rest_switch-ports.html#.updateSwitchPort">updateSwitchPort</a></li></ul></li><li><a href="module-lib_rest_vlans.html">lib/rest/vlans</a><ul class='methods'><li data-type='method'><a href="module-lib_rest_vlans.html#.createNetworkVLAN">createNetworkVLAN</a></li><li data-type='method'><a href="module-lib_rest_vlans.html#.deleteNetworkVLAN">deleteNetworkVLAN</a></li><li data-type='method'><a href="module-lib_rest_vlans.html#.listNetworkVLANs">listNetworkVLANs</a></li><li data-type='method'><a href="module-lib_rest_vlans.html#.showNetworkVLAN">showNetworkVLAN</a></li><li data-type='method'><a href="module-lib_rest_vlans.html#.updateNetworkVLAN">updateNetworkVLAN</a></li></ul></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">lib/rest/clients</h1>
+    
+
+    
+
+
+
+
+<section>
+
+<header>
+    
+        
+            
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+            <div class="description"><p>Create a Meraki REST API wrapper for the client ressource. See the
+<a href="https://dashboard.meraki.com/api_docs#clients">online documentation</a> for more information.</p></div>
+        
+
+        
+            
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="rest_clients.js.html">rest/clients.js</a>, <a href="rest_clients.js.html#line3">line 3</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>const apiKey = 'secret meraki api key'
+const organizationId = 'meraki organization id'
+const version = 'v0'
+const target = 'n12'
+const basePath = `/${target}/${version}`
+const adminEndpoints = require('./lib/rest/clients')({ apiKey, target, basePath })</code></pre>
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>settings</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The configuration object used to create the api wrapper</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>apiKey</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>''</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>The Meraki api key</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>target</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>'api'</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>The Meraki target</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>basePath</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>'/'</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>The Meraki base path for the client ressource</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>The initialized Meraki REST API wrapper for the client ressource</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    <h4 class="name" id=".listClients"><span class="type-signature">(static) </span>listClients<span class="signature">(param)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="rest_clients.js.html">rest/clients.js</a>, <a href="rest_clients.js.html#line47">line 47</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>List the clients of a device, up to a maximum of a month ago. The usage of each client is
+returned in kilobytes. If the device is a switch, the switchport is returned; otherwise
+the switchport field is null.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+        <p class="code-caption">Example response</p>
+    
+    <pre class="prettyprint"><code>[
+  {
+    "description": "Hayg's Nexus 5",
+    "mdnsName": "Hayg's Nexus 5",
+    "dhcpHostname": "HaygNexus5",
+    "usage": {"sent": 1337.0, "recv": 7331.0},
+    "mac": "00:18:D3:AD:B3:3F",
+    "ip": "1.2.3.4",
+    "id": "lk12uq",
+    "switchport": null
+  },
+  ...
+]</code></pre>
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>param</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The parameters for this request</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>deviceSerial</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The serial number of the device for which to list the clients</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>timespan</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The timespan for which clients will be fetched. Must be in seconds and less than or equal to a month (2592000 seconds)</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>A promise holding the clients for this device</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".showClientPolicy"><span class="type-signature">(static) </span>showClientPolicy<span class="signature">(param)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="rest_clients.js.html">rest/clients.js</a>, <a href="rest_clients.js.html#line72">line 72</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Return the policy assigned to a client on the network.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+        <p class="code-caption">Example response</p>
+    
+    <pre class="prettyprint"><code>{
+  "mac": "00:11:22:33:44:55",
+  "type": "Group policy",
+  "groupPolicyId": 101
+}</code></pre>
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>param</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The parameters for this request</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>networkId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The id of the network for which to list the clients</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>timespan</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The timespan for which clients will be fetched. Must be in seconds and less than or equal to a month (2592000 seconds)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>mac</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The mac address of the client for which to show the assigned policy</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>A promise holding the clients policy group</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".showClientSplashAuthorization"><span class="type-signature">(static) </span>showClientSplashAuthorization<span class="signature">(param)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="rest_clients.js.html">rest/clients.js</a>, <a href="rest_clients.js.html#line136">line 136</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Return the splash authorization for a client, for each SSID they've associated with through splash.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+        <p class="code-caption">Example response</p>
+    
+    <pre class="prettyprint"><code>{
+  "ssids": {
+    "0": {
+      "isAuthorized": true,
+      "authorizedAt": "2017-07-19 16:24:13 UTC",
+      "expiresAt": "2017-07-20 16:24:13 UTC"
+    },
+    "2": {
+      "isAuthorized": false
+    }
+  }
+}</code></pre>
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>param</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The parameters for this request</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>networkId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The id of the network for which to list the clients</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>timespan</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The timespan for which clients will be fetched. Must be in seconds and less than or equal to a month (2592000 seconds)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>mac</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The mac address of the client for which to show the assigned policy</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>A promise holding splash authorization information for this client</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".updateClientPolicy"><span class="type-signature">(static) </span>updateClientPolicy<span class="signature">(param)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="rest_clients.js.html">rest/clients.js</a>, <a href="rest_clients.js.html#line102">line 102</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Update the policy assigned to a client on the network.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+        <p class="code-caption">Example response</p>
+    
+    <pre class="prettyprint"><code>{
+  "mac": "00:11:22:33:44:55",
+  "type": "Group policy",
+  "groupPolicyId": 101
+}</code></pre>
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>param</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The parameters for this request</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>networkId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The id of the network for which to list the clients</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>timespan</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The timespan for which clients will be fetched. Must be in seconds and less than or equal to a month (2592000 seconds)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>mac</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The mac address of the client for which to show the assigned policy</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>devicePolicy</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The group policy (Whitelisted, Blocked, Normal, Group policy)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>groupPolicyId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>[optional] If devicePolicy param is set to <code>group</code> this param is
+                                         used to specify the group ID</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>A promise holding the updated clients policy group</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".updateClientSplashAuthorization"><span class="type-signature">(static) </span>updateClientSplashAuthorization<span class="signature">(param)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="rest_clients.js.html">rest/clients.js</a>, <a href="rest_clients.js.html#line180">line 180</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Update a client's splash authorization.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Examples</h5>
+    
+        <p class="code-caption">Example ssids data</p>
+    
+    <pre class="prettyprint"><code>{
+  "ssids": {
+    "0": {
+      "isAuthorized": true
+    },
+    "2": {
+      "isAuthorized": false
+    }
+  }
+}</code></pre>
+
+        <p class="code-caption">Example response</p>
+    
+    <pre class="prettyprint"><code>{
+  "ssids": {
+    "0": {
+      "isAuthorized": true,
+      "authorizedAt": "2017-07-19 16:24:13 UTC",
+      "expiresAt": "2017-07-20 16:24:13 UTC"
+    },
+    "2": {
+      "isAuthorized": false
+    }
+  }
+}</code></pre>
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>param</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The parameters for this request</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>networkId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The id of the network for which to list the clients</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>mac</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The mac address of the client for which to show the assigned policy</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>ssids</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The target SSIDs. For each SSID where isAuthorized is true, the expiration time will automatically be set according to the SSID's splash frequency</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>A promise holding the updated splash authorization information for this client</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Thu Feb 22 2018 09:56:26 GMT+0100 (CET) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>rest/ssids.js - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-lib_rest.html">lib/rest</a></li><li><a href="module-lib_rest_admins.html">lib/rest/admins</a><ul class='methods'><li data-type='method'><a href="module-lib_rest_admins.html#.createAdmin">createAdmin</a></li><li data-type='method'><a href="module-lib_rest_admins.html#.deleteAdmin">deleteAdmin</a></li><li data-type='method'><a href="module-lib_rest_admins.html#.listAdmins">listAdmins</a></li><li data-type='method'><a href="module-lib_rest_admins.html#.updateAdmin">updateAdmin</a></li></ul></li><li><a href="module-lib_rest_clients.html">lib/rest/clients</a><ul class='methods'><li data-type='method'><a href="module-lib_rest_clients.html#.listClients">listClients</a></li><li data-type='method'><a href="module-lib_rest_clients.html#.showClientPolicy">showClientPolicy</a></li><li data-type='method'><a href="module-lib_rest_clients.html#.showClientSplashAuthorization">showClientSplashAuthorization</a></li><li data-type='method'><a href="module-lib_rest_clients.html#.updateClientPolicy">updateClientPolicy</a></li><li data-type='method'><a href="module-lib_rest_clients.html#.updateClientSplashAuthorization">updateClientSplashAuthorization</a></li></ul></li><li><a href="module-lib_rest_config-templates.html">lib/rest/config-templates</a><ul class='methods'><li data-type='method'><a href="module-lib_rest_config-templates.html#.deleteConfigurationTemplate">deleteConfigurationTemplate</a></li><li data-type='method'><a href="module-lib_rest_config-templates.html#.listConfigurationTemplates">listConfigurationTemplates</a></li></ul></li><li><a href="module-lib_rest_devices.html">lib/rest/devices</a><ul class='methods'><li data-type='method'><a href="module-lib_rest_devices.html#.claimNetworkDevice">claimNetworkDevice</a></li><li data-type='method'><a href="module-lib_rest_devices.html#.deleteNetworkDevice">deleteNetworkDevice</a></li><li data-type='method'><a href="module-lib_rest_devices.html#.listNetworkDevices">listNetworkDevices</a></li><li data-type='method'><a href="module-lib_rest_devices.html#.listNetworkDeviceUplinks">listNetworkDeviceUplinks</a></li><li data-type='method'><a href="module-lib_rest_devices.html#.showNetworkDevice">showNetworkDevice</a></li><li data-type='method'><a href="module-lib_rest_devices.html#.showNetworkDeviceLLDPandCDP">showNetworkDeviceLLDPandCDP</a></li><li data-type='method'><a href="module-lib_rest_devices.html#.updateNetworkDevice">updateNetworkDevice</a></li></ul></li><li><a href="module-lib_rest_group-policies.html">lib/rest/group-policies</a><ul class='methods'><li data-type='method'><a href="module-lib_rest_group-policies.html#.listNetworkGroupPolicies">listNetworkGroupPolicies</a></li></ul></li><li><a href="module-lib_rest_networks.html">lib/rest/networks</a><ul class='methods'><li data-type='method'><a href="module-lib_rest_networks.html#.bindNetworkToTemplate">bindNetworkToTemplate</a></li><li data-type='method'><a href="module-lib_rest_networks.html#.createNetwork">createNetwork</a></li><li data-type='method'><a href="module-lib_rest_networks.html#.deleteNetwork">deleteNetwork</a></li><li data-type='method'><a href="module-lib_rest_networks.html#.listNetworkAccessPolicies">listNetworkAccessPolicies</a></li><li data-type='method'><a href="module-lib_rest_networks.html#.listNetworks">listNetworks</a></li><li data-type='method'><a href="module-lib_rest_networks.html#.listTrafficAnalysis">listTrafficAnalysis</a></li><li data-type='method'><a href="module-lib_rest_networks.html#.showNetwork">showNetwork</a></li><li data-type='method'><a href="module-lib_rest_networks.html#.unbindNetworkFromTemplate">unbindNetworkFromTemplate</a></li><li data-type='method'><a href="module-lib_rest_networks.html#.updateNetwork">updateNetwork</a></li></ul></li><li><a href="module-lib_rest_organizations.html">lib/rest/organizations</a><ul class='methods'><li data-type='method'><a href="module-lib_rest_organizations.html#.claimOrganization">claimOrganization</a></li><li data-type='method'><a href="module-lib_rest_organizations.html#.cloneOrganization">cloneOrganization</a></li><li data-type='method'><a href="module-lib_rest_organizations.html#.createOrganization">createOrganization</a></li><li data-type='method'><a href="module-lib_rest_organizations.html#.listOrganizationInventory">listOrganizationInventory</a></li><li data-type='method'><a href="module-lib_rest_organizations.html#.listOrganizations">listOrganizations</a></li><li data-type='method'><a href="module-lib_rest_organizations.html#.showOrganization">showOrganization</a></li><li data-type='method'><a href="module-lib_rest_organizations.html#.showOrganizationLicense">showOrganizationLicense</a></li><li data-type='method'><a href="module-lib_rest_organizations.html#.showOrganizationSNMP">showOrganizationSNMP</a></li><li data-type='method'><a href="module-lib_rest_organizations.html#.updateOrganization">updateOrganization</a></li><li data-type='method'><a href="module-lib_rest_organizations.html#.updateOrganizationSNMP">updateOrganizationSNMP</a></li></ul></li><li><a href="module-lib_rest_ssids.html">lib/rest/ssids</a><ul class='methods'><li data-type='method'><a href="module-lib_rest_ssids.html#.listNetworkSSIDs">listNetworkSSIDs</a></li><li data-type='method'><a href="module-lib_rest_ssids.html#.showNetworkSSID">showNetworkSSID</a></li><li data-type='method'><a href="module-lib_rest_ssids.html#.updateNetworkSSID">updateNetworkSSID</a></li></ul></li><li><a href="module-lib_rest_static-routes.html">lib/rest/static-routes</a><ul class='methods'><li data-type='method'><a href="module-lib_rest_static-routes.html#.createStaticNetworkRoute">createStaticNetworkRoute</a></li><li data-type='method'><a href="module-lib_rest_static-routes.html#.deleteStaticNetworkRoute">deleteStaticNetworkRoute</a></li><li data-type='method'><a href="module-lib_rest_static-routes.html#.listStaticNetworkRoutes">listStaticNetworkRoutes</a></li><li data-type='method'><a href="module-lib_rest_static-routes.html#.showStaticNetworkRoute">showStaticNetworkRoute</a></li><li data-type='method'><a href="module-lib_rest_static-routes.html#.updateStaticNetworkRoute">updateStaticNetworkRoute</a></li></ul></li><li><a href="module-lib_rest_switch-ports.html">lib/rest/switch-ports</a><ul class='methods'><li data-type='method'><a href="module-lib_rest_switch-ports.html#.listSwitchPorts">listSwitchPorts</a></li><li data-type='method'><a href="module-lib_rest_switch-ports.html#.showSwitchPort">showSwitchPort</a></li><li data-type='method'><a href="module-lib_rest_switch-ports.html#.updateSwitchPort">updateSwitchPort</a></li></ul></li><li><a href="module-lib_rest_vlans.html">lib/rest/vlans</a><ul class='methods'><li data-type='method'><a href="module-lib_rest_vlans.html#.createNetworkVLAN">createNetworkVLAN</a></li><li data-type='method'><a href="module-lib_rest_vlans.html#.deleteNetworkVLAN">deleteNetworkVLAN</a></li><li data-type='method'><a href="module-lib_rest_vlans.html#.listNetworkVLANs">listNetworkVLANs</a></li><li data-type='method'><a href="module-lib_rest_vlans.html#.showNetworkVLAN">showNetworkVLAN</a></li><li data-type='method'><a href="module-lib_rest_vlans.html#.updateNetworkVLAN">updateNetworkVLAN</a></li></ul></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">rest/ssids.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>const axios = require('./axios')
+
+/**
+ * Create a Meraki REST API wrapper for the SSID ressource. See the
+ * [online documentation]{@link https://dashboard.meraki.com/api_docs#ssids} for more information.
+ *
+ * @module lib/rest/ssids
+ * @param { Object } settings                   The configuration object used to create the api wrapper
+ * @param { string } [settings.apiKey='']       The Meraki api key
+ * @param { string } [settings.target='api']    The Meraki target
+ * @param { string } [settings.basePath='/']    The Meraki base path for the SSID ressource
+ * @return { Object } The initialized Meraki REST API wrapper for the SSID ressource
+ * @example
+ * const apiKey = 'secret meraki api key'
+ * const organizationId = 'meraki organization id'
+ * const version = 'v0'
+ * const target = 'n12'
+ * const basePath = `/${target}/${version}/networks`
+ * const adminEndpoints = require('./lib/rest/ssids')({ apiKey, target, basePath })
+ */
+function createSSIDsEndpoints ({ apiKey, target, basePath }) {
+  /**
+   * List the SSIDs in a network.
+   *
+   * @memberof module:lib/rest/ssids
+   * @param { Object } param                  The parameters for this request
+   * @param { string } param.networkId        The id of the network for which to list the SSIDs
+   * @return { Promise } A promise holding the SSIDs for this network
+   * @example &lt;caption>Example response&lt;/caption>
+   * [
+   *   {
+   *     "number":0,
+   *     "name":"SSID-1",
+   *     "enabled":true,
+   *     "authMode":"open"
+   *   }
+   * ]
+   */
+  function listNetworkSSIDs ({ networkId }) {
+    if (!networkId) {
+      return Promise.reject(new Error('The parameter networkId is mandatory'))
+    }
+
+    return axios._get(apiKey, target, `${basePath}/${networkId}/ssids`)
+  }
+
+  /**
+   * Return a single SSID.
+   *
+   * @memberof module:lib/rest/ssids
+   * @param { Object } param                  The parameters for this request
+   * @param { string } param.networkId        The id of the network for which to list the SSIDs
+   * @param { number } param.ssidNumber       The number of the SSID to show
+   * @return { Promise } A promise holding the details of this SSID
+   * @example &lt;caption>Example response&lt;/caption>
+   * {
+   *   "number":0,
+   *   "name":"SSID-1",
+   *   "enabled":true,
+   *   "authMode":"psk",
+   *   "encryptionMode":"wpa",
+   *   "psk":"abcd1234",
+   *   "splashPage":"Click-through splash page",
+   *   "perClientBandwidthLimitUp":0,
+   *   "perClientBandwidthLimitDown":0,
+   *   "ssidAdminAccessible":false,
+   *   "ipAssignmentMode":"NAT mode",
+   *   "walledGardenEnabled":true,
+   *   "walledGardenRanges":"192.168.1.1/24 192.168.37.10/32"
+   * }
+   */
+  function showNetworkSSID ({ networkId, ssidNumber }) {
+    if (!networkId) {
+      return Promise.reject(new Error('The parameter networkId is mandatory'))
+    } else if (!ssidNumber) {
+      return Promise.reject(new Error('The parameter ssidNumber is mandatory'))
+    }
+
+    return axios._get(apiKey, target, `${basePath}/${networkId}/ssids/${ssidNumber}`)
+  }
+
+  /**
+   * Update the attributes of an SSID.
+   *
+   * @memberof module:lib/rest/ssids
+   * @param { Object } param                            The parameters for this request
+   * @param { string } param.networkId                  The id of the network for which to list the SSIDs
+   * @param { number } param.ssidNumber                 The number of the SSID to update
+   * @param { string } param.name                       The name of an SSID
+   * @param { boolean } param.enabled                   Whether or not an SSID is enabled
+   * @param { string } param.authMode                   The association control method for the SSID (`open`, `psk`, `open-with-radius`, `8021x-meraki`, `8021x-radius`)
+   * @param { string } param.encryptionMode             The psk encryption mode for the SSID (`wpa`, `wep`, `wpa-eap`)
+   * @param { string } param.psk                        The passkey for the SSID. This param is only valid if the authMode is `psk`
+   * @param { string } param.wpaEncryptionMode          The types of WPA encryption. (`WPA1 and WPA2`, `WPA2 only`)
+   * @param { string } param.splashPage                 The type of splash page for the SSID (`None`, `Click-through splash page`, `Billing`, `Password-protected with Meraki RADIUS`, `Password-protected with custom RADIUS`, `Password-protected with Active Directory`, `Password-protected with LDAP`, `SMS authentication`, `Systems Manager Sentry`, `Facebook Wi-Fi`). This attribute is not supported for template children
+   * @param { Object } param.radiusServers              The RADIUS 802.1x servers to be used for authentication. This param is only valid if the authMode is `open-with-radius` or `8021x-radius`
+   * @param { string } param.radiusServers.host         Ip address of RADIUS server
+   * @param { number } param.radiusServers.port         UPD port of the RADIUS server listens on for Acess-requests
+   * @param { string } param.radiusServers.secret       RADIUS client shared secret
+   * @param { boolean } param.radiusCoaEnabled          If true, Meraki devices will act as a RADIUS Dynamic Authorization Server and will respond to RADIUS Change-of-Authorization and Disconnect messages sent by the RADIUS server
+   * @param { boolean } param.radiusAccountingEnabled   Whether or not RADIUS accounting is enabled. This param is only valid if the authMode is `open-with-radius` or `8021x-radius`
+   * @param { Object } param.radiusAccountingServers    The RADIUS accounting 802.1x servers to be used for authentication. This param is only valid if the authMode is `open-with-radius` or `8021x-radius` and radiusAccountingEnabled is `true`
+   * @param { string } param.radiusAccountingServers.host   IP address to which the APs will send RADIUS accounting messages
+   * @param { number } param.radiusAccountingServers.port   Port on the RADIUS server that is listening for accounting messages
+   * @param { string } param.radiusAccountingServers.secret Shared key used to authenticate messages between the APs and RADIUS server
+   * @param { string } param.ipAssignmentMode           The client IP assignment mode (`NAT mode`, `Bridge mode`, `Layer 3 roaming`, `Layer 3 roaming with a concentrator`, `VPN`)
+   * @param { boolean } param.useVlanTagging            Direct trafic to use specific VLANs. This param is only valid with `Bridge mode` and `Layer 3 roaming`
+   * @param { string } param.concentratorNetworkId      The concentrator to use for `Layer 3 roaming with a concentrator` or `VPN`
+   * @param { number } param.vlanId                     The VLAN ID used for VLAN tagging. This param is only valid with `Layer 3 roaming with a concentrator` and `VPN`
+   * @param { number } param.defaultVlanId              The default VLAN ID used for `all other APs`. This param is only valid with `Bridge mode` and `Layer 3 roaming`
+   * @param { Array } param.apTagsAndVlanIds            The list of tags and VLAN IDs used for VLAN tagging. This param is only valid with `Bridge mode`, `Layer 3 roaming`
+   * @param { string } param.apTagsAndVlanIds.tags      Comma-separated list of AP tags
+   * @param { number } param.apTagsAndVlanIds.vlanId    Numerical identifier that is assigned to the VLAN
+   * @param { boolean } param.walledGardenEnabled       Allow access to a configurable list of IP ranges, which users may access prior to sign-on
+   * @param { string } param.walledGardenRanges         Specify your walled garden by entering space-separated addresses and ranges using CIDR notation (e.g. 192.168.1.1/24 192.168.37.10/32). Meraki's splash page is automatically included in your walled garden
+   * @param { number } param.minBitrate                 The minimum bitrate in Mbps. (1, 2, 5.5, 6, 9, 11, 12, 18, 24, 36, 48, 54)
+   * @param { string } param.bandSelection              The client-serving radio frequencies. (Dual band operation, 5 GHz band only, Dual band operation with Band Steering)
+   * @param { number } param.perClientBandwidthLimitUp  The upload bandwidth limit in Kbps. (0 represents no limit.)
+   * @param { number } param.perClientBandwidthLimitDown  The download bandwidth limit in Kbps. (0 represents no limit.)
+   * @return { Promise } A promise holding the updated SSID
+   * @example &lt;caption>Example request data&lt;/caption>
+   * {
+   *   "name": "new SSID name",
+   *   "enabled": true,
+   *   "authMode": "psk",
+   *   "encryptionMode": "wpa",
+   *   "psk": "abcd1234",
+   *   "ipAssignmentMode": "Bridge mode"
+   * }
+   * @example &lt;caption>Example response&lt;/caption>
+   * {
+   *   "number":0,
+   *   "name":"SSID-1",
+   *   "enabled":true,
+   *   "authMode":"psk",
+   *   "encryptionMode":"wpa",
+   *   "psk":"abcd1234",
+   *   "splashPage":"Click-through splash page",
+   *   "perClientBandwidthLimitUp":0,
+   *   "perClientBandwidthLimitDown":0,
+   *   "ssidAdminAccessible":false,
+   *   "ipAssignmentMode":"NAT mode",
+   *   "walledGardenEnabled":true,
+   *   "walledGardenRanges":"192.168.1.1/24 192.168.37.10/32"
+   * }
+   */
+  function updateNetworkSSID (data) {
+    const { networkId, ssidNumber } = data
+    delete data.networkId
+    delete data.ssidNumber
+
+    if (!networkId) {
+      return Promise.reject(new Error('The parameter networkId is mandatory'))
+    } else if (!ssidNumber) {
+      return Promise.reject(new Error('The parameter ssidNumber is mandatory'))
+    }
+
+    return axios._put(apiKey, target, `${basePath}/${networkId}/ssids/${ssidNumber}`, data)
+  }
+
+  return {
+    listNetworkSSIDs,
+    showNetworkSSID,
+    updateNetworkSSID
+  }
+}
+
+module.exports = createSSIDsEndpoints
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Thu Feb 22 2018 09:56:26 GMT+0100 (CET) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>

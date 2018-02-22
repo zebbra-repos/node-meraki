@@ -18,7 +18,7 @@
       "plugin:import/warnings"
   ],
   "parserOptions": {
-      "ecmaVersion": 6
+      "ecmaVersion": 8
   },
   "rules": {
       "arrow-parens": [2, "always"],
