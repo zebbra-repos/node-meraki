@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>lib/rest/organizations - Documentation</title>
+    <title>lib/rest/ssids - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -27,7 +27,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">lib/rest/organizations</h1>
+    <h1 class="page-title">lib/rest/ssids</h1>
     
 
     
@@ -49,8 +49,8 @@
     <div class="container-overview">
     
         
-            <div class="description"><p>Create a Meraki REST API wrapper for the organization ressource. See the
-<a href="https://dashboard.meraki.com/api_docs#organizations">online documentation</a> for more information.</p></div>
+            <div class="description"><p>Create a Meraki REST API wrapper for the SSID ressource. See the
+<a href="https://dashboard.meraki.com/api_docs#ssids">online documentation</a> for more information.</p></div>
         
 
         
@@ -64,7 +64,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_organizations.js.html">rest/organizations.js</a>, <a href="rest_organizations.js.html#line3">line 3</a>
+        <a href="rest_ssids.js.html">rest/ssids.js</a>, <a href="rest_ssids.js.html#line3">line 3</a>
     </li></ul></dd>
     
 
@@ -117,8 +117,8 @@
 const organizationId = 'meraki organization id'
 const version = 'v0'
 const target = 'n12'
-const basePath = `/${target}/${version}/organizations/${organizationId}`
-const adminEndpoints = require('./lib/rest/organization')({ apiKey, target, basePath })</code></pre>
+const basePath = `/${target}/${version}/networks`
+const adminEndpoints = require('./lib/rest/ssids')({ apiKey, target, basePath })</code></pre>
 
 
 
@@ -304,7 +304,7 @@ const adminEndpoints = require('./lib/rest/organization')({ apiKey, target, base
                 </td>
             
 
-            <td class="description last"><p>The Meraki base path for the organization ressource</p></td>
+            <td class="description last"><p>The Meraki base path for the SSID ressource</p></td>
         </tr>
 
     
@@ -335,7 +335,7 @@ const adminEndpoints = require('./lib/rest/organization')({ apiKey, target, base
 
         
 <div class="param-desc">
-    <p>The initialized Meraki REST API wrapper for the organization ressource</p>
+    <p>The initialized Meraki REST API wrapper for the SSID ressource</p>
 </div>
 
 
@@ -379,7 +379,7 @@ const adminEndpoints = require('./lib/rest/organization')({ apiKey, target, base
 
     
 
-    <h4 class="name" id=".claimOrganization"><span class="type-signature">(static) </span>claimOrganization<span class="signature">(param)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id=".listNetworkSSIDs"><span class="type-signature">(static) </span>listNetworkSSIDs<span class="signature">(param)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -391,7 +391,7 @@ const adminEndpoints = require('./lib/rest/organization')({ apiKey, target, base
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_organizations.js.html">rest/organizations.js</a>, <a href="rest_organizations.js.html#line129">line 129</a>
+        <a href="rest_ssids.js.html">rest/ssids.js</a>, <a href="rest_ssids.js.html#line39">line 39</a>
     </li></ul></dd>
     
 
@@ -431,734 +431,7 @@ const adminEndpoints = require('./lib/rest/organization')({ apiKey, target, base
 
 
 <div class="description">
-    <p>Claim a device, license key, or order into an organization. When claiming by order, all devices
-and licenses in the order will be claimed; licenses will be added to the organization and devices
-will be placed in the organization's inventory. These three types of claims are mutually exclusive
-and cannot be performed in one request.</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>param</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The parameters for this request</p>
-                <h6>Properties</h6>
-                
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>order</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The order number that should be claimed</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>serial</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The serial of the device that should be claimed</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>licenseKey</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The license key that should be claimed</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>licenseMode</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Either <code>renew</code> or <code>addDevices</code>. <code>addDevices</code> will increase the license limit, while <code>renew</code> will extend the amount of time until expiration. This parameter is required when claiming by licenseKey</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-            </td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    <p>A promise with no data</p>
-</div>
-
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Promise</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-        
-            
-
-    
-
-    <h4 class="name" id=".cloneOrganization"><span class="type-signature">(static) </span>cloneOrganization<span class="signature">(param)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
-
-    
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_organizations.js.html">rest/organizations.js</a>, <a href="rest_organizations.js.html#line106">line 106</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description">
-    <p>Create a new organization by cloning the addressed organization.</p>
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Example</h5>
-    
-        <p class="code-caption">Example response</p>
-    
-    <pre class="prettyprint"><code>{
-  "id":1234,
-  "name":"My cloned org"
-}</code></pre>
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>param</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The parameters for this request</p>
-                <h6>Properties</h6>
-                
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>organizationId</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The id of the organization to clone</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>name</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The name of the new organization</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-            </td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    <p>A promise holding the newly created / cloned organization</p>
-</div>
-
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Promise</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-        
-            
-
-    
-
-    <h4 class="name" id=".createOrganization"><span class="type-signature">(static) </span>createOrganization<span class="signature">(param)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
-
-    
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_organizations.js.html">rest/organizations.js</a>, <a href="rest_organizations.js.html#line87">line 87</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description">
-    <p>Create a new organization.</p>
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Example</h5>
-    
-        <p class="code-caption">Example response</p>
-    
-    <pre class="prettyprint"><code>{
-  "id":1234,
-  "name":"My org"
-}</code></pre>
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>param</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The parameters for this request</p>
-                <h6>Properties</h6>
-                
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>name</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The name of the organization</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-            </td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    <p>A promise holding the newly created organization</p>
-</div>
-
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Promise</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-        
-            
-
-    
-
-    <h4 class="name" id=".listOrganizationInventory"><span class="type-signature">(static) </span>listOrganizationInventory<span class="signature">(param)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
-
-    
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_organizations.js.html">rest/organizations.js</a>, <a href="rest_organizations.js.html#line171">line 171</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description">
-    <p>Return the inventory for an organization.</p>
+    <p>List the SSIDs in a network.</p>
 </div>
 
 
@@ -1175,12 +448,10 @@ and cannot be performed in one request.</p>
     
     <pre class="prettyprint"><code>[
   {
-    "mac": "00:11:22:33:44:55:66",
-    "serial": "Q2XX-XXXX-XXXX",
-    "networkId": "N_1234",
-    "model": "MR34",
-    "claimedAt": "1477958158.69776",
-    "publicIp": "1.2.3.4",
+    "number":0,
+    "name":"SSID-1",
+    "enabled":true,
+    "authMode":"open"
   }
 ]</code></pre>
 
@@ -1228,250 +499,9 @@ and cannot be performed in one request.</p>
 
             
 
-            <td class="description last"><p>The parameters for this request</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    <p>A promise holding the inventory for this organization</p>
-</div>
-
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Promise</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-        
-            
-
-    
-
-    <h4 class="name" id=".listOrganizations"><span class="type-signature">(static) </span>listOrganizations<span class="signature">()</span><span class="type-signature"> &rarr; {Promise}</span></h4>
-
-    
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_organizations.js.html">rest/organizations.js</a>, <a href="rest_organizations.js.html#line35">line 35</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description">
-    <p>List the organizations that the user has privileges on.</p>
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Example</h5>
-    
-        <p class="code-caption">Example response</p>
-    
-    <pre class="prettyprint"><code>[
-  {
-    "id":1234,
-    "name":"My org"
-  }
-]</code></pre>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    <p>A promise holding the organizations this user has privileges on</p>
-</div>
-
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Promise</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-        
-            
-
-    
-
-    <h4 class="name" id=".showOrganization"><span class="type-signature">(static) </span>showOrganization<span class="signature">(param)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
-
-    
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_organizations.js.html">rest/organizations.js</a>, <a href="rest_organizations.js.html#line52">line 52</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description">
-    <p>Return an organization.</p>
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Example</h5>
-    
-        <p class="code-caption">Example response</p>
-    
-    <pre class="prettyprint"><code>{
-  "id":1234,
-  "name":"My org"
-}</code></pre>
-
-
-
-
-    <h5>Parameters:</h5>
-    
+            <td class="description last"><p>The parameters for this request</p>
+                <h6>Properties</h6>
+                
 
 <table class="params">
     <thead>
@@ -1495,13 +525,13 @@ and cannot be performed in one request.</p>
 
         <tr>
             
-                <td class="name"><code>param</code></td>
+                <td class="name"><code>networkId</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type">string</span>
 
 
             
@@ -1511,7 +541,14 @@ and cannot be performed in one request.</p>
 
             
 
-            <td class="description last"><p>The parameters for this request</p></td>
+            <td class="description last"><p>The id of the network for which to list the SSIDs</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
         </tr>
 
     
@@ -1535,7 +572,7 @@ and cannot be performed in one request.</p>
 
         
 <div class="param-desc">
-    <p>A promise holding the organization for this id</p>
+    <p>A promise holding the SSIDs for this network</p>
 </div>
 
 
@@ -1560,7 +597,7 @@ and cannot be performed in one request.</p>
 
     
 
-    <h4 class="name" id=".showOrganizationLicense"><span class="type-signature">(static) </span>showOrganizationLicense<span class="signature">(param)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id=".showNetworkSSID"><span class="type-signature">(static) </span>showNetworkSSID<span class="signature">(param)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -1572,7 +609,7 @@ and cannot be performed in one request.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_organizations.js.html">rest/organizations.js</a>, <a href="rest_organizations.js.html#line149">line 149</a>
+        <a href="rest_ssids.js.html">rest/ssids.js</a>, <a href="rest_ssids.js.html#line72">line 72</a>
     </li></ul></dd>
     
 
@@ -1612,7 +649,7 @@ and cannot be performed in one request.</p>
 
 
 <div class="description">
-    <p>Return the license state for an organization.</p>
+    <p>Return a single SSID.</p>
 </div>
 
 
@@ -1628,345 +665,19 @@ and cannot be performed in one request.</p>
         <p class="code-caption">Example response</p>
     
     <pre class="prettyprint"><code>{
-  "status": "OK",
-  "expirationDate": "Nov 16, 2016 UTC",
-  "licensedDeviceCounts": {
-    "MS": 100
-  }
-}</code></pre>
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>param</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The parameters for this request</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    <p>A promise holding the license state for this organization</p>
-</div>
-
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Promise</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-        
-            
-
-    
-
-    <h4 class="name" id=".showOrganizationSNMP"><span class="type-signature">(static) </span>showOrganizationSNMP<span class="signature">(param)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
-
-    
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_organizations.js.html">rest/organizations.js</a>, <a href="rest_organizations.js.html#line191">line 191</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description">
-    <p>Return the SNMP settings for an organization.</p>
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Example</h5>
-    
-        <p class="code-caption">Example response</p>
-    
-    <pre class="prettyprint"><code>{
-  "v2cEnabled":false,
-  "v3Enabled":false,
-  "v3AuthMode":null,
-  "v3PrivMode":null,
-  "hostname":"n1.meraki.com",
-  "port":16100
-}</code></pre>
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>param</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The parameters for this request</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    <p>A promise holding then SNMP settings for this organization</p>
-</div>
-
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Promise</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-        
-            
-
-    
-
-    <h4 class="name" id=".updateOrganization"><span class="type-signature">(static) </span>updateOrganization<span class="signature">(param)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
-
-    
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_organizations.js.html">rest/organizations.js</a>, <a href="rest_organizations.js.html#line69">line 69</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description">
-    <p>Update an organization.</p>
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Example</h5>
-    
-        <p class="code-caption">Example response</p>
-    
-    <pre class="prettyprint"><code>{
-  "id":1234,
-  "name":"My org"
+  "number":0,
+  "name":"SSID-1",
+  "enabled":true,
+  "authMode":"psk",
+  "encryptionMode":"wpa",
+  "psk":"abcd1234",
+  "splashPage":"Click-through splash page",
+  "perClientBandwidthLimitUp":0,
+  "perClientBandwidthLimitDown":0,
+  "ssidAdminAccessible":false,
+  "ipAssignmentMode":"NAT mode",
+  "walledGardenEnabled":true,
+  "walledGardenRanges":"192.168.1.1/24 192.168.37.10/32"
 }</code></pre>
 
 
@@ -2035,6 +746,311 @@ and cannot be performed in one request.</p>
     </thead>
 
     <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>networkId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The id of the network for which to list the SSIDs</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>ssidNumber</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The number of the SSID to show</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>A promise holding the details of this SSID</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".updateNetworkSSID"><span class="type-signature">(static) </span>updateNetworkSSID<span class="signature">(param)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="rest_ssids.js.html">rest/ssids.js</a>, <a href="rest_ssids.js.html#line147">line 147</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Update the attributes of an SSID.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Examples</h5>
+    
+        <p class="code-caption">Example request data</p>
+    
+    <pre class="prettyprint"><code>{
+  "name": "new SSID name",
+  "enabled": true,
+  "authMode": "psk",
+  "encryptionMode": "wpa",
+  "psk": "abcd1234",
+  "ipAssignmentMode": "Bridge mode"
+}</code></pre>
+
+        <p class="code-caption">Example response</p>
+    
+    <pre class="prettyprint"><code>{
+  "number":0,
+  "name":"SSID-1",
+  "enabled":true,
+  "authMode":"psk",
+  "encryptionMode":"wpa",
+  "psk":"abcd1234",
+  "splashPage":"Click-through splash page",
+  "perClientBandwidthLimitUp":0,
+  "perClientBandwidthLimitDown":0,
+  "ssidAdminAccessible":false,
+  "ipAssignmentMode":"NAT mode",
+  "walledGardenEnabled":true,
+  "walledGardenRanges":"192.168.1.1/24 192.168.37.10/32"
+}</code></pre>
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>param</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The parameters for this request</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>networkId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The id of the network for which to list the SSIDs</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>ssidNumber</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The number of the SSID to update</p></td>
+        </tr>
+
     
 
         <tr>
@@ -2055,168 +1071,152 @@ and cannot be performed in one request.</p>
 
             
 
-            <td class="description last"><p>The name of the organization</p></td>
+            <td class="description last"><p>The name of an SSID</p></td>
         </tr>
 
-    
-    </tbody>
-</table>
-
-            </td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    <p>A promise holding the updated organization</p>
-</div>
-
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Promise</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-        
-            
-
-    
-
-    <h4 class="name" id=".updateOrganizationSNMP"><span class="type-signature">(static) </span>updateOrganizationSNMP<span class="signature">(param)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
-
-    
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_organizations.js.html">rest/organizations.js</a>, <a href="rest_organizations.js.html#line219">line 219</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description">
-    <p>Update the SNMP settings for an organization.</p>
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Example</h5>
-    
-        <p class="code-caption">Example response</p>
-    
-    <pre class="prettyprint"><code>{
-  "v2cEnabled":false,
-  "v3Enabled":false,
-  "v3AuthMode":null,
-  "v3PrivMode":null,
-  "hostname":"n1.meraki.com",
-  "port":16100,
-  "peerIps":null
-}</code></pre>
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
     
 
         <tr>
             
-                <td class="name"><code>param</code></td>
+                <td class="name"><code>enabled</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Whether or not an SSID is enabled</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>authMode</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The association control method for the SSID (<code>open</code>, <code>psk</code>, <code>open-with-radius</code>, <code>8021x-meraki</code>, <code>8021x-radius</code>)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>encryptionMode</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The psk encryption mode for the SSID (<code>wpa</code>, <code>wep</code>, <code>wpa-eap</code>)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>psk</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The passkey for the SSID. This param is only valid if the authMode is <code>psk</code></p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>wpaEncryptionMode</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The types of WPA encryption. (<code>WPA1 and WPA2</code>, <code>WPA2 only</code>)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>splashPage</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The type of splash page for the SSID (<code>None</code>, <code>Click-through splash page</code>, <code>Billing</code>, <code>Password-protected with Meraki RADIUS</code>, <code>Password-protected with custom RADIUS</code>, <code>Password-protected with Active Directory</code>, <code>Password-protected with LDAP</code>, <code>SMS authentication</code>, <code>Systems Manager Sentry</code>, <code>Facebook Wi-Fi</code>). This attribute is not supported for template children</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>radiusServers</code></td>
             
 
             <td class="type">
@@ -2232,7 +1232,7 @@ and cannot be performed in one request.</p>
 
             
 
-            <td class="description last"><p>The parameters for this request</p>
+            <td class="description last"><p>The RADIUS 802.1x servers to be used for authentication. This param is only valid if the authMode is <code>open-with-radius</code> or <code>8021x-radius</code></p>
                 <h6>Properties</h6>
                 
 
@@ -2258,7 +1258,83 @@ and cannot be performed in one request.</p>
 
         <tr>
             
-                <td class="name"><code>v2cEnabled</code></td>
+                <td class="name"><code>host</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Ip address of RADIUS server</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>port</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>UPD port of the RADIUS server listens on for Acess-requests</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>secret</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>RADIUS client shared secret</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>radiusCoaEnabled</code></td>
             
 
             <td class="type">
@@ -2274,14 +1350,14 @@ and cannot be performed in one request.</p>
 
             
 
-            <td class="description last"><p>Boolean indicating whether SNMP version 2c is enabled for the organization</p></td>
+            <td class="description last"><p>If true, Meraki devices will act as a RADIUS Dynamic Authorization Server and will respond to RADIUS Change-of-Authorization and Disconnect messages sent by the RADIUS server</p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>v3Enabled</code></td>
+                <td class="name"><code>radiusAccountingEnabled</code></td>
             
 
             <td class="type">
@@ -2297,14 +1373,56 @@ and cannot be performed in one request.</p>
 
             
 
-            <td class="description last"><p>Boolean indicating whether SNMP version 3 is enabled for the organization</p></td>
+            <td class="description last"><p>Whether or not RADIUS accounting is enabled. This param is only valid if the authMode is <code>open-with-radius</code> or <code>8021x-radius</code></p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>v3AuthMode</code></td>
+                <td class="name"><code>radiusAccountingServers</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The RADIUS accounting 802.1x servers to be used for authentication. This param is only valid if the authMode is <code>open-with-radius</code> or <code>8021x-radius</code> and radiusAccountingEnabled is <code>true</code></p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>host</code></td>
             
 
             <td class="type">
@@ -2320,14 +1438,37 @@ and cannot be performed in one request.</p>
 
             
 
-            <td class="description last"><p>The SNMP version 3 authentication mode either MD5 or SHA</p></td>
+            <td class="description last"><p>IP address to which the APs will send RADIUS accounting messages</p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>v3AuthPass</code></td>
+                <td class="name"><code>port</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Port on the RADIUS server that is listening for accounting messages</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>secret</code></td>
             
 
             <td class="type">
@@ -2343,14 +1484,21 @@ and cannot be performed in one request.</p>
 
             
 
-            <td class="description last"><p>The SNMP version 3 authentication password. Must be at least 8 characters if specified</p></td>
+            <td class="description last"><p>Shared key used to authenticate messages between the APs and RADIUS server</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>v3PrivMode</code></td>
+                <td class="name"><code>ipAssignmentMode</code></td>
             
 
             <td class="type">
@@ -2366,14 +1514,37 @@ and cannot be performed in one request.</p>
 
             
 
-            <td class="description last"><p>The SNMP version 3 privacy mode DES or AES128</p></td>
+            <td class="description last"><p>The client IP assignment mode (<code>NAT mode</code>, <code>Bridge mode</code>, <code>Layer 3 roaming</code>, <code>Layer 3 roaming with a concentrator</code>, <code>VPN</code>)</p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>v3PrivPass</code></td>
+                <td class="name"><code>useVlanTagging</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Direct trafic to use specific VLANs. This param is only valid with <code>Bridge mode</code> and <code>Layer 3 roaming</code></p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>concentratorNetworkId</code></td>
             
 
             <td class="type">
@@ -2389,14 +1560,102 @@ and cannot be performed in one request.</p>
 
             
 
-            <td class="description last"><p>The SNMP version 3 privacy password. Must be at least 8 characters if specified</p></td>
+            <td class="description last"><p>The concentrator to use for <code>Layer 3 roaming with a concentrator</code> or <code>VPN</code></p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>peerIps</code></td>
+                <td class="name"><code>vlanId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The VLAN ID used for VLAN tagging. This param is only valid with <code>Layer 3 roaming with a concentrator</code> and <code>VPN</code></p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>defaultVlanId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The default VLAN ID used for <code>all other APs</code>. This param is only valid with <code>Bridge mode</code> and <code>Layer 3 roaming</code></p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>apTagsAndVlanIds</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The list of tags and VLAN IDs used for VLAN tagging. This param is only valid with <code>Bridge mode</code>, <code>Layer 3 roaming</code></p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>tags</code></td>
             
 
             <td class="type">
@@ -2412,7 +1671,175 @@ and cannot be performed in one request.</p>
 
             
 
-            <td class="description last"><p>The IPs that are allowed to access the SNMP server. This list should be IPv4 addresses separated by semi-colons (ie. &quot;1.2.3.4;2.3.4.5&quot;)</p></td>
+            <td class="description last"><p>Comma-separated list of AP tags</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>vlanId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Numerical identifier that is assigned to the VLAN</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>walledGardenEnabled</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Allow access to a configurable list of IP ranges, which users may access prior to sign-on</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>walledGardenRanges</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Specify your walled garden by entering space-separated addresses and ranges using CIDR notation (e.g. 192.168.1.1/24 192.168.37.10/32). Meraki's splash page is automatically included in your walled garden</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>minBitrate</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The minimum bitrate in Mbps. (1, 2, 5.5, 6, 9, 11, 12, 18, 24, 36, 48, 54)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>bandSelection</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The client-serving radio frequencies. (Dual band operation, 5 GHz band only, Dual band operation with Band Steering)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>perClientBandwidthLimitUp</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The upload bandwidth limit in Kbps. (0 represents no limit.)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>perClientBandwidthLimitDown</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The download bandwidth limit in Kbps. (0 represents no limit.)</p></td>
         </tr>
 
     
@@ -2443,7 +1870,7 @@ and cannot be performed in one request.</p>
 
         
 <div class="param-desc">
-    <p>A promise holding then updated SNMP settings for this organization</p>
+    <p>A promise holding the updated SSID</p>
 </div>
 
 
@@ -2481,7 +1908,7 @@ and cannot be performed in one request.</p>
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Thu Feb 22 2018 09:56:26 GMT+0100 (CET) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Thu Feb 22 2018 10:52:05 GMT+0100 (CET) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

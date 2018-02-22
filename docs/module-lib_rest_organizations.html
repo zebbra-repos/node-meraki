@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>lib/rest/clients - Documentation</title>
+    <title>lib/rest/organizations - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -27,7 +27,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">lib/rest/clients</h1>
+    <h1 class="page-title">lib/rest/organizations</h1>
     
 
     
@@ -49,8 +49,8 @@
     <div class="container-overview">
     
         
-            <div class="description"><p>Create a Meraki REST API wrapper for the client ressource. See the
-<a href="https://dashboard.meraki.com/api_docs#clients">online documentation</a> for more information.</p></div>
+            <div class="description"><p>Create a Meraki REST API wrapper for the organization ressource. See the
+<a href="https://dashboard.meraki.com/api_docs#organizations">online documentation</a> for more information.</p></div>
         
 
         
@@ -64,7 +64,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_clients.js.html">rest/clients.js</a>, <a href="rest_clients.js.html#line3">line 3</a>
+        <a href="rest_organizations.js.html">rest/organizations.js</a>, <a href="rest_organizations.js.html#line3">line 3</a>
     </li></ul></dd>
     
 
@@ -117,8 +117,8 @@
 const organizationId = 'meraki organization id'
 const version = 'v0'
 const target = 'n12'
-const basePath = `/${target}/${version}`
-const adminEndpoints = require('./lib/rest/clients')({ apiKey, target, basePath })</code></pre>
+const basePath = `/${target}/${version}/organizations/${organizationId}`
+const adminEndpoints = require('./lib/rest/organization')({ apiKey, target, basePath })</code></pre>
 
 
 
@@ -304,7 +304,7 @@ const adminEndpoints = require('./lib/rest/clients')({ apiKey, target, basePath 
                 </td>
             
 
-            <td class="description last"><p>The Meraki base path for the client ressource</p></td>
+            <td class="description last"><p>The Meraki base path for the organization ressource</p></td>
         </tr>
 
     
@@ -335,7 +335,7 @@ const adminEndpoints = require('./lib/rest/clients')({ apiKey, target, basePath 
 
         
 <div class="param-desc">
-    <p>The initialized Meraki REST API wrapper for the client ressource</p>
+    <p>The initialized Meraki REST API wrapper for the organization ressource</p>
 </div>
 
 
@@ -379,7 +379,7 @@ const adminEndpoints = require('./lib/rest/clients')({ apiKey, target, basePath 
 
     
 
-    <h4 class="name" id=".listClients"><span class="type-signature">(static) </span>listClients<span class="signature">(param)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id=".claimOrganization"><span class="type-signature">(static) </span>claimOrganization<span class="signature">(param)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -391,7 +391,7 @@ const adminEndpoints = require('./lib/rest/clients')({ apiKey, target, basePath 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_clients.js.html">rest/clients.js</a>, <a href="rest_clients.js.html#line47">line 47</a>
+        <a href="rest_organizations.js.html">rest/organizations.js</a>, <a href="rest_organizations.js.html#line129">line 129</a>
     </li></ul></dd>
     
 
@@ -431,9 +431,734 @@ const adminEndpoints = require('./lib/rest/clients')({ apiKey, target, basePath 
 
 
 <div class="description">
-    <p>List the clients of a device, up to a maximum of a month ago. The usage of each client is
-returned in kilobytes. If the device is a switch, the switchport is returned; otherwise
-the switchport field is null.</p>
+    <p>Claim a device, license key, or order into an organization. When claiming by order, all devices
+and licenses in the order will be claimed; licenses will be added to the organization and devices
+will be placed in the organization's inventory. These three types of claims are mutually exclusive
+and cannot be performed in one request.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>param</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The parameters for this request</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>order</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The order number that should be claimed</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>serial</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The serial of the device that should be claimed</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>licenseKey</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The license key that should be claimed</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>licenseMode</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Either <code>renew</code> or <code>addDevices</code>. <code>addDevices</code> will increase the license limit, while <code>renew</code> will extend the amount of time until expiration. This parameter is required when claiming by licenseKey</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>A promise with no data</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".cloneOrganization"><span class="type-signature">(static) </span>cloneOrganization<span class="signature">(param)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="rest_organizations.js.html">rest/organizations.js</a>, <a href="rest_organizations.js.html#line106">line 106</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Create a new organization by cloning the addressed organization.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+        <p class="code-caption">Example response</p>
+    
+    <pre class="prettyprint"><code>{
+  "id":1234,
+  "name":"My cloned org"
+}</code></pre>
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>param</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The parameters for this request</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>organizationId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The id of the organization to clone</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The name of the new organization</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>A promise holding the newly created / cloned organization</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".createOrganization"><span class="type-signature">(static) </span>createOrganization<span class="signature">(param)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="rest_organizations.js.html">rest/organizations.js</a>, <a href="rest_organizations.js.html#line87">line 87</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Create a new organization.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+        <p class="code-caption">Example response</p>
+    
+    <pre class="prettyprint"><code>{
+  "id":1234,
+  "name":"My org"
+}</code></pre>
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>param</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The parameters for this request</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The name of the organization</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>A promise holding the newly created organization</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".listOrganizationInventory"><span class="type-signature">(static) </span>listOrganizationInventory<span class="signature">(param)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="rest_organizations.js.html">rest/organizations.js</a>, <a href="rest_organizations.js.html#line171">line 171</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Return the inventory for an organization.</p>
 </div>
 
 
@@ -450,16 +1175,13 @@ the switchport field is null.</p>
     
     <pre class="prettyprint"><code>[
   {
-    "description": "Hayg's Nexus 5",
-    "mdnsName": "Hayg's Nexus 5",
-    "dhcpHostname": "HaygNexus5",
-    "usage": {"sent": 1337.0, "recv": 7331.0},
-    "mac": "00:18:D3:AD:B3:3F",
-    "ip": "1.2.3.4",
-    "id": "lk12uq",
-    "switchport": null
-  },
-  ...
+    "mac": "00:11:22:33:44:55:66",
+    "serial": "Q2XX-XXXX-XXXX",
+    "networkId": "N_1234",
+    "model": "MR34",
+    "claimedAt": "1477958158.69776",
+    "publicIp": "1.2.3.4",
+  }
 ]</code></pre>
 
 
@@ -506,79 +1228,7 @@ the switchport field is null.</p>
 
             
 
-            <td class="description last"><p>The parameters for this request</p>
-                <h6>Properties</h6>
-                
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>deviceSerial</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The serial number of the device for which to list the clients</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>timespan</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The timespan for which clients will be fetched. Must be in seconds and less than or equal to a month (2592000 seconds)</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-            </td>
+            <td class="description last"><p>The parameters for this request</p></td>
         </tr>
 
     
@@ -602,7 +1252,7 @@ the switchport field is null.</p>
 
         
 <div class="param-desc">
-    <p>A promise holding the clients for this device</p>
+    <p>A promise holding the inventory for this organization</p>
 </div>
 
 
@@ -627,7 +1277,7 @@ the switchport field is null.</p>
 
     
 
-    <h4 class="name" id=".showClientPolicy"><span class="type-signature">(static) </span>showClientPolicy<span class="signature">(param)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id=".listOrganizations"><span class="type-signature">(static) </span>listOrganizations<span class="signature">()</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -639,7 +1289,7 @@ the switchport field is null.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_clients.js.html">rest/clients.js</a>, <a href="rest_clients.js.html#line72">line 72</a>
+        <a href="rest_organizations.js.html">rest/organizations.js</a>, <a href="rest_organizations.js.html#line35">line 35</a>
     </li></ul></dd>
     
 
@@ -679,7 +1329,125 @@ the switchport field is null.</p>
 
 
 <div class="description">
-    <p>Return the policy assigned to a client on the network.</p>
+    <p>List the organizations that the user has privileges on.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+        <p class="code-caption">Example response</p>
+    
+    <pre class="prettyprint"><code>[
+  {
+    "id":1234,
+    "name":"My org"
+  }
+]</code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>A promise holding the organizations this user has privileges on</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".showOrganization"><span class="type-signature">(static) </span>showOrganization<span class="signature">(param)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="rest_organizations.js.html">rest/organizations.js</a>, <a href="rest_organizations.js.html#line52">line 52</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Return an organization.</p>
 </div>
 
 
@@ -695,9 +1463,8 @@ the switchport field is null.</p>
         <p class="code-caption">Example response</p>
     
     <pre class="prettyprint"><code>{
-  "mac": "00:11:22:33:44:55",
-  "type": "Group policy",
-  "groupPolicyId": 101
+  "id":1234,
+  "name":"My org"
 }</code></pre>
 
 
@@ -744,102 +1511,7 @@ the switchport field is null.</p>
 
             
 
-            <td class="description last"><p>The parameters for this request</p>
-                <h6>Properties</h6>
-                
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>networkId</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The id of the network for which to list the clients</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>timespan</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The timespan for which clients will be fetched. Must be in seconds and less than or equal to a month (2592000 seconds)</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>mac</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The mac address of the client for which to show the assigned policy</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-            </td>
+            <td class="description last"><p>The parameters for this request</p></td>
         </tr>
 
     
@@ -863,7 +1535,7 @@ the switchport field is null.</p>
 
         
 <div class="param-desc">
-    <p>A promise holding the clients policy group</p>
+    <p>A promise holding the organization for this id</p>
 </div>
 
 
@@ -888,7 +1560,7 @@ the switchport field is null.</p>
 
     
 
-    <h4 class="name" id=".showClientSplashAuthorization"><span class="type-signature">(static) </span>showClientSplashAuthorization<span class="signature">(param)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id=".showOrganizationLicense"><span class="type-signature">(static) </span>showOrganizationLicense<span class="signature">(param)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -900,7 +1572,7 @@ the switchport field is null.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_clients.js.html">rest/clients.js</a>, <a href="rest_clients.js.html#line136">line 136</a>
+        <a href="rest_organizations.js.html">rest/organizations.js</a>, <a href="rest_organizations.js.html#line149">line 149</a>
     </li></ul></dd>
     
 
@@ -940,7 +1612,7 @@ the switchport field is null.</p>
 
 
 <div class="description">
-    <p>Return the splash authorization for a client, for each SSID they've associated with through splash.</p>
+    <p>Return the license state for an organization.</p>
 </div>
 
 
@@ -956,15 +1628,10 @@ the switchport field is null.</p>
         <p class="code-caption">Example response</p>
     
     <pre class="prettyprint"><code>{
-  "ssids": {
-    "0": {
-      "isAuthorized": true,
-      "authorizedAt": "2017-07-19 16:24:13 UTC",
-      "expiresAt": "2017-07-20 16:24:13 UTC"
-    },
-    "2": {
-      "isAuthorized": false
-    }
+  "status": "OK",
+  "expirationDate": "Nov 16, 2016 UTC",
+  "licensedDeviceCounts": {
+    "MS": 100
   }
 }</code></pre>
 
@@ -1012,102 +1679,7 @@ the switchport field is null.</p>
 
             
 
-            <td class="description last"><p>The parameters for this request</p>
-                <h6>Properties</h6>
-                
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>networkId</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The id of the network for which to list the clients</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>timespan</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The timespan for which clients will be fetched. Must be in seconds and less than or equal to a month (2592000 seconds)</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>mac</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The mac address of the client for which to show the assigned policy</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-            </td>
+            <td class="description last"><p>The parameters for this request</p></td>
         </tr>
 
     
@@ -1131,7 +1703,7 @@ the switchport field is null.</p>
 
         
 <div class="param-desc">
-    <p>A promise holding splash authorization information for this client</p>
+    <p>A promise holding the license state for this organization</p>
 </div>
 
 
@@ -1156,7 +1728,7 @@ the switchport field is null.</p>
 
     
 
-    <h4 class="name" id=".updateClientPolicy"><span class="type-signature">(static) </span>updateClientPolicy<span class="signature">(param)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id=".showOrganizationSNMP"><span class="type-signature">(static) </span>showOrganizationSNMP<span class="signature">(param)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -1168,7 +1740,7 @@ the switchport field is null.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_clients.js.html">rest/clients.js</a>, <a href="rest_clients.js.html#line102">line 102</a>
+        <a href="rest_organizations.js.html">rest/organizations.js</a>, <a href="rest_organizations.js.html#line191">line 191</a>
     </li></ul></dd>
     
 
@@ -1208,7 +1780,7 @@ the switchport field is null.</p>
 
 
 <div class="description">
-    <p>Update the policy assigned to a client on the network.</p>
+    <p>Return the SNMP settings for an organization.</p>
 </div>
 
 
@@ -1224,9 +1796,12 @@ the switchport field is null.</p>
         <p class="code-caption">Example response</p>
     
     <pre class="prettyprint"><code>{
-  "mac": "00:11:22:33:44:55",
-  "type": "Group policy",
-  "groupPolicyId": 101
+  "v2cEnabled":false,
+  "v3Enabled":false,
+  "v3AuthMode":null,
+  "v3PrivMode":null,
+  "hostname":"n1.meraki.com",
+  "port":16100
 }</code></pre>
 
 
@@ -1273,149 +1848,7 @@ the switchport field is null.</p>
 
             
 
-            <td class="description last"><p>The parameters for this request</p>
-                <h6>Properties</h6>
-                
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>networkId</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The id of the network for which to list the clients</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>timespan</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The timespan for which clients will be fetched. Must be in seconds and less than or equal to a month (2592000 seconds)</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>mac</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The mac address of the client for which to show the assigned policy</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>devicePolicy</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The group policy (Whitelisted, Blocked, Normal, Group policy)</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>groupPolicyId</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>[optional] If devicePolicy param is set to <code>group</code> this param is
-                                         used to specify the group ID</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-            </td>
+            <td class="description last"><p>The parameters for this request</p></td>
         </tr>
 
     
@@ -1439,7 +1872,7 @@ the switchport field is null.</p>
 
         
 <div class="param-desc">
-    <p>A promise holding the updated clients policy group</p>
+    <p>A promise holding then SNMP settings for this organization</p>
 </div>
 
 
@@ -1464,7 +1897,7 @@ the switchport field is null.</p>
 
     
 
-    <h4 class="name" id=".updateClientSplashAuthorization"><span class="type-signature">(static) </span>updateClientSplashAuthorization<span class="signature">(param)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id=".updateOrganization"><span class="type-signature">(static) </span>updateOrganization<span class="signature">(param)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -1476,7 +1909,7 @@ the switchport field is null.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_clients.js.html">rest/clients.js</a>, <a href="rest_clients.js.html#line180">line 180</a>
+        <a href="rest_organizations.js.html">rest/organizations.js</a>, <a href="rest_organizations.js.html#line69">line 69</a>
     </li></ul></dd>
     
 
@@ -1516,7 +1949,7 @@ the switchport field is null.</p>
 
 
 <div class="description">
-    <p>Update a client's splash authorization.</p>
+    <p>Update an organization.</p>
 </div>
 
 
@@ -1527,34 +1960,13 @@ the switchport field is null.</p>
 
 
 
-    <h5>Examples</h5>
+    <h5>Example</h5>
     
-        <p class="code-caption">Example ssids data</p>
-    
-    <pre class="prettyprint"><code>{
-  "ssids": {
-    "0": {
-      "isAuthorized": true
-    },
-    "2": {
-      "isAuthorized": false
-    }
-  }
-}</code></pre>
-
         <p class="code-caption">Example response</p>
     
     <pre class="prettyprint"><code>{
-  "ssids": {
-    "0": {
-      "isAuthorized": true,
-      "authorizedAt": "2017-07-19 16:24:13 UTC",
-      "expiresAt": "2017-07-20 16:24:13 UTC"
-    },
-    "2": {
-      "isAuthorized": false
-    }
-  }
+  "id":1234,
+  "name":"My org"
 }</code></pre>
 
 
@@ -1627,7 +2039,7 @@ the switchport field is null.</p>
 
         <tr>
             
-                <td class="name"><code>networkId</code></td>
+                <td class="name"><code>name</code></td>
             
 
             <td class="type">
@@ -1643,53 +2055,7 @@ the switchport field is null.</p>
 
             
 
-            <td class="description last"><p>The id of the network for which to list the clients</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>mac</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The mac address of the client for which to show the assigned policy</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>ssids</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The target SSIDs. For each SSID where isAuthorized is true, the expiration time will automatically be set according to the SSID's splash frequency</p></td>
+            <td class="description last"><p>The name of the organization</p></td>
         </tr>
 
     
@@ -1720,7 +2086,364 @@ the switchport field is null.</p>
 
         
 <div class="param-desc">
-    <p>A promise holding the updated splash authorization information for this client</p>
+    <p>A promise holding the updated organization</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".updateOrganizationSNMP"><span class="type-signature">(static) </span>updateOrganizationSNMP<span class="signature">(param)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="rest_organizations.js.html">rest/organizations.js</a>, <a href="rest_organizations.js.html#line219">line 219</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Update the SNMP settings for an organization.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+        <p class="code-caption">Example response</p>
+    
+    <pre class="prettyprint"><code>{
+  "v2cEnabled":false,
+  "v3Enabled":false,
+  "v3AuthMode":null,
+  "v3PrivMode":null,
+  "hostname":"n1.meraki.com",
+  "port":16100,
+  "peerIps":null
+}</code></pre>
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>param</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The parameters for this request</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>v2cEnabled</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Boolean indicating whether SNMP version 2c is enabled for the organization</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>v3Enabled</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Boolean indicating whether SNMP version 3 is enabled for the organization</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>v3AuthMode</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The SNMP version 3 authentication mode either MD5 or SHA</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>v3AuthPass</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The SNMP version 3 authentication password. Must be at least 8 characters if specified</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>v3PrivMode</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The SNMP version 3 privacy mode DES or AES128</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>v3PrivPass</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The SNMP version 3 privacy password. Must be at least 8 characters if specified</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>peerIps</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The IPs that are allowed to access the SNMP server. This list should be IPv4 addresses separated by semi-colons (ie. &quot;1.2.3.4;2.3.4.5&quot;)</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>A promise holding then updated SNMP settings for this organization</p>
 </div>
 
 
@@ -1758,7 +2481,7 @@ the switchport field is null.</p>
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Thu Feb 22 2018 09:56:26 GMT+0100 (CET) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Thu Feb 22 2018 10:52:05 GMT+0100 (CET) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

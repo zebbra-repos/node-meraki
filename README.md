@@ -8,6 +8,9 @@ Nodejs wrapper module for [Cisco Meraki](https://meraki.cisco.com/) network mana
 npm install --save node-meraki
 ```
 
+## Documentation
+The jsdoc documentation can be found [here](docs/node-meraki/1.0.0/index)
+
 ## Usage
 ```javascript
 const apiKey = 'secret meraki api key'

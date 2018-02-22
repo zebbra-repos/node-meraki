@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>rest/ssids.js - Documentation</title>
+    <title>rest/routes.js - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -27,7 +27,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">rest/ssids.js</h1>
+    <h1 class="page-title">rest/routes.js</h1>
     
 
     
@@ -40,171 +40,190 @@
             <pre class="prettyprint source linenums"><code>const axios = require('./axios')
 
 /**
- * Create a Meraki REST API wrapper for the SSID ressource. See the
- * [online documentation]{@link https://dashboard.meraki.com/api_docs#ssids} for more information.
+ * Create a Meraki REST API wrapper for the static route ressource. See the
+ * [online documentation]{@link https://dashboard.meraki.com/api_docs#static-routes} for more information.
  *
- * @module lib/rest/ssids
+ * @module lib/rest/static-routes
  * @param { Object } settings                   The configuration object used to create the api wrapper
  * @param { string } [settings.apiKey='']       The Meraki api key
  * @param { string } [settings.target='api']    The Meraki target
- * @param { string } [settings.basePath='/']    The Meraki base path for the SSID ressource
- * @return { Object } The initialized Meraki REST API wrapper for the SSID ressource
+ * @param { string } [settings.basePath='/']    The Meraki base path for the static route ressource
+ * @return { Object } The initialized Meraki REST API wrapper for the static route ressource
  * @example
  * const apiKey = 'secret meraki api key'
  * const organizationId = 'meraki organization id'
  * const version = 'v0'
  * const target = 'n12'
  * const basePath = `/${target}/${version}/networks`
- * const adminEndpoints = require('./lib/rest/ssids')({ apiKey, target, basePath })
+ * const adminEndpoints = require('./lib/rest/routes')({ apiKey, target, basePath })
  */
-function createSSIDsEndpoints ({ apiKey, target, basePath }) {
+function createRoutesEndpoints ({ apiKey, target, basePath }) {
   /**
-   * List the SSIDs in a network.
+   * List the static routes for this network.
    *
-   * @memberof module:lib/rest/ssids
+   * @memberof module:lib/rest/static-routes
    * @param { Object } param                  The parameters for this request
-   * @param { string } param.networkId        The id of the network for which to list the SSIDs
-   * @return { Promise } A promise holding the SSIDs for this network
+   * @param { string } param.networkId        The id of the network for which to list the static routes
+   * @return { Promise } A promise holding the static routes of this network
    * @example &lt;caption>Example response&lt;/caption>
    * [
    *   {
-   *     "number":0,
-   *     "name":"SSID-1",
-   *     "enabled":true,
-   *     "authMode":"open"
+   *     "id": "10",
+   *     "networkId": "N_1234",
+   *     "name": "VOIP",
+   *     "gatewayIp": "10.8.0.5",
+   *     "subnet": "192.168.10.0/24"
    *   }
    * ]
    */
-  function listNetworkSSIDs ({ networkId }) {
+  function listStaticNetworkRoutes ({ networkId }) {
     if (!networkId) {
       return Promise.reject(new Error('The parameter networkId is mandatory'))
     }
 
-    return axios._get(apiKey, target, `${basePath}/${networkId}/ssids`)
+    return axios._get(apiKey, target, `${basePath}/${networkId}/staticRoutes`)
   }
 
   /**
-   * Return a single SSID.
+   * Return a static route.
    *
-   * @memberof module:lib/rest/ssids
+   * @memberof module:lib/rest/static-routes
    * @param { Object } param                  The parameters for this request
-   * @param { string } param.networkId        The id of the network for which to list the SSIDs
-   * @param { number } param.ssidNumber       The number of the SSID to show
-   * @return { Promise } A promise holding the details of this SSID
+   * @param { string } param.networkId        The id of the network for which to list the static routes
+   * @param { string } param.srId             The id of the static route for which to show the details
+   * @return { Promise } A promise holding the details of a static route this network
    * @example &lt;caption>Example response&lt;/caption>
    * {
-   *   "number":0,
-   *   "name":"SSID-1",
-   *   "enabled":true,
-   *   "authMode":"psk",
-   *   "encryptionMode":"wpa",
-   *   "psk":"abcd1234",
-   *   "splashPage":"Click-through splash page",
-   *   "perClientBandwidthLimitUp":0,
-   *   "perClientBandwidthLimitDown":0,
-   *   "ssidAdminAccessible":false,
-   *   "ipAssignmentMode":"NAT mode",
-   *   "walledGardenEnabled":true,
-   *   "walledGardenRanges":"192.168.1.1/24 192.168.37.10/32"
+   *   "id": "10",
+   *   "networkId": "N_1234",
+   *   "name": "VOIP",
+   *   "gatewayIp": "10.8.0.5",
+   *   "subnet": "192.168.10.0/24"
    * }
    */
-  function showNetworkSSID ({ networkId, ssidNumber }) {
+  function showStaticNetworkRoute ({ networkId, srId }) {
     if (!networkId) {
       return Promise.reject(new Error('The parameter networkId is mandatory'))
-    } else if (!ssidNumber) {
-      return Promise.reject(new Error('The parameter ssidNumber is mandatory'))
+    } else if (!srId) {
+      return Promise.reject(new Error('The parameter srId is mandatory'))
     }
 
-    return axios._get(apiKey, target, `${basePath}/${networkId}/ssids/${ssidNumber}`)
+    return axios._get(apiKey, target, `${basePath}/${networkId}/staticRoutes/${srId}`)
   }
 
   /**
-   * Update the attributes of an SSID.
+   * Update a static route.
    *
-   * @memberof module:lib/rest/ssids
-   * @param { Object } param                            The parameters for this request
-   * @param { string } param.networkId                  The id of the network for which to list the SSIDs
-   * @param { number } param.ssidNumber                 The number of the SSID to update
-   * @param { string } param.name                       The name of an SSID
-   * @param { boolean } param.enabled                   Whether or not an SSID is enabled
-   * @param { string } param.authMode                   The association control method for the SSID (`open`, `psk`, `open-with-radius`, `8021x-meraki`, `8021x-radius`)
-   * @param { string } param.encryptionMode             The psk encryption mode for the SSID (`wpa`, `wep`, `wpa-eap`)
-   * @param { string } param.psk                        The passkey for the SSID. This param is only valid if the authMode is `psk`
-   * @param { string } param.wpaEncryptionMode          The types of WPA encryption. (`WPA1 and WPA2`, `WPA2 only`)
-   * @param { string } param.splashPage                 The type of splash page for the SSID (`None`, `Click-through splash page`, `Billing`, `Password-protected with Meraki RADIUS`, `Password-protected with custom RADIUS`, `Password-protected with Active Directory`, `Password-protected with LDAP`, `SMS authentication`, `Systems Manager Sentry`, `Facebook Wi-Fi`). This attribute is not supported for template children
-   * @param { Object } param.radiusServers              The RADIUS 802.1x servers to be used for authentication. This param is only valid if the authMode is `open-with-radius` or `8021x-radius`
-   * @param { string } param.radiusServers.host         Ip address of RADIUS server
-   * @param { number } param.radiusServers.port         UPD port of the RADIUS server listens on for Acess-requests
-   * @param { string } param.radiusServers.secret       RADIUS client shared secret
-   * @param { boolean } param.radiusCoaEnabled          If true, Meraki devices will act as a RADIUS Dynamic Authorization Server and will respond to RADIUS Change-of-Authorization and Disconnect messages sent by the RADIUS server
-   * @param { boolean } param.radiusAccountingEnabled   Whether or not RADIUS accounting is enabled. This param is only valid if the authMode is `open-with-radius` or `8021x-radius`
-   * @param { Object } param.radiusAccountingServers    The RADIUS accounting 802.1x servers to be used for authentication. This param is only valid if the authMode is `open-with-radius` or `8021x-radius` and radiusAccountingEnabled is `true`
-   * @param { string } param.radiusAccountingServers.host   IP address to which the APs will send RADIUS accounting messages
-   * @param { number } param.radiusAccountingServers.port   Port on the RADIUS server that is listening for accounting messages
-   * @param { string } param.radiusAccountingServers.secret Shared key used to authenticate messages between the APs and RADIUS server
-   * @param { string } param.ipAssignmentMode           The client IP assignment mode (`NAT mode`, `Bridge mode`, `Layer 3 roaming`, `Layer 3 roaming with a concentrator`, `VPN`)
-   * @param { boolean } param.useVlanTagging            Direct trafic to use specific VLANs. This param is only valid with `Bridge mode` and `Layer 3 roaming`
-   * @param { string } param.concentratorNetworkId      The concentrator to use for `Layer 3 roaming with a concentrator` or `VPN`
-   * @param { number } param.vlanId                     The VLAN ID used for VLAN tagging. This param is only valid with `Layer 3 roaming with a concentrator` and `VPN`
-   * @param { number } param.defaultVlanId              The default VLAN ID used for `all other APs`. This param is only valid with `Bridge mode` and `Layer 3 roaming`
-   * @param { Array } param.apTagsAndVlanIds            The list of tags and VLAN IDs used for VLAN tagging. This param is only valid with `Bridge mode`, `Layer 3 roaming`
-   * @param { string } param.apTagsAndVlanIds.tags      Comma-separated list of AP tags
-   * @param { number } param.apTagsAndVlanIds.vlanId    Numerical identifier that is assigned to the VLAN
-   * @param { boolean } param.walledGardenEnabled       Allow access to a configurable list of IP ranges, which users may access prior to sign-on
-   * @param { string } param.walledGardenRanges         Specify your walled garden by entering space-separated addresses and ranges using CIDR notation (e.g. 192.168.1.1/24 192.168.37.10/32). Meraki's splash page is automatically included in your walled garden
-   * @param { number } param.minBitrate                 The minimum bitrate in Mbps. (1, 2, 5.5, 6, 9, 11, 12, 18, 24, 36, 48, 54)
-   * @param { string } param.bandSelection              The client-serving radio frequencies. (Dual band operation, 5 GHz band only, Dual band operation with Band Steering)
-   * @param { number } param.perClientBandwidthLimitUp  The upload bandwidth limit in Kbps. (0 represents no limit.)
-   * @param { number } param.perClientBandwidthLimitDown  The download bandwidth limit in Kbps. (0 represents no limit.)
-   * @return { Promise } A promise holding the updated SSID
+   * @memberof module:lib/rest/static-routes
+   * @param { Object } param                  The parameters for this request
+   * @param { string } param.networkId        The id of the network for which to list the static routes
+   * @param { string } param.srId             The id of the static route to update
+   * @param { string } param.name             The name of the static route
+   * @param { string } param.subnet           The subnet of the static route
+   * @param { string } param.gatewayIp        The gateway IP (next hop) of the static route
+   * @param { boolean } param.enabled         The enabled state of the static route
+   * @param { string } param.fixedIpAssignments The DHCP fixed IP assignments on the static route
+   * @param { string } param.reservedIpRanges   The DHCP reserved IP ranges on the static route
+   * @return { Promise } A promise holding the updated static route of this network
    * @example &lt;caption>Example request data&lt;/caption>
    * {
-   *   "name": "new SSID name",
-   *   "enabled": true,
-   *   "authMode": "psk",
-   *   "encryptionMode": "wpa",
-   *   "psk": "abcd1234",
-   *   "ipAssignmentMode": "Bridge mode"
+   *   "name": "VOIP",
+   *   "subnet": "192.168.10.0/24",
+   *   "fixedIpAssignments": {
+   *     "13:37:de:ad:be:ef": {
+   *       "ip": "192.168.10.5",
+   *       "name": "fixed"
+   *     }
+   *   },
+   *   "reservedIpRanges": [{
+   *     "start": "192.168.10.20",
+   *     "end": "192.168.10.30",
+   *     "comment": "reserved"
+   *   }]
    * }
    * @example &lt;caption>Example response&lt;/caption>
    * {
-   *   "number":0,
-   *   "name":"SSID-1",
-   *   "enabled":true,
-   *   "authMode":"psk",
-   *   "encryptionMode":"wpa",
-   *   "psk":"abcd1234",
-   *   "splashPage":"Click-through splash page",
-   *   "perClientBandwidthLimitUp":0,
-   *   "perClientBandwidthLimitDown":0,
-   *   "ssidAdminAccessible":false,
-   *   "ipAssignmentMode":"NAT mode",
-   *   "walledGardenEnabled":true,
-   *   "walledGardenRanges":"192.168.1.1/24 192.168.37.10/32"
+   *   "id": "10",
+   *   "networkId": "N_1234",
+   *   "name": "VOIP",
+   *   "gatewayIp": "10.8.0.5",
+   *   "subnet": "192.168.10.0/24"
    * }
    */
-  function updateNetworkSSID (data) {
-    const { networkId, ssidNumber } = data
-    delete data.networkId
-    delete data.ssidNumber
-
+  function updateStaticNetworkRoute ({ networkId, srId, name, subnet, gatewayIp, enabled, fixedIpAssignments, reservedIpRanges }) {
     if (!networkId) {
       return Promise.reject(new Error('The parameter networkId is mandatory'))
-    } else if (!ssidNumber) {
-      return Promise.reject(new Error('The parameter ssidNumber is mandatory'))
+    } else if (!srId) {
+      return Promise.reject(new Error('The parameter srId is mandatory'))
     }
 
-    return axios._put(apiKey, target, `${basePath}/${networkId}/ssids/${ssidNumber}`, data)
+    const data = { name, subnet, gatewayIp, enabled, fixedIpAssignments, reservedIpRanges }
+    return axios._put(apiKey, target, `${basePath}/${networkId}/staticRoutes/${srId}`, data)
+  }
+
+  /**
+   * Add a static route.
+   *
+   * @memberof module:lib/rest/static-routes
+   * @param { Object } param                  The parameters for this request
+   * @param { string } param.networkId        The id of the network for which to list the static routes
+   * @param { string } param.name             The name of the static route
+   * @param { string } param.subnet           The subnet of the static route
+   * @param { string } param.gatewayIp        The gateway IP (next hop) of the static route
+   * @return { Promise } A promise holding the newly created static route of this network
+   * @example &lt;caption>Example request data&lt;/caption>
+   * {
+   *   "name": "VOIP",
+   *   "subnet": "192.168.10.0/24",
+   *   "gatewayIp":"10.0.13.37"
+   * }
+   * @example &lt;caption>Example response&lt;/caption>
+   * {
+   *   "id": "10",
+   *   "networkId": "N_1234",
+   *   "name": "VOIP",
+   *   "gatewayIp":"10.0.13.37",
+   *   "subnet": "192.168.10.0/24"
+   * }
+   */
+  function createStaticNetworkRoute ({ networkId, name, subnet, gatewayIp }) {
+    if (!networkId) {
+      return Promise.reject(new Error('The parameter networkId is mandatory'))
+    }
+
+    const data = { name, subnet, gatewayIp }
+    return axios._post(apiKey, target, `${basePath}/${networkId}/staticRoutes`, data)
+  }
+
+  /**
+   * Delete a static route.
+   *
+   * @memberof module:lib/rest/static-routes
+   * @param { Object } param                  The parameters for this request
+   * @param { string } param.networkId        The id of the network for which to list the static routes
+   * @param { string } param.srId             The id of the static route to remove
+   * @return { Promise } A promise with no data
+   */
+  function deleteStaticNetworkRoute ({ networkId, srId }) {
+    if (!networkId) {
+      return Promise.reject(new Error('The parameter networkId is mandatory'))
+    } else if (!srId) {
+      return Promise.reject(new Error('The parameter srId is mandatory'))
+    }
+
+    return axios._delete(apiKey, target, `${basePath}/${networkId}/staticRoutes/${srId}`)
   }
 
   return {
-    listNetworkSSIDs,
-    showNetworkSSID,
-    updateNetworkSSID
+    listStaticNetworkRoutes,
+    showStaticNetworkRoute,
+    updateStaticNetworkRoute,
+    createStaticNetworkRoute,
+    deleteStaticNetworkRoute
   }
 }
 
-module.exports = createSSIDsEndpoints
+module.exports = createRoutesEndpoints
 </code></pre>
         </article>
     </section>
@@ -217,7 +236,7 @@ module.exports = createSSIDsEndpoints
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Thu Feb 22 2018 09:56:26 GMT+0100 (CET) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Thu Feb 22 2018 10:52:05 GMT+0100 (CET) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

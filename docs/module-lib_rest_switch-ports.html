@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>lib/rest/config-templates - Documentation</title>
+    <title>lib/rest/switch-ports - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -27,7 +27,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">lib/rest/config-templates</h1>
+    <h1 class="page-title">lib/rest/switch-ports</h1>
     
 
     
@@ -49,8 +49,8 @@
     <div class="container-overview">
     
         
-            <div class="description"><p>Create a Meraki REST API wrapper for the config template ressource. See the
-<a href="https://dashboard.meraki.com/api_docs#config-templates">online documentation</a> for more information.</p></div>
+            <div class="description"><p>Create a Meraki REST API wrapper for the switch port ressource. See the
+<a href="https://dashboard.meraki.com/api_docs#switch-ports">online documentation</a> for more information.</p></div>
         
 
         
@@ -64,7 +64,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_templates.js.html">rest/templates.js</a>, <a href="rest_templates.js.html#line3">line 3</a>
+        <a href="rest_ports.js.html">rest/ports.js</a>, <a href="rest_ports.js.html#line3">line 3</a>
     </li></ul></dd>
     
 
@@ -117,8 +117,8 @@
 const organizationId = 'meraki organization id'
 const version = 'v0'
 const target = 'n12'
-const basePath = `/${target}/${version}/organizations/${organizationId}`
-const adminEndpoints = require('./lib/rest/organization')({ apiKey, target, basePath })</code></pre>
+const basePath = `/${target}/${version}/devices`
+const adminEndpoints = require('./lib/rest/ports')({ apiKey, target, basePath })</code></pre>
 
 
 
@@ -304,7 +304,7 @@ const adminEndpoints = require('./lib/rest/organization')({ apiKey, target, base
                 </td>
             
 
-            <td class="description last"><p>The Meraki base path for the config template ressource</p></td>
+            <td class="description last"><p>The Meraki base path for the switch port ressource</p></td>
         </tr>
 
     
@@ -335,7 +335,7 @@ const adminEndpoints = require('./lib/rest/organization')({ apiKey, target, base
 
         
 <div class="param-desc">
-    <p>The initialized Meraki REST API wrapper for the config template ressource</p>
+    <p>The initialized Meraki REST API wrapper for the switch port ressource</p>
 </div>
 
 
@@ -379,7 +379,7 @@ const adminEndpoints = require('./lib/rest/organization')({ apiKey, target, base
 
     
 
-    <h4 class="name" id=".deleteConfigurationTemplate"><span class="type-signature">(static) </span>deleteConfigurationTemplate<span class="signature">(param)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id=".listSwitchPorts"><span class="type-signature">(static) </span>listSwitchPorts<span class="signature">(param)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -391,7 +391,7 @@ const adminEndpoints = require('./lib/rest/organization')({ apiKey, target, base
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_templates.js.html">rest/templates.js</a>, <a href="rest_templates.js.html#line47">line 47</a>
+        <a href="rest_ports.js.html">rest/ports.js</a>, <a href="rest_ports.js.html#line48">line 48</a>
     </li></ul></dd>
     
 
@@ -431,7 +431,7 @@ const adminEndpoints = require('./lib/rest/organization')({ apiKey, target, base
 
 
 <div class="description">
-    <p>Remove a configuration template.</p>
+    <p>List the switch ports for a switch.</p>
 </div>
 
 
@@ -440,6 +440,29 @@ const adminEndpoints = require('./lib/rest/organization')({ apiKey, target, base
 
 
 
+
+
+    <h5>Example</h5>
+    
+        <p class="code-caption">Example response</p>
+    
+    <pre class="prettyprint"><code>[
+  {
+    "number": 1,
+    "name": "my port",
+    "tags": "dorm-room limited",
+    "enabled": true,
+    "type": "access",
+    "vlan": 10,
+    "voiceVlan": 20,
+    "poeEnabled": true,
+    "isolationEnabled": false,
+    "rstpEnabled": true,
+    "stpGuard": "disabled",
+    "accessPolicyNumber": "asdf1234",
+    "linkNegotiation": "Auto negotiate"
+  }
+]</code></pre>
 
 
 
@@ -511,7 +534,7 @@ const adminEndpoints = require('./lib/rest/organization')({ apiKey, target, base
 
         <tr>
             
-                <td class="name"><code>templateId</code></td>
+                <td class="name"><code>deviceSerial</code></td>
             
 
             <td class="type">
@@ -527,7 +550,7 @@ const adminEndpoints = require('./lib/rest/organization')({ apiKey, target, base
 
             
 
-            <td class="description last"><p>The id of the template to delete</p></td>
+            <td class="description last"><p>The serial of the device for which to list the switch ports</p></td>
         </tr>
 
     
@@ -558,7 +581,7 @@ const adminEndpoints = require('./lib/rest/organization')({ apiKey, target, base
 
         
 <div class="param-desc">
-    <p>A promise with no data</p>
+    <p>A promise holding the switch ports of this device</p>
 </div>
 
 
@@ -583,7 +606,7 @@ const adminEndpoints = require('./lib/rest/organization')({ apiKey, target, base
 
     
 
-    <h4 class="name" id=".listConfigurationTemplates"><span class="type-signature">(static) </span>listConfigurationTemplates<span class="signature">()</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id=".showSwitchPort"><span class="type-signature">(static) </span>showSwitchPort<span class="signature">(param)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -595,7 +618,7 @@ const adminEndpoints = require('./lib/rest/organization')({ apiKey, target, base
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_templates.js.html">rest/templates.js</a>, <a href="rest_templates.js.html#line35">line 35</a>
+        <a href="rest_ports.js.html">rest/ports.js</a>, <a href="rest_ports.js.html#line81">line 81</a>
     </li></ul></dd>
     
 
@@ -635,7 +658,7 @@ const adminEndpoints = require('./lib/rest/organization')({ apiKey, target, base
 
 
 <div class="description">
-    <p>List the configuration templates for this organization.</p>
+    <p>Return a switch port.</p>
 </div>
 
 
@@ -650,14 +673,144 @@ const adminEndpoints = require('./lib/rest/organization')({ apiKey, target, base
     
         <p class="code-caption">Example response</p>
     
-    <pre class="prettyprint"><code>[
-  {
-    "id": "N_1234",
-    "name": "Your config template"
-  }
-]</code></pre>
+    <pre class="prettyprint"><code>{
+  "number": 1,
+  "name": "my port",
+  "tags": "dorm-room limited",
+  "enabled": true,
+  "type": "access",
+  "vlan": 10,
+  "voiceVlan": 20,
+  "poeEnabled": true,
+  "isolationEnabled": false,
+  "rstpEnabled": true,
+  "stpGuard": "disabled",
+  "accessPolicyNumber": "asdf1234",
+  "linkNegotiation": "Auto negotiate"
+}</code></pre>
 
 
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>param</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The parameters for this request</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>deviceSerial</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The serial of the device for which to list the switch ports</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>number</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The number of the switch port for which to show the details</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
 
 
 
@@ -676,7 +829,554 @@ const adminEndpoints = require('./lib/rest/organization')({ apiKey, target, base
 
         
 <div class="param-desc">
-    <p>A promise holding the configuration templates for this organization</p>
+    <p>A promise holding the details of this switch port</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".updateSwitchPort"><span class="type-signature">(static) </span>updateSwitchPort<span class="signature">(param)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="rest_ports.js.html">rest/ports.js</a>, <a href="rest_ports.js.html#line129">line 129</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Update a switch port.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+        <p class="code-caption">Example response</p>
+    
+    <pre class="prettyprint"><code>{
+  "number": 1,
+  "name": "my port",
+  "tags": "dorm-room limited",
+  "enabled": true,
+  "type": "access",
+  "vlan": 10,
+  "voiceVlan": 20,
+  "poeEnabled": true,
+  "isolationEnabled": false,
+  "rstpEnabled": true,
+  "stpGuard": "disabled",
+  "accessPolicyNumber": "asdf1234",
+  "linkNegotiation": "Auto negotiate"
+}</code></pre>
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>param</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The parameters for this request</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>deviceSerial</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The serial of the device for which to list the switch ports</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>number</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The number of the switch port to update</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The name of the switch port</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>tags</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The tags of the switch port</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>enabled</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The status of the switch port</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>type</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The type of the switch port (<code>access</code> or <code>trunk</code>)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>vlan</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The VLAN of the switch port</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>voiceVlan</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The voice VLAN of the switch port. Only applicable to access ports</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>allowedVlans</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The VLANs allowed on the switch port. Only applicable to trunk ports</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>poeEnabled</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The PoE status of the switch port</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>isolationEnabled</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The isolation status of the switch port</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>rstpEnabled</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The rapid spanning tree protocol status</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>stpGuard</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The state of the STP guard (<code>disabled</code>, <code>Root guard</code>, <code>BPDU guard</code>, <code>Loop guard</code>)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>accessPolicyNumber</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The number of the access policy of the switch port. Only applicable to access ports</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>linkNegotiation</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The link speed for the switch port</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>A promise holding the updated switch port</p>
 </div>
 
 
@@ -714,7 +1414,7 @@ const adminEndpoints = require('./lib/rest/organization')({ apiKey, target, base
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Thu Feb 22 2018 09:56:26 GMT+0100 (CET) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Thu Feb 22 2018 10:52:05 GMT+0100 (CET) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

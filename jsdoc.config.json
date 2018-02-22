@@ -27,7 +27,6 @@
     "destination": "./docs",
     "recurse": true,
     "verbose": true,
-    "package": "package.json",
     "readme": "README.md"
   }
 }
