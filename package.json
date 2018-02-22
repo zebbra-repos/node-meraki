@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mbaertschi/node-meraki.git"
+    "url": "git+https://github.com/zebbra-repos/node-meraki.git"
   },
   "keywords": [
     "meraki",
@@ -24,9 +24,9 @@
   "author": "Michael Bärtschi <michael.baertschi@zebbra.ch> (http://zebbra.ch)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/mbaertschi/node-meraki/issues"
+    "url": "https://github.com/zebbra-repos/node-meraki/issues"
   },
-  "homepage": "https://github.com/mbaertschi/node-meraki#readme",
+  "homepage": "https://github.com/zebbra-repos/node-meraki#readme",
   "engines": {
     "node": ">= 8.9.x"
   },
