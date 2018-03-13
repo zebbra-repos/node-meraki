@@ -117,8 +117,8 @@
 const organizationId = 'meraki organization id'
 const version = 'v0'
 const target = 'n12'
-const basePath = `/${target}/${version}/organizations/${organizationId}`
-const adminEndpoints = require('./lib/rest/organization')({ apiKey, target, basePath })</code></pre>
+const basePath = `/${target}/${version}/organizations`
+const organizationEndpoints = require('./lib/rest/organization')({ apiKey, target, basePath })</code></pre>
 
 
 
@@ -391,7 +391,7 @@ const adminEndpoints = require('./lib/rest/organization')({ apiKey, target, base
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_organizations.js.html">rest/organizations.js</a>, <a href="rest_organizations.js.html#line129">line 129</a>
+        <a href="rest_organizations.js.html">rest/organizations.js</a>, <a href="rest_organizations.js.html#line140">line 140</a>
     </li></ul></dd>
     
 
@@ -510,6 +510,29 @@ and cannot be performed in one request.</p>
     </thead>
 
     <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>orgId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The id of the organization to claime</p></td>
+        </tr>
+
     
 
         <tr>
@@ -667,7 +690,7 @@ and cannot be performed in one request.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_organizations.js.html">rest/organizations.js</a>, <a href="rest_organizations.js.html#line106">line 106</a>
+        <a href="rest_organizations.js.html">rest/organizations.js</a>, <a href="rest_organizations.js.html#line116">line 116</a>
     </li></ul></dd>
     
 
@@ -797,7 +820,7 @@ and cannot be performed in one request.</p>
 
         <tr>
             
-                <td class="name"><code>organizationId</code></td>
+                <td class="name"><code>orgId</code></td>
             
 
             <td class="type">
@@ -904,7 +927,7 @@ and cannot be performed in one request.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_organizations.js.html">rest/organizations.js</a>, <a href="rest_organizations.js.html#line87">line 87</a>
+        <a href="rest_organizations.js.html">rest/organizations.js</a>, <a href="rest_organizations.js.html#line97">line 97</a>
     </li></ul></dd>
     
 
@@ -1118,7 +1141,7 @@ and cannot be performed in one request.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_organizations.js.html">rest/organizations.js</a>, <a href="rest_organizations.js.html#line171">line 171</a>
+        <a href="rest_organizations.js.html">rest/organizations.js</a>, <a href="rest_organizations.js.html#line192">line 192</a>
     </li></ul></dd>
     
 
@@ -1228,7 +1251,56 @@ and cannot be performed in one request.</p>
 
             
 
-            <td class="description last"><p>The parameters for this request</p></td>
+            <td class="description last"><p>The parameters for this request</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>orgId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The id of the organization</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
         </tr>
 
     
@@ -1511,7 +1583,56 @@ and cannot be performed in one request.</p>
 
             
 
-            <td class="description last"><p>The parameters for this request</p></td>
+            <td class="description last"><p>The parameters for this request</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>orgId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The organization id</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
         </tr>
 
     
@@ -1572,7 +1693,7 @@ and cannot be performed in one request.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_organizations.js.html">rest/organizations.js</a>, <a href="rest_organizations.js.html#line149">line 149</a>
+        <a href="rest_organizations.js.html">rest/organizations.js</a>, <a href="rest_organizations.js.html#line165">line 165</a>
     </li></ul></dd>
     
 
@@ -1679,7 +1800,56 @@ and cannot be performed in one request.</p>
 
             
 
-            <td class="description last"><p>The parameters for this request</p></td>
+            <td class="description last"><p>The parameters for this request</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>orgId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The id of the organization</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
         </tr>
 
     
@@ -1740,7 +1910,7 @@ and cannot be performed in one request.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_organizations.js.html">rest/organizations.js</a>, <a href="rest_organizations.js.html#line191">line 191</a>
+        <a href="rest_organizations.js.html">rest/organizations.js</a>, <a href="rest_organizations.js.html#line217">line 217</a>
     </li></ul></dd>
     
 
@@ -1848,7 +2018,56 @@ and cannot be performed in one request.</p>
 
             
 
-            <td class="description last"><p>The parameters for this request</p></td>
+            <td class="description last"><p>The parameters for this request</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>orgId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The id of the organization</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
         </tr>
 
     
@@ -1909,7 +2128,7 @@ and cannot be performed in one request.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_organizations.js.html">rest/organizations.js</a>, <a href="rest_organizations.js.html#line69">line 69</a>
+        <a href="rest_organizations.js.html">rest/organizations.js</a>, <a href="rest_organizations.js.html#line74">line 74</a>
     </li></ul></dd>
     
 
@@ -2039,6 +2258,29 @@ and cannot be performed in one request.</p>
 
         <tr>
             
+                <td class="name"><code>orgId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The organization id</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
                 <td class="name"><code>name</code></td>
             
 
@@ -2123,7 +2365,7 @@ and cannot be performed in one request.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_organizations.js.html">rest/organizations.js</a>, <a href="rest_organizations.js.html#line219">line 219</a>
+        <a href="rest_organizations.js.html">rest/organizations.js</a>, <a href="rest_organizations.js.html#line250">line 250</a>
     </li></ul></dd>
     
 
@@ -2254,6 +2496,29 @@ and cannot be performed in one request.</p>
     </thead>
 
     <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>orgId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The id of the organization</p></td>
+        </tr>
+
     
 
         <tr>
@@ -2481,7 +2746,7 @@ and cannot be performed in one request.</p>
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Thu Feb 22 2018 10:52:05 GMT+0100 (CET) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Tue Mar 13 2018 14:18:32 GMT+0100 (CET) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

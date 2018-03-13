@@ -51,10 +51,9 @@
  * @return { Object } The initialized Meraki REST API wrapper for the admin ressource
  * @example
  * const apiKey = 'secret meraki api key'
- * const organizationId = 'meraki organization id'
  * const version = 'v0'
  * const target = 'n12'
- * const basePath = `/${target}/${version}/organizations/${organizationId}`
+ * const basePath = `/${target}/${version}/organizations`
  * const adminEndpoints = require('./lib/rest/admins')({ apiKey, target, basePath })
  */
 function createAdminEndpoints ({ apiKey = '', target = 'api', basePath = '/' }) {
@@ -62,6 +61,8 @@ function createAdminEndpoints ({ apiKey = '', target = 'api', basePath = '/' }) 
    * List the dashboard administrators in this organization.
    *
    * @memberof module:lib/rest/admins
+   * @param { Object } param            The dashboard administrator information
+   * @param { string } param.orgId      The organization id for which to list the admins
    * @return { Promise } A promise holding the dashboard administrators in this organization
    * @example &lt;caption>Example response&lt;/caption>
    * [
@@ -85,8 +86,12 @@ function createAdminEndpoints ({ apiKey = '', target = 'api', basePath = '/' }) 
    *   }
    * ]
    */
-  function listAdmins () {
-    return axios._get(apiKey, target, `${basePath}/admins`)
+  function listAdmins ({ orgId }) {
+    if (!orgId) {
+      return Promise.reject(new Error('The parameter orgId is mandatory'))
+    }
+
+    return axios._get(apiKey, target, `${basePath}/${orgId}/admins`)
   }
 
   /**
@@ -94,6 +99,7 @@ function createAdminEndpoints ({ apiKey = '', target = 'api', basePath = '/' }) 
    *
    * @memberof module:lib/rest/admins
    * @param { Object } param            The dashboard administrator information
+   * @param { string } param.orgId      The organization id
    * @param { string } param.email      The email of the dashboard administrator. This attribute can not be updated
    * @param { string } param.name       The name of the dashboard administrator
    * @param { string } param.orgAcess   The privilege of the dashboard administrator on the organization (full, read-only, none)
@@ -114,13 +120,16 @@ function createAdminEndpoints ({ apiKey = '', target = 'api', basePath = '/' }) 
    *   "networks":[]
    * }
    */
-  function createAdmin ({ email, name, orgAccess, tags, networks }) {
-    if (!networks &amp;&amp; !tags &amp;&amp; !networks) {
+  function createAdmin ({ orgId, email, name, orgAccess, tags, networks }) {
+    if (!orgId) {
+      return Promise.reject(new Error('The parameter orgId is mandatory'))
+    }
+    if (!orgAccess &amp;&amp; !tags &amp;&amp; !networks) {
       return Promise.reject(new Error('Administrator accounts must be granted access to either the Organization, Networks, or Tags'))
     }
 
     const data = { email, name, orgAccess, tags, networks }
-    return axios._post(apiKey, target, `${basePath}/admins`, data)
+    return axios._post(apiKey, target, `${basePath}/${orgId}/admins`, data)
   }
 
   /**
@@ -128,6 +137,7 @@ function createAdminEndpoints ({ apiKey = '', target = 'api', basePath = '/' }) 
    *
    * @memberof module:lib/rest/admins
    * @param { Object } param            The dashboard administrator information
+   * @param { string } param.orgId      The organization id
    * @param { string } param.adminId    The id of the dashboard administrator
    * @param { string } param.email      The email of the dashboard administrator. This attribute can not be updated
    * @param { string } param.name       The name of the dashboard administrator
@@ -149,28 +159,36 @@ function createAdminEndpoints ({ apiKey = '', target = 'api', basePath = '/' }) 
    *   "networks":[]
    * }
    */
-  function updateAdmin ({ adminId, email, name, orgAccess, tags, networks }) {
+  function updateAdmin ({ orgId, adminId, email, name, orgAccess, tags, networks }) {
+    if (!orgId) {
+      return Promise.reject(new Error('The parameter orgId is mandatory'))
+    }
     if (!adminId) {
       return Promise.reject(new Error('The parameter adminId is mandatory'))
     }
 
     const data = { email, name, orgAccess, tags, networks }
-    return axios._put(apiKey, target, `${basePath}/admins/${adminId}`, data)
+    return axios._put(apiKey, target, `${basePath}/${orgId}/admins/${adminId}`, data)
   }
 
   /**
    * Revoke all access for a dashboard administrator within this organization.
    *
    * @memberof module:lib/rest/admins
-   * @param { string } adminId The if of the dashboard administrator to delete
+   * @param { Object } param            The dashboard administrator information
+   * @param { string } param.orgId      The organization id
+   * @param { string } param.adminId    The if of the dashboard administrator to delete
    * @return { Promise } A promise with no data
    */
-  function deleteAdmin ({ adminId }) {
+  function deleteAdmin ({ orgId, adminId }) {
+    if (!orgId) {
+      return Promise.reject(new Error('The parameter orgId is mandatory'))
+    }
     if (!adminId) {
       return Promise.reject(new Error('The parameter adminId is mandatory'))
     }
 
-    return axios._delete(apiKey, target, `${basePath}/admins/${adminId}`)
+    return axios._delete(apiKey, target, `${basePath}/${orgId}/admins/${adminId}`)
   }
 
   return {
@@ -194,7 +212,7 @@ module.exports = createAdminEndpoints
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Thu Feb 22 2018 10:52:05 GMT+0100 (CET) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Tue Mar 13 2018 14:18:32 GMT+0100 (CET) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

@@ -54,8 +54,8 @@
  * const organizationId = 'meraki organization id'
  * const version = 'v0'
  * const target = 'n12'
- * const basePath = `/${target}/${version}/organizations/${organizationId}`
- * const adminEndpoints = require('./lib/rest/organization')({ apiKey, target, basePath })
+ * const basePath = `/${target}/${version}/organizations`
+ * const organizationEndpoints = require('./lib/rest/organization')({ apiKey, target, basePath })
  */
 function createOrganizationsEndpoints ({ apiKey = '', target = 'api', basePath = '/' }) {
   /**
@@ -72,8 +72,7 @@ function createOrganizationsEndpoints ({ apiKey = '', target = 'api', basePath =
    * ]
    */
   function listOrganizations () {
-    const path = `${basePath.split('organizations/')[0]}/organizations`
-    return axios._get(apiKey, target, path)
+    return axios._get(apiKey, target, basePath)
   }
 
   /**
@@ -81,6 +80,7 @@ function createOrganizationsEndpoints ({ apiKey = '', target = 'api', basePath =
    *
    * @memberof module:lib/rest/organizations
    * @param { Object } param                  The parameters for this request
+   * @param { string } param.orgId            The organization id
    * @return { Promise } A promise holding the organization for this id
    * @example &lt;caption>Example response&lt;/caption>
    * {
@@ -88,8 +88,12 @@ function createOrganizationsEndpoints ({ apiKey = '', target = 'api', basePath =
    *   "name":"My org"
    * }
    */
-  function showOrganization () {
-    return axios._get(apiKey, target, basePath)
+  function showOrganization ({ orgId }) {
+    if (!orgId) {
+      return Promise.reject(new Error('The parameter orgId is mandatory'))
+    }
+
+    return axios._get(apiKey, target, `${basePath}/${orgId}`)
   }
 
   /**
@@ -97,6 +101,7 @@ function createOrganizationsEndpoints ({ apiKey = '', target = 'api', basePath =
    *
    * @memberof module:lib/rest/organizations
    * @param { Object } param                  The parameters for this request
+   * @param { string } param.orgId            The organization id
    * @param { string } param.name             The name of the organization
    * @return { Promise } A promise holding the updated organization
    * @example &lt;caption>Example response&lt;/caption>
@@ -105,9 +110,14 @@ function createOrganizationsEndpoints ({ apiKey = '', target = 'api', basePath =
    *   "name":"My org"
    * }
    */
-  function updateOrganization ({ name }) {
+  function updateOrganization ({ orgId, name }) {
+    if (!orgId) {
+      return Promise.reject(new Error('The parameter orgId is mandatory'))
+    }
+
     const data = { name }
-    return axios._put(apiKey, target, basePath, data)
+    console.log(data, name)
+    return axios._put(apiKey, target, `${basePath}/${orgId}`, data)
   }
 
   /**
@@ -133,7 +143,7 @@ function createOrganizationsEndpoints ({ apiKey = '', target = 'api', basePath =
    *
    * @memberof module:lib/rest/organizations
    * @param { Object } param                  The parameters for this request
-   * @param { string } param.organizationId   The id of the organization to clone
+   * @param { string } param.orgId            The id of the organization to clone
    * @param { string } param.name             The name of the new organization
    * @return { Promise } A promise holding the newly created / cloned organization
    * @example &lt;caption>Example response&lt;/caption>
@@ -142,13 +152,13 @@ function createOrganizationsEndpoints ({ apiKey = '', target = 'api', basePath =
    *   "name":"My cloned org"
    * }
    */
-  function cloneOrganization ({ organizationId, name }) {
-    if (!organizationId) {
-      return Promise.reject(new Error('The parameter organizationId is mandatory'))
+  function cloneOrganization ({ orgId, name }) {
+    if (!orgId) {
+      return Promise.reject(new Error('The parameter orgId is mandatory'))
     }
 
     const data = { name }
-    return axios._post(apiKey, target, `${basePath}/clone`, data)
+    return axios._post(apiKey, target, `${basePath}/${orgId}/clone`, data)
   }
 
   /**
@@ -159,15 +169,20 @@ function createOrganizationsEndpoints ({ apiKey = '', target = 'api', basePath =
    *
    * @memberof module:lib/rest/organizations
    * @param { Object } param                  The parameters for this request
+   * @param { string } param.orgId            The id of the organization to claime
    * @param { string } param.order            The order number that should be claimed
    * @param { string } param.serial           The serial of the device that should be claimed
    * @param { string } param.licenseKey       The license key that should be claimed
    * @param { string } param.licenseMode      Either `renew` or `addDevices`. `addDevices` will increase the license limit, while `renew` will extend the amount of time until expiration. This parameter is required when claiming by licenseKey
    * @return { Promise } A promise with no data
    */
-  function claimOrganization ({ order, serial, licenseKey, licenseMode }) {
+  function claimOrganization ({ orgId, order, serial, licenseKey, licenseMode }) {
+    if (!orgId) {
+      return Promise.reject(new Error('The parameter orgId is mandatory'))
+    }
+
     const data = { order, serial, licenseKey, licenseMode }
-    return axios._post(apiKey, target, `${basePath}/claim`, data)
+    return axios._post(apiKey, target, `${basePath}/${orgId}/claim`, data)
   }
 
   /**
@@ -175,6 +190,7 @@ function createOrganizationsEndpoints ({ apiKey = '', target = 'api', basePath =
    *
    * @memberof module:lib/rest/organizations
    * @param { Object } param                  The parameters for this request
+   * @param { string } param.orgId            The id of the organization
    * @return { Promise } A promise holding the license state for this organization
    * @example &lt;caption>Example response&lt;/caption>
    * {
@@ -185,8 +201,12 @@ function createOrganizationsEndpoints ({ apiKey = '', target = 'api', basePath =
    *   }
    * }
    */
-  function showOrganizationLicense () {
-    return axios._get(apiKey, target, `${basePath}/licenseState`)
+  function showOrganizationLicense ({ orgId }) {
+    if (!orgId) {
+      return Promise.reject(new Error('The parameter orgId is mandatory'))
+    }
+
+    return axios._get(apiKey, target, `${basePath}/${orgId}/licenseState`)
   }
 
   /**
@@ -194,6 +214,7 @@ function createOrganizationsEndpoints ({ apiKey = '', target = 'api', basePath =
    *
    * @memberof module:lib/rest/organizations
    * @param { Object } param                  The parameters for this request
+   * @param { string } param.orgId            The id of the organization
    * @return { Promise } A promise holding the inventory for this organization
    * @example &lt;caption>Example response&lt;/caption>
    * [
@@ -207,8 +228,12 @@ function createOrganizationsEndpoints ({ apiKey = '', target = 'api', basePath =
    *   }
    * ]
    */
-  function listOrganizationInventory () {
-    return axios._get(apiKey, target, `${basePath}/inventory`)
+  function listOrganizationInventory ({ orgId }) {
+    if (!orgId) {
+      return Promise.reject(new Error('The parameter orgId is mandatory'))
+    }
+
+    return axios._get(apiKey, target, `${basePath}/${orgId}/inventory`)
   }
 
   /**
@@ -216,6 +241,7 @@ function createOrganizationsEndpoints ({ apiKey = '', target = 'api', basePath =
    *
    * @memberof module:lib/rest/organizations
    * @param { Object } param                  The parameters for this request
+   * @param { string } param.orgId            The id of the organization
    * @return { Promise } A promise holding then SNMP settings for this organization
    * @example &lt;caption>Example response&lt;/caption>
    * {
@@ -227,8 +253,12 @@ function createOrganizationsEndpoints ({ apiKey = '', target = 'api', basePath =
    *   "port":16100
    * }
    */
-  function showOrganizationSNMP () {
-    return axios._get(apiKey, target, `${basePath}/snmp`)
+  function showOrganizationSNMP ({ orgId }) {
+    if (!orgId) {
+      return Promise.reject(new Error('The parameter orgId is mandatory'))
+    }
+
+    return axios._get(apiKey, target, `${basePath}/${orgId}/snmp`)
   }
 
   /**
@@ -236,6 +266,7 @@ function createOrganizationsEndpoints ({ apiKey = '', target = 'api', basePath =
    *
    * @memberof module:lib/rest/organizations
    * @param { Object } param                  The parameters for this request
+   * @param { string } param.orgId            The id of the organization
    * @param { boolean } param.v2cEnabled      Boolean indicating whether SNMP version 2c is enabled for the organization
    * @param { boolean } param.v3Enabled       Boolean indicating whether SNMP version 3 is enabled for the organization
    * @param { string } param.v3AuthMode       The SNMP version 3 authentication mode either MD5 or SHA
@@ -256,7 +287,13 @@ function createOrganizationsEndpoints ({ apiKey = '', target = 'api', basePath =
    * }
    */
   function updateOrganizationSNMP (data) {
-    return axios._post(apiKey, target, `${basePath}/snmp`, data)
+    const { orgId } = data
+    if (!orgId) {
+      return Promise.reject(new Error('The parameter orgId is mandatory'))
+    }
+    delete data.orgId
+
+    return axios._post(apiKey, target, `${basePath}/${orgId}/snmp`, data)
   }
 
   return {
@@ -286,7 +323,7 @@ module.exports = createOrganizationsEndpoints
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Thu Feb 22 2018 10:52:05 GMT+0100 (CET) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Tue Mar 13 2018 14:18:32 GMT+0100 (CET) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
