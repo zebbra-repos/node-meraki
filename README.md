@@ -17,7 +17,11 @@ const apiKey = 'secret meraki api key'
 const organizationId = 'meraki organization id'
 const version = 'v0'
 const target = 'n12'
-const rest = require('./lib/rest')({ version, apiKey, target, organizationId })
+const baseUrl = 'https://api.meraki.com' // this is the default an can be overwritten
+const port = 443 // this is the default and can be overwritten
+
+// baseUrl and port are optional
+const rest = require('./lib/rest')({ version, apiKey, target, organizationId, baseUrl, port })
 
 function handleErros (error) {
   if (error.response) {
