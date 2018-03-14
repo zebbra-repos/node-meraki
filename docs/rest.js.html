@@ -51,12 +51,16 @@
  * @example
  * const apiKey = 'secret meraki api key'
  * const organizationId = 'meraki organization id'
- * const version = 'v0'
+ * const version = 'v0' (default)
  * const target = 'n12'
- * const rest = require('./lib/rest')({ version, apiKey, target })
+ * const baseUrl = 'https://api.meraki.com' (default)
+ * const port = 443 (default)
+ * const rest = require('./lib/rest')({ version, apiKey, target, baseUrl, port })
  */
 function createRestAPI (settings) {
-  const { version = 'v0', apiKey = '', target = 'api' } = settings
+  const { version = 'v0', apiKey = '', target = 'api', port = 443 } = settings
+  let { baseUrl = 'https://api.meraki.com' } = settings
+  baseUrl = baseUrl.replace(/api/, target)
   const basePath = `/api/${version}`
 
   /**
@@ -65,7 +69,7 @@ function createRestAPI (settings) {
    * @memberof module:lib/rest
    * @see module:lib/rest/admins
    */
-  const adminEndpoints = require('./rest/admins')({ apiKey, target, basePath: `${basePath}/organizations` })
+  const adminEndpoints = require('./rest/admins')({ apiKey, target, baseUrl, port, basePath: `${basePath}/organizations` })
 
   /**
    * The client endpoints
@@ -73,7 +77,7 @@ function createRestAPI (settings) {
    * @memberof module:lib/rest
    * @see module:lib/rest/clients
    */
-  const clientEndpoints = require('./rest/clients')({ apiKey, target, basePath })
+  const clientEndpoints = require('./rest/clients')({ apiKey, target, baseUrl, port, basePath })
 
   /**
    * The config template endpoints
@@ -81,7 +85,7 @@ function createRestAPI (settings) {
    * @memberof module:lib/rest
    * @see module:lib/rest/templates
    */
-  const templatesEndpoints = require('./rest/templates')({ apiKey, target, basePath: `${basePath}/organizations` })
+  const templatesEndpoints = require('./rest/templates')({ apiKey, target, baseUrl, port, basePath: `${basePath}/organizations` })
 
   /**
    * The device endpoints
@@ -89,7 +93,7 @@ function createRestAPI (settings) {
    * @memberof module:lib/rest
    * @see module:lib/rest/devices
    */
-  const devicesEndpoints = require('./rest/devices')({ apiKey, target, basePath: `${basePath}/networks` })
+  const devicesEndpoints = require('./rest/devices')({ apiKey, target, baseUrl, port, basePath: `${basePath}/networks` })
 
   /**
    * The group policy endpoints
@@ -97,7 +101,7 @@ function createRestAPI (settings) {
    * @memberof module:lib/rest
    * @see module:lib/rest/policies
    */
-  const policiesEndpoints = require('./rest/policies')({ apiKey, target, basePath: `${basePath}/networks` })
+  const policiesEndpoints = require('./rest/policies')({ apiKey, target, baseUrl, port, basePath: `${basePath}/networks` })
 
   /**
    * The network endpoints
@@ -105,7 +109,7 @@ function createRestAPI (settings) {
    * @memberof module:lib/rest
    * @see module:lib/rest/networks
    */
-  const networksEndpoints = require('./rest/networks')({ apiKey, target, basePath })
+  const networksEndpoints = require('./rest/networks')({ apiKey, target, baseUrl, port, basePath })
 
   /**
    * The organization endpoints
@@ -113,7 +117,7 @@ function createRestAPI (settings) {
    * @memberof module:lib/rest
    * @see module:lib/rest/ogranizations
    */
-  const organizationEndpoints = require('./rest/organizations')({ apiKey, target, basePath: `${basePath}/organizations` })
+  const organizationEndpoints = require('./rest/organizations')({ apiKey, target, baseUrl, port, basePath: `${basePath}/organizations` })
 
   /**
    * The SSID endpoints
@@ -121,7 +125,7 @@ function createRestAPI (settings) {
    * @memberof module:lib/rest
    * @see module:lib/rest/ssids
    */
-  const ssidsEndpoints = require('./rest/ssids')({ apiKey, target, basePath: `${basePath}/networks` })
+  const ssidsEndpoints = require('./rest/ssids')({ apiKey, target, baseUrl, port, basePath: `${basePath}/networks` })
 
   /**
    * The static route endpoints
@@ -129,7 +133,7 @@ function createRestAPI (settings) {
    * @memberof module:lib/rest
    * @see module:lib/rest/routes
    */
-  const routesEndpoints = require('./rest/routes')({ apiKey, target, basePath: `${basePath}/networks` })
+  const routesEndpoints = require('./rest/routes')({ apiKey, target, baseUrl, port, basePath: `${basePath}/networks` })
 
   /**
    * The switch port endpoints
@@ -137,7 +141,7 @@ function createRestAPI (settings) {
    * @memberof module:lib/rest
    * @see module:lib/rest/ports
    */
-  const portsEndpoints = require('./rest/ports')({ apiKey, target, basePath: `${basePath}/devices` })
+  const portsEndpoints = require('./rest/ports')({ apiKey, target, baseUrl, port, basePath: `${basePath}/devices` })
 
   /**
    * The VLAN endpoints
@@ -145,7 +149,7 @@ function createRestAPI (settings) {
    * @memberof module:lib/rest
    * @see module:lib/rest/vlans
    */
-  const vlansEndpoints = require('./rest/vlans')({ apiKey, target, basePath: `${basePath}/networks` })
+  const vlansEndpoints = require('./rest/vlans')({ apiKey, target, baseUrl, port, basePath: `${basePath}/networks` })
 
   return Object.assign({},
     adminEndpoints,
@@ -175,7 +179,7 @@ module.exports = createRestAPI
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Tue Mar 13 2018 14:18:32 GMT+0100 (CET) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Wed Mar 14 2018 14:24:06 GMT+0100 (CET) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
