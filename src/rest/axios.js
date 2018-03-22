@@ -3,7 +3,11 @@ const debug = require('debug')('node-meraki:axios')
 const JSONBigInt = require('json-bigint')({'storeAsString': true})
 
 const handleBigInt = (data) => {
-  return JSONBigInt.parse(data)
+  try {
+    return JSONBigInt.parse(data)
+  } catch (err) {
+    return data
+  }
 }
 
 const getOptions = {

@@ -3,7 +3,7 @@ const organizationId = 'meraki organization id'
 const version = 'v0'
 const target = 'n12'
 const basePath = `/${target}/${version}/organizations`
-const adminEndpoints = require('../../../lib/rest/admins')({ apiKey, target, basePath })
+const adminEndpoints = require('../../../src/rest/admins')({ apiKey, target, basePath })
 
 describe('Admin endpoints', () => {
   it('should expose the admin ressource', () => {

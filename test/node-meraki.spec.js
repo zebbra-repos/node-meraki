@@ -2,7 +2,7 @@ const apiKey = 'secret meraki api key'
 const organizationId = 'meraki organization id'
 const version = 'v0'
 const target = 'n12'
-const rest = require('../lib')({ version, apiKey, target, organizationId })
+const rest = require('../src')({ version, apiKey, target, organizationId })
 
 describe('Module node-meraki', () => {
   context('rest api', () => {
