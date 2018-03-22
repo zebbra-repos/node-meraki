@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [2.0.1] - 2018-03-22
 ### Added
+- Handle BigInteger ids from meraki organizations. We use [json-bigint](https://www.npmjs.com/package/json-bigint) to parse the data according to [this](https://stackoverflow.com/questions/43787712/axios-how-to-deal-with-big-integers?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa) stackoverflow answer
 
 ### Changed
 - Adapt code base to [npm-node-boilerplate] template
