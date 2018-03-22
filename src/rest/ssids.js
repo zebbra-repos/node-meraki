@@ -2,7 +2,7 @@
  * Create a Meraki REST API wrapper for the SSID ressource. See the
  * [online documentation]{@link https://dashboard.meraki.com/api_docs#ssids} for more information.
  *
- * @module lib/rest/ssids
+ * @module meraki/rest/ssids
  * @param { Object } settings                   The configuration object used to create the api wrapper
  * @param { string } [settings.apiKey='']       The Meraki api key
  * @param { string } [settings.target='api']    The Meraki target
@@ -22,7 +22,7 @@ function createSSIDsEndpoints ({ apiKey, target, basePath, baseUrl = 'https://ap
   /**
    * List the SSIDs in a network.
    *
-   * @memberof module:lib/rest/ssids
+   * @memberof module:meraki/rest/ssids
    * @param { Object } param                  The parameters for this request
    * @param { string } param.networkId        The id of the network for which to list the SSIDs
    * @return { Promise } A promise holding the SSIDs for this network
@@ -47,7 +47,7 @@ function createSSIDsEndpoints ({ apiKey, target, basePath, baseUrl = 'https://ap
   /**
    * Return a single SSID.
    *
-   * @memberof module:lib/rest/ssids
+   * @memberof module:meraki/rest/ssids
    * @param { Object } param                  The parameters for this request
    * @param { string } param.networkId        The id of the network for which to list the SSIDs
    * @param { number } param.ssidNumber       The number of the SSID to show
@@ -82,7 +82,7 @@ function createSSIDsEndpoints ({ apiKey, target, basePath, baseUrl = 'https://ap
   /**
    * Update the attributes of an SSID.
    *
-   * @memberof module:lib/rest/ssids
+   * @memberof module:meraki/rest/ssids
    * @param { Object } param                            The parameters for this request
    * @param { string } param.networkId                  The id of the network for which to list the SSIDs
    * @param { number } param.ssidNumber                 The number of the SSID to update

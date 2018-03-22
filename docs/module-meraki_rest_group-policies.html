@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>rest/routes.js - Documentation</title>
+    <title>meraki/rest/group-policies - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -27,206 +27,579 @@
 
 <div id="main">
     
-    <h1 class="page-title">rest/routes.js</h1>
+    <h1 class="page-title">meraki/rest/group-policies</h1>
     
 
     
 
 
 
+
+<section>
+
+<header>
     
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>/**
- * Create a Meraki REST API wrapper for the static route ressource. See the
- * [online documentation]{@link https://dashboard.meraki.com/api_docs#static-routes} for more information.
- *
- * @module meraki/rest/static-routes
- * @param { Object } settings                   The configuration object used to create the api wrapper
- * @param { string } [settings.apiKey='']       The Meraki api key
- * @param { string } [settings.target='api']    The Meraki target
- * @param { string } [settings.basePath='/']    The Meraki base path for the static route ressource
- * @return { Object } The initialized Meraki REST API wrapper for the static route ressource
- * @example
- * const apiKey = 'secret meraki api key'
- * const organizationId = 'meraki organization id'
- * const version = 'v0'
- * const target = 'n12'
- * const basePath = `/${target}/${version}/networks`
- * const routeEndpoints = require('./lib/rest/routes')({ apiKey, target, basePath, baseUrl })
- */
-function createRoutesEndpoints ({ apiKey, target, basePath, baseUrl = 'https://api.meraki.com' }) {
-  const axios = require('./axios')({ baseUrl })
+        
+            
+        
+    
+</header>
 
-  /**
-   * List the static routes for this network.
-   *
-   * @memberof module:meraki/rest/static-routes
-   * @param { Object } param                  The parameters for this request
-   * @param { string } param.networkId        The id of the network for which to list the static routes
-   * @return { Promise } A promise holding the static routes of this network
-   * @example &lt;caption>Example response&lt;/caption>
-   * [
-   *   {
-   *     "id": "10",
-   *     "networkId": "N_1234",
-   *     "name": "VOIP",
-   *     "gatewayIp": "10.8.0.5",
-   *     "subnet": "192.168.10.0/24"
-   *   }
-   * ]
-   */
-  function listStaticNetworkRoutes ({ networkId }) {
-    if (!networkId) {
-      return Promise.reject(new Error('The parameter networkId is mandatory'))
-    }
+<article>
+    <div class="container-overview">
+    
+        
+            <div class="description"><p>Create a Meraki REST API wrapper for the group policy ressource. See the
+<a href="https://dashboard.meraki.com/api_docs#group-policies">online documentation</a> for more information.</p></div>
+        
 
-    return axios._get(apiKey, target, `${basePath}/${networkId}/staticRoutes`)
+        
+            
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="rest_policies.js.html">rest/policies.js</a>, <a href="rest_policies.js.html#line1">line 1</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>const apiKey = 'secret meraki api key'
+const organizationId = 'meraki organization id'
+const version = 'v0'
+const target = 'n12'
+const basePath = `/${target}/${version}/networks`
+const policyEndpoints = require('./lib/rest/policies')({ apiKey, target, basePath, baseUrl })</code></pre>
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>settings</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The configuration object used to create the api wrapper</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>apiKey</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>''</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>The Meraki api key</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>target</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>'api'</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>The Meraki target</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>basePath</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>'/'</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>The Meraki base path for the group policy ressource</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>The initialized Meraki REST API wrapper for the group policy ressource</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    <h4 class="name" id=".listNetworkGroupPolicies"><span class="type-signature">(static) </span>listNetworkGroupPolicies<span class="signature">(param)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="rest_policies.js.html">rest/policies.js</a>, <a href="rest_policies.js.html#line38">line 38</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>List the group policies in a network.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+        <p class="code-caption">Example response</p>
+    
+    <pre class="prettyprint"><code>[
+  {
+    "name": "No video streaming",
+    "groupPolicyId": 102
   }
+  ...
+]</code></pre>
 
-  /**
-   * Return a static route.
-   *
-   * @memberof module:meraki/rest/static-routes
-   * @param { Object } param                  The parameters for this request
-   * @param { string } param.networkId        The id of the network for which to list the static routes
-   * @param { string } param.srId             The id of the static route for which to show the details
-   * @return { Promise } A promise holding the details of a static route this network
-   * @example &lt;caption>Example response&lt;/caption>
-   * {
-   *   "id": "10",
-   *   "networkId": "N_1234",
-   *   "name": "VOIP",
-   *   "gatewayIp": "10.8.0.5",
-   *   "subnet": "192.168.10.0/24"
-   * }
-   */
-  function showStaticNetworkRoute ({ networkId, srId }) {
-    if (!networkId) {
-      return Promise.reject(new Error('The parameter networkId is mandatory'))
-    } else if (!srId) {
-      return Promise.reject(new Error('The parameter srId is mandatory'))
-    }
 
-    return axios._get(apiKey, target, `${basePath}/${networkId}/staticRoutes/${srId}`)
-  }
 
-  /**
-   * Update a static route.
-   *
-   * @memberof module:meraki/rest/static-routes
-   * @param { Object } param                  The parameters for this request
-   * @param { string } param.networkId        The id of the network for which to list the static routes
-   * @param { string } param.srId             The id of the static route to update
-   * @param { string } param.name             The name of the static route
-   * @param { string } param.subnet           The subnet of the static route
-   * @param { string } param.gatewayIp        The gateway IP (next hop) of the static route
-   * @param { boolean } param.enabled         The enabled state of the static route
-   * @param { string } param.fixedIpAssignments The DHCP fixed IP assignments on the static route
-   * @param { string } param.reservedIpRanges   The DHCP reserved IP ranges on the static route
-   * @return { Promise } A promise holding the updated static route of this network
-   * @example &lt;caption>Example request data&lt;/caption>
-   * {
-   *   "name": "VOIP",
-   *   "subnet": "192.168.10.0/24",
-   *   "fixedIpAssignments": {
-   *     "13:37:de:ad:be:ef": {
-   *       "ip": "192.168.10.5",
-   *       "name": "fixed"
-   *     }
-   *   },
-   *   "reservedIpRanges": [{
-   *     "start": "192.168.10.20",
-   *     "end": "192.168.10.30",
-   *     "comment": "reserved"
-   *   }]
-   * }
-   * @example &lt;caption>Example response&lt;/caption>
-   * {
-   *   "id": "10",
-   *   "networkId": "N_1234",
-   *   "name": "VOIP",
-   *   "gatewayIp": "10.8.0.5",
-   *   "subnet": "192.168.10.0/24"
-   * }
-   */
-  function updateStaticNetworkRoute ({ networkId, srId, name, subnet, gatewayIp, enabled, fixedIpAssignments, reservedIpRanges }) {
-    if (!networkId) {
-      return Promise.reject(new Error('The parameter networkId is mandatory'))
-    } else if (!srId) {
-      return Promise.reject(new Error('The parameter srId is mandatory'))
-    }
 
-    const data = { name, subnet, gatewayIp, enabled, fixedIpAssignments, reservedIpRanges }
-    return axios._put(apiKey, target, `${basePath}/${networkId}/staticRoutes/${srId}`, data)
-  }
+    <h5>Parameters:</h5>
+    
 
-  /**
-   * Add a static route.
-   *
-   * @memberof module:meraki/rest/static-routes
-   * @param { Object } param                  The parameters for this request
-   * @param { string } param.networkId        The id of the network for which to list the static routes
-   * @param { string } param.name             The name of the static route
-   * @param { string } param.subnet           The subnet of the static route
-   * @param { string } param.gatewayIp        The gateway IP (next hop) of the static route
-   * @return { Promise } A promise holding the newly created static route of this network
-   * @example &lt;caption>Example request data&lt;/caption>
-   * {
-   *   "name": "VOIP",
-   *   "subnet": "192.168.10.0/24",
-   *   "gatewayIp":"10.0.13.37"
-   * }
-   * @example &lt;caption>Example response&lt;/caption>
-   * {
-   *   "id": "10",
-   *   "networkId": "N_1234",
-   *   "name": "VOIP",
-   *   "gatewayIp":"10.0.13.37",
-   *   "subnet": "192.168.10.0/24"
-   * }
-   */
-  function createStaticNetworkRoute ({ networkId, name, subnet, gatewayIp }) {
-    if (!networkId) {
-      return Promise.reject(new Error('The parameter networkId is mandatory'))
-    }
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
 
-    const data = { name, subnet, gatewayIp }
-    return axios._post(apiKey, target, `${basePath}/${networkId}/staticRoutes`, data)
-  }
+        <th>Type</th>
 
-  /**
-   * Delete a static route.
-   *
-   * @memberof module:meraki/rest/static-routes
-   * @param { Object } param                  The parameters for this request
-   * @param { string } param.networkId        The id of the network for which to list the static routes
-   * @param { string } param.srId             The id of the static route to remove
-   * @return { Promise } A promise with no data
-   */
-  function deleteStaticNetworkRoute ({ networkId, srId }) {
-    if (!networkId) {
-      return Promise.reject(new Error('The parameter networkId is mandatory'))
-    } else if (!srId) {
-      return Promise.reject(new Error('The parameter srId is mandatory'))
-    }
+        
 
-    return axios._delete(apiKey, target, `${basePath}/${networkId}/staticRoutes/${srId}`)
-  }
+        
 
-  return {
-    listStaticNetworkRoutes,
-    showStaticNetworkRoute,
-    updateStaticNetworkRoute,
-    createStaticNetworkRoute,
-    deleteStaticNetworkRoute
-  }
-}
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-module.exports = createRoutesEndpoints
-</code></pre>
-        </article>
-    </section>
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>param</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The parameters for this request</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>networkId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The id of the network for which to list the group policies</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>A promise holding the group policies of this network</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
 
 
 

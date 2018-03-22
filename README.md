@@ -18,10 +18,9 @@ const organizationId = 'meraki organization id'
 const version = 'v0'
 const target = 'n12'
 const baseUrl = 'https://api.meraki.com' // this is the default an can be overwritten
-const port = 443 // this is the default and can be overwritten
 
 // baseUrl and port are optional
-const rest = require('./lib/rest')({ version, apiKey, target, organizationId, baseUrl, port })
+const meraki = require('./lib')({ version, apiKey, target,  baseUrl })
 
 function handleErros (error) {
   if (error.response) {
@@ -46,7 +45,7 @@ function handleSuccess (data) {
   console.log(data)
 }
 
-rest.listOrganizations()
+meraki.listOrganizations()
   .then(handleSuccess)
   .catch(handleErrors)
 ```

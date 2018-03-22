@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>lib/rest/vlans - Documentation</title>
+    <title>meraki/rest/static-routes - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -22,12 +22,12 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-lib_rest.html">lib/rest</a></li><li><a href="module-lib_rest_admins.html">lib/rest/admins</a><ul class='methods'><li data-type='method'><a href="module-lib_rest_admins.html#.createAdmin">createAdmin</a></li><li data-type='method'><a href="module-lib_rest_admins.html#.deleteAdmin">deleteAdmin</a></li><li data-type='method'><a href="module-lib_rest_admins.html#.listAdmins">listAdmins</a></li><li data-type='method'><a href="module-lib_rest_admins.html#.updateAdmin">updateAdmin</a></li></ul></li><li><a href="module-lib_rest_clients.html">lib/rest/clients</a><ul class='methods'><li data-type='method'><a href="module-lib_rest_clients.html#.listClients">listClients</a></li><li data-type='method'><a href="module-lib_rest_clients.html#.showClientPolicy">showClientPolicy</a></li><li data-type='method'><a href="module-lib_rest_clients.html#.showClientSplashAuthorization">showClientSplashAuthorization</a></li><li data-type='method'><a href="module-lib_rest_clients.html#.updateClientPolicy">updateClientPolicy</a></li><li data-type='method'><a href="module-lib_rest_clients.html#.updateClientSplashAuthorization">updateClientSplashAuthorization</a></li></ul></li><li><a href="module-lib_rest_config-templates.html">lib/rest/config-templates</a><ul class='methods'><li data-type='method'><a href="module-lib_rest_config-templates.html#.deleteConfigurationTemplate">deleteConfigurationTemplate</a></li><li data-type='method'><a href="module-lib_rest_config-templates.html#.listConfigurationTemplates">listConfigurationTemplates</a></li></ul></li><li><a href="module-lib_rest_devices.html">lib/rest/devices</a><ul class='methods'><li data-type='method'><a href="module-lib_rest_devices.html#.claimNetworkDevice">claimNetworkDevice</a></li><li data-type='method'><a href="module-lib_rest_devices.html#.deleteNetworkDevice">deleteNetworkDevice</a></li><li data-type='method'><a href="module-lib_rest_devices.html#.listNetworkDevices">listNetworkDevices</a></li><li data-type='method'><a href="module-lib_rest_devices.html#.listNetworkDeviceUplinks">listNetworkDeviceUplinks</a></li><li data-type='method'><a href="module-lib_rest_devices.html#.showNetworkDevice">showNetworkDevice</a></li><li data-type='method'><a href="module-lib_rest_devices.html#.showNetworkDeviceLLDPandCDP">showNetworkDeviceLLDPandCDP</a></li><li data-type='method'><a href="module-lib_rest_devices.html#.updateNetworkDevice">updateNetworkDevice</a></li></ul></li><li><a href="module-lib_rest_group-policies.html">lib/rest/group-policies</a><ul class='methods'><li data-type='method'><a href="module-lib_rest_group-policies.html#.listNetworkGroupPolicies">listNetworkGroupPolicies</a></li></ul></li><li><a href="module-lib_rest_networks.html">lib/rest/networks</a><ul class='methods'><li data-type='method'><a href="module-lib_rest_networks.html#.bindNetworkToTemplate">bindNetworkToTemplate</a></li><li data-type='method'><a href="module-lib_rest_networks.html#.createNetwork">createNetwork</a></li><li data-type='method'><a href="module-lib_rest_networks.html#.deleteNetwork">deleteNetwork</a></li><li data-type='method'><a href="module-lib_rest_networks.html#.listNetworkAccessPolicies">listNetworkAccessPolicies</a></li><li data-type='method'><a href="module-lib_rest_networks.html#.listNetworks">listNetworks</a></li><li data-type='method'><a href="module-lib_rest_networks.html#.listTrafficAnalysis">listTrafficAnalysis</a></li><li data-type='method'><a href="module-lib_rest_networks.html#.showNetwork">showNetwork</a></li><li data-type='method'><a href="module-lib_rest_networks.html#.unbindNetworkFromTemplate">unbindNetworkFromTemplate</a></li><li data-type='method'><a href="module-lib_rest_networks.html#.updateNetwork">updateNetwork</a></li></ul></li><li><a href="module-lib_rest_organizations.html">lib/rest/organizations</a><ul class='methods'><li data-type='method'><a href="module-lib_rest_organizations.html#.claimOrganization">claimOrganization</a></li><li data-type='method'><a href="module-lib_rest_organizations.html#.cloneOrganization">cloneOrganization</a></li><li data-type='method'><a href="module-lib_rest_organizations.html#.createOrganization">createOrganization</a></li><li data-type='method'><a href="module-lib_rest_organizations.html#.listOrganizationInventory">listOrganizationInventory</a></li><li data-type='method'><a href="module-lib_rest_organizations.html#.listOrganizations">listOrganizations</a></li><li data-type='method'><a href="module-lib_rest_organizations.html#.showOrganization">showOrganization</a></li><li data-type='method'><a href="module-lib_rest_organizations.html#.showOrganizationLicense">showOrganizationLicense</a></li><li data-type='method'><a href="module-lib_rest_organizations.html#.showOrganizationSNMP">showOrganizationSNMP</a></li><li data-type='method'><a href="module-lib_rest_organizations.html#.updateOrganization">updateOrganization</a></li><li data-type='method'><a href="module-lib_rest_organizations.html#.updateOrganizationSNMP">updateOrganizationSNMP</a></li></ul></li><li><a href="module-lib_rest_ssids.html">lib/rest/ssids</a><ul class='methods'><li data-type='method'><a href="module-lib_rest_ssids.html#.listNetworkSSIDs">listNetworkSSIDs</a></li><li data-type='method'><a href="module-lib_rest_ssids.html#.showNetworkSSID">showNetworkSSID</a></li><li data-type='method'><a href="module-lib_rest_ssids.html#.updateNetworkSSID">updateNetworkSSID</a></li></ul></li><li><a href="module-lib_rest_static-routes.html">lib/rest/static-routes</a><ul class='methods'><li data-type='method'><a href="module-lib_rest_static-routes.html#.createStaticNetworkRoute">createStaticNetworkRoute</a></li><li data-type='method'><a href="module-lib_rest_static-routes.html#.deleteStaticNetworkRoute">deleteStaticNetworkRoute</a></li><li data-type='method'><a href="module-lib_rest_static-routes.html#.listStaticNetworkRoutes">listStaticNetworkRoutes</a></li><li data-type='method'><a href="module-lib_rest_static-routes.html#.showStaticNetworkRoute">showStaticNetworkRoute</a></li><li data-type='method'><a href="module-lib_rest_static-routes.html#.updateStaticNetworkRoute">updateStaticNetworkRoute</a></li></ul></li><li><a href="module-lib_rest_switch-ports.html">lib/rest/switch-ports</a><ul class='methods'><li data-type='method'><a href="module-lib_rest_switch-ports.html#.listSwitchPorts">listSwitchPorts</a></li><li data-type='method'><a href="module-lib_rest_switch-ports.html#.showSwitchPort">showSwitchPort</a></li><li data-type='method'><a href="module-lib_rest_switch-ports.html#.updateSwitchPort">updateSwitchPort</a></li></ul></li><li><a href="module-lib_rest_vlans.html">lib/rest/vlans</a><ul class='methods'><li data-type='method'><a href="module-lib_rest_vlans.html#.createNetworkVLAN">createNetworkVLAN</a></li><li data-type='method'><a href="module-lib_rest_vlans.html#.deleteNetworkVLAN">deleteNetworkVLAN</a></li><li data-type='method'><a href="module-lib_rest_vlans.html#.listNetworkVLANs">listNetworkVLANs</a></li><li data-type='method'><a href="module-lib_rest_vlans.html#.showNetworkVLAN">showNetworkVLAN</a></li><li data-type='method'><a href="module-lib_rest_vlans.html#.updateNetworkVLAN">updateNetworkVLAN</a></li></ul></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-meraki.html">meraki</a></li><li><a href="module-meraki_rest_admins.html">meraki/rest/admins</a><ul class='methods'><li data-type='method'><a href="module-meraki_rest_admins.html#.createAdmin">createAdmin</a></li><li data-type='method'><a href="module-meraki_rest_admins.html#.deleteAdmin">deleteAdmin</a></li><li data-type='method'><a href="module-meraki_rest_admins.html#.listAdmins">listAdmins</a></li><li data-type='method'><a href="module-meraki_rest_admins.html#.updateAdmin">updateAdmin</a></li></ul></li><li><a href="module-meraki_rest_clients.html">meraki/rest/clients</a><ul class='methods'><li data-type='method'><a href="module-meraki_rest_clients.html#.listClients">listClients</a></li><li data-type='method'><a href="module-meraki_rest_clients.html#.showClientPolicy">showClientPolicy</a></li><li data-type='method'><a href="module-meraki_rest_clients.html#.showClientSplashAuthorization">showClientSplashAuthorization</a></li><li data-type='method'><a href="module-meraki_rest_clients.html#.updateClientPolicy">updateClientPolicy</a></li><li data-type='method'><a href="module-meraki_rest_clients.html#.updateClientSplashAuthorization">updateClientSplashAuthorization</a></li></ul></li><li><a href="module-meraki_rest_config-templates.html">meraki/rest/config-templates</a><ul class='methods'><li data-type='method'><a href="module-meraki_rest_config-templates.html#.deleteConfigurationTemplate">deleteConfigurationTemplate</a></li><li data-type='method'><a href="module-meraki_rest_config-templates.html#.listConfigurationTemplates">listConfigurationTemplates</a></li></ul></li><li><a href="module-meraki_rest_devices.html">meraki/rest/devices</a><ul class='methods'><li data-type='method'><a href="module-meraki_rest_devices.html#.claimNetworkDevice">claimNetworkDevice</a></li><li data-type='method'><a href="module-meraki_rest_devices.html#.deleteNetworkDevice">deleteNetworkDevice</a></li><li data-type='method'><a href="module-meraki_rest_devices.html#.listNetworkDevices">listNetworkDevices</a></li><li data-type='method'><a href="module-meraki_rest_devices.html#.listNetworkDeviceUplinks">listNetworkDeviceUplinks</a></li><li data-type='method'><a href="module-meraki_rest_devices.html#.showNetworkDevice">showNetworkDevice</a></li><li data-type='method'><a href="module-meraki_rest_devices.html#.showNetworkDeviceLLDPandCDP">showNetworkDeviceLLDPandCDP</a></li><li data-type='method'><a href="module-meraki_rest_devices.html#.updateNetworkDevice">updateNetworkDevice</a></li></ul></li><li><a href="module-meraki_rest_group-policies.html">meraki/rest/group-policies</a><ul class='methods'><li data-type='method'><a href="module-meraki_rest_group-policies.html#.listNetworkGroupPolicies">listNetworkGroupPolicies</a></li></ul></li><li><a href="module-meraki_rest_networks.html">meraki/rest/networks</a><ul class='methods'><li data-type='method'><a href="module-meraki_rest_networks.html#.bindNetworkToTemplate">bindNetworkToTemplate</a></li><li data-type='method'><a href="module-meraki_rest_networks.html#.createNetwork">createNetwork</a></li><li data-type='method'><a href="module-meraki_rest_networks.html#.deleteNetwork">deleteNetwork</a></li><li data-type='method'><a href="module-meraki_rest_networks.html#.listNetworkAccessPolicies">listNetworkAccessPolicies</a></li><li data-type='method'><a href="module-meraki_rest_networks.html#.listNetworks">listNetworks</a></li><li data-type='method'><a href="module-meraki_rest_networks.html#.listTrafficAnalysis">listTrafficAnalysis</a></li><li data-type='method'><a href="module-meraki_rest_networks.html#.showNetwork">showNetwork</a></li><li data-type='method'><a href="module-meraki_rest_networks.html#.unbindNetworkFromTemplate">unbindNetworkFromTemplate</a></li><li data-type='method'><a href="module-meraki_rest_networks.html#.updateNetwork">updateNetwork</a></li></ul></li><li><a href="module-meraki_rest_organizations.html">meraki/rest/organizations</a><ul class='methods'><li data-type='method'><a href="module-meraki_rest_organizations.html#.claimOrganization">claimOrganization</a></li><li data-type='method'><a href="module-meraki_rest_organizations.html#.cloneOrganization">cloneOrganization</a></li><li data-type='method'><a href="module-meraki_rest_organizations.html#.createOrganization">createOrganization</a></li><li data-type='method'><a href="module-meraki_rest_organizations.html#.listOrganizationInventory">listOrganizationInventory</a></li><li data-type='method'><a href="module-meraki_rest_organizations.html#.listOrganizations">listOrganizations</a></li><li data-type='method'><a href="module-meraki_rest_organizations.html#.showOrganization">showOrganization</a></li><li data-type='method'><a href="module-meraki_rest_organizations.html#.showOrganizationLicense">showOrganizationLicense</a></li><li data-type='method'><a href="module-meraki_rest_organizations.html#.showOrganizationSNMP">showOrganizationSNMP</a></li><li data-type='method'><a href="module-meraki_rest_organizations.html#.updateOrganization">updateOrganization</a></li><li data-type='method'><a href="module-meraki_rest_organizations.html#.updateOrganizationSNMP">updateOrganizationSNMP</a></li></ul></li><li><a href="module-meraki_rest_ssids.html">meraki/rest/ssids</a><ul class='methods'><li data-type='method'><a href="module-meraki_rest_ssids.html#.listNetworkSSIDs">listNetworkSSIDs</a></li><li data-type='method'><a href="module-meraki_rest_ssids.html#.showNetworkSSID">showNetworkSSID</a></li><li data-type='method'><a href="module-meraki_rest_ssids.html#.updateNetworkSSID">updateNetworkSSID</a></li></ul></li><li><a href="module-meraki_rest_static-routes.html">meraki/rest/static-routes</a><ul class='methods'><li data-type='method'><a href="module-meraki_rest_static-routes.html#.createStaticNetworkRoute">createStaticNetworkRoute</a></li><li data-type='method'><a href="module-meraki_rest_static-routes.html#.deleteStaticNetworkRoute">deleteStaticNetworkRoute</a></li><li data-type='method'><a href="module-meraki_rest_static-routes.html#.listStaticNetworkRoutes">listStaticNetworkRoutes</a></li><li data-type='method'><a href="module-meraki_rest_static-routes.html#.showStaticNetworkRoute">showStaticNetworkRoute</a></li><li data-type='method'><a href="module-meraki_rest_static-routes.html#.updateStaticNetworkRoute">updateStaticNetworkRoute</a></li></ul></li><li><a href="module-meraki_rest_switch-ports.html">meraki/rest/switch-ports</a><ul class='methods'><li data-type='method'><a href="module-meraki_rest_switch-ports.html#.listSwitchPorts">listSwitchPorts</a></li><li data-type='method'><a href="module-meraki_rest_switch-ports.html#.showSwitchPort">showSwitchPort</a></li><li data-type='method'><a href="module-meraki_rest_switch-ports.html#.updateSwitchPort">updateSwitchPort</a></li></ul></li><li><a href="module-meraki_rest_vlans.html">meraki/rest/vlans</a><ul class='methods'><li data-type='method'><a href="module-meraki_rest_vlans.html#.createNetworkVLAN">createNetworkVLAN</a></li><li data-type='method'><a href="module-meraki_rest_vlans.html#.deleteNetworkVLAN">deleteNetworkVLAN</a></li><li data-type='method'><a href="module-meraki_rest_vlans.html#.listNetworkVLANs">listNetworkVLANs</a></li><li data-type='method'><a href="module-meraki_rest_vlans.html#.showNetworkVLAN">showNetworkVLAN</a></li><li data-type='method'><a href="module-meraki_rest_vlans.html#.updateNetworkVLAN">updateNetworkVLAN</a></li></ul></li></ul>
 </nav>
 
 <div id="main">
     
-    <h1 class="page-title">lib/rest/vlans</h1>
+    <h1 class="page-title">meraki/rest/static-routes</h1>
     
 
     
@@ -49,8 +49,8 @@
     <div class="container-overview">
     
         
-            <div class="description"><p>Create a Meraki REST API wrapper for the VLAN ressource. See the
-<a href="https://dashboard.meraki.com/api_docs#vlans">online documentation</a> for more information.</p></div>
+            <div class="description"><p>Create a Meraki REST API wrapper for the static route ressource. See the
+<a href="https://dashboard.meraki.com/api_docs#static-routes">online documentation</a> for more information.</p></div>
         
 
         
@@ -64,7 +64,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_vlans.js.html">rest/vlans.js</a>, <a href="rest_vlans.js.html#line1">line 1</a>
+        <a href="rest_routes.js.html">rest/routes.js</a>, <a href="rest_routes.js.html#line1">line 1</a>
     </li></ul></dd>
     
 
@@ -118,7 +118,7 @@ const organizationId = 'meraki organization id'
 const version = 'v0'
 const target = 'n12'
 const basePath = `/${target}/${version}/networks`
-const vlanEndpoints = require('./lib/rest/vlans')({ apiKey, target, basePath, baseUrl, port })</code></pre>
+const routeEndpoints = require('./lib/rest/routes')({ apiKey, target, basePath, baseUrl })</code></pre>
 
 
 
@@ -304,7 +304,7 @@ const vlanEndpoints = require('./lib/rest/vlans')({ apiKey, target, basePath, ba
                 </td>
             
 
-            <td class="description last"><p>The Meraki base path for the VLAN ressource</p></td>
+            <td class="description last"><p>The Meraki base path for the static route ressource</p></td>
         </tr>
 
     
@@ -335,7 +335,7 @@ const vlanEndpoints = require('./lib/rest/vlans')({ apiKey, target, basePath, ba
 
         
 <div class="param-desc">
-    <p>The initialized Meraki REST API wrapper for the VLAN ressource</p>
+    <p>The initialized Meraki REST API wrapper for the static route ressource</p>
 </div>
 
 
@@ -379,7 +379,7 @@ const vlanEndpoints = require('./lib/rest/vlans')({ apiKey, target, basePath, ba
 
     
 
-    <h4 class="name" id=".createNetworkVLAN"><span class="type-signature">(static) </span>createNetworkVLAN<span class="signature">(param)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id=".createStaticNetworkRoute"><span class="type-signature">(static) </span>createStaticNetworkRoute<span class="signature">(param)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -391,7 +391,7 @@ const vlanEndpoints = require('./lib/rest/vlans')({ apiKey, target, basePath, ba
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_vlans.js.html">rest/vlans.js</a>, <a href="rest_vlans.js.html#line158">line 158</a>
+        <a href="rest_routes.js.html">rest/routes.js</a>, <a href="rest_routes.js.html#line150">line 150</a>
     </li></ul></dd>
     
 
@@ -431,7 +431,7 @@ const vlanEndpoints = require('./lib/rest/vlans')({ apiKey, target, basePath, ba
 
 
 <div class="description">
-    <p>Add a VLAN.</p>
+    <p>Add a static route.</p>
 </div>
 
 
@@ -447,10 +447,9 @@ const vlanEndpoints = require('./lib/rest/vlans')({ apiKey, target, basePath, ba
         <p class="code-caption">Example request data</p>
     
     <pre class="prettyprint"><code>{
-  "id": "10",
   "name": "VOIP",
-  "applianceIp": "192.168.10.1",
-  "subnet": "192.168.10.0/24"
+  "subnet": "192.168.10.0/24",
+  "gatewayIp":"10.0.13.37"
 }</code></pre>
 
         <p class="code-caption">Example response</p>
@@ -459,7 +458,7 @@ const vlanEndpoints = require('./lib/rest/vlans')({ apiKey, target, basePath, ba
   "id": "10",
   "networkId": "N_1234",
   "name": "VOIP",
-  "applianceIp": "192.168.10.1",
+  "gatewayIp":"10.0.13.37",
   "subnet": "192.168.10.0/24"
 }</code></pre>
 
@@ -549,30 +548,7 @@ const vlanEndpoints = require('./lib/rest/vlans')({ apiKey, target, basePath, ba
 
             
 
-            <td class="description last"><p>The id of the network for which to list the VLANs</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>id</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The VLAN ID of the new VLAN (must be between 1 and 4094)</p></td>
+            <td class="description last"><p>The id of the network for which to list the static routes</p></td>
         </tr>
 
     
@@ -595,7 +571,7 @@ const vlanEndpoints = require('./lib/rest/vlans')({ apiKey, target, basePath, ba
 
             
 
-            <td class="description last"><p>The name of the VLAN</p></td>
+            <td class="description last"><p>The name of the static route</p></td>
         </tr>
 
     
@@ -618,14 +594,14 @@ const vlanEndpoints = require('./lib/rest/vlans')({ apiKey, target, basePath, ba
 
             
 
-            <td class="description last"><p>The subnet of the VLAN</p></td>
+            <td class="description last"><p>The subnet of the static route</p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>applianceIp</code></td>
+                <td class="name"><code>gatewayIp</code></td>
             
 
             <td class="type">
@@ -641,7 +617,7 @@ const vlanEndpoints = require('./lib/rest/vlans')({ apiKey, target, basePath, ba
 
             
 
-            <td class="description last"><p>The local IP of the appliance on the VLAN</p></td>
+            <td class="description last"><p>The gateway IP (next hop) of the static route</p></td>
         </tr>
 
     
@@ -672,7 +648,7 @@ const vlanEndpoints = require('./lib/rest/vlans')({ apiKey, target, basePath, ba
 
         
 <div class="param-desc">
-    <p>A promise holding the newly created VLAN</p>
+    <p>A promise holding the newly created static route of this network</p>
 </div>
 
 
@@ -697,7 +673,7 @@ const vlanEndpoints = require('./lib/rest/vlans')({ apiKey, target, basePath, ba
 
     
 
-    <h4 class="name" id=".deleteNetworkVLAN"><span class="type-signature">(static) </span>deleteNetworkVLAN<span class="signature">(param)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id=".deleteStaticNetworkRoute"><span class="type-signature">(static) </span>deleteStaticNetworkRoute<span class="signature">(param)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -709,7 +685,7 @@ const vlanEndpoints = require('./lib/rest/vlans')({ apiKey, target, basePath, ba
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_vlans.js.html">rest/vlans.js</a>, <a href="rest_vlans.js.html#line176">line 176</a>
+        <a href="rest_routes.js.html">rest/routes.js</a>, <a href="rest_routes.js.html#line168">line 168</a>
     </li></ul></dd>
     
 
@@ -749,7 +725,7 @@ const vlanEndpoints = require('./lib/rest/vlans')({ apiKey, target, basePath, ba
 
 
 <div class="description">
-    <p>Delete a VLAN from a network.</p>
+    <p>Delete a static route.</p>
 </div>
 
 
@@ -845,14 +821,14 @@ const vlanEndpoints = require('./lib/rest/vlans')({ apiKey, target, basePath, ba
 
             
 
-            <td class="description last"><p>The id of the network for which to list the VLANs</p></td>
+            <td class="description last"><p>The id of the network for which to list the static routes</p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>vlanId</code></td>
+                <td class="name"><code>srId</code></td>
             
 
             <td class="type">
@@ -868,7 +844,7 @@ const vlanEndpoints = require('./lib/rest/vlans')({ apiKey, target, basePath, ba
 
             
 
-            <td class="description last"><p>The id of the VLAN to delete</p></td>
+            <td class="description last"><p>The id of the static route to remove</p></td>
         </tr>
 
     
@@ -924,7 +900,7 @@ const vlanEndpoints = require('./lib/rest/vlans')({ apiKey, target, basePath, ba
 
     
 
-    <h4 class="name" id=".listNetworkVLANs"><span class="type-signature">(static) </span>listNetworkVLANs<span class="signature">(param)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id=".listStaticNetworkRoutes"><span class="type-signature">(static) </span>listStaticNetworkRoutes<span class="signature">(param)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -936,7 +912,7 @@ const vlanEndpoints = require('./lib/rest/vlans')({ apiKey, target, basePath, ba
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_vlans.js.html">rest/vlans.js</a>, <a href="rest_vlans.js.html#line40">line 40</a>
+        <a href="rest_routes.js.html">rest/routes.js</a>, <a href="rest_routes.js.html#line40">line 40</a>
     </li></ul></dd>
     
 
@@ -976,7 +952,7 @@ const vlanEndpoints = require('./lib/rest/vlans')({ apiKey, target, basePath, ba
 
 
 <div class="description">
-    <p>List the VLANs for this network.</p>
+    <p>List the static routes for this network.</p>
 </div>
 
 
@@ -996,7 +972,7 @@ const vlanEndpoints = require('./lib/rest/vlans')({ apiKey, target, basePath, ba
     "id": "10",
     "networkId": "N_1234",
     "name": "VOIP",
-    "applianceIp": "192.168.10.1",
+    "gatewayIp": "10.8.0.5",
     "subnet": "192.168.10.0/24"
   }
 ]</code></pre>
@@ -1087,7 +1063,7 @@ const vlanEndpoints = require('./lib/rest/vlans')({ apiKey, target, basePath, ba
 
             
 
-            <td class="description last"><p>The id of the network for which to list the VLANs</p></td>
+            <td class="description last"><p>The id of the network for which to list the static routes</p></td>
         </tr>
 
     
@@ -1118,7 +1094,7 @@ const vlanEndpoints = require('./lib/rest/vlans')({ apiKey, target, basePath, ba
 
         
 <div class="param-desc">
-    <p>A promise holding the VLANs of this network</p>
+    <p>A promise holding the static routes of this network</p>
 </div>
 
 
@@ -1143,7 +1119,7 @@ const vlanEndpoints = require('./lib/rest/vlans')({ apiKey, target, basePath, ba
 
     
 
-    <h4 class="name" id=".showNetworkVLAN"><span class="type-signature">(static) </span>showNetworkVLAN<span class="signature">(param)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id=".showStaticNetworkRoute"><span class="type-signature">(static) </span>showStaticNetworkRoute<span class="signature">(param)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -1155,7 +1131,7 @@ const vlanEndpoints = require('./lib/rest/vlans')({ apiKey, target, basePath, ba
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_vlans.js.html">rest/vlans.js</a>, <a href="rest_vlans.js.html#line65">line 65</a>
+        <a href="rest_routes.js.html">rest/routes.js</a>, <a href="rest_routes.js.html#line65">line 65</a>
     </li></ul></dd>
     
 
@@ -1195,7 +1171,7 @@ const vlanEndpoints = require('./lib/rest/vlans')({ apiKey, target, basePath, ba
 
 
 <div class="description">
-    <p>Return a VLAN.</p>
+    <p>Return a static route.</p>
 </div>
 
 
@@ -1214,7 +1190,7 @@ const vlanEndpoints = require('./lib/rest/vlans')({ apiKey, target, basePath, ba
   "id": "10",
   "networkId": "N_1234",
   "name": "VOIP",
-  "applianceIp": "192.168.10.1",
+  "gatewayIp": "10.8.0.5",
   "subnet": "192.168.10.0/24"
 }</code></pre>
 
@@ -1304,14 +1280,14 @@ const vlanEndpoints = require('./lib/rest/vlans')({ apiKey, target, basePath, ba
 
             
 
-            <td class="description last"><p>The id of the network for which to list the VLANs</p></td>
+            <td class="description last"><p>The id of the network for which to list the static routes</p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>vlanId</code></td>
+                <td class="name"><code>srId</code></td>
             
 
             <td class="type">
@@ -1327,7 +1303,7 @@ const vlanEndpoints = require('./lib/rest/vlans')({ apiKey, target, basePath, ba
 
             
 
-            <td class="description last"><p>The id of the VLAN for which to show the details</p></td>
+            <td class="description last"><p>The id of the static route for which to show the details</p></td>
         </tr>
 
     
@@ -1358,7 +1334,7 @@ const vlanEndpoints = require('./lib/rest/vlans')({ apiKey, target, basePath, ba
 
         
 <div class="param-desc">
-    <p>A promise holding the details of this VLAN</p>
+    <p>A promise holding the details of a static route this network</p>
 </div>
 
 
@@ -1383,7 +1359,7 @@ const vlanEndpoints = require('./lib/rest/vlans')({ apiKey, target, basePath, ba
 
     
 
-    <h4 class="name" id=".updateNetworkVLAN"><span class="type-signature">(static) </span>updateNetworkVLAN<span class="signature">(param)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id=".updateStaticNetworkRoute"><span class="type-signature">(static) </span>updateStaticNetworkRoute<span class="signature">(param)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -1395,7 +1371,7 @@ const vlanEndpoints = require('./lib/rest/vlans')({ apiKey, target, basePath, ba
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_vlans.js.html">rest/vlans.js</a>, <a href="rest_vlans.js.html#line117">line 117</a>
+        <a href="rest_routes.js.html">rest/routes.js</a>, <a href="rest_routes.js.html#line114">line 114</a>
     </li></ul></dd>
     
 
@@ -1435,7 +1411,7 @@ const vlanEndpoints = require('./lib/rest/vlans')({ apiKey, target, basePath, ba
 
 
 <div class="description">
-    <p>Update a VLAN.</p>
+    <p>Update a static route.</p>
 </div>
 
 
@@ -1452,7 +1428,6 @@ const vlanEndpoints = require('./lib/rest/vlans')({ apiKey, target, basePath, ba
     
     <pre class="prettyprint"><code>{
   "name": "VOIP",
-  "applianceIp": "192.168.10.1",
   "subnet": "192.168.10.0/24",
   "fixedIpAssignments": {
     "13:37:de:ad:be:ef": {
@@ -1464,8 +1439,7 @@ const vlanEndpoints = require('./lib/rest/vlans')({ apiKey, target, basePath, ba
     "start": "192.168.10.20",
     "end": "192.168.10.30",
     "comment": "reserved"
-  }],
-  "dnsNameservers": "google_dns"
+  }]
 }</code></pre>
 
         <p class="code-caption">Example response</p>
@@ -1474,7 +1448,7 @@ const vlanEndpoints = require('./lib/rest/vlans')({ apiKey, target, basePath, ba
   "id": "10",
   "networkId": "N_1234",
   "name": "VOIP",
-  "applianceIp": "192.168.10.1",
+  "gatewayIp": "10.8.0.5",
   "subnet": "192.168.10.0/24"
 }</code></pre>
 
@@ -1564,14 +1538,14 @@ const vlanEndpoints = require('./lib/rest/vlans')({ apiKey, target, basePath, ba
 
             
 
-            <td class="description last"><p>The id of the network for which to list the VLANs</p></td>
+            <td class="description last"><p>The id of the network for which to list the static routes</p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>vlanId</code></td>
+                <td class="name"><code>srId</code></td>
             
 
             <td class="type">
@@ -1587,7 +1561,7 @@ const vlanEndpoints = require('./lib/rest/vlans')({ apiKey, target, basePath, ba
 
             
 
-            <td class="description last"><p>The id of the VLAN to update</p></td>
+            <td class="description last"><p>The id of the static route to update</p></td>
         </tr>
 
     
@@ -1610,7 +1584,7 @@ const vlanEndpoints = require('./lib/rest/vlans')({ apiKey, target, basePath, ba
 
             
 
-            <td class="description last"><p>The name of the VLAN</p></td>
+            <td class="description last"><p>The name of the static route</p></td>
         </tr>
 
     
@@ -1633,14 +1607,14 @@ const vlanEndpoints = require('./lib/rest/vlans')({ apiKey, target, basePath, ba
 
             
 
-            <td class="description last"><p>The subnet of the VLAN</p></td>
+            <td class="description last"><p>The subnet of the static route</p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>applianceIp</code></td>
+                <td class="name"><code>gatewayIp</code></td>
             
 
             <td class="type">
@@ -1656,7 +1630,30 @@ const vlanEndpoints = require('./lib/rest/vlans')({ apiKey, target, basePath, ba
 
             
 
-            <td class="description last"><p>The local IP of the appliance on the VLAN</p></td>
+            <td class="description last"><p>The gateway IP (next hop) of the static route</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>enabled</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The enabled state of the static route</p></td>
         </tr>
 
     
@@ -1669,7 +1666,7 @@ const vlanEndpoints = require('./lib/rest/vlans')({ apiKey, target, basePath, ba
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type">string</span>
 
 
             
@@ -1679,7 +1676,7 @@ const vlanEndpoints = require('./lib/rest/vlans')({ apiKey, target, basePath, ba
 
             
 
-            <td class="description last"><p>The DHCP fixed IP assignments on the VLAN</p></td>
+            <td class="description last"><p>The DHCP fixed IP assignments on the static route</p></td>
         </tr>
 
     
@@ -1692,29 +1689,6 @@ const vlanEndpoints = require('./lib/rest/vlans')({ apiKey, target, basePath, ba
             <td class="type">
             
                 
-<span class="param-type">Array</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The DHCP reserved IP ranges on the VLAN</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>vpnNatSubnet</code></td>
-            
-
-            <td class="type">
-            
-                
 <span class="param-type">string</span>
 
 
@@ -1725,30 +1699,7 @@ const vlanEndpoints = require('./lib/rest/vlans')({ apiKey, target, basePath, ba
 
             
 
-            <td class="description last"><p>The translated VPN subnet if VPN and VPN subnet translation are enabled on the VLAN</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>dnsNameservers</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The DNS nameservers used for DHCP responses, either <code>upstream_dns</code>, <code>google_dns</code>, <code>opendns</code>, or a newline seperated string of IP addresses or domain names</p></td>
+            <td class="description last"><p>The DHCP reserved IP ranges on the static route</p></td>
         </tr>
 
     
@@ -1779,7 +1730,7 @@ const vlanEndpoints = require('./lib/rest/vlans')({ apiKey, target, basePath, ba
 
         
 <div class="param-desc">
-    <p>A promise holding the updated VLAN</p>
+    <p>A promise holding the updated static route of this network</p>
 </div>
 
 
@@ -1817,7 +1768,7 @@ const vlanEndpoints = require('./lib/rest/vlans')({ apiKey, target, basePath, ba
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Thu Mar 22 2018 10:00:39 GMT+0100 (CET) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Thu Mar 22 2018 10:08:26 GMT+0100 (CET) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

@@ -4,12 +4,15 @@
   "description": "Meraki wrapper for nodejs",
   "main": "index.js",
   "scripts": {
-    "dev": "DEBUG=node-meraki* nodemon node index.js",
-    "deps": "npm-check -u",
-    "ci": "jest --watch",
-    "test": "jest",
-    "lint": "eslint .",
-    "jsdoc": "jsdoc -c jsdoc.config.json"
+    "build": "node_modules/.bin/babel src -d lib",
+    "ci": "NODE_ENV=test node_modules/.bin/jest --watch",
+    "deps": "node_modules/.bin/npm-check -u",
+    "deps:prod": "node_modules/.bin/npm-check -s",
+    "dev": "NODE_ENV=development DEBUG=node-meraki* node_modules/.bin/nodemon ./src/index.js",
+    "jsdoc": "node_modules/.bin/jsdoc -c jsdoc.config.json",
+    "lint": "node_modules/.bin/eslint .",
+    "prepublish": "npm run build",
+    "test": "NODE_ENV=test node_modules/.bin/jest"
   },
   "repository": {
     "type": "git",
@@ -35,21 +38,25 @@
     "debug": "^3.1.0"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
     "docdash": "^0.4.0",
-    "eslint": "^4.18.2",
+    "eslint": "^4.19.1",
     "eslint-config-standard": "^11.0.0",
     "eslint-plugin-import": "^2.9.0",
-    "eslint-plugin-jest": "^21.14.1",
+    "eslint-plugin-jest": "^21.15.0",
     "eslint-plugin-node": "^6.0.1",
     "eslint-plugin-promise": "^3.7.0",
     "eslint-plugin-standard": "^3.0.1",
-    "jest": "^22.4.2",
-    "jest-cli": "^22.4.2",
+    "jest": "^22.4.3",
+    "jest-cli": "^22.4.3",
     "jest-junit": "^3.6.0",
     "jest-plugins": "^2.7.0",
     "jest-plugins-recommended": "^2.7.0",
+    "jsdoc": "^3.5.5",
     "nodemon": "^1.17.2",
-    "npm-check": "^5.5.2"
+    "npm-check": "^5.5.2",
+    "pre-commit": "^1.2.2"
   },
   "jest": {
     "testEnvironment": "node",
@@ -60,12 +67,14 @@
     "collectCoverage": true,
     "coverageDirectory": "reports/coverage",
     "testResultsProcessor": "jest-junit",
-    "setupTestFrameworkScriptFile": "<rootDir>/jest-plugins.js",
-    "unmockedModulePathPatterns": [
-      "<rootDir>/node_modules/nock"
-    ]
+    "setupTestFrameworkScriptFile": "<rootDir>/test/global.config.js"
   },
   "jest-junit": {
     "output": "reports/junit/js-test-results.xml"
-  }
+  },
+  "pre-commit": [
+    "deps:prod",
+    "test",
+    "lint"
+  ]
 }

@@ -2,7 +2,7 @@
  * Create a Meraki REST API wrapper for the static route ressource. See the
  * [online documentation]{@link https://dashboard.meraki.com/api_docs#static-routes} for more information.
  *
- * @module lib/rest/static-routes
+ * @module meraki/rest/static-routes
  * @param { Object } settings                   The configuration object used to create the api wrapper
  * @param { string } [settings.apiKey='']       The Meraki api key
  * @param { string } [settings.target='api']    The Meraki target
@@ -22,7 +22,7 @@ function createRoutesEndpoints ({ apiKey, target, basePath, baseUrl = 'https://a
   /**
    * List the static routes for this network.
    *
-   * @memberof module:lib/rest/static-routes
+   * @memberof module:meraki/rest/static-routes
    * @param { Object } param                  The parameters for this request
    * @param { string } param.networkId        The id of the network for which to list the static routes
    * @return { Promise } A promise holding the static routes of this network
@@ -48,7 +48,7 @@ function createRoutesEndpoints ({ apiKey, target, basePath, baseUrl = 'https://a
   /**
    * Return a static route.
    *
-   * @memberof module:lib/rest/static-routes
+   * @memberof module:meraki/rest/static-routes
    * @param { Object } param                  The parameters for this request
    * @param { string } param.networkId        The id of the network for which to list the static routes
    * @param { string } param.srId             The id of the static route for which to show the details
@@ -75,7 +75,7 @@ function createRoutesEndpoints ({ apiKey, target, basePath, baseUrl = 'https://a
   /**
    * Update a static route.
    *
-   * @memberof module:lib/rest/static-routes
+   * @memberof module:meraki/rest/static-routes
    * @param { Object } param                  The parameters for this request
    * @param { string } param.networkId        The id of the network for which to list the static routes
    * @param { string } param.srId             The id of the static route to update
@@ -125,7 +125,7 @@ function createRoutesEndpoints ({ apiKey, target, basePath, baseUrl = 'https://a
   /**
    * Add a static route.
    *
-   * @memberof module:lib/rest/static-routes
+   * @memberof module:meraki/rest/static-routes
    * @param { Object } param                  The parameters for this request
    * @param { string } param.networkId        The id of the network for which to list the static routes
    * @param { string } param.name             The name of the static route
@@ -159,7 +159,7 @@ function createRoutesEndpoints ({ apiKey, target, basePath, baseUrl = 'https://a
   /**
    * Delete a static route.
    *
-   * @memberof module:lib/rest/static-routes
+   * @memberof module:meraki/rest/static-routes
    * @param { Object } param                  The parameters for this request
    * @param { string } param.networkId        The id of the network for which to list the static routes
    * @param { string } param.srId             The id of the static route to remove

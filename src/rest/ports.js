@@ -2,7 +2,7 @@
  * Create a Meraki REST API wrapper for the switch port ressource. See the
  * [online documentation]{@link https://dashboard.meraki.com/api_docs#switch-ports} for more information.
  *
- * @module lib/rest/switch-ports
+ * @module meraki/rest/switch-ports
  * @param { Object } settings                   The configuration object used to create the api wrapper
  * @param { string } [settings.apiKey='']       The Meraki api key
  * @param { string } [settings.target='api']    The Meraki target
@@ -22,7 +22,7 @@ function createPortsEndpoints ({ apiKey = '', target = 'api', basePath = '/', ba
   /**
    * List the switch ports for a switch.
    *
-   * @memberof module:lib/rest/switch-ports
+   * @memberof module:meraki/rest/switch-ports
    * @param { Object } param                  The parameters for this request
    * @param { string } param.deviceSerial     The serial of the device for which to list the switch ports
    * @return { Promise } A promise holding the switch ports of this device
@@ -56,7 +56,7 @@ function createPortsEndpoints ({ apiKey = '', target = 'api', basePath = '/', ba
   /**
    * Return a switch port.
    *
-   * @memberof module:lib/rest/switch-ports
+   * @memberof module:meraki/rest/switch-ports
    * @param { Object } param                  The parameters for this request
    * @param { string } param.deviceSerial     The serial of the device for which to list the switch ports
    * @param { number } param.number           The number of the switch port for which to show the details
@@ -91,7 +91,7 @@ function createPortsEndpoints ({ apiKey = '', target = 'api', basePath = '/', ba
   /**
    * Update a switch port.
    *
-   * @memberof module:lib/rest/switch-ports
+   * @memberof module:meraki/rest/switch-ports
    * @param { Object } param                  The parameters for this request
    * @param { string } param.deviceSerial     The serial of the device for which to list the switch ports
    * @param { number } param.number           The number of the switch port to update

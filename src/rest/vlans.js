@@ -2,7 +2,7 @@
  * Create a Meraki REST API wrapper for the VLAN ressource. See the
  * [online documentation]{@link https://dashboard.meraki.com/api_docs#vlans} for more information.
  *
- * @module lib/rest/vlans
+ * @module meraki/rest/vlans
  * @param { Object } settings                   The configuration object used to create the api wrapper
  * @param { string } [settings.apiKey='']       The Meraki api key
  * @param { string } [settings.target='api']    The Meraki target
@@ -22,7 +22,7 @@ function createVlansEndpoints ({ apiKey, target, basePath, baseUrl = 'https://ap
   /**
    * List the VLANs for this network.
    *
-   * @memberof module:lib/rest/vlans
+   * @memberof module:meraki/rest/vlans
    * @param { Object } param                  The parameters for this request
    * @param { string } param.networkId        The id of the network for which to list the VLANs
    * @return { Promise } A promise holding the VLANs of this network
@@ -48,7 +48,7 @@ function createVlansEndpoints ({ apiKey, target, basePath, baseUrl = 'https://ap
   /**
    * Return a VLAN.
    *
-   * @memberof module:lib/rest/vlans
+   * @memberof module:meraki/rest/vlans
    * @param { Object } param                  The parameters for this request
    * @param { string } param.networkId        The id of the network for which to list the VLANs
    * @param { string } param.vlanId           The id of the VLAN for which to show the details
@@ -75,7 +75,7 @@ function createVlansEndpoints ({ apiKey, target, basePath, baseUrl = 'https://ap
   /**
    * Update a VLAN.
    *
-   * @memberof module:lib/rest/vlans
+   * @memberof module:meraki/rest/vlans
    * @param { Object } param                  The parameters for this request
    * @param { string } param.networkId        The id of the network for which to list the VLANs
    * @param { string } param.vlanId           The id of the VLAN to update
@@ -131,7 +131,7 @@ function createVlansEndpoints ({ apiKey, target, basePath, baseUrl = 'https://ap
   /**
    * Add a VLAN.
    *
-   * @memberof module:lib/rest/vlans
+   * @memberof module:meraki/rest/vlans
    * @param { Object } param                  The parameters for this request
    * @param { string } param.networkId        The id of the network for which to list the VLANs
    * @param { string } param.id               The VLAN ID of the new VLAN (must be between 1 and 4094)
@@ -167,7 +167,7 @@ function createVlansEndpoints ({ apiKey, target, basePath, baseUrl = 'https://ap
   /**
    * Delete a VLAN from a network.
    *
-   * @memberof module:lib/rest/vlans
+   * @memberof module:meraki/rest/vlans
    * @param { Object } param                  The parameters for this request
    * @param { string } param.networkId        The id of the network for which to list the VLANs
    * @param { string } param.vlanId           The id of the VLAN to delete

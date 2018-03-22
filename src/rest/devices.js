@@ -2,7 +2,7 @@
  * Create a Meraki REST API wrapper for the device ressource. See the
  * [online documentation]{@link https://dashboard.meraki.com/api_docs#devices} for more information.
  *
- * @module lib/rest/devices
+ * @module meraki/rest/devices
  * @param { Object } settings                   The configuration object used to create the api wrapper
  * @param { string } [settings.apiKey='']       The Meraki api key
  * @param { string } [settings.target='api']    The Meraki target
@@ -22,7 +22,7 @@ function createDevicesEndpoints ({ apiKey = '', target = 'api', basePath = '/', 
   /**
    * List the devices in a network.
    *
-   * @memberof module:lib/rest/devices
+   * @memberof module:meraki/rest/devices
    * @param { Object } param                  The parameters for this request
    * @param { string } param.networkId        The id of the network for which to list the devices
    * @return { Promise } A promise holding the devices of this network
@@ -58,7 +58,7 @@ function createDevicesEndpoints ({ apiKey = '', target = 'api', basePath = '/', 
   /**
    * Return a single network device.
    *
-   * @memberof module:lib/rest/devices
+   * @memberof module:meraki/rest/devices
    * @param { Object } param                  The parameters for this request
    * @param { string } param.networkId        The id of the network for which to list the devices
    * @param { string } param.deviceSerial     The serial number of the device for which to show the details
@@ -95,7 +95,7 @@ function createDevicesEndpoints ({ apiKey = '', target = 'api', basePath = '/', 
   /**
    * Return an array containing the uplink information for a device.
    *
-   * @memberof module:lib/rest/devices
+   * @memberof module:meraki/rest/devices
    * @param { Object } param                  The parameters for this request
    * @param { string } param.networkId        The id of the network for which to list the devices
    * @param { string } param.deviceSerial     The serial number of the device for which to show the uplink details
@@ -135,7 +135,7 @@ function createDevicesEndpoints ({ apiKey = '', target = 'api', basePath = '/', 
   /**
    * Update the attributes of a device.
    *
-   * @memberof module:lib/rest/devices
+   * @memberof module:meraki/rest/devices
    * @param { Object } param                  The parameters for this request
    * @param { string } param.networkId        The id of the network for which to list the devices
    * @param { string } param.deviceSerial     The serial number of the network device to update
@@ -183,7 +183,7 @@ function createDevicesEndpoints ({ apiKey = '', target = 'api', basePath = '/', 
   /**
    * Claim a device into a network.
    *
-   * @memberof module:lib/rest/devices
+   * @memberof module:meraki/rest/devices
    * @param { Object } param                  The parameters for this request
    * @param { string } param.networkId        The id of the network for which to list the devices
    * @param { string } param.deviceSerial     The serial number of the device to claim into the network
@@ -203,7 +203,7 @@ function createDevicesEndpoints ({ apiKey = '', target = 'api', basePath = '/', 
   /**
    * Remove a single network device.
    *
-   * @memberof module:lib/rest/devices
+   * @memberof module:meraki/rest/devices
    * @param { Object } param                  The parameters for this request
    * @param { string } param.networkId        The id of the network for which to list the devices
    * @param { string } param.deviceSerial     The serial number of the device to remove from the network
@@ -222,7 +222,7 @@ function createDevicesEndpoints ({ apiKey = '', target = 'api', basePath = '/', 
   /**
    * List LLDP and CDP information for a device.
    *
-   * @memberof module:lib/rest/devices
+   * @memberof module:meraki/rest/devices
    * @param { Object } param                  The parameters for this request
    * @param { string } param.networkId        The id of the network for which to list the devices
    * @param { string } param.deviceSerial     The serial number of the device for which to show the lldp and cdp information

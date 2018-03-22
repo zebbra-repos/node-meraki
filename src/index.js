@@ -4,12 +4,12 @@ const debug = require('debug')('node-meraki:rest')
  * Create a Meraki REST API wrapper. See the [online documentation]{@link https://dashboard.meraki.com/api_docs}
  * for more information.
  *
- * @module lib/rest
+ * @module meraki
  * @param { Object } settings                     The configuration object used to create the api wrapper
  * @param { string } [settings.version='v0']      Which Meraki api version to use
  * @param { string } [settings.apiKey='']         The Meraki api key
  * @param { string } [settings.target='api']      The Meraki target
- * @param { string } [settings.organizationId=''] The Meraki organization id
+ * @param { string } [settings.baseUrl='https://api.meraki.com'] The Meraki organization id
  * @return { Object } The initialized Meraki REST API wrapper
  * @example
  * const apiKey = 'secret meraki api key'
@@ -17,7 +17,7 @@ const debug = require('debug')('node-meraki:rest')
  * const version = 'v0' (default)
  * const target = 'n12'
  * const baseUrl = 'https://api.meraki.com' (default)
- * const rest = require('./lib/rest')({ version, apiKey, target, baseUrl })
+ * const meraki = require('./lib')({ version, apiKey, target, baseUrl })
  */
 function createRestAPI (settings) {
   const { version = 'v0', apiKey = '', target = 'api' } = settings
@@ -30,7 +30,7 @@ function createRestAPI (settings) {
   /**
    * The admin endpoints
    *
-   * @memberof module:lib/rest
+   * @memberof module:meraki
    * @see module:lib/rest/admins
    */
   const adminEndpoints = require('./rest/admins')({ apiKey, target, baseUrl, basePath: `${basePath}/organizations` })
@@ -38,7 +38,7 @@ function createRestAPI (settings) {
   /**
    * The client endpoints
    *
-   * @memberof module:lib/rest
+   * @memberof module:meraki
    * @see module:lib/rest/clients
    */
   const clientEndpoints = require('./rest/clients')({ apiKey, target, baseUrl, basePath })
@@ -46,7 +46,7 @@ function createRestAPI (settings) {
   /**
    * The config template endpoints
    *
-   * @memberof module:lib/rest
+   * @memberof module:meraki
    * @see module:lib/rest/templates
    */
   const templatesEndpoints = require('./rest/templates')({ apiKey, target, baseUrl, basePath: `${basePath}/organizations` })
@@ -54,7 +54,7 @@ function createRestAPI (settings) {
   /**
    * The device endpoints
    *
-   * @memberof module:lib/rest
+   * @memberof module:meraki
    * @see module:lib/rest/devices
    */
   const devicesEndpoints = require('./rest/devices')({ apiKey, target, baseUrl, basePath: `${basePath}/networks` })
@@ -62,7 +62,7 @@ function createRestAPI (settings) {
   /**
    * The group policy endpoints
    *
-   * @memberof module:lib/rest
+   * @memberof module:meraki
    * @see module:lib/rest/policies
    */
   const policiesEndpoints = require('./rest/policies')({ apiKey, target, baseUrl, basePath: `${basePath}/networks` })
@@ -70,7 +70,7 @@ function createRestAPI (settings) {
   /**
    * The network endpoints
    *
-   * @memberof module:lib/rest
+   * @memberof module:meraki
    * @see module:lib/rest/networks
    */
   const networksEndpoints = require('./rest/networks')({ apiKey, target, baseUrl, basePath })
@@ -78,7 +78,7 @@ function createRestAPI (settings) {
   /**
    * The organization endpoints
    *
-   * @memberof module:lib/rest
+   * @memberof module:meraki
    * @see module:lib/rest/ogranizations
    */
   const organizationEndpoints = require('./rest/organizations')({ apiKey, target, baseUrl, basePath: `${basePath}/organizations` })
@@ -86,7 +86,7 @@ function createRestAPI (settings) {
   /**
    * The SSID endpoints
    *
-   * @memberof module:lib/rest
+   * @memberof module:meraki
    * @see module:lib/rest/ssids
    */
   const ssidsEndpoints = require('./rest/ssids')({ apiKey, target, baseUrl, basePath: `${basePath}/networks` })
@@ -94,7 +94,7 @@ function createRestAPI (settings) {
   /**
    * The static route endpoints
    *
-   * @memberof module:lib/rest
+   * @memberof module:meraki
    * @see module:lib/rest/routes
    */
   const routesEndpoints = require('./rest/routes')({ apiKey, target, baseUrl, basePath: `${basePath}/networks` })
@@ -102,7 +102,7 @@ function createRestAPI (settings) {
   /**
    * The switch port endpoints
    *
-   * @memberof module:lib/rest
+   * @memberof module:meraki
    * @see module:lib/rest/ports
    */
   const portsEndpoints = require('./rest/ports')({ apiKey, target, baseUrl, basePath: `${basePath}/devices` })
@@ -110,7 +110,7 @@ function createRestAPI (settings) {
   /**
    * The VLAN endpoints
    *
-   * @memberof module:lib/rest
+   * @memberof module:meraki
    * @see module:lib/rest/vlans
    */
   const vlansEndpoints = require('./rest/vlans')({ apiKey, target, baseUrl, basePath: `${basePath}/networks` })

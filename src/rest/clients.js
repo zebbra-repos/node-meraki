@@ -2,7 +2,7 @@
  * Create a Meraki REST API wrapper for the client ressource. See the
  * [online documentation]{@link https://dashboard.meraki.com/api_docs#clients} for more information.
  *
- * @module lib/rest/clients
+ * @module meraki/rest/clients
  * @param { Object } settings                   The configuration object used to create the api wrapper
  * @param { string } [settings.apiKey='']       The Meraki api key
  * @param { string } [settings.target='api']    The Meraki target
@@ -24,7 +24,7 @@ function createClientsEndpoints ({ apiKey = '', target = 'api', basePath = '/', 
    * returned in kilobytes. If the device is a switch, the switchport is returned; otherwise
    * the switchport field is null.
    *
-   * @memberof module:lib/rest/clients
+   * @memberof module:meraki/rest/clients
    * @param { Object } param                  The parameters for this request
    * @param { string } param.deviceSerial     The serial number of the device for which to list the clients
    * @param { number } param.timespan         The timespan for which clients will be fetched. Must be in seconds and less than or equal to a month (2592000 seconds)
@@ -56,7 +56,7 @@ function createClientsEndpoints ({ apiKey = '', target = 'api', basePath = '/', 
   /**
    * Return the policy assigned to a client on the network.
    *
-   * @memberof module:lib/rest/clients
+   * @memberof module:meraki/rest/clients
    * @param { Object } param                  The parameters for this request
    * @param { string } param.networkId        The id of the network for which to list the clients
    * @param { number } param.timespan         The timespan for which clients will be fetched. Must be in seconds and less than or equal to a month (2592000 seconds)
@@ -83,7 +83,7 @@ function createClientsEndpoints ({ apiKey = '', target = 'api', basePath = '/', 
   /**
    * Update the policy assigned to a client on the network.
    *
-   * @memberof module:lib/rest/clients
+   * @memberof module:meraki/rest/clients
    * @param { Object } param                  The parameters for this request
    * @param { string } param.networkId        The id of the network for which to list the clients
    * @param { number } param.timespan         The timespan for which clients will be fetched. Must be in seconds and less than or equal to a month (2592000 seconds)
@@ -113,7 +113,7 @@ function createClientsEndpoints ({ apiKey = '', target = 'api', basePath = '/', 
   /**
    * Return the splash authorization for a client, for each SSID they've associated with through splash.
    *
-   * @memberof module:lib/rest/clients
+   * @memberof module:meraki/rest/clients
    * @param { Object } param                  The parameters for this request
    * @param { string } param.networkId        The id of the network for which to list the clients
    * @param { number } param.timespan         The timespan for which clients will be fetched. Must be in seconds and less than or equal to a month (2592000 seconds)
@@ -146,7 +146,7 @@ function createClientsEndpoints ({ apiKey = '', target = 'api', basePath = '/', 
   /**
    * Update a client's splash authorization.
    *
-   * @memberof module:lib/rest/clients
+   * @memberof module:meraki/rest/clients
    * @param { Object } param                  The parameters for this request
    * @param { string } param.networkId        The id of the network for which to list the clients
    * @param { string } param.mac              The mac address of the client for which to show the assigned policy

@@ -2,7 +2,7 @@
  * Create a Meraki REST API wrapper for the network ressource. See the
  * [online documentation]{@link https://dashboard.meraki.com/api_docs#networks} for more information.
  *
- * @module lib/rest/networks
+ * @module meraki/rest/networks
  * @param { Object } settings                     The configuration object used to create the api wrapper
  * @param { string } [settings.apiKey='']         The Meraki api key
  * @param { string } [settings.target='api']      The Meraki target
@@ -22,7 +22,7 @@ function createNetworksEndpoints ({ apiKey = '', target = 'api', basePath = '/',
   /**
    * List the networks in an organization.
    *
-   * @memberof module:lib/rest/networks
+   * @memberof module:meraki/rest/networks
    * @param { Object } param                  The parameters for this request
    * @param { string } param.orgId            The organization id
    * @param { string } param.configTemplateId An optional parameter that is the ID of a config template. Will return all networks bound to that template
@@ -51,7 +51,7 @@ function createNetworksEndpoints ({ apiKey = '', target = 'api', basePath = '/',
   /**
    * Return a network.
    *
-   * @memberof module:lib/rest/networks
+   * @memberof module:meraki/rest/networks
    * @param { Object } param                  The parameters for this request
    * @param { string } param.networkId        The id of the network to return
    * @return { Promise } A promise holding the network details
@@ -76,7 +76,7 @@ function createNetworksEndpoints ({ apiKey = '', target = 'api', basePath = '/',
   /**
    * Update a network.
    *
-   * @memberof module:lib/rest/networks
+   * @memberof module:meraki/rest/networks
    * @param { Object } param                  The parameters for this request
    * @param { string } param.networkId        The id of the network to update
    * @param { string } param.name             The name of the new network
@@ -112,7 +112,7 @@ function createNetworksEndpoints ({ apiKey = '', target = 'api', basePath = '/',
   /**
    * Create a network.
    *
-   * @memberof module:lib/rest/networks
+   * @memberof module:meraki/rest/networks
    * @param { Object } param                  The parameters for this request
    * @param { string } param.orgId            The organization id
    * @param { string } param.name             The name of the new network
@@ -148,7 +148,7 @@ function createNetworksEndpoints ({ apiKey = '', target = 'api', basePath = '/',
   /**
    * Delete a network.
    *
-   * @memberof module:lib/rest/networks
+   * @memberof module:meraki/rest/networks
    * @param { Object } param                  The parameters for this request
    * @param { string } param.networkId        The id of the network to remove
    * @return { Promise } A promise with no data
@@ -164,7 +164,7 @@ function createNetworksEndpoints ({ apiKey = '', target = 'api', basePath = '/',
   /**
    * Bind a network to a template.
    *
-   * @memberof module:lib/rest/networks
+   * @memberof module:meraki/rest/networks
    * @param { Object } param                  The parameters for this request
    * @param { string } param.networkId        The id of the network to bind to the template
    * @param { string } param.configTemplateId The ID of the template to which the network should be bound
@@ -183,7 +183,7 @@ function createNetworksEndpoints ({ apiKey = '', target = 'api', basePath = '/',
   /**
    * Unbind a network from a template.
    *
-   * @memberof module:lib/rest/networks
+   * @memberof module:meraki/rest/networks
    * @param { Object } param                  The parameters for this request
    * @param { string } param.networkId        The id of the network to unbind
    * @return { Promise } A promise with no data
@@ -201,7 +201,7 @@ function createNetworksEndpoints ({ apiKey = '', target = 'api', basePath = '/',
    * [Traffic Analysis with Hostname Visibility]{@link https://documentation.meraki.com/MR/Monitoring_and_Reporting/Hostname_Visibility}
    * must be enabled on the network.
    *
-   * @memberof module:lib/rest/networks
+   * @memberof module:meraki/rest/networks
    * @param { Object } param                  The parameters for this request
    * @param { string } param.networkId        The id of the network for which to list the traffic analysis
    * @param { number } param.timespan         The timespan for the data. Must be an integer representing a duration in seconds between two hours and one month. (Mandatory.)
@@ -245,7 +245,7 @@ function createNetworksEndpoints ({ apiKey = '', target = 'api', basePath = '/',
   /**
    * List the access policies for this network. Only valid for MS networks.
    *
-   * @memberof module:lib/rest/networks
+   * @memberof module:meraki/rest/networks
    * @param { Object } param                  The parameters for this request
    * @param { string } param.networkId        The id of the network for which to list the access policies
    * @return { Promise } A promise holding the network access policies

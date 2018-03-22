@@ -2,7 +2,7 @@
  * Create a Meraki REST API wrapper for the config template ressource. See the
  * [online documentation]{@link https://dashboard.meraki.com/api_docs#config-templates} for more information.
  *
- * @module lib/rest/config-templates
+ * @module meraki/rest/config-templates
  * @param { Object } settings                   The configuration object used to create the api wrapper
  * @param { string } [settings.apiKey='']       The Meraki api key
  * @param { string } [settings.target='api']    The Meraki target
@@ -21,7 +21,7 @@ function createTemplatesEndpoints ({ apiKey, target, basePath, baseUrl = 'https:
   /**
    * List the configuration templates for this organization.
    *
-   * @memberof module:lib/rest/config-templates
+   * @memberof module:meraki/rest/config-templates
    * @param { Object } param            The template information
    * @param { string } param.orgId      The organization id
    * @return { Promise } A promise holding the configuration templates for this organization
@@ -44,7 +44,7 @@ function createTemplatesEndpoints ({ apiKey, target, basePath, baseUrl = 'https:
   /**
    * Remove a configuration template.
    *
-   * @memberof module:lib/rest/config-templates
+   * @memberof module:meraki/rest/config-templates
    * @param { Object } param                  The parameters for this request
    * @param { string } param.orgId            The organization id
    * @param { string } param.templateId       The id of the template to delete

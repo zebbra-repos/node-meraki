@@ -35,6 +35,8 @@
       "prefer-arrow-callback": 2,
       "prefer-const": 2,
       "prefer-template": 2,
+      "promise/valid-params": 0,
+      "promise/no-nesting": 0,
       "strict": [2, "never"]
   }
 }

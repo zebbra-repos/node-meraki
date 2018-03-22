@@ -2,7 +2,7 @@
  * Create a Meraki REST API wrapper for the group policy ressource. See the
  * [online documentation]{@link https://dashboard.meraki.com/api_docs#group-policies} for more information.
  *
- * @module lib/rest/group-policies
+ * @module meraki/rest/group-policies
  * @param { Object } settings                   The configuration object used to create the api wrapper
  * @param { string } [settings.apiKey='']       The Meraki api key
  * @param { string } [settings.target='api']    The Meraki target
@@ -22,7 +22,7 @@ function createPoliciesEndpoints ({ apiKey = '', target = 'api', basePath = '/',
   /**
    * List the group policies in a network.
    *
-   * @memberof module:lib/rest/group-policies
+   * @memberof module:meraki/rest/group-policies
    * @param { Object } param                  The parameters for this request
    * @param { string } param.networkId        The id of the network for which to list the group policies
    * @return { Promise } A promise holding the group policies of this network

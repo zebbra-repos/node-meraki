@@ -2,7 +2,7 @@
  * Create a Meraki REST API wrapper for the organization ressource. See the
  * [online documentation]{@link https://dashboard.meraki.com/api_docs#organizations} for more information.
  *
- * @module lib/rest/organizations
+ * @module meraki/rest/organizations
  * @param { Object } settings                   The configuration object used to create the api wrapper
  * @param { string } [settings.apiKey='']       The Meraki api key
  * @param { string } [settings.target='api']    The Meraki target
@@ -22,7 +22,7 @@ function createOrganizationsEndpoints ({ apiKey = '', target = 'api', basePath =
   /**
    * List the organizations that the user has privileges on.
    *
-   * @memberof module:lib/rest/organizations
+   * @memberof module:meraki/rest/organizations
    * @return { Promise } A promise holding the organizations this user has privileges on
    * @example <caption>Example response</caption>
    * [
@@ -39,7 +39,7 @@ function createOrganizationsEndpoints ({ apiKey = '', target = 'api', basePath =
   /**
    * Return an organization.
    *
-   * @memberof module:lib/rest/organizations
+   * @memberof module:meraki/rest/organizations
    * @param { Object } param                  The parameters for this request
    * @param { string } param.orgId            The organization id
    * @return { Promise } A promise holding the organization for this id
@@ -60,7 +60,7 @@ function createOrganizationsEndpoints ({ apiKey = '', target = 'api', basePath =
   /**
    * Update an organization.
    *
-   * @memberof module:lib/rest/organizations
+   * @memberof module:meraki/rest/organizations
    * @param { Object } param                  The parameters for this request
    * @param { string } param.orgId            The organization id
    * @param { string } param.name             The name of the organization
@@ -84,7 +84,7 @@ function createOrganizationsEndpoints ({ apiKey = '', target = 'api', basePath =
   /**
    * Create a new organization.
    *
-   * @memberof module:lib/rest/organizations
+   * @memberof module:meraki/rest/organizations
    * @param { Object } param                  The parameters for this request
    * @param { string } param.name             The name of the organization
    * @return { Promise } A promise holding the newly created organization
@@ -102,7 +102,7 @@ function createOrganizationsEndpoints ({ apiKey = '', target = 'api', basePath =
   /**
    * Create a new organization by cloning the addressed organization.
    *
-   * @memberof module:lib/rest/organizations
+   * @memberof module:meraki/rest/organizations
    * @param { Object } param                  The parameters for this request
    * @param { string } param.orgId            The id of the organization to clone
    * @param { string } param.name             The name of the new organization
@@ -128,7 +128,7 @@ function createOrganizationsEndpoints ({ apiKey = '', target = 'api', basePath =
    * will be placed in the organization's inventory. These three types of claims are mutually exclusive
    * and cannot be performed in one request.
    *
-   * @memberof module:lib/rest/organizations
+   * @memberof module:meraki/rest/organizations
    * @param { Object } param                  The parameters for this request
    * @param { string } param.orgId            The id of the organization to claime
    * @param { string } param.order            The order number that should be claimed
@@ -149,7 +149,7 @@ function createOrganizationsEndpoints ({ apiKey = '', target = 'api', basePath =
   /**
    * Return the license state for an organization.
    *
-   * @memberof module:lib/rest/organizations
+   * @memberof module:meraki/rest/organizations
    * @param { Object } param                  The parameters for this request
    * @param { string } param.orgId            The id of the organization
    * @return { Promise } A promise holding the license state for this organization
@@ -173,7 +173,7 @@ function createOrganizationsEndpoints ({ apiKey = '', target = 'api', basePath =
   /**
    * Return the inventory for an organization.
    *
-   * @memberof module:lib/rest/organizations
+   * @memberof module:meraki/rest/organizations
    * @param { Object } param                  The parameters for this request
    * @param { string } param.orgId            The id of the organization
    * @return { Promise } A promise holding the inventory for this organization
@@ -200,7 +200,7 @@ function createOrganizationsEndpoints ({ apiKey = '', target = 'api', basePath =
   /**
    * Return the SNMP settings for an organization.
    *
-   * @memberof module:lib/rest/organizations
+   * @memberof module:meraki/rest/organizations
    * @param { Object } param                  The parameters for this request
    * @param { string } param.orgId            The id of the organization
    * @return { Promise } A promise holding then SNMP settings for this organization
@@ -225,7 +225,7 @@ function createOrganizationsEndpoints ({ apiKey = '', target = 'api', basePath =
   /**
    * Update the SNMP settings for an organization.
    *
-   * @memberof module:lib/rest/organizations
+   * @memberof module:meraki/rest/organizations
    * @param { Object } param                  The parameters for this request
    * @param { string } param.orgId            The id of the organization
    * @param { boolean } param.v2cEnabled      Boolean indicating whether SNMP version 2c is enabled for the organization
