@@ -1,20 +1,29 @@
 const axios = require('axios')
 const debug = require('debug')('node-meraki:axios')
+const JSONBigInt = require('json-bigint')({'storeAsString': true})
+
+const handleBigInt = (data) => {
+  return JSONBigInt.parse(data)
+}
 
 const getOptions = {
-  method: 'GET'
+  method: 'GET',
+  transformResponse: [handleBigInt]
 }
 
 const postOptions = {
-  method: 'POST'
+  method: 'POST',
+  transformResponse: [handleBigInt]
 }
 
 const putOptions = {
-  method: 'PUT'
+  method: 'PUT',
+  transformResponse: [handleBigInt]
 }
 
 const deleteOptions = {
-  method: 'DELETE'
+  method: 'DELETE',
+  transformResponse: [handleBigInt]
 }
 
 function _createOptions ({ base, apiKey, target = 'api', url = '/', data, params }) {
