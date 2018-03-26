@@ -41,6 +41,7 @@
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.6.1",
+    "config": "^1.30.0",
     "docdash": "^0.4.0",
     "eslint": "^4.19.1",
     "eslint-config-standard": "^11.0.0",
@@ -51,16 +52,21 @@
     "eslint-plugin-standard": "^3.0.1",
     "jest": "^22.4.3",
     "jest-cli": "^22.4.3",
+    "jest-environment-node": "^22.4.3",
     "jest-junit": "^3.6.0",
     "jest-plugins": "^2.7.0",
     "jest-plugins-recommended": "^2.7.0",
     "jsdoc": "^3.5.5",
+    "lodash": "^4.17.5",
+    "node-vcr": "^1.4.2",
     "nodemon": "^1.17.2",
     "npm-check": "^5.6.0",
     "pre-commit": "^1.2.2"
   },
   "jest": {
-    "testEnvironment": "node",
+    "testEnvironment": "<rootDir>/test/sandbox.js",
+    "globalSetup": "<rootDir>/test/setup.js",
+    "globalTeardown": "<rootDir>/test/teardown.js",
     "rootDir": ".",
     "roots": [
       "<rootDir>/test/"
