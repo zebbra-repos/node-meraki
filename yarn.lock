@@ -3568,9 +3568,9 @@ node-pre-gyp@^0.6.39:
     tar "^2.2.1"
     tar-pack "^3.4.0"
 
-node-vcr@^1.4.2:
-  version "1.4.2"
-  resolved "https://registry.yarnpkg.com/node-vcr/-/node-vcr-1.4.2.tgz#9c49d99f9fe413b0d04a07d08f8e3447a207cefa"
+node-vcr@^1.4.3:
+  version "1.4.3"
+  resolved "https://registry.yarnpkg.com/node-vcr/-/node-vcr-1.4.3.tgz#f8498babd333da168a5e42a99a28050be6c67e95"
   dependencies:
     content-type "^1.0.4"
     debug "^3.1.0"
