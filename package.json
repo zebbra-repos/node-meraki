@@ -1,6 +1,6 @@
 {
   "name": "node-meraki",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "description": "Meraki wrapper for nodejs",
   "main": "./lib/index.js",
   "scripts": {
@@ -73,7 +73,9 @@
     ],
     "collectCoverage": true,
     "coverageDirectory": "reports/coverage",
-    "reporters": ["jest-junit"],
+    "reporters": [
+      "jest-junit"
+    ],
     "setupTestFrameworkScriptFile": "<rootDir>/test/global.config.js"
   },
   "jest-junit": {
