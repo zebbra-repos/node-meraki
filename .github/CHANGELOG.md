@@ -6,6 +6,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.0.5] - 2018-06-11
+### Added
+
+### Changed
+- Dependencies updates
+
+### Removed
+
 ## [2.0.4] - 2018-03-28
 ### Added
 
@@ -40,7 +48,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Removed
 
-[Unreleased]: https://github.com/zebbra-repos/node-meraki/compare/v2.0.4...HEAD
+[Unreleased]: https://github.com/zebbra-repos/node-meraki/compare/v2.0.5...HEAD
+[2.0.5]: https://github.com/zebbra-repos/node-meraki/compare/v2.0.4...v2.0.5
 [2.0.4]: https://github.com/zebbra-repos/node-meraki/compare/v2.0.3...v2.0.4
 [2.0.3]: https://github.com/zebbra-repos/node-meraki/compare/v2.0.2...v2.0.3
 [2.0.2]: https://github.com/zebbra-repos/node-meraki/compare/v2.0.1...v2.0.2
