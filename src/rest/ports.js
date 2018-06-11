@@ -7,6 +7,7 @@
  * @param { string } [settings.apiKey='']       The Meraki api key
  * @param { string } [settings.target='api']    The Meraki target
  * @param { string } [settings.basePath='/']    The Meraki base path for the switch port ressource
+ * @param { string } settings.rateLimiter       The rate limiter (bottleneck) configuration
  * @return { Object } The initialized Meraki REST API wrapper for the switch port ressource
  * @example
  * const apiKey = 'secret meraki api key'
@@ -14,10 +15,13 @@
  * const version = 'v0'
  * const target = 'n12'
  * const basePath = `/${target}/${version}/devices`
- * const portEndpoints = require('./lib/rest/ports')({ apiKey, target, basePath, baseUrl })
+ * const rateLimiter = {
+ *  enabled: true
+ * }
+ * const portEndpoints = require('./lib/rest/ports')({ apiKey, target, basePath, baseUrl, rateLimiter })
  */
-function createPortsEndpoints ({ apiKey = '', target = 'api', basePath = '/', baseUrl = 'https://api.meraki.com' }) {
-  const axios = require('./axios')({ baseUrl })
+function createPortsEndpoints ({ apiKey = '', target = 'api', basePath = '/', baseUrl = 'https://api.meraki.com', rateLimiter }) {
+  const axios = require('./axios')({ baseUrl, rateLimiter })
 
   /**
    * List the switch ports for a switch.

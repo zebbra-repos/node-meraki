@@ -19,16 +19,38 @@ npm install --save node-meraki
 ## Documentation
 The jsdoc documentation can be found [here](https://zebbra-repos.github.io/node-meraki/)
 
+## Rate-Limiter
+We make use of the [bottleneck](https://github.com/SGrondin/bottleneck) module to implement rate limited requests against the Meraki API. Most users will have a 5-requests-per-second rate limit. To enabled this functionality, pass the following configuration as options:
+```javascript
+const rateLimiter = {
+  enabled: true
+}
+```
+
+Following configuration defaults are set and can be overwritten:
+```javascript
+const rateLimiter = {
+  enabled: false,
+  maxConcurrent: 5,
+  minTime: 200,
+  highWater: 1000,
+  strategy: Bottleneck.strategy.LEAK
+}
+```
+
 ## Usage
 ```javascript
 const apiKey = 'secret meraki api key'
 const organizationId = 'meraki organization id'
 const version = 'v0'
 const target = 'n12'
+const rateLimiter = {
+  enbaled: true
+}
 const baseUrl = 'https://api.meraki.com' // this is the default an can be overwritten
 
 // baseUrl and port are optional
-const meraki = require('./lib')({ version, apiKey, target,  baseUrl })
+const meraki = require('./lib')({ version, apiKey, target,  baseUrl, rateLimiter })
 
 function handleErros (error) {
   if (error.response) {

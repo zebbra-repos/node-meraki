@@ -1,6 +1,6 @@
 {
   "name": "node-meraki",
-  "version": "2.0.5",
+  "version": "2.1.0",
   "description": "Meraki wrapper for nodejs",
   "main": "./lib/index.js",
   "scripts": {
@@ -35,6 +35,7 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "bottleneck": "^2.4.0",
     "debug": "^3.1.0",
     "json-bigint": "^0.2.3"
   },
