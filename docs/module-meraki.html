@@ -64,7 +64,7 @@ for more information.</p></div>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line3">line 3</a>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line4">line 4</a>
     </li></ul></dd>
     
 
@@ -118,7 +118,10 @@ const organizationId = 'meraki organization id'
 const version = 'v0' (default)
 const target = 'n12'
 const baseUrl = 'https://api.meraki.com' (default)
-const meraki = require('./lib')({ version, apiKey, target, baseUrl })</code></pre>
+const rateLimiter = {
+  enabled: true
+}
+const meraki = require('./lib')({ version, apiKey, target, baseUrl, rateLimiter })</code></pre>
 
 
 
@@ -347,6 +350,266 @@ const meraki = require('./lib')({ version, apiKey, target, baseUrl })</code></pr
         </tr>
 
     
+
+        <tr>
+            
+                <td class="name"><code>rateLimiter</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>The rate limiter (<a href="https://github.com/SGrondin/bottleneck/blob/master/README.md">bottleneck</a>) configuration</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>enabled</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>Whether use the rate limiter</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>maxConcurrent</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>5</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>How many jobs can be running at the same time (null for unlimited)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>minTime</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>200</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>How long to wait after launching a job before launching another one</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>highWater</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>1000</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>How long can the queue get? When the queue length exceeds that value, the selected <code>strategy</code> is executed to shed the load</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>strategy</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>'LEAK'</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>Which strategy to use if the queue gets longer than the high water mark. <a href="https://github.com/SGrondin/bottleneck/blob/master/README.md#strategies">Read about strategies</a>.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
     </tbody>
 </table>
 
@@ -424,7 +687,7 @@ const meraki = require('./lib')({ version, apiKey, target, baseUrl })</code></pr
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line36">line 36</a>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line56">line 56</a>
     </li></ul></dd>
     
 
@@ -494,7 +757,7 @@ const meraki = require('./lib')({ version, apiKey, target, baseUrl })</code></pr
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line44">line 44</a>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line64">line 64</a>
     </li></ul></dd>
     
 
@@ -564,7 +827,7 @@ const meraki = require('./lib')({ version, apiKey, target, baseUrl })</code></pr
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line60">line 60</a>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line80">line 80</a>
     </li></ul></dd>
     
 
@@ -634,7 +897,7 @@ const meraki = require('./lib')({ version, apiKey, target, baseUrl })</code></pr
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line76">line 76</a>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line96">line 96</a>
     </li></ul></dd>
     
 
@@ -704,7 +967,7 @@ const meraki = require('./lib')({ version, apiKey, target, baseUrl })</code></pr
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line84">line 84</a>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line104">line 104</a>
     </li></ul></dd>
     
 
@@ -774,7 +1037,7 @@ const meraki = require('./lib')({ version, apiKey, target, baseUrl })</code></pr
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line68">line 68</a>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line88">line 88</a>
     </li></ul></dd>
     
 
@@ -844,7 +1107,7 @@ const meraki = require('./lib')({ version, apiKey, target, baseUrl })</code></pr
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line108">line 108</a>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line128">line 128</a>
     </li></ul></dd>
     
 
@@ -914,7 +1177,7 @@ const meraki = require('./lib')({ version, apiKey, target, baseUrl })</code></pr
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line100">line 100</a>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line120">line 120</a>
     </li></ul></dd>
     
 
@@ -984,7 +1247,7 @@ const meraki = require('./lib')({ version, apiKey, target, baseUrl })</code></pr
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line92">line 92</a>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line112">line 112</a>
     </li></ul></dd>
     
 
@@ -1054,7 +1317,7 @@ const meraki = require('./lib')({ version, apiKey, target, baseUrl })</code></pr
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line52">line 52</a>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line72">line 72</a>
     </li></ul></dd>
     
 
@@ -1124,7 +1387,7 @@ const meraki = require('./lib')({ version, apiKey, target, baseUrl })</code></pr
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line116">line 116</a>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line136">line 136</a>
     </li></ul></dd>
     
 
@@ -1201,7 +1464,7 @@ const meraki = require('./lib')({ version, apiKey, target, baseUrl })</code></pr
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Thu Mar 22 2018 10:08:26 GMT+0100 (CET) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Mon Jun 11 2018 11:57:58 GMT+0200 (CEST) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
