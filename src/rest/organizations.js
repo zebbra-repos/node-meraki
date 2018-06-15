@@ -81,7 +81,6 @@ function createOrganizationsEndpoints ({ apiKey = '', target = 'api', basePath =
     }
 
     const data = { name }
-    console.log(data, name)
     return axios._put(apiKey, target, `${basePath}/${orgId}`, data)
   }
 

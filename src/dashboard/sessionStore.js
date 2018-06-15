@@ -33,7 +33,7 @@ class SessionStore {
     this.store = {}
 
     if (keepAlive !== false) {
-      setInterval(() => this.keepAlive(), 1000 * 10)
+      setInterval(() => this.keepAlive(), 1000 * 60 * 5)
     }
   }
 
@@ -81,7 +81,12 @@ class SessionStore {
         'X-Requested-With': 'XMLHttpRequest'
       }
 
-      return this.instance.post(url, null, { headers })
+      return this.instance
+        .post(url, null, { headers })
+        .catch((error) => {
+          console.log(error)
+          return delete this.remove(eid)
+        })
     }
 
     const sessions = _.keys(this.store)
