@@ -1,8 +1,8 @@
 describe('ssid endpoints', () => {
-  const { rest } = global
+  const { meraki, networkId } = global
 
   it('lists the network SSIDs', () => {
-    return expect(rest.listNetworkSSIDs({ networkId: 'L_682858293500056965' }))
+    return expect(meraki.listNetworkSSIDs({ networkId }))
       .resolves.toHaveLength(15)
   })
 })

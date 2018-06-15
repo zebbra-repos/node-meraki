@@ -1,8 +1,8 @@
 describe('client endpoints', () => {
-  const { rest } = global
+  const { meraki } = global
 
   it('lists the device clients', () => {
-    return expect(rest.listClients({ deviceSerial: 'Q2MN-Y8CM-HLVE' }))
+    return expect(meraki.listClients({ deviceSerial: 'Q2MN-Y8CM-HLVE' }))
       .resolves.toMatchObject([])
   })
 })

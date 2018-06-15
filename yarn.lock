@@ -806,9 +806,9 @@ bcrypt-pbkdf@^1.0.0:
   dependencies:
     tweetnacl "^0.14.3"
 
-bignumber.js@^4.0.0:
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/bignumber.js/-/bignumber.js-4.1.0.tgz#db6f14067c140bd46624815a7916c92d9b6c24b1"
+bignumber.js@^7.0.0:
+  version "7.2.1"
+  resolved "https://registry.yarnpkg.com/bignumber.js/-/bignumber.js-7.2.1.tgz#80c048759d826800807c4bfd521e50edbba57a5f"
 
 binary-extensions@^1.0.0:
   version "1.11.0"
@@ -3176,11 +3176,11 @@ jsesc@~0.5.0:
   version "0.5.0"
   resolved "https://registry.yarnpkg.com/jsesc/-/jsesc-0.5.0.tgz#e7dee66e35d6fc16f710fe91d5cf69f70f08911d"
 
-json-bigint@^0.2.3:
-  version "0.2.3"
-  resolved "https://registry.yarnpkg.com/json-bigint/-/json-bigint-0.2.3.tgz#118d7f6ff1d38659f19f94cf73e64a75a3f988a8"
+json-bigint@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/json-bigint/-/json-bigint-0.3.0.tgz#0ccd912c4b8270d05f056fbd13814b53d3825b1e"
   dependencies:
-    bignumber.js "^4.0.0"
+    bignumber.js "^7.0.0"
 
 json-schema-traverse@^0.3.0:
   version "0.3.1"
@@ -3620,15 +3620,16 @@ node-pre-gyp@^0.6.39:
     tar "^2.2.1"
     tar-pack "^3.4.0"
 
-node-vcr@^1.4.5:
-  version "1.4.5"
-  resolved "https://registry.yarnpkg.com/node-vcr/-/node-vcr-1.4.5.tgz#4c444def7fa68139dd99a6dd82be7d210729372e"
+node-vcr@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/node-vcr/-/node-vcr-2.0.0.tgz#20ef4ab984aab245c0ae8b200244eb2b00f521c8"
   dependencies:
     content-type "^1.0.4"
     debug "^3.1.0"
     follow-redirects "^1.5.0"
     fs-extra "^6.0.1"
     incoming-message-hash "^3.2.2"
+    json-bigint "^0.3.0"
     pretty-data "^0.40.0"
 
 nodemon@^1.17.5:
@@ -4084,6 +4085,10 @@ punycode@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/punycode/-/punycode-2.1.0.tgz#5f863edc89b96db09074bad7947bf09056ca4e7d"
 
+qs@^6.5.2:
+  version "6.5.2"
+  resolved "https://registry.yarnpkg.com/qs/-/qs-6.5.2.tgz#cb3ae806e8740444584ef154ce8ee98d403f3e36"
+
 qs@~6.4.0:
   version "6.4.0"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.4.0.tgz#13e26d28ad6b0ffaa91312cd3bf708ed351e7233"
@@ -4503,6 +4508,10 @@ semver-diff@^2.0.0:
 set-blocking@^2.0.0, set-blocking@~2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/set-blocking/-/set-blocking-2.0.0.tgz#045f9782d011ae9a6803ddd382b24392b3d890f7"
+
+set-cookie-parser@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/set-cookie-parser/-/set-cookie-parser-2.2.0.tgz#fee5e6b6d1bd77d2e5dfa6c63959eaa791c7fa15"
 
 set-getter@^0.1.0:
   version "0.1.0"

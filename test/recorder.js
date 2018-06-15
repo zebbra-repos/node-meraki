@@ -3,6 +3,7 @@ const config = require('config')
 const vcr = require('node-vcr')
 const debug = require('debug')('node-meraki:recorder')
 const crypto = require('crypto')
+const URL = require('url')
 const _ = require('lodash')
 
 const port = 8888
@@ -10,11 +11,13 @@ const proxyTarget = `https://${config.meraki.target}.meraki.com`
 
 const hash = (req, body) => {
   const service = 'meraki'
-  const action = `${req.method.toLowerCase()}_${_.last(req.url.split('/'))}`
+  const url = req.url
+  const action = `${req.method.toLowerCase()}_${_.last(URL.parse(req.url).pathname.split('/'))}`
   const content = body.toString()
   const md5sum = crypto.createHash('md5')
+  const dynamic = md5sum.update(content + url).digest('hex')
 
-  return `${service}_${action}_${md5sum.update(content).digest('hex')}`
+  return `${service}_${action}_${dynamic}`
 }
 
 const handler = vcr(proxyTarget, {

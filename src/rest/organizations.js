@@ -261,6 +261,34 @@ function createOrganizationsEndpoints ({ apiKey = '', target = 'api', basePath =
     return axios._post(apiKey, target, `${basePath}/${orgId}/snmp`, data)
   }
 
+  /**
+   * List the status of every Meraki device in the organization.
+   *
+   * @memberof module:meraki/rest/organizations
+   * @param { Object } param                  The parameters for this request
+   * @param { string } param.orgId            The id of the organization
+   * @return { Promise } A promise holding then device statues for this organization
+   * @example <caption>Example response</caption>
+   * [
+   *   {
+   *     "name": "My AP",
+   *     "serial": "Q234-ABCD-5678",
+   *     "mac": "00:11:22:33:44:55",
+   *     "status": "only",
+   *     "lanIp": "1.2.3.4",
+   *     "publicIp": "123.123.123.1",
+   *     "networkId": "N_24329156"
+   *   }
+   * ]
+   */
+  function showOrganizationDeviceStatuses ({ orgId }) {
+    if (!orgId) {
+      return Promise.reject(new Error('The parameter orgId is mandatory'))
+    }
+
+    return axios._get(apiKey, target, `${basePath}/${orgId}/deviceStatuses`)
+  }
+
   return {
     listOrganizations,
     showOrganization,
@@ -271,7 +299,8 @@ function createOrganizationsEndpoints ({ apiKey = '', target = 'api', basePath =
     showOrganizationLicense,
     listOrganizationInventory,
     showOrganizationSNMP,
-    updateOrganizationSNMP
+    updateOrganizationSNMP,
+    showOrganizationDeviceStatuses
   }
 }
 

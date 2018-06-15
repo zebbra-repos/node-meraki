@@ -1,8 +1,8 @@
 describe('admin endpoint', () => {
-  const { rest, orgId, adminId } = global
+  const { meraki, orgId } = global
 
-  const admin = {
-    email: 'john.doe2@example.com',
+  const data = {
+    email: 'john.doe3@example.com',
     name: 'John Doe',
     orgAccess: 'none',
     tags: [{
@@ -13,22 +13,23 @@ describe('admin endpoint', () => {
   }
 
   it('lists the administrators for the given organisation', () => {
-    return expect(rest.listAdmins({ orgId })).resolves.toHaveLength(4)
+    return expect(meraki.listAdmins({ orgId })).resolves.toHaveLength(7)
   })
 
-  it('creates a new admin', () => {
-    return expect(rest.createAdmin(Object.assign({}, admin, { orgId })))
-      .resolves.toMatchObject(admin)
+  let admin
+  it('creates a new admin', async () => {
+    admin = await meraki.createAdmin(Object.assign({}, data, { orgId }))
+    return expect(admin).toMatchObject(data)
   })
 
   it('updates an existing admin', () => {
-    const updateAdmin = Object.assign({}, admin, { name: 'John Doe 2' })
+    const updateAdmin = Object.assign({}, admin, { name: 'John Doe 3' })
 
-    return expect(rest.updateAdmin(Object.assign({}, updateAdmin, { orgId, adminId })))
+    return expect(meraki.updateAdmin(Object.assign({}, updateAdmin, { orgId, adminId: admin.id })))
       .resolves.toMatchObject(updateAdmin)
   })
 
   it('deletes an existing admin', () => {
-    return expect(rest.deleteAdmin({ orgId, adminId })).resolves.toEqual('')
+    return expect(meraki.deleteAdmin({ orgId, adminId: admin.id })).resolves.toEqual('')
   })
 })
