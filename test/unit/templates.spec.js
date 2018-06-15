@@ -1,13 +1,9 @@
 describe('template endpoints', () => {
-  const { rest, orgId } = global
+  const { meraki, orgId } = global
 
   it('lists the organisation templates', () => {
-    return expect(rest.listConfigurationTemplates({ orgId }))
+    return expect(meraki.listConfigurationTemplates({ orgId }))
       .resolves.toMatchObject([{
-        'id': 'L_682858293500056866',
-        'name': 'SLaaS_Default_Template'
-      }, {
-        'id': 'L_682858293500056960',
         'name': 'zebbra HQ'
       }])
   })

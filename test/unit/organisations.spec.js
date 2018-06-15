@@ -1,25 +1,25 @@
 describe('organisation endpoint', () => {
-  const { rest, orgId } = global
+  const { meraki, orgId } = global
 
   it('lists the organisations', () => {
-    return expect(rest.listOrganizations())
+    return expect(meraki.listOrganizations())
       .resolves.toHaveLength(4)
   })
 
   it('shows the organisation', () => {
-    return expect(rest.showOrganization({ orgId }))
+    return expect(meraki.showOrganization({ orgId }))
       .resolves.toMatchObject({ id: Number(orgId) })
   })
 
   it('shows the organisation license', () => {
-    return expect(rest.showOrganizationLicense({ orgId }))
+    return expect(meraki.showOrganizationLicense({ orgId }))
       .resolves.toMatchObject({})
   })
 
   it('clones an organisation', () => {
-    return expect(rest.cloneOrganization({ orgId, name: 'organisation clone' }))
+    return expect(meraki.cloneOrganization({ orgId, name: 'Workflow Organization' }))
       .resolves.toMatchObject({
-        name: 'organisation clone'
+        name: 'Workflow Organization'
       })
   })
 })

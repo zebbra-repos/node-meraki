@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>meraki/dashboard/admins - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-meraki.html">meraki</a></li><li><a href="module-meraki_dashboard.html">meraki/dashboard</a></li><li><a href="module-meraki_dashboard_admins.html">meraki/dashboard/admins</a><ul class='methods'><li data-type='method'><a href="module-meraki_dashboard_admins.html#.deleteAdminsDashboard">deleteAdminsDashboard</a></li><li data-type='method'><a href="module-meraki_dashboard_admins.html#.listAdminsDashboard">listAdminsDashboard</a></li></ul></li><li><a href="module-meraki_dashboard_organizations.html">meraki/dashboard/organizations</a><ul class='methods'><li data-type='method'><a href="module-meraki_dashboard_organizations.html#.deleteOrganizationDashboard">deleteOrganizationDashboard</a></li><li data-type='method'><a href="module-meraki_dashboard_organizations.html#.listOrganizationsDashboard">listOrganizationsDashboard</a></li></ul></li><li><a href="module-meraki_rest.html">meraki/rest</a></li><li><a href="module-meraki_rest_admins.html">meraki/rest/admins</a><ul class='methods'><li data-type='method'><a href="module-meraki_rest_admins.html#.createAdmin">createAdmin</a></li><li data-type='method'><a href="module-meraki_rest_admins.html#.deleteAdmin">deleteAdmin</a></li><li data-type='method'><a href="module-meraki_rest_admins.html#.listAdmins">listAdmins</a></li><li data-type='method'><a href="module-meraki_rest_admins.html#.updateAdmin">updateAdmin</a></li></ul></li><li><a href="module-meraki_rest_clients.html">meraki/rest/clients</a><ul class='methods'><li data-type='method'><a href="module-meraki_rest_clients.html#.listClients">listClients</a></li><li data-type='method'><a href="module-meraki_rest_clients.html#.showClientPolicy">showClientPolicy</a></li><li data-type='method'><a href="module-meraki_rest_clients.html#.showClientSplashAuthorization">showClientSplashAuthorization</a></li><li data-type='method'><a href="module-meraki_rest_clients.html#.updateClientPolicy">updateClientPolicy</a></li><li data-type='method'><a href="module-meraki_rest_clients.html#.updateClientSplashAuthorization">updateClientSplashAuthorization</a></li></ul></li><li><a href="module-meraki_rest_config-templates.html">meraki/rest/config-templates</a><ul class='methods'><li data-type='method'><a href="module-meraki_rest_config-templates.html#.deleteConfigurationTemplate">deleteConfigurationTemplate</a></li><li data-type='method'><a href="module-meraki_rest_config-templates.html#.listConfigurationTemplates">listConfigurationTemplates</a></li></ul></li><li><a href="module-meraki_rest_devices.html">meraki/rest/devices</a><ul class='methods'><li data-type='method'><a href="module-meraki_rest_devices.html#.claimNetworkDevice">claimNetworkDevice</a></li><li data-type='method'><a href="module-meraki_rest_devices.html#.deleteNetworkDevice">deleteNetworkDevice</a></li><li data-type='method'><a href="module-meraki_rest_devices.html#.listNetworkDevices">listNetworkDevices</a></li><li data-type='method'><a href="module-meraki_rest_devices.html#.listNetworkDeviceUplinks">listNetworkDeviceUplinks</a></li><li data-type='method'><a href="module-meraki_rest_devices.html#.showNetworkDevice">showNetworkDevice</a></li><li data-type='method'><a href="module-meraki_rest_devices.html#.showNetworkDeviceLLDPandCDP">showNetworkDeviceLLDPandCDP</a></li><li data-type='method'><a href="module-meraki_rest_devices.html#.updateNetworkDevice">updateNetworkDevice</a></li></ul></li><li><a href="module-meraki_rest_group-policies.html">meraki/rest/group-policies</a><ul class='methods'><li data-type='method'><a href="module-meraki_rest_group-policies.html#.listNetworkGroupPolicies">listNetworkGroupPolicies</a></li></ul></li><li><a href="module-meraki_rest_networks.html">meraki/rest/networks</a><ul class='methods'><li data-type='method'><a href="module-meraki_rest_networks.html#.bindNetworkToTemplate">bindNetworkToTemplate</a></li><li data-type='method'><a href="module-meraki_rest_networks.html#.createNetwork">createNetwork</a></li><li data-type='method'><a href="module-meraki_rest_networks.html#.deleteNetwork">deleteNetwork</a></li><li data-type='method'><a href="module-meraki_rest_networks.html#.listNetworkAccessPolicies">listNetworkAccessPolicies</a></li><li data-type='method'><a href="module-meraki_rest_networks.html#.listNetworks">listNetworks</a></li><li data-type='method'><a href="module-meraki_rest_networks.html#.listTrafficAnalysis">listTrafficAnalysis</a></li><li data-type='method'><a href="module-meraki_rest_networks.html#.showNetwork">showNetwork</a></li><li data-type='method'><a href="module-meraki_rest_networks.html#.unbindNetworkFromTemplate">unbindNetworkFromTemplate</a></li><li data-type='method'><a href="module-meraki_rest_networks.html#.updateNetwork">updateNetwork</a></li></ul></li><li><a href="module-meraki_rest_organizations.html">meraki/rest/organizations</a><ul class='methods'><li data-type='method'><a href="module-meraki_rest_organizations.html#.claimOrganization">claimOrganization</a></li><li data-type='method'><a href="module-meraki_rest_organizations.html#.cloneOrganization">cloneOrganization</a></li><li data-type='method'><a href="module-meraki_rest_organizations.html#.createOrganization">createOrganization</a></li><li data-type='method'><a href="module-meraki_rest_organizations.html#.listOrganizationInventory">listOrganizationInventory</a></li><li data-type='method'><a href="module-meraki_rest_organizations.html#.listOrganizations">listOrganizations</a></li><li data-type='method'><a href="module-meraki_rest_organizations.html#.showOrganization">showOrganization</a></li><li data-type='method'><a href="module-meraki_rest_organizations.html#.showOrganizationDeviceStatuses">showOrganizationDeviceStatuses</a></li><li data-type='method'><a href="module-meraki_rest_organizations.html#.showOrganizationLicense">showOrganizationLicense</a></li><li data-type='method'><a href="module-meraki_rest_organizations.html#.showOrganizationSNMP">showOrganizationSNMP</a></li><li data-type='method'><a href="module-meraki_rest_organizations.html#.updateOrganization">updateOrganization</a></li><li data-type='method'><a href="module-meraki_rest_organizations.html#.updateOrganizationSNMP">updateOrganizationSNMP</a></li></ul></li><li><a href="module-meraki_rest_ssids.html">meraki/rest/ssids</a><ul class='methods'><li data-type='method'><a href="module-meraki_rest_ssids.html#.listNetworkSSIDs">listNetworkSSIDs</a></li><li data-type='method'><a href="module-meraki_rest_ssids.html#.showNetworkSSID">showNetworkSSID</a></li><li data-type='method'><a href="module-meraki_rest_ssids.html#.updateNetworkSSID">updateNetworkSSID</a></li></ul></li><li><a href="module-meraki_rest_static-routes.html">meraki/rest/static-routes</a><ul class='methods'><li data-type='method'><a href="module-meraki_rest_static-routes.html#.createStaticNetworkRoute">createStaticNetworkRoute</a></li><li data-type='method'><a href="module-meraki_rest_static-routes.html#.deleteStaticNetworkRoute">deleteStaticNetworkRoute</a></li><li data-type='method'><a href="module-meraki_rest_static-routes.html#.listStaticNetworkRoutes">listStaticNetworkRoutes</a></li><li data-type='method'><a href="module-meraki_rest_static-routes.html#.showStaticNetworkRoute">showStaticNetworkRoute</a></li><li data-type='method'><a href="module-meraki_rest_static-routes.html#.updateStaticNetworkRoute">updateStaticNetworkRoute</a></li></ul></li><li><a href="module-meraki_rest_switch-ports.html">meraki/rest/switch-ports</a><ul class='methods'><li data-type='method'><a href="module-meraki_rest_switch-ports.html#.listSwitchPorts">listSwitchPorts</a></li><li data-type='method'><a href="module-meraki_rest_switch-ports.html#.showSwitchPort">showSwitchPort</a></li><li data-type='method'><a href="module-meraki_rest_switch-ports.html#.updateSwitchPort">updateSwitchPort</a></li></ul></li><li><a href="module-meraki_rest_vlans.html">meraki/rest/vlans</a><ul class='methods'><li data-type='method'><a href="module-meraki_rest_vlans.html#.createNetworkVLAN">createNetworkVLAN</a></li><li data-type='method'><a href="module-meraki_rest_vlans.html#.deleteNetworkVLAN">deleteNetworkVLAN</a></li><li data-type='method'><a href="module-meraki_rest_vlans.html#.listNetworkVLANs">listNetworkVLANs</a></li><li data-type='method'><a href="module-meraki_rest_vlans.html#.showNetworkVLAN">showNetworkVLAN</a></li><li data-type='method'><a href="module-meraki_rest_vlans.html#.updateNetworkVLAN">updateNetworkVLAN</a></li></ul></li><li><a href="module-utils.html">utils</a><ul class='methods'><li data-type='method'><a href="module-utils.html#.toCookieString">toCookieString</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html#extractEid">extractEid</a></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">meraki/dashboard/admins</h1>
+    
+
+    
+
+
+
+
+<section>
+
+<header>
+    
+        
+            
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+            <div class="description"><p>Create a Meraki Dashboard API wrapper for the admin ressource.</p></div>
+        
+
+        
+            
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="dashboard_admins.js.html">dashboard/admins.js</a>, <a href="dashboard_admins.js.html#line1">line 1</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>settings</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The configuration object used to create the api wrapper</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>baseUrl</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The Meraki base url</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>store</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The session store</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>The initialized Meraki Dashboard API wrapper for the admin ressource</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    <h4 class="name" id=".deleteAdminsDashboard"><span class="type-signature">(static) </span>deleteAdminsDashboard<span class="signature">(params)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="dashboard_admins.js.html">dashboard/admins.js</a>, <a href="dashboard_admins.js.html#line38">line 38</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Revoke all access for a dashboard administrator within this organization.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>params</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>eid</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The dashboard id for this organization</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>admins</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">array</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The dashboard admins to remove</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>A promise holding the remaining dashboard administrators in this organization</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".listAdminsDashboard"><span class="type-signature">(static) </span>listAdminsDashboard<span class="signature">(params)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="dashboard_admins.js.html">dashboard/admins.js</a>, <a href="dashboard_admins.js.html#line21">line 21</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>List the dashboard administrators in this organization.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>params</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>eid</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The dashboard id for this organization</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>A promise holding the dashboard administrators in this organization</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Fri Jun 15 2018 10:38:45 GMT+0200 (CEST) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>

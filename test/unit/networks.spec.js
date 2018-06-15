@@ -1,6 +1,6 @@
 describe('network endpoints', () => {
-  const { rest, orgId, networkId, templateId } = global
-  const network = {
+  const { meraki, orgId, networkId, templateId } = global
+  const data = {
     name: 'test network',
     type: 'appliance',
     timeZone: 'Europe/Zurich',
@@ -8,47 +8,46 @@ describe('network endpoints', () => {
   }
 
   it('lists the networks for the given organisation', () => {
-    return expect(rest.listNetworks({ orgId }))
-      .resolves.toHaveLength(3)
+    return expect(meraki.listNetworks({ orgId }))
+      .resolves.toHaveLength(1)
   })
 
   it('shows the network details', () => {
-    return expect(rest.showNetwork({ networkId }))
+    return expect(meraki.showNetwork({ networkId }))
       .resolves.toMatchObject({
-        'id': 'N_682858293500074434',
-        'name': 'Template Switch Only',
+        'id': networkId,
+        'name': 'zebbra Internal',
         'organizationId': '730666',
         'tags': '',
         'timeZone': 'Europe/Zurich',
-        'type': 'switch'
+        'type': 'combined'
       })
   })
 
   it('lists network access policies', () => {
-    return expect(rest.listNetworkAccessPolicies({ networkId }))
+    return expect(meraki.listNetworkAccessPolicies({ networkId }))
       .resolves.toMatchObject([])
   })
 
-  it('creates a new network', () => {
-    return expect(rest.createNetwork(Object.assign({}, network, { orgId })))
-      .resolves.toMatchObject({
-        'id': 'N_682858293500079627',
-        'name': 'test network',
-        'organizationId': '730666',
-        'tags': ' test-tag-1 ',
-        'timeZone': 'Europe/Zurich',
-        'type': 'appliance'
-      })
+  let network
+  it('creates a new network', async () => {
+    network = await meraki.createNetwork(Object.assign({}, data, { orgId }))
+    return expect(network).toMatchObject({
+      'name': 'test network',
+      'organizationId': orgId,
+      'tags': ' test-tag-1 ',
+      'timeZone': 'Europe/Zurich',
+      'type': 'appliance'
+    })
   })
 
   it('updates an existing network (keeps the network type)', () => {
     const updateNetwork = Object.assign({}, network, { name: 'test network 2', type: 'switch' })
 
-    return expect(rest.updateNetwork(Object.assign({}, updateNetwork, { networkId: 'N_682858293500079627' })))
+    return expect(meraki.updateNetwork(Object.assign({}, updateNetwork, { networkId: network.id })))
       .resolves.toMatchObject({
-        'id': 'N_682858293500079627',
         'name': 'test network 2',
-        'organizationId': '730666',
+        'organizationId': orgId,
         'tags': ' test-tag-1 ',
         'timeZone': 'Europe/Zurich',
         'type': 'appliance'
@@ -56,23 +55,23 @@ describe('network endpoints', () => {
   })
 
   it('binds the network to a template', () => {
-    return rest.bindNetworkToTemplate({
-      networkId: 'N_682858293500079627',
+    return meraki.bindNetworkToTemplate({
+      networkId: network.id,
       configTemplateId: templateId
     })
       .then(() => {
-        return expect(rest.showNetwork({ networkId: 'N_682858293500079627' }))
+        return expect(meraki.showNetwork({ networkId: network.id }))
           .resolves.toMatchObject({ configTemplateId: templateId })
       })
   })
 
   it('unbinds the network from a template', () => {
-    return expect(rest.unbindNetworkFromTemplate({ networkId: 'N_682858293500079627' }))
+    return expect(meraki.unbindNetworkFromTemplate({ networkId: network.id }))
       .resolves.toBeDefined()
   })
 
   it('deletes an existing network', () => {
-    return expect(rest.deleteNetwork({ networkId: 'N_682858293500079627' }))
+    return expect(meraki.deleteNetwork({ networkId: network.id }))
       .resolves.toBeDefined()
   })
 })

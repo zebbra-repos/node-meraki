@@ -6,14 +6,21 @@ require('jest-plugins')([
 ])
 
 global.orgId = config.meraki.orgId
-global.adminId = '682858293500206976'
-global.networkId = 'N_682858293500074434'
 global.templateId = 'L_682858293500056960'
+global.networkId = 'L_682858293500060703'
+global.serial = 'Q2MN-Y8CM-HLVE'
 
 debug(`using meraki configuration ${config.meraki}`)
-global.rest = require('../lib')({
+global.meraki = require('../lib')({
   version: 'v0',
   apiKey: config.meraki.apiKey,
   target: config.meraki.target,
-  baseUrl: 'http://localhost:8888'
+  baseUrl: 'http://localhost:8888',
+  dashboardApiEnabled: true,
+  email: config.meraki.email,
+  password: config.meraki.password,
+  keepAlive: false,
+  rateLimiter: {
+    enabled: true
+  }
 })

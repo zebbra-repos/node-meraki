@@ -11,8 +11,10 @@
  */
 module.exports = {
   meraki: {
-    target: 'api',
+    target: 'n213',
     apiKey: 'secret',
-    orgId: '730666'
+    orgId: '730666',
+    email: 'secret',
+    password: 'secret'
   }
 }
