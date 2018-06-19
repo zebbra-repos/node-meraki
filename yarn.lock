@@ -842,9 +842,9 @@ boom@5.x.x:
   dependencies:
     hoek "4.x.x"
 
-bottleneck@^2.4.0:
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/bottleneck/-/bottleneck-2.4.0.tgz#6cd821fb7a72447fb37a54c3d40cbfae3351868a"
+bottleneck@^2.5.0:
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/bottleneck/-/bottleneck-2.5.0.tgz#c558524005a7cef5327100b3152f9483fbf8975d"
 
 boxen@^1.2.1:
   version "1.3.0"
@@ -3620,9 +3620,9 @@ node-pre-gyp@^0.6.39:
     tar "^2.2.1"
     tar-pack "^3.4.0"
 
-node-vcr@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/node-vcr/-/node-vcr-2.0.0.tgz#20ef4ab984aab245c0ae8b200244eb2b00f521c8"
+node-vcr@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/node-vcr/-/node-vcr-2.0.2.tgz#e559423ff536c8556ea7998504548062193abd0a"
   dependencies:
     content-type "^1.0.4"
     debug "^3.1.0"

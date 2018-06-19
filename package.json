@@ -35,7 +35,7 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
-    "bottleneck": "^2.4.0",
+    "bottleneck": "^2.5.0",
     "debug": "^3.1.0",
     "json-bigint": "^0.3.0",
     "qs": "^6.5.2",
@@ -61,7 +61,7 @@
     "jest-plugins-recommended": "^2.9.0",
     "jsdoc": "^3.5.5",
     "lodash": "^4.17.10",
-    "node-vcr": "^2.0.0",
+    "node-vcr": "^2.0.2",
     "nodemon": "^1.17.5",
     "npm-check": "^5.7.1",
     "pre-commit": "^1.2.2"
