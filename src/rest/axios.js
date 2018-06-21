@@ -43,7 +43,8 @@ function _createOptions ({ base, apiKey, target = 'api', url = '/', data, params
     url,
     headers: {
       'X-Cisco-Meraki-API-Key': apiKey,
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Cookie': null
     },
     params,
     data

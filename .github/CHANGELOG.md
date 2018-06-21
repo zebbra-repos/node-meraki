@@ -6,6 +6,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.0.3] - 2018-06-21
+### Added
+
+### Changed
+- Fix: Set Cookie string to null in rest api
+
+### Removed
+
 ## [3.0.2] - 2018-06-19
 ### Added
 
@@ -81,7 +89,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Removed
 
-[Unreleased]: https://github.com/zebbra-repos/node-meraki/compare/v3.0.2...HEAD
+[Unreleased]: https://github.com/zebbra-repos/node-meraki/compare/v3.0.3...HEAD
+[3.0.3]: https://github.com/zebbra-repos/node-meraki/compare/v3.0.2...v3.0.3
 [3.0.2]: https://github.com/zebbra-repos/node-meraki/compare/v3.0.1...v3.0.2
 [3.0.1]: https://github.com/zebbra-repos/node-meraki/compare/v3.0.0...v3.0.1
 [3.0.0]: https://github.com/zebbra-repos/node-meraki/compare/v2.1.0...v3.0.0
