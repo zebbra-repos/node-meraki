@@ -1,7 +1,7 @@
 const axios = require('axios')
 const Bottleneck = require('bottleneck')
 const debug = require('debug')('node-meraki:axios')
-const JSONBigInt = require('json-bigint')({'storeAsString': true})
+const JSONBigInt = require('json-bigint')({ 'storeAsString': true })
 
 let request = axios
 const limiter = new Bottleneck()
