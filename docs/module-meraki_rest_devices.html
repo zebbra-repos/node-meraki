@@ -144,48 +144,6 @@ const deviceEndpoints = require('./lib/rest/devices')({ apiKey, target, basePath
         <th>Type</th>
 
         
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>settings</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The configuration object used to create the api wrapper</p>
-                <h6>Properties</h6>
-                
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
         <th>Attributes</th>
         
 
@@ -354,13 +312,6 @@ const deviceEndpoints = require('./lib/rest/devices')({ apiKey, target, basePath
     </tbody>
 </table>
 
-            </td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
 
 
 
@@ -423,7 +374,7 @@ const deviceEndpoints = require('./lib/rest/devices')({ apiKey, target, basePath
 
     
 
-    <h4 class="name" id=".claimNetworkDevice"><span class="type-signature">(static) </span>claimNetworkDevice<span class="signature">(param)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id=".claimNetworkDevice"><span class="type-signature">(static) </span>claimNetworkDevice<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, networkId, deviceSerial)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -435,7 +386,7 @@ const deviceEndpoints = require('./lib/rest/devices')({ apiKey, target, basePath
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_devices.js.html">rest/devices.js</a>, <a href="rest_devices.js.html#line196">line 196</a>
+        <a href="rest_devices.js.html">rest/devices.js</a>, <a href="rest_devices.js.html#line200">line 200</a>
     </li></ul></dd>
     
 
@@ -501,6 +452,8 @@ const deviceEndpoints = require('./lib/rest/devices')({ apiKey, target, basePath
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -513,44 +466,68 @@ const deviceEndpoints = require('./lib/rest/devices')({ apiKey, target, basePath
 
         <tr>
             
-                <td class="name"><code>param</code></td>
+                <td class="name"><code>apiKey</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type">string</span>
 
 
             
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
-            <td class="description last"><p>The parameters for this request</p>
-                <h6>Properties</h6>
+            <td class="description last"><p>Optional custom apiKey for this request (if not set will take the inital apiKey)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>target</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
                 
 
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
+                
 
-        <th>Type</th>
+                
+                </td>
+            
 
-        
+            
 
-        
+            <td class="description last"><p>Optional custom target for this request (if not set will take the inital target)</p></td>
+        </tr>
 
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
     
 
         <tr>
@@ -567,6 +544,14 @@ const deviceEndpoints = require('./lib/rest/devices')({ apiKey, target, basePath
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -591,17 +576,18 @@ const deviceEndpoints = require('./lib/rest/devices')({ apiKey, target, basePath
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
             <td class="description last"><p>The serial number of the device to claim into the network</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-            </td>
         </tr>
 
     
@@ -650,7 +636,7 @@ const deviceEndpoints = require('./lib/rest/devices')({ apiKey, target, basePath
 
     
 
-    <h4 class="name" id=".deleteNetworkDevice"><span class="type-signature">(static) </span>deleteNetworkDevice<span class="signature">(param)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id=".deleteNetworkDevice"><span class="type-signature">(static) </span>deleteNetworkDevice<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, networkId, deviceSerial)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -662,7 +648,7 @@ const deviceEndpoints = require('./lib/rest/devices')({ apiKey, target, basePath
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_devices.js.html">rest/devices.js</a>, <a href="rest_devices.js.html#line216">line 216</a>
+        <a href="rest_devices.js.html">rest/devices.js</a>, <a href="rest_devices.js.html#line221">line 221</a>
     </li></ul></dd>
     
 
@@ -728,6 +714,8 @@ const deviceEndpoints = require('./lib/rest/devices')({ apiKey, target, basePath
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -740,44 +728,68 @@ const deviceEndpoints = require('./lib/rest/devices')({ apiKey, target, basePath
 
         <tr>
             
-                <td class="name"><code>param</code></td>
+                <td class="name"><code>apiKey</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type">string</span>
 
 
             
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
-            <td class="description last"><p>The parameters for this request</p>
-                <h6>Properties</h6>
+            <td class="description last"><p>Optional custom apiKey for this request (if not set will take the inital apiKey)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>target</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
                 
 
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
+                
 
-        <th>Type</th>
+                
+                </td>
+            
 
-        
+            
 
-        
+            <td class="description last"><p>Optional custom target for this request (if not set will take the inital target)</p></td>
+        </tr>
 
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
     
 
         <tr>
@@ -794,6 +806,14 @@ const deviceEndpoints = require('./lib/rest/devices')({ apiKey, target, basePath
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -818,17 +838,18 @@ const deviceEndpoints = require('./lib/rest/devices')({ apiKey, target, basePath
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
             <td class="description last"><p>The serial number of the device to remove from the network</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-            </td>
         </tr>
 
     
@@ -877,7 +898,7 @@ const deviceEndpoints = require('./lib/rest/devices')({ apiKey, target, basePath
 
     
 
-    <h4 class="name" id=".listNetworkDevices"><span class="type-signature">(static) </span>listNetworkDevices<span class="signature">(param)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id=".listNetworkDevices"><span class="type-signature">(static) </span>listNetworkDevices<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, networkId)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -980,6 +1001,8 @@ const deviceEndpoints = require('./lib/rest/devices')({ apiKey, target, basePath
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -992,44 +1015,68 @@ const deviceEndpoints = require('./lib/rest/devices')({ apiKey, target, basePath
 
         <tr>
             
-                <td class="name"><code>param</code></td>
+                <td class="name"><code>apiKey</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type">string</span>
 
 
             
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
-            <td class="description last"><p>The parameters for this request</p>
-                <h6>Properties</h6>
+            <td class="description last"><p>Optional custom apiKey for this request (if not set will take the inital apiKey)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>target</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
                 
 
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
+                
 
-        <th>Type</th>
+                
+                </td>
+            
 
-        
+            
 
-        
+            <td class="description last"><p>Optional custom target for this request (if not set will take the inital target)</p></td>
+        </tr>
 
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
     
 
         <tr>
@@ -1047,17 +1094,18 @@ const deviceEndpoints = require('./lib/rest/devices')({ apiKey, target, basePath
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
             <td class="description last"><p>The id of the network for which to list the devices</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-            </td>
         </tr>
 
     
@@ -1106,7 +1154,7 @@ const deviceEndpoints = require('./lib/rest/devices')({ apiKey, target, basePath
 
     
 
-    <h4 class="name" id=".listNetworkDeviceUplinks"><span class="type-signature">(static) </span>listNetworkDeviceUplinks<span class="signature">(param)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id=".listNetworkDeviceUplinks"><span class="type-signature">(static) </span>listNetworkDeviceUplinks<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, networkId, deviceSerial)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -1118,7 +1166,7 @@ const deviceEndpoints = require('./lib/rest/devices')({ apiKey, target, basePath
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_devices.js.html">rest/devices.js</a>, <a href="rest_devices.js.html#line129">line 129</a>
+        <a href="rest_devices.js.html">rest/devices.js</a>, <a href="rest_devices.js.html#line131">line 131</a>
     </li></ul></dd>
     
 
@@ -1210,6 +1258,8 @@ const deviceEndpoints = require('./lib/rest/devices')({ apiKey, target, basePath
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -1222,44 +1272,68 @@ const deviceEndpoints = require('./lib/rest/devices')({ apiKey, target, basePath
 
         <tr>
             
-                <td class="name"><code>param</code></td>
+                <td class="name"><code>apiKey</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type">string</span>
 
 
             
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
-            <td class="description last"><p>The parameters for this request</p>
-                <h6>Properties</h6>
+            <td class="description last"><p>Optional custom apiKey for this request (if not set will take the inital apiKey)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>target</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
                 
 
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
+                
 
-        <th>Type</th>
+                
+                </td>
+            
 
-        
+            
 
-        
+            <td class="description last"><p>Optional custom target for this request (if not set will take the inital target)</p></td>
+        </tr>
 
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
     
 
         <tr>
@@ -1276,6 +1350,14 @@ const deviceEndpoints = require('./lib/rest/devices')({ apiKey, target, basePath
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -1300,17 +1382,18 @@ const deviceEndpoints = require('./lib/rest/devices')({ apiKey, target, basePath
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
             <td class="description last"><p>The serial number of the device for which to show the uplink details</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-            </td>
         </tr>
 
     
@@ -1359,7 +1442,7 @@ const deviceEndpoints = require('./lib/rest/devices')({ apiKey, target, basePath
 
     
 
-    <h4 class="name" id=".showNetworkDevice"><span class="type-signature">(static) </span>showNetworkDevice<span class="signature">(param)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id=".showNetworkDevice"><span class="type-signature">(static) </span>showNetworkDevice<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, networkId, deviceSerial)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -1371,7 +1454,7 @@ const deviceEndpoints = require('./lib/rest/devices')({ apiKey, target, basePath
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_devices.js.html">rest/devices.js</a>, <a href="rest_devices.js.html#line89">line 89</a>
+        <a href="rest_devices.js.html">rest/devices.js</a>, <a href="rest_devices.js.html#line90">line 90</a>
     </li></ul></dd>
     
 
@@ -1460,6 +1543,8 @@ const deviceEndpoints = require('./lib/rest/devices')({ apiKey, target, basePath
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -1472,44 +1557,68 @@ const deviceEndpoints = require('./lib/rest/devices')({ apiKey, target, basePath
 
         <tr>
             
-                <td class="name"><code>param</code></td>
+                <td class="name"><code>apiKey</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type">string</span>
 
 
             
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
-            <td class="description last"><p>The parameters for this request</p>
-                <h6>Properties</h6>
+            <td class="description last"><p>Optional custom apiKey for this request (if not set will take the inital apiKey)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>target</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
                 
 
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
+                
 
-        <th>Type</th>
+                
+                </td>
+            
 
-        
+            
 
-        
+            <td class="description last"><p>Optional custom target for this request (if not set will take the inital target)</p></td>
+        </tr>
 
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
     
 
         <tr>
@@ -1526,6 +1635,14 @@ const deviceEndpoints = require('./lib/rest/devices')({ apiKey, target, basePath
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -1550,17 +1667,18 @@ const deviceEndpoints = require('./lib/rest/devices')({ apiKey, target, basePath
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
             <td class="description last"><p>The serial number of the device for which to show the details</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-            </td>
         </tr>
 
     
@@ -1609,7 +1727,7 @@ const deviceEndpoints = require('./lib/rest/devices')({ apiKey, target, basePath
 
     
 
-    <h4 class="name" id=".showNetworkDeviceLLDPandCDP"><span class="type-signature">(static) </span>showNetworkDeviceLLDPandCDP<span class="signature">(param)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id=".showNetworkDeviceLLDPandCDP"><span class="type-signature">(static) </span>showNetworkDeviceLLDPandCDP<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, networkId, deviceSerial, timespan)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -1621,7 +1739,7 @@ const deviceEndpoints = require('./lib/rest/devices')({ apiKey, target, basePath
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_devices.js.html">rest/devices.js</a>, <a href="rest_devices.js.html#line264">line 264</a>
+        <a href="rest_devices.js.html">rest/devices.js</a>, <a href="rest_devices.js.html#line270">line 270</a>
     </li></ul></dd>
     
 
@@ -1720,6 +1838,8 @@ const deviceEndpoints = require('./lib/rest/devices')({ apiKey, target, basePath
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -1732,44 +1852,68 @@ const deviceEndpoints = require('./lib/rest/devices')({ apiKey, target, basePath
 
         <tr>
             
-                <td class="name"><code>param</code></td>
+                <td class="name"><code>apiKey</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type">string</span>
 
 
             
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
-            <td class="description last"><p>The parameters for this request</p>
-                <h6>Properties</h6>
+            <td class="description last"><p>Optional custom apiKey for this request (if not set will take the inital apiKey)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>target</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
                 
 
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
+                
 
-        <th>Type</th>
+                
+                </td>
+            
 
-        
+            
 
-        
+            <td class="description last"><p>Optional custom target for this request (if not set will take the inital target)</p></td>
+        </tr>
 
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
     
 
         <tr>
@@ -1786,6 +1930,14 @@ const deviceEndpoints = require('./lib/rest/devices')({ apiKey, target, basePath
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -1810,6 +1962,14 @@ const deviceEndpoints = require('./lib/rest/devices')({ apiKey, target, basePath
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
@@ -1833,17 +1993,18 @@ const deviceEndpoints = require('./lib/rest/devices')({ apiKey, target, basePath
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
             <td class="description last"><p>The timespan for which LLDP and CDP information will be fetched. Must be in seconds and less than or equal to a month (2592000 seconds). LLDP and CDP information is sent to the Meraki dashboard every 10 minutes. In instances where this LLDP and CDP information matches an existing entry in the Meraki dashboard, the data is updated once every two hours. Meraki recommends querying LLDP and CDP information at an interval slightly greater than two hours, to ensure that unchanged CDP / LLDP information can be queried consistently.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-            </td>
         </tr>
 
     
@@ -1892,7 +2053,7 @@ const deviceEndpoints = require('./lib/rest/devices')({ apiKey, target, basePath
 
     
 
-    <h4 class="name" id=".updateNetworkDevice"><span class="type-signature">(static) </span>updateNetworkDevice<span class="signature">(param)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id=".updateNetworkDevice"><span class="type-signature">(static) </span>updateNetworkDevice<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, networkId, deviceSerial, name, tags, lat, lng, address, moveMapMarker)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -1904,7 +2065,7 @@ const deviceEndpoints = require('./lib/rest/devices')({ apiKey, target, basePath
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_devices.js.html">rest/devices.js</a>, <a href="rest_devices.js.html#line176">line 176</a>
+        <a href="rest_devices.js.html">rest/devices.js</a>, <a href="rest_devices.js.html#line179">line 179</a>
     </li></ul></dd>
     
 
@@ -1999,6 +2160,8 @@ const deviceEndpoints = require('./lib/rest/devices')({ apiKey, target, basePath
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -2011,44 +2174,68 @@ const deviceEndpoints = require('./lib/rest/devices')({ apiKey, target, basePath
 
         <tr>
             
-                <td class="name"><code>param</code></td>
+                <td class="name"><code>apiKey</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type">string</span>
 
 
             
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
-            <td class="description last"><p>The parameters for this request</p>
-                <h6>Properties</h6>
+            <td class="description last"><p>Optional custom apiKey for this request (if not set will take the inital apiKey)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>target</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
                 
 
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
+                
 
-        <th>Type</th>
+                
+                </td>
+            
 
-        
+            
 
-        
+            <td class="description last"><p>Optional custom target for this request (if not set will take the inital target)</p></td>
+        </tr>
 
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
     
 
         <tr>
@@ -2065,6 +2252,14 @@ const deviceEndpoints = require('./lib/rest/devices')({ apiKey, target, basePath
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -2089,6 +2284,14 @@ const deviceEndpoints = require('./lib/rest/devices')({ apiKey, target, basePath
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
@@ -2111,6 +2314,14 @@ const deviceEndpoints = require('./lib/rest/devices')({ apiKey, target, basePath
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -2135,6 +2346,14 @@ const deviceEndpoints = require('./lib/rest/devices')({ apiKey, target, basePath
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
@@ -2157,6 +2376,14 @@ const deviceEndpoints = require('./lib/rest/devices')({ apiKey, target, basePath
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -2181,6 +2408,14 @@ const deviceEndpoints = require('./lib/rest/devices')({ apiKey, target, basePath
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
@@ -2203,6 +2438,14 @@ const deviceEndpoints = require('./lib/rest/devices')({ apiKey, target, basePath
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -2227,17 +2470,18 @@ const deviceEndpoints = require('./lib/rest/devices')({ apiKey, target, basePath
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
             <td class="description last"><p>Whether or not to set the latitude and longitude of a device based on the new address. Only applies when lat and lng are not specified.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-            </td>
         </tr>
 
     
@@ -2301,7 +2545,7 @@ const deviceEndpoints = require('./lib/rest/devices')({ apiKey, target, basePath
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Thu Aug 30 2018 15:05:06 GMT+0200 (CEST) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Fri Aug 31 2018 14:54:44 GMT+0200 (CEST) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

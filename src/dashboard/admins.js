@@ -2,9 +2,8 @@
  * Create a Meraki Dashboard API wrapper for the admin ressource.
  *
  * @module meraki/dashboard/admins
- * @param { Object } settings           The configuration object used to create the api wrapper
- * @param { string } settings.baseUrl   The Meraki base url
- * @param { object } settings.store     The session store
+ * @param { string } baseUrl   The Meraki base url
+ * @param { object } store     The session store
  * @return { Object } The initialized Meraki Dashboard API wrapper for the admin ressource
  */
 function createAdminsEndpoints ({ baseUrl, store }) {
@@ -14,8 +13,7 @@ function createAdminsEndpoints ({ baseUrl, store }) {
    * List the dashboard administrators in this organization.
    *
    * @memberof module:meraki/dashboard/admins
-   * @param { Object } params
-   * @param { string } params.eid The dashboard id for this organization
+   * @param { string } eid The dashboard id for this organization
    * @return { Promise } A promise holding the dashboard administrators in this organization
    */
   function listAdminsDashboard ({ eid }) {
@@ -30,9 +28,8 @@ function createAdminsEndpoints ({ baseUrl, store }) {
    * Revoke all access for a dashboard administrator within this organization.
    *
    * @memberof module:meraki/dashboard/admins
-   * @param { Object } params
-   * @param { string } params.eid     The dashboard id for this organization
-   * @param { array } params.admins   The dashboard admins to remove
+   * @param { string } eid     The dashboard id for this organization
+   * @param { array } admins   The dashboard admins to remove
    * @return { Promise } A promise holding the remaining dashboard administrators in this organization
    */
   function deleteAdminsDashboard ({ eid, admins }) {

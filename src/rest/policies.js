@@ -3,11 +3,10 @@
  * [online documentation]{@link https://dashboard.meraki.com/api_docs#group-policies} for more information.
  *
  * @module meraki/rest/group-policies
- * @param { Object } settings                   The configuration object used to create the api wrapper
- * @param { string } [settings.apiKey='']       The Meraki api key
- * @param { string } [settings.target='api']    The Meraki target
- * @param { string } [settings.basePath='/']    The Meraki base path for the group policy ressource
- * @param { string } settings.rateLimiter       The rate limiter (bottleneck) configuration
+ * @param { string } [apiKey='']       The Meraki api key
+ * @param { string } [target='api']    The Meraki target
+ * @param { string } [basePath='/']    The Meraki base path for the group policy ressource
+ * @param { string } rateLimiter       The rate limiter (bottleneck) configuration
  * @return { Object } The initialized Meraki REST API wrapper for the group policy ressource
  * @example
  * const apiKey = 'secret meraki api key'
@@ -27,8 +26,9 @@ function createPoliciesEndpoints ({ apiKey = '', target = 'api', basePath = '/',
    * List the group policies in a network.
    *
    * @memberof module:meraki/rest/group-policies
-   * @param { Object } param                  The parameters for this request
-   * @param { string } param.networkId        The id of the network for which to list the group policies
+   * @param { string } [apiKey]   Optional custom apiKey for this request (if not set will take the inital apiKey)
+   * @param { string } [target]   Optional custom target for this request (if not set will take the inital target)
+   * @param { string } networkId  The id of the network for which to list the group policies
    * @return { Promise } A promise holding the group policies of this network
    * @example <caption>Example response</caption>
    * [
@@ -39,12 +39,12 @@ function createPoliciesEndpoints ({ apiKey = '', target = 'api', basePath = '/',
    *   ...
    * ]
    */
-  function listNetworkGroupPolicies ({ networkId }) {
+  function listNetworkGroupPolicies ({ apiKey: localApiKey, target: localTarget, networkId }) {
     if (!networkId) {
       return Promise.reject(new Error('The parameter networkId is mandatory'))
     }
 
-    return axios._get(apiKey, target, `${basePath}/${networkId}/groupPolicies`)
+    return axios._get(localApiKey || apiKey, localTarget || target, `${basePath}/${networkId}/groupPolicies`)
   }
 
   return { listNetworkGroupPolicies }

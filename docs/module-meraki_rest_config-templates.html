@@ -143,48 +143,6 @@ const templateEndpoints = require('./lib/rest/templates')({ apiKey, target, base
         <th>Type</th>
 
         
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>settings</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The configuration object used to create the api wrapper</p>
-                <h6>Properties</h6>
-                
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
         <th>Attributes</th>
         
 
@@ -353,13 +311,6 @@ const templateEndpoints = require('./lib/rest/templates')({ apiKey, target, base
     </tbody>
 </table>
 
-            </td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
 
 
 
@@ -422,7 +373,7 @@ const templateEndpoints = require('./lib/rest/templates')({ apiKey, target, base
 
     
 
-    <h4 class="name" id=".deleteConfigurationTemplate"><span class="type-signature">(static) </span>deleteConfigurationTemplate<span class="signature">(param)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id=".deleteConfigurationTemplate"><span class="type-signature">(static) </span>deleteConfigurationTemplate<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, orgId, templateId)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -434,7 +385,7 @@ const templateEndpoints = require('./lib/rest/templates')({ apiKey, target, base
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_templates.js.html">rest/templates.js</a>, <a href="rest_templates.js.html#line57">line 57</a>
+        <a href="rest_templates.js.html">rest/templates.js</a>, <a href="rest_templates.js.html#line58">line 58</a>
     </li></ul></dd>
     
 
@@ -500,6 +451,8 @@ const templateEndpoints = require('./lib/rest/templates')({ apiKey, target, base
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -512,44 +465,68 @@ const templateEndpoints = require('./lib/rest/templates')({ apiKey, target, base
 
         <tr>
             
-                <td class="name"><code>param</code></td>
+                <td class="name"><code>apiKey</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type">string</span>
 
 
             
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
-            <td class="description last"><p>The parameters for this request</p>
-                <h6>Properties</h6>
+            <td class="description last"><p>Optional custom apiKey for this request (if not set will take the inital apiKey)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>target</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
                 
 
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
+                
 
-        <th>Type</th>
+                
+                </td>
+            
 
-        
+            
 
-        
+            <td class="description last"><p>Optional custom target for this request (if not set will take the inital target)</p></td>
+        </tr>
 
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
     
 
         <tr>
@@ -566,6 +543,14 @@ const templateEndpoints = require('./lib/rest/templates')({ apiKey, target, base
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -590,17 +575,18 @@ const templateEndpoints = require('./lib/rest/templates')({ apiKey, target, base
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
             <td class="description last"><p>The id of the template to delete</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-            </td>
         </tr>
 
     
@@ -649,7 +635,7 @@ const templateEndpoints = require('./lib/rest/templates')({ apiKey, target, base
 
     
 
-    <h4 class="name" id=".listConfigurationTemplates"><span class="type-signature">(static) </span>listConfigurationTemplates<span class="signature">(param)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id=".listConfigurationTemplates"><span class="type-signature">(static) </span>listConfigurationTemplates<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, orgId)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -739,6 +725,8 @@ const templateEndpoints = require('./lib/rest/templates')({ apiKey, target, base
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -751,44 +739,68 @@ const templateEndpoints = require('./lib/rest/templates')({ apiKey, target, base
 
         <tr>
             
-                <td class="name"><code>param</code></td>
+                <td class="name"><code>apiKey</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type">string</span>
 
 
             
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
-            <td class="description last"><p>The template information</p>
-                <h6>Properties</h6>
+            <td class="description last"><p>Optional custom apiKey for this request (if not set will take the inital apiKey)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>target</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
                 
 
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
+                
 
-        <th>Type</th>
+                
+                </td>
+            
 
-        
+            
 
-        
+            <td class="description last"><p>Optional custom target for this request (if not set will take the inital target)</p></td>
+        </tr>
 
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
     
 
         <tr>
@@ -806,17 +818,18 @@ const templateEndpoints = require('./lib/rest/templates')({ apiKey, target, base
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
             <td class="description last"><p>The organization id</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-            </td>
         </tr>
 
     
@@ -880,7 +893,7 @@ const templateEndpoints = require('./lib/rest/templates')({ apiKey, target, base
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Thu Aug 30 2018 15:05:06 GMT+0200 (CEST) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Fri Aug 31 2018 14:54:44 GMT+0200 (CEST) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

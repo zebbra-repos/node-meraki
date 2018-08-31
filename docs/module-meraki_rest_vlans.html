@@ -144,48 +144,6 @@ const vlanEndpoints = require('./lib/rest/vlans')({ apiKey, target, basePath, ba
         <th>Type</th>
 
         
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>settings</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The configuration object used to create the api wrapper</p>
-                <h6>Properties</h6>
-                
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
         <th>Attributes</th>
         
 
@@ -354,13 +312,6 @@ const vlanEndpoints = require('./lib/rest/vlans')({ apiKey, target, basePath, ba
     </tbody>
 </table>
 
-            </td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
 
 
 
@@ -423,7 +374,7 @@ const vlanEndpoints = require('./lib/rest/vlans')({ apiKey, target, basePath, ba
 
     
 
-    <h4 class="name" id=".createNetworkVLAN"><span class="type-signature">(static) </span>createNetworkVLAN<span class="signature">(param)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id=".createNetworkVLAN"><span class="type-signature">(static) </span>createNetworkVLAN<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, networkId, id, name, subnet, applianceIp)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -435,7 +386,7 @@ const vlanEndpoints = require('./lib/rest/vlans')({ apiKey, target, basePath, ba
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_vlans.js.html">rest/vlans.js</a>, <a href="rest_vlans.js.html#line162">line 162</a>
+        <a href="rest_vlans.js.html">rest/vlans.js</a>, <a href="rest_vlans.js.html#line165">line 165</a>
     </li></ul></dd>
     
 
@@ -523,6 +474,8 @@ const vlanEndpoints = require('./lib/rest/vlans')({ apiKey, target, basePath, ba
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -535,44 +488,68 @@ const vlanEndpoints = require('./lib/rest/vlans')({ apiKey, target, basePath, ba
 
         <tr>
             
-                <td class="name"><code>param</code></td>
+                <td class="name"><code>apiKey</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type">string</span>
 
 
             
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
-            <td class="description last"><p>The parameters for this request</p>
-                <h6>Properties</h6>
+            <td class="description last"><p>Optional custom apiKey for this request (if not set will take the inital apiKey)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>target</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
                 
 
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
+                
 
-        <th>Type</th>
+                
+                </td>
+            
 
-        
+            
 
-        
+            <td class="description last"><p>Optional custom target for this request (if not set will take the inital target)</p></td>
+        </tr>
 
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
     
 
         <tr>
@@ -589,6 +566,14 @@ const vlanEndpoints = require('./lib/rest/vlans')({ apiKey, target, basePath, ba
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -613,6 +598,14 @@ const vlanEndpoints = require('./lib/rest/vlans')({ apiKey, target, basePath, ba
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
@@ -635,6 +628,14 @@ const vlanEndpoints = require('./lib/rest/vlans')({ apiKey, target, basePath, ba
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -659,6 +660,14 @@ const vlanEndpoints = require('./lib/rest/vlans')({ apiKey, target, basePath, ba
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
@@ -682,17 +691,18 @@ const vlanEndpoints = require('./lib/rest/vlans')({ apiKey, target, basePath, ba
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
             <td class="description last"><p>The local IP of the appliance on the VLAN</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-            </td>
         </tr>
 
     
@@ -741,7 +751,7 @@ const vlanEndpoints = require('./lib/rest/vlans')({ apiKey, target, basePath, ba
 
     
 
-    <h4 class="name" id=".deleteNetworkVLAN"><span class="type-signature">(static) </span>deleteNetworkVLAN<span class="signature">(param)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id=".deleteNetworkVLAN"><span class="type-signature">(static) </span>deleteNetworkVLAN<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, networkId, vlanId)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -753,7 +763,7 @@ const vlanEndpoints = require('./lib/rest/vlans')({ apiKey, target, basePath, ba
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_vlans.js.html">rest/vlans.js</a>, <a href="rest_vlans.js.html#line180">line 180</a>
+        <a href="rest_vlans.js.html">rest/vlans.js</a>, <a href="rest_vlans.js.html#line184">line 184</a>
     </li></ul></dd>
     
 
@@ -819,6 +829,8 @@ const vlanEndpoints = require('./lib/rest/vlans')({ apiKey, target, basePath, ba
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -831,44 +843,68 @@ const vlanEndpoints = require('./lib/rest/vlans')({ apiKey, target, basePath, ba
 
         <tr>
             
-                <td class="name"><code>param</code></td>
+                <td class="name"><code>apiKey</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type">string</span>
 
 
             
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
-            <td class="description last"><p>The parameters for this request</p>
-                <h6>Properties</h6>
+            <td class="description last"><p>Optional custom apiKey for this request (if not set will take the inital apiKey)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>target</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
                 
 
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
+                
 
-        <th>Type</th>
+                
+                </td>
+            
 
-        
+            
 
-        
+            <td class="description last"><p>Optional custom target for this request (if not set will take the inital target)</p></td>
+        </tr>
 
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
     
 
         <tr>
@@ -885,6 +921,14 @@ const vlanEndpoints = require('./lib/rest/vlans')({ apiKey, target, basePath, ba
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -909,17 +953,18 @@ const vlanEndpoints = require('./lib/rest/vlans')({ apiKey, target, basePath, ba
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
             <td class="description last"><p>The id of the VLAN to delete</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-            </td>
         </tr>
 
     
@@ -968,7 +1013,7 @@ const vlanEndpoints = require('./lib/rest/vlans')({ apiKey, target, basePath, ba
 
     
 
-    <h4 class="name" id=".listNetworkVLANs"><span class="type-signature">(static) </span>listNetworkVLANs<span class="signature">(param)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id=".listNetworkVLANs"><span class="type-signature">(static) </span>listNetworkVLANs<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, networkId)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -1061,6 +1106,8 @@ const vlanEndpoints = require('./lib/rest/vlans')({ apiKey, target, basePath, ba
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -1073,44 +1120,68 @@ const vlanEndpoints = require('./lib/rest/vlans')({ apiKey, target, basePath, ba
 
         <tr>
             
-                <td class="name"><code>param</code></td>
+                <td class="name"><code>apiKey</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type">string</span>
 
 
             
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
-            <td class="description last"><p>The parameters for this request</p>
-                <h6>Properties</h6>
+            <td class="description last"><p>Optional custom apiKey for this request (if not set will take the inital apiKey)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>target</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
                 
 
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
+                
 
-        <th>Type</th>
+                
+                </td>
+            
 
-        
+            
 
-        
+            <td class="description last"><p>Optional custom target for this request (if not set will take the inital target)</p></td>
+        </tr>
 
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
     
 
         <tr>
@@ -1128,17 +1199,18 @@ const vlanEndpoints = require('./lib/rest/vlans')({ apiKey, target, basePath, ba
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
             <td class="description last"><p>The id of the network for which to list the VLANs</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-            </td>
         </tr>
 
     
@@ -1187,7 +1259,7 @@ const vlanEndpoints = require('./lib/rest/vlans')({ apiKey, target, basePath, ba
 
     
 
-    <h4 class="name" id=".showNetworkVLAN"><span class="type-signature">(static) </span>showNetworkVLAN<span class="signature">(param)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id=".showNetworkVLAN"><span class="type-signature">(static) </span>showNetworkVLAN<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, networkId, vlanId)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -1199,7 +1271,7 @@ const vlanEndpoints = require('./lib/rest/vlans')({ apiKey, target, basePath, ba
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_vlans.js.html">rest/vlans.js</a>, <a href="rest_vlans.js.html#line69">line 69</a>
+        <a href="rest_vlans.js.html">rest/vlans.js</a>, <a href="rest_vlans.js.html#line70">line 70</a>
     </li></ul></dd>
     
 
@@ -1278,6 +1350,8 @@ const vlanEndpoints = require('./lib/rest/vlans')({ apiKey, target, basePath, ba
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -1290,44 +1364,68 @@ const vlanEndpoints = require('./lib/rest/vlans')({ apiKey, target, basePath, ba
 
         <tr>
             
-                <td class="name"><code>param</code></td>
+                <td class="name"><code>apiKey</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type">string</span>
 
 
             
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
-            <td class="description last"><p>The parameters for this request</p>
-                <h6>Properties</h6>
+            <td class="description last"><p>Optional custom apiKey for this request (if not set will take the inital apiKey)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>target</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
                 
 
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
+                
 
-        <th>Type</th>
+                
+                </td>
+            
 
-        
+            
 
-        
+            <td class="description last"><p>Optional custom target for this request (if not set will take the inital target)</p></td>
+        </tr>
 
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
     
 
         <tr>
@@ -1344,6 +1442,14 @@ const vlanEndpoints = require('./lib/rest/vlans')({ apiKey, target, basePath, ba
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -1368,17 +1474,18 @@ const vlanEndpoints = require('./lib/rest/vlans')({ apiKey, target, basePath, ba
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
             <td class="description last"><p>The id of the VLAN for which to show the details</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-            </td>
         </tr>
 
     
@@ -1427,7 +1534,7 @@ const vlanEndpoints = require('./lib/rest/vlans')({ apiKey, target, basePath, ba
 
     
 
-    <h4 class="name" id=".updateNetworkVLAN"><span class="type-signature">(static) </span>updateNetworkVLAN<span class="signature">(param)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id=".updateNetworkVLAN"><span class="type-signature">(static) </span>updateNetworkVLAN<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, networkId, vlanId, name, subnet, applianceIp, fixedIpAssignments, reservedIpRanges, vpnNatSubnet, dnsNameservers)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -1439,7 +1546,7 @@ const vlanEndpoints = require('./lib/rest/vlans')({ apiKey, target, basePath, ba
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_vlans.js.html">rest/vlans.js</a>, <a href="rest_vlans.js.html#line121">line 121</a>
+        <a href="rest_vlans.js.html">rest/vlans.js</a>, <a href="rest_vlans.js.html#line123">line 123</a>
     </li></ul></dd>
     
 
@@ -1538,6 +1645,8 @@ const vlanEndpoints = require('./lib/rest/vlans')({ apiKey, target, basePath, ba
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -1550,44 +1659,68 @@ const vlanEndpoints = require('./lib/rest/vlans')({ apiKey, target, basePath, ba
 
         <tr>
             
-                <td class="name"><code>param</code></td>
+                <td class="name"><code>apiKey</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type">string</span>
 
 
             
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
-            <td class="description last"><p>The parameters for this request</p>
-                <h6>Properties</h6>
+            <td class="description last"><p>Optional custom apiKey for this request (if not set will take the inital apiKey)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>target</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
                 
 
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
+                
 
-        <th>Type</th>
+                
+                </td>
+            
 
-        
+            
 
-        
+            <td class="description last"><p>Optional custom target for this request (if not set will take the inital target)</p></td>
+        </tr>
 
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
     
 
         <tr>
@@ -1604,6 +1737,14 @@ const vlanEndpoints = require('./lib/rest/vlans')({ apiKey, target, basePath, ba
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -1628,6 +1769,14 @@ const vlanEndpoints = require('./lib/rest/vlans')({ apiKey, target, basePath, ba
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
@@ -1650,6 +1799,14 @@ const vlanEndpoints = require('./lib/rest/vlans')({ apiKey, target, basePath, ba
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -1674,6 +1831,14 @@ const vlanEndpoints = require('./lib/rest/vlans')({ apiKey, target, basePath, ba
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
@@ -1696,6 +1861,14 @@ const vlanEndpoints = require('./lib/rest/vlans')({ apiKey, target, basePath, ba
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -1720,6 +1893,14 @@ const vlanEndpoints = require('./lib/rest/vlans')({ apiKey, target, basePath, ba
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
@@ -1742,6 +1923,14 @@ const vlanEndpoints = require('./lib/rest/vlans')({ apiKey, target, basePath, ba
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -1766,6 +1955,14 @@ const vlanEndpoints = require('./lib/rest/vlans')({ apiKey, target, basePath, ba
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
@@ -1789,17 +1986,18 @@ const vlanEndpoints = require('./lib/rest/vlans')({ apiKey, target, basePath, ba
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
             <td class="description last"><p>The DNS nameservers used for DHCP responses, either <code>upstream_dns</code>, <code>google_dns</code>, <code>opendns</code>, or a newline seperated string of IP addresses or domain names</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-            </td>
         </tr>
 
     
@@ -1863,7 +2061,7 @@ const vlanEndpoints = require('./lib/rest/vlans')({ apiKey, target, basePath, ba
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Thu Aug 30 2018 15:05:07 GMT+0200 (CEST) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Fri Aug 31 2018 14:54:44 GMT+0200 (CEST) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

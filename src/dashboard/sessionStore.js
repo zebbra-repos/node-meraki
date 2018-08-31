@@ -19,7 +19,9 @@ class SessionStore {
 
     instance.interceptors.response.use((res) => {
       const cookies = setCookie.parse(res)
-      instance.defaults.headers.common['Cookie'] = toCookieString(cookies)
+      if (cookies.length) {
+        instance.defaults.headers.common['Cookie'] = toCookieString(cookies)
+      }
       return res
     }, (error) => {
       return Promise.reject(error)

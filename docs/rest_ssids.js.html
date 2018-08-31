@@ -46,11 +46,10 @@
  * [online documentation]{@link https://dashboard.meraki.com/api_docs#ssids} for more information.
  *
  * @module meraki/rest/ssids
- * @param { Object } settings                   The configuration object used to create the api wrapper
- * @param { string } [settings.apiKey='']       The Meraki api key
- * @param { string } [settings.target='api']    The Meraki target
- * @param { string } [settings.basePath='/']    The Meraki base path for the SSID ressource
- * @param { string } settings.rateLimiter       The rate limiter (bottleneck) configuration
+ * @param { string } [apiKey='']       The Meraki api key
+ * @param { string } [target='api']    The Meraki target
+ * @param { string } [basePath='/']    The Meraki base path for the SSID ressource
+ * @param { string } rateLimiter       The rate limiter (bottleneck) configuration
  * @return { Object } The initialized Meraki REST API wrapper for the SSID ressource
  * @example
  * const apiKey = 'secret meraki api key'
@@ -70,8 +69,9 @@ function createSSIDsEndpoints ({ apiKey, target, basePath, baseUrl = 'https://ap
    * List the SSIDs in a network.
    *
    * @memberof module:meraki/rest/ssids
-   * @param { Object } param                  The parameters for this request
-   * @param { string } param.networkId        The id of the network for which to list the SSIDs
+   * @param { string } [apiKey]   Optional custom apiKey for this request (if not set will take the inital apiKey)
+   * @param { string } [target]   Optional custom target for this request (if not set will take the inital target)
+   * @param { string } networkId  The id of the network for which to list the SSIDs
    * @return { Promise } A promise holding the SSIDs for this network
    * @example &lt;caption>Example response&lt;/caption>
    * [
@@ -83,21 +83,22 @@ function createSSIDsEndpoints ({ apiKey, target, basePath, baseUrl = 'https://ap
    *   }
    * ]
    */
-  function listNetworkSSIDs ({ networkId }) {
+  function listNetworkSSIDs ({ apiKey: localApiKey, target: localTarget, networkId }) {
     if (!networkId) {
       return Promise.reject(new Error('The parameter networkId is mandatory'))
     }
 
-    return axios._get(apiKey, target, `${basePath}/${networkId}/ssids`)
+    return axios._get(localApiKey || apiKey, localTarget || target, `${basePath}/${networkId}/ssids`)
   }
 
   /**
    * Return a single SSID.
    *
    * @memberof module:meraki/rest/ssids
-   * @param { Object } param                  The parameters for this request
-   * @param { string } param.networkId        The id of the network for which to list the SSIDs
-   * @param { number } param.ssidNumber       The number of the SSID to show
+   * @param { string } [apiKey]   Optional custom apiKey for this request (if not set will take the inital apiKey)
+   * @param { string } [target]   Optional custom target for this request (if not set will take the inital target)
+   * @param { string } networkId  The id of the network for which to list the SSIDs
+   * @param { number } ssidNumber The number of the SSID to show
    * @return { Promise } A promise holding the details of this SSID
    * @example &lt;caption>Example response&lt;/caption>
    * {
@@ -116,54 +117,55 @@ function createSSIDsEndpoints ({ apiKey, target, basePath, baseUrl = 'https://ap
    *   "walledGardenRanges":"192.168.1.1/24 192.168.37.10/32"
    * }
    */
-  function showNetworkSSID ({ networkId, ssidNumber }) {
+  function showNetworkSSID ({ apiKey: localApiKey, target: localTarget, networkId, ssidNumber }) {
     if (!networkId) {
       return Promise.reject(new Error('The parameter networkId is mandatory'))
     } else if (!ssidNumber) {
       return Promise.reject(new Error('The parameter ssidNumber is mandatory'))
     }
 
-    return axios._get(apiKey, target, `${basePath}/${networkId}/ssids/${ssidNumber}`)
+    return axios._get(localApiKey || apiKey, localTarget || target, `${basePath}/${networkId}/ssids/${ssidNumber}`)
   }
 
   /**
    * Update the attributes of an SSID.
    *
    * @memberof module:meraki/rest/ssids
-   * @param { Object } param                            The parameters for this request
-   * @param { string } param.networkId                  The id of the network for which to list the SSIDs
-   * @param { number } param.ssidNumber                 The number of the SSID to update
-   * @param { string } param.name                       The name of an SSID
-   * @param { boolean } param.enabled                   Whether or not an SSID is enabled
-   * @param { string } param.authMode                   The association control method for the SSID (`open`, `psk`, `open-with-radius`, `8021x-meraki`, `8021x-radius`)
-   * @param { string } param.encryptionMode             The psk encryption mode for the SSID (`wpa`, `wep`, `wpa-eap`)
-   * @param { string } param.psk                        The passkey for the SSID. This param is only valid if the authMode is `psk`
-   * @param { string } param.wpaEncryptionMode          The types of WPA encryption. (`WPA1 and WPA2`, `WPA2 only`)
-   * @param { string } param.splashPage                 The type of splash page for the SSID (`None`, `Click-through splash page`, `Billing`, `Password-protected with Meraki RADIUS`, `Password-protected with custom RADIUS`, `Password-protected with Active Directory`, `Password-protected with LDAP`, `SMS authentication`, `Systems Manager Sentry`, `Facebook Wi-Fi`). This attribute is not supported for template children
-   * @param { Object } param.radiusServers              The RADIUS 802.1x servers to be used for authentication. This param is only valid if the authMode is `open-with-radius` or `8021x-radius`
-   * @param { string } param.radiusServers.host         Ip address of RADIUS server
-   * @param { number } param.radiusServers.port         UPD port of the RADIUS server listens on for Acess-requests
-   * @param { string } param.radiusServers.secret       RADIUS client shared secret
-   * @param { boolean } param.radiusCoaEnabled          If true, Meraki devices will act as a RADIUS Dynamic Authorization Server and will respond to RADIUS Change-of-Authorization and Disconnect messages sent by the RADIUS server
-   * @param { boolean } param.radiusAccountingEnabled   Whether or not RADIUS accounting is enabled. This param is only valid if the authMode is `open-with-radius` or `8021x-radius`
-   * @param { Object } param.radiusAccountingServers    The RADIUS accounting 802.1x servers to be used for authentication. This param is only valid if the authMode is `open-with-radius` or `8021x-radius` and radiusAccountingEnabled is `true`
-   * @param { string } param.radiusAccountingServers.host   IP address to which the APs will send RADIUS accounting messages
-   * @param { number } param.radiusAccountingServers.port   Port on the RADIUS server that is listening for accounting messages
-   * @param { string } param.radiusAccountingServers.secret Shared key used to authenticate messages between the APs and RADIUS server
-   * @param { string } param.ipAssignmentMode           The client IP assignment mode (`NAT mode`, `Bridge mode`, `Layer 3 roaming`, `Layer 3 roaming with a concentrator`, `VPN`)
-   * @param { boolean } param.useVlanTagging            Direct trafic to use specific VLANs. This param is only valid with `Bridge mode` and `Layer 3 roaming`
-   * @param { string } param.concentratorNetworkId      The concentrator to use for `Layer 3 roaming with a concentrator` or `VPN`
-   * @param { number } param.vlanId                     The VLAN ID used for VLAN tagging. This param is only valid with `Layer 3 roaming with a concentrator` and `VPN`
-   * @param { number } param.defaultVlanId              The default VLAN ID used for `all other APs`. This param is only valid with `Bridge mode` and `Layer 3 roaming`
-   * @param { Array } param.apTagsAndVlanIds            The list of tags and VLAN IDs used for VLAN tagging. This param is only valid with `Bridge mode`, `Layer 3 roaming`
-   * @param { string } param.apTagsAndVlanIds.tags      Comma-separated list of AP tags
-   * @param { number } param.apTagsAndVlanIds.vlanId    Numerical identifier that is assigned to the VLAN
-   * @param { boolean } param.walledGardenEnabled       Allow access to a configurable list of IP ranges, which users may access prior to sign-on
-   * @param { string } param.walledGardenRanges         Specify your walled garden by entering space-separated addresses and ranges using CIDR notation (e.g. 192.168.1.1/24 192.168.37.10/32). Meraki's splash page is automatically included in your walled garden
-   * @param { number } param.minBitrate                 The minimum bitrate in Mbps. (1, 2, 5.5, 6, 9, 11, 12, 18, 24, 36, 48, 54)
-   * @param { string } param.bandSelection              The client-serving radio frequencies. (Dual band operation, 5 GHz band only, Dual band operation with Band Steering)
-   * @param { number } param.perClientBandwidthLimitUp  The upload bandwidth limit in Kbps. (0 represents no limit.)
-   * @param { number } param.perClientBandwidthLimitDown  The download bandwidth limit in Kbps. (0 represents no limit.)
+   * @param { string } [apiKey]                       Optional custom apiKey for this request (if not set will take the inital apiKey)
+   * @param { string } [target]                       Optional custom target for this request (if not set will take the inital target)
+   * @param { string } networkId                      The id of the network for which to list the SSIDs
+   * @param { number } ssidNumber                     The number of the SSID to update
+   * @param { string } name                           The name of an SSID
+   * @param { boolean } enabled                       Whether or not an SSID is enabled
+   * @param { string } authMode                       The association control method for the SSID (`open`, `psk`, `open-with-radius`, `8021x-meraki`, `8021x-radius`)
+   * @param { string } encryptionMode                 The psk encryption mode for the SSID (`wpa`, `wep`, `wpa-eap`)
+   * @param { string } psk                            The passkey for the SSID. This param is only valid if the authMode is `psk`
+   * @param { string } wpaEncryptionMode              The types of WPA encryption. (`WPA1 and WPA2`, `WPA2 only`)
+   * @param { string } splashPage                     The type of splash page for the SSID (`None`, `Click-through splash page`, `Billing`, `Password-protected with Meraki RADIUS`, `Password-protected with custom RADIUS`, `Password-protected with Active Directory`, `Password-protected with LDAP`, `SMS authentication`, `Systems Manager Sentry`, `Facebook Wi-Fi`). This attribute is not supported for template children
+   * @param { Object } radiusServers                  The RADIUS 802.1x servers to be used for authentication. This param is only valid if the authMode is `open-with-radius` or `8021x-radius`
+   * @param { string } radiusServers.host             Ip address of RADIUS server
+   * @param { number } radiusServers.port             UPD port of the RADIUS server listens on for Acess-requests
+   * @param { string } radiusServers.secret           RADIUS client shared secret
+   * @param { boolean } radiusCoaEnabled              If true, Meraki devices will act as a RADIUS Dynamic Authorization Server and will respond to RADIUS Change-of-Authorization and Disconnect messages sent by the RADIUS server
+   * @param { boolean } radiusAccountingEnabled       Whether or not RADIUS accounting is enabled. This param is only valid if the authMode is `open-with-radius` or `8021x-radius`
+   * @param { Object } radiusAccountingServers        The RADIUS accounting 802.1x servers to be used for authentication. This param is only valid if the authMode is `open-with-radius` or `8021x-radius` and radiusAccountingEnabled is `true`
+   * @param { string } radiusAccountingServers.host   IP address to which the APs will send RADIUS accounting messages
+   * @param { number } radiusAccountingServers.port   Port on the RADIUS server that is listening for accounting messages
+   * @param { string } radiusAccountingServers.secret Shared key used to authenticate messages between the APs and RADIUS server
+   * @param { string } ipAssignmentMode               The client IP assignment mode (`NAT mode`, `Bridge mode`, `Layer 3 roaming`, `Layer 3 roaming with a concentrator`, `VPN`)
+   * @param { boolean } useVlanTagging                Direct trafic to use specific VLANs. This param is only valid with `Bridge mode` and `Layer 3 roaming`
+   * @param { string } concentratorNetworkId          The concentrator to use for `Layer 3 roaming with a concentrator` or `VPN`
+   * @param { number } vlanId                         The VLAN ID used for VLAN tagging. This param is only valid with `Layer 3 roaming with a concentrator` and `VPN`
+   * @param { number } defaultVlanId                  The default VLAN ID used for `all other APs`. This param is only valid with `Bridge mode` and `Layer 3 roaming`
+   * @param { Array } apTagsAndVlanIds                The list of tags and VLAN IDs used for VLAN tagging. This param is only valid with `Bridge mode`, `Layer 3 roaming`
+   * @param { string } apTagsAndVlanIds.tags          Comma-separated list of AP tags
+   * @param { number } apTagsAndVlanIds.vlanId        Numerical identifier that is assigned to the VLAN
+   * @param { boolean } walledGardenEnabled           Allow access to a configurable list of IP ranges, which users may access prior to sign-on
+   * @param { string } walledGardenRanges             Specify your walled garden by entering space-separated addresses and ranges using CIDR notation (e.g. 192.168.1.1/24 192.168.37.10/32). Meraki's splash page is automatically included in your walled garden
+   * @param { number } minBitrate                     The minimum bitrate in Mbps. (1, 2, 5.5, 6, 9, 11, 12, 18, 24, 36, 48, 54)
+   * @param { string } bandSelection                  The client-serving radio frequencies. (Dual band operation, 5 GHz band only, Dual band operation with Band Steering)
+   * @param { number } perClientBandwidthLimitUp      The upload bandwidth limit in Kbps. (0 represents no limit.)
+   * @param { number } perClientBandwidthLimitDown    The download bandwidth limit in Kbps. (0 represents no limit.)
    * @return { Promise } A promise holding the updated SSID
    * @example &lt;caption>Example request data&lt;/caption>
    * {
@@ -202,7 +204,7 @@ function createSSIDsEndpoints ({ apiKey, target, basePath, baseUrl = 'https://ap
       return Promise.reject(new Error('The parameter ssidNumber is mandatory'))
     }
 
-    return axios._put(apiKey, target, `${basePath}/${networkId}/ssids/${ssidNumber}`, data)
+    return axios._put(data.apiKey || apiKey, data.target || target, `${basePath}/${networkId}/ssids/${ssidNumber}`, data)
   }
 
   return {
@@ -227,7 +229,7 @@ module.exports = createSSIDsEndpoints
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Thu Aug 30 2018 15:05:06 GMT+0200 (CEST) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Fri Aug 31 2018 14:54:44 GMT+0200 (CEST) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

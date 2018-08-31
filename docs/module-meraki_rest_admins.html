@@ -143,48 +143,6 @@ const adminEndpoints = require('./lib/rest/admins')({ apiKey, target, basePath, 
         <th>Type</th>
 
         
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>settings</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The configuration object used to create the api wrapper</p>
-                <h6>Properties</h6>
-                
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
         <th>Attributes</th>
         
 
@@ -353,13 +311,6 @@ const adminEndpoints = require('./lib/rest/admins')({ apiKey, target, basePath, 
     </tbody>
 </table>
 
-            </td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
 
 
 
@@ -422,7 +373,7 @@ const adminEndpoints = require('./lib/rest/admins')({ apiKey, target, basePath, 
 
     
 
-    <h4 class="name" id=".createAdmin"><span class="type-signature">(static) </span>createAdmin<span class="signature">(param)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id=".createAdmin"><span class="type-signature">(static) </span>createAdmin<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, orgId, email, name, orgAcess, tags)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -434,7 +385,7 @@ const adminEndpoints = require('./lib/rest/admins')({ apiKey, target, basePath, 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_admins.js.html">rest/admins.js</a>, <a href="rest_admins.js.html#line88">line 88</a>
+        <a href="rest_admins.js.html">rest/admins.js</a>, <a href="rest_admins.js.html#line89">line 89</a>
     </li></ul></dd>
     
 
@@ -519,6 +470,8 @@ const adminEndpoints = require('./lib/rest/admins')({ apiKey, target, basePath, 
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -531,44 +484,68 @@ const adminEndpoints = require('./lib/rest/admins')({ apiKey, target, basePath, 
 
         <tr>
             
-                <td class="name"><code>param</code></td>
+                <td class="name"><code>apiKey</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type">string</span>
 
 
             
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
-            <td class="description last"><p>The dashboard administrator information</p>
-                <h6>Properties</h6>
+            <td class="description last"><p>Optional custom apiKey for this request (if not set will take the inital apiKey)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>target</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
                 
 
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
+                
 
-        <th>Type</th>
+                
+                </td>
+            
 
-        
+            
 
-        
+            <td class="description last"><p>Optional custom target for this request (if not set will take the inital target)</p></td>
+        </tr>
 
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
     
 
         <tr>
@@ -585,6 +562,14 @@ const adminEndpoints = require('./lib/rest/admins')({ apiKey, target, basePath, 
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -609,6 +594,14 @@ const adminEndpoints = require('./lib/rest/admins')({ apiKey, target, basePath, 
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
@@ -631,6 +624,14 @@ const adminEndpoints = require('./lib/rest/admins')({ apiKey, target, basePath, 
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -655,6 +656,14 @@ const adminEndpoints = require('./lib/rest/admins')({ apiKey, target, basePath, 
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
@@ -678,17 +687,18 @@ const adminEndpoints = require('./lib/rest/admins')({ apiKey, target, basePath, 
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
             <td class="description last"><p>The list of tags that the dashboard administrator has privileges on</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-            </td>
         </tr>
 
     
@@ -737,7 +747,7 @@ const adminEndpoints = require('./lib/rest/admins')({ apiKey, target, basePath, 
 
     
 
-    <h4 class="name" id=".deleteAdmin"><span class="type-signature">(static) </span>deleteAdmin<span class="signature">(param)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id=".deleteAdmin"><span class="type-signature">(static) </span>deleteAdmin<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, orgId, adminId)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -749,7 +759,7 @@ const adminEndpoints = require('./lib/rest/admins')({ apiKey, target, basePath, 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_admins.js.html">rest/admins.js</a>, <a href="rest_admins.js.html#line148">line 148</a>
+        <a href="rest_admins.js.html">rest/admins.js</a>, <a href="rest_admins.js.html#line151">line 151</a>
     </li></ul></dd>
     
 
@@ -815,6 +825,8 @@ const adminEndpoints = require('./lib/rest/admins')({ apiKey, target, basePath, 
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -827,44 +839,68 @@ const adminEndpoints = require('./lib/rest/admins')({ apiKey, target, basePath, 
 
         <tr>
             
-                <td class="name"><code>param</code></td>
+                <td class="name"><code>apiKey</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type">string</span>
 
 
             
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
-            <td class="description last"><p>The dashboard administrator information</p>
-                <h6>Properties</h6>
+            <td class="description last"><p>Optional custom apiKey for this request (if not set will take the inital apiKey)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>target</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
                 
 
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
+                
 
-        <th>Type</th>
+                
+                </td>
+            
 
-        
+            
 
-        
+            <td class="description last"><p>Optional custom target for this request (if not set will take the inital target)</p></td>
+        </tr>
 
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
     
 
         <tr>
@@ -881,6 +917,14 @@ const adminEndpoints = require('./lib/rest/admins')({ apiKey, target, basePath, 
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -905,17 +949,18 @@ const adminEndpoints = require('./lib/rest/admins')({ apiKey, target, basePath, 
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
             <td class="description last"><p>The if of the dashboard administrator to delete</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-            </td>
         </tr>
 
     
@@ -964,7 +1009,7 @@ const adminEndpoints = require('./lib/rest/admins')({ apiKey, target, basePath, 
 
     
 
-    <h4 class="name" id=".listAdmins"><span class="type-signature">(static) </span>listAdmins<span class="signature">(param)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id=".listAdmins"><span class="type-signature">(static) </span>listAdmins<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, orgId)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -1068,6 +1113,8 @@ const adminEndpoints = require('./lib/rest/admins')({ apiKey, target, basePath, 
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -1080,44 +1127,68 @@ const adminEndpoints = require('./lib/rest/admins')({ apiKey, target, basePath, 
 
         <tr>
             
-                <td class="name"><code>param</code></td>
+                <td class="name"><code>apiKey</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type">string</span>
 
 
             
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
-            <td class="description last"><p>The dashboard administrator information</p>
-                <h6>Properties</h6>
+            <td class="description last"><p>Optional custom apiKey for this request (if not set will take the inital apiKey)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>target</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
                 
 
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
+                
 
-        <th>Type</th>
+                
+                </td>
+            
 
-        
+            
 
-        
+            <td class="description last"><p>Optional custom target for this request (if not set will take the inital target)</p></td>
+        </tr>
 
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
     
 
         <tr>
@@ -1135,17 +1206,18 @@ const adminEndpoints = require('./lib/rest/admins')({ apiKey, target, basePath, 
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
             <td class="description last"><p>The organization id for which to list the admins</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-            </td>
         </tr>
 
     
@@ -1194,7 +1266,7 @@ const adminEndpoints = require('./lib/rest/admins')({ apiKey, target, basePath, 
 
     
 
-    <h4 class="name" id=".updateAdmin"><span class="type-signature">(static) </span>updateAdmin<span class="signature">(param)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id=".updateAdmin"><span class="type-signature">(static) </span>updateAdmin<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, orgId, adminId, email, name, orgAcess, tags)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -1206,7 +1278,7 @@ const adminEndpoints = require('./lib/rest/admins')({ apiKey, target, basePath, 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_admins.js.html">rest/admins.js</a>, <a href="rest_admins.js.html#line127">line 127</a>
+        <a href="rest_admins.js.html">rest/admins.js</a>, <a href="rest_admins.js.html#line129">line 129</a>
     </li></ul></dd>
     
 
@@ -1291,6 +1363,8 @@ const adminEndpoints = require('./lib/rest/admins')({ apiKey, target, basePath, 
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -1303,44 +1377,68 @@ const adminEndpoints = require('./lib/rest/admins')({ apiKey, target, basePath, 
 
         <tr>
             
-                <td class="name"><code>param</code></td>
+                <td class="name"><code>apiKey</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type">string</span>
 
 
             
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
-            <td class="description last"><p>The dashboard administrator information</p>
-                <h6>Properties</h6>
+            <td class="description last"><p>Optional custom apiKey for this request (if not set will take the inital apiKey)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>target</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
                 
 
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
+                
 
-        <th>Type</th>
+                
+                </td>
+            
 
-        
+            
 
-        
+            <td class="description last"><p>Optional custom target for this request (if not set will take the inital target)</p></td>
+        </tr>
 
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
     
 
         <tr>
@@ -1357,6 +1455,14 @@ const adminEndpoints = require('./lib/rest/admins')({ apiKey, target, basePath, 
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -1381,6 +1487,14 @@ const adminEndpoints = require('./lib/rest/admins')({ apiKey, target, basePath, 
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
@@ -1403,6 +1517,14 @@ const adminEndpoints = require('./lib/rest/admins')({ apiKey, target, basePath, 
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -1427,6 +1549,14 @@ const adminEndpoints = require('./lib/rest/admins')({ apiKey, target, basePath, 
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
@@ -1449,6 +1579,14 @@ const adminEndpoints = require('./lib/rest/admins')({ apiKey, target, basePath, 
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -1473,17 +1611,18 @@ const adminEndpoints = require('./lib/rest/admins')({ apiKey, target, basePath, 
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
             <td class="description last"><p>The list of tags that the dashboard administrator has privileges on</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-            </td>
         </tr>
 
     
@@ -1547,7 +1686,7 @@ const adminEndpoints = require('./lib/rest/admins')({ apiKey, target, basePath, 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Thu Aug 30 2018 15:05:06 GMT+0200 (CEST) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Fri Aug 31 2018 14:54:44 GMT+0200 (CEST) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

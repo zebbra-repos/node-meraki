@@ -2,10 +2,9 @@
  * Create a Meraki Dashboard API wrapper for the organization ressource.
  *
  * @module meraki/dashboard/organizations
- * @param { Object } settings           The configuration object used to create the api wrapper
- * @param { string } settings.baseUrl   The Meraki base url
- * @param { object } settings.store     The session store
- * @param { string } setings.email      The Meraki dashboard account email
+ * @param { string } baseUrl   The Meraki base url
+ * @param { object } store     The session store
+ * @param { string } email     The Meraki dashboard account email
  * @return { Object } The initialized Meraki Dashboard API wrapper for the organization ressource
  */
 function createOrganizationsEndpoints ({ baseUrl, store, email }) {
@@ -15,8 +14,7 @@ function createOrganizationsEndpoints ({ baseUrl, store, email }) {
    * List the organizations that the user has privileges on.
    *
    * @memberof module:meraki/dashboard/organizations
-   * @param { Object } params
-   * @param { string } params.eid The dashboard id for this organization
+   * @param { string } eid The dashboard id for this organization
    * @return { Promise } A promise holding the organizations this user has privileges on
    */
   function listOrganizationsDashboard ({ eid }) {
@@ -32,8 +30,7 @@ function createOrganizationsEndpoints ({ baseUrl, store, email }) {
    * for this organization and finally deletes the organization itself.
    *
    * @memberof module:meraki/dashboard/organizations
-   * @param { Object } params
-   * @param { string } params.eid The dashboard id for this organization
+   * @param { string } eid The dashboard id for this organization
    * @return { Promise } Information message
    */
   function deleteOrganizationDashboard ({ eid }) {

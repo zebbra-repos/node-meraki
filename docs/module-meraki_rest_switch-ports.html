@@ -144,48 +144,6 @@ const portEndpoints = require('./lib/rest/ports')({ apiKey, target, basePath, ba
         <th>Type</th>
 
         
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>settings</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The configuration object used to create the api wrapper</p>
-                <h6>Properties</h6>
-                
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
         <th>Attributes</th>
         
 
@@ -354,13 +312,6 @@ const portEndpoints = require('./lib/rest/ports')({ apiKey, target, basePath, ba
     </tbody>
 </table>
 
-            </td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
 
 
 
@@ -423,7 +374,7 @@ const portEndpoints = require('./lib/rest/ports')({ apiKey, target, basePath, ba
 
     
 
-    <h4 class="name" id=".listSwitchPorts"><span class="type-signature">(static) </span>listSwitchPorts<span class="signature">(param)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id=".listSwitchPorts"><span class="type-signature">(static) </span>listSwitchPorts<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, deviceSerial)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -524,6 +475,8 @@ const portEndpoints = require('./lib/rest/ports')({ apiKey, target, basePath, ba
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -536,44 +489,68 @@ const portEndpoints = require('./lib/rest/ports')({ apiKey, target, basePath, ba
 
         <tr>
             
-                <td class="name"><code>param</code></td>
+                <td class="name"><code>apiKey</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type">string</span>
 
 
             
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
-            <td class="description last"><p>The parameters for this request</p>
-                <h6>Properties</h6>
+            <td class="description last"><p>Optional custom apiKey for this request (if not set will take the inital apiKey)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>target</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
                 
 
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
+                
 
-        <th>Type</th>
+                
+                </td>
+            
 
-        
+            
 
-        
+            <td class="description last"><p>Optional custom target for this request (if not set will take the inital target)</p></td>
+        </tr>
 
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
     
 
         <tr>
@@ -591,17 +568,18 @@ const portEndpoints = require('./lib/rest/ports')({ apiKey, target, basePath, ba
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
             <td class="description last"><p>The serial of the device for which to list the switch ports</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-            </td>
         </tr>
 
     
@@ -650,7 +628,7 @@ const portEndpoints = require('./lib/rest/ports')({ apiKey, target, basePath, ba
 
     
 
-    <h4 class="name" id=".showSwitchPort"><span class="type-signature">(static) </span>showSwitchPort<span class="signature">(param)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id=".showSwitchPort"><span class="type-signature">(static) </span>showSwitchPort<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, deviceSerial, number)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -662,7 +640,7 @@ const portEndpoints = require('./lib/rest/ports')({ apiKey, target, basePath, ba
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_ports.js.html">rest/ports.js</a>, <a href="rest_ports.js.html#line85">line 85</a>
+        <a href="rest_ports.js.html">rest/ports.js</a>, <a href="rest_ports.js.html#line86">line 86</a>
     </li></ul></dd>
     
 
@@ -749,6 +727,8 @@ const portEndpoints = require('./lib/rest/ports')({ apiKey, target, basePath, ba
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -761,44 +741,68 @@ const portEndpoints = require('./lib/rest/ports')({ apiKey, target, basePath, ba
 
         <tr>
             
-                <td class="name"><code>param</code></td>
+                <td class="name"><code>apiKey</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type">string</span>
 
 
             
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
-            <td class="description last"><p>The parameters for this request</p>
-                <h6>Properties</h6>
+            <td class="description last"><p>Optional custom apiKey for this request (if not set will take the inital apiKey)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>target</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
                 
 
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
+                
 
-        <th>Type</th>
+                
+                </td>
+            
 
-        
+            
 
-        
+            <td class="description last"><p>Optional custom target for this request (if not set will take the inital target)</p></td>
+        </tr>
 
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
     
 
         <tr>
@@ -815,6 +819,14 @@ const portEndpoints = require('./lib/rest/ports')({ apiKey, target, basePath, ba
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -839,17 +851,18 @@ const portEndpoints = require('./lib/rest/ports')({ apiKey, target, basePath, ba
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
             <td class="description last"><p>The number of the switch port for which to show the details</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-            </td>
         </tr>
 
     
@@ -898,7 +911,7 @@ const portEndpoints = require('./lib/rest/ports')({ apiKey, target, basePath, ba
 
     
 
-    <h4 class="name" id=".updateSwitchPort"><span class="type-signature">(static) </span>updateSwitchPort<span class="signature">(param)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id=".updateSwitchPort"><span class="type-signature">(static) </span>updateSwitchPort<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, deviceSerial, number, name, tags, enabled, type, vlan, voiceVlan, allowedVlans, poeEnabled, isolationEnabled, rstpEnabled, stpGuard, accessPolicyNumber, linkNegotiation)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -910,7 +923,7 @@ const portEndpoints = require('./lib/rest/ports')({ apiKey, target, basePath, ba
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_ports.js.html">rest/ports.js</a>, <a href="rest_ports.js.html#line133">line 133</a>
+        <a href="rest_ports.js.html">rest/ports.js</a>, <a href="rest_ports.js.html#line135">line 135</a>
     </li></ul></dd>
     
 
@@ -997,6 +1010,8 @@ const portEndpoints = require('./lib/rest/ports')({ apiKey, target, basePath, ba
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -1009,44 +1024,68 @@ const portEndpoints = require('./lib/rest/ports')({ apiKey, target, basePath, ba
 
         <tr>
             
-                <td class="name"><code>param</code></td>
+                <td class="name"><code>apiKey</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type">string</span>
 
 
             
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
-            <td class="description last"><p>The parameters for this request</p>
-                <h6>Properties</h6>
+            <td class="description last"><p>Optional custom apiKey for this request (if not set will take the inital apiKey)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>target</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
                 
 
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
+                
 
-        <th>Type</th>
+                
+                </td>
+            
 
-        
+            
 
-        
+            <td class="description last"><p>Optional custom target for this request (if not set will take the inital target)</p></td>
+        </tr>
 
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
     
 
         <tr>
@@ -1063,6 +1102,14 @@ const portEndpoints = require('./lib/rest/ports')({ apiKey, target, basePath, ba
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -1087,6 +1134,14 @@ const portEndpoints = require('./lib/rest/ports')({ apiKey, target, basePath, ba
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
@@ -1109,6 +1164,14 @@ const portEndpoints = require('./lib/rest/ports')({ apiKey, target, basePath, ba
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -1133,6 +1196,14 @@ const portEndpoints = require('./lib/rest/ports')({ apiKey, target, basePath, ba
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
@@ -1155,6 +1226,14 @@ const portEndpoints = require('./lib/rest/ports')({ apiKey, target, basePath, ba
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -1179,6 +1258,14 @@ const portEndpoints = require('./lib/rest/ports')({ apiKey, target, basePath, ba
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
@@ -1201,6 +1288,14 @@ const portEndpoints = require('./lib/rest/ports')({ apiKey, target, basePath, ba
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -1225,6 +1320,14 @@ const portEndpoints = require('./lib/rest/ports')({ apiKey, target, basePath, ba
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
@@ -1247,6 +1350,14 @@ const portEndpoints = require('./lib/rest/ports')({ apiKey, target, basePath, ba
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -1271,6 +1382,14 @@ const portEndpoints = require('./lib/rest/ports')({ apiKey, target, basePath, ba
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
@@ -1293,6 +1412,14 @@ const portEndpoints = require('./lib/rest/ports')({ apiKey, target, basePath, ba
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -1317,6 +1444,14 @@ const portEndpoints = require('./lib/rest/ports')({ apiKey, target, basePath, ba
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
@@ -1339,6 +1474,14 @@ const portEndpoints = require('./lib/rest/ports')({ apiKey, target, basePath, ba
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -1363,6 +1506,14 @@ const portEndpoints = require('./lib/rest/ports')({ apiKey, target, basePath, ba
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
@@ -1386,17 +1537,18 @@ const portEndpoints = require('./lib/rest/ports')({ apiKey, target, basePath, ba
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
             <td class="description last"><p>The link speed for the switch port</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-            </td>
         </tr>
 
     
@@ -1460,7 +1612,7 @@ const portEndpoints = require('./lib/rest/ports')({ apiKey, target, basePath, ba
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Thu Aug 30 2018 15:05:06 GMT+0200 (CEST) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Fri Aug 31 2018 14:54:44 GMT+0200 (CEST) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

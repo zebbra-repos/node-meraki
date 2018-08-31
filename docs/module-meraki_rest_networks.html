@@ -144,48 +144,6 @@ const networkEndpoints = require('./lib/rest/networks')({ apiKey, target, basePa
         <th>Type</th>
 
         
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>settings</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The configuration object used to create the api wrapper</p>
-                <h6>Properties</h6>
-                
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
         <th>Attributes</th>
         
 
@@ -354,13 +312,6 @@ const networkEndpoints = require('./lib/rest/networks')({ apiKey, target, basePa
     </tbody>
 </table>
 
-            </td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
 
 
 
@@ -423,7 +374,7 @@ const networkEndpoints = require('./lib/rest/networks')({ apiKey, target, basePa
 
     
 
-    <h4 class="name" id=".bindNetworkToTemplate"><span class="type-signature">(static) </span>bindNetworkToTemplate<span class="signature">(param)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id=".bindNetworkToTemplate"><span class="type-signature">(static) </span>bindNetworkToTemplate<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, networkId, configTemplateId, autoBind)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -435,7 +386,7 @@ const networkEndpoints = require('./lib/rest/networks')({ apiKey, target, basePa
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_networks.js.html">rest/networks.js</a>, <a href="rest_networks.js.html#line178">line 178</a>
+        <a href="rest_networks.js.html">rest/networks.js</a>, <a href="rest_networks.js.html#line183">line 183</a>
     </li></ul></dd>
     
 
@@ -501,6 +452,8 @@ const networkEndpoints = require('./lib/rest/networks')({ apiKey, target, basePa
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -513,44 +466,68 @@ const networkEndpoints = require('./lib/rest/networks')({ apiKey, target, basePa
 
         <tr>
             
-                <td class="name"><code>param</code></td>
+                <td class="name"><code>apiKey</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type">string</span>
 
 
             
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
-            <td class="description last"><p>The parameters for this request</p>
-                <h6>Properties</h6>
+            <td class="description last"><p>Optional custom apiKey for this request (if not set will take the inital apiKey)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>target</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
                 
 
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
+                
 
-        <th>Type</th>
+                
+                </td>
+            
 
-        
+            
 
-        
+            <td class="description last"><p>Optional custom target for this request (if not set will take the inital target)</p></td>
+        </tr>
 
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
     
 
         <tr>
@@ -567,6 +544,14 @@ const networkEndpoints = require('./lib/rest/networks')({ apiKey, target, basePa
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -591,6 +576,14 @@ const networkEndpoints = require('./lib/rest/networks')({ apiKey, target, basePa
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
@@ -614,17 +607,18 @@ const networkEndpoints = require('./lib/rest/networks')({ apiKey, target, basePa
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
             <td class="description last"><p>Optional boolean indicating whether the network's switches should automatically bind to profiles of the same model. Defaults to false if left unspecified. This option only affects switch networks and switch templates. Auto-bind is not valid unless the switch template has at least one profile and has at most one profile per switch model</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-            </td>
         </tr>
 
     
@@ -673,7 +667,7 @@ const networkEndpoints = require('./lib/rest/networks')({ apiKey, target, basePa
 
     
 
-    <h4 class="name" id=".createNetwork"><span class="type-signature">(static) </span>createNetwork<span class="signature">(param)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id=".createNetwork"><span class="type-signature">(static) </span>createNetwork<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, orgId, name, type, timeZone, tags)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -685,7 +679,7 @@ const networkEndpoints = require('./lib/rest/networks')({ apiKey, target, basePa
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_networks.js.html">rest/networks.js</a>, <a href="rest_networks.js.html#line143">line 143</a>
+        <a href="rest_networks.js.html">rest/networks.js</a>, <a href="rest_networks.js.html#line146">line 146</a>
     </li></ul></dd>
     
 
@@ -773,6 +767,8 @@ const networkEndpoints = require('./lib/rest/networks')({ apiKey, target, basePa
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -785,44 +781,68 @@ const networkEndpoints = require('./lib/rest/networks')({ apiKey, target, basePa
 
         <tr>
             
-                <td class="name"><code>param</code></td>
+                <td class="name"><code>apiKey</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type">string</span>
 
 
             
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
-            <td class="description last"><p>The parameters for this request</p>
-                <h6>Properties</h6>
+            <td class="description last"><p>Optional custom apiKey for this request (if not set will take the inital apiKey)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>target</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
                 
 
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
+                
 
-        <th>Type</th>
+                
+                </td>
+            
 
-        
+            
 
-        
+            <td class="description last"><p>Optional custom target for this request (if not set will take the inital target)</p></td>
+        </tr>
 
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
     
 
         <tr>
@@ -839,6 +859,14 @@ const networkEndpoints = require('./lib/rest/networks')({ apiKey, target, basePa
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -863,6 +891,14 @@ const networkEndpoints = require('./lib/rest/networks')({ apiKey, target, basePa
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
@@ -885,6 +921,14 @@ const networkEndpoints = require('./lib/rest/networks')({ apiKey, target, basePa
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -909,6 +953,14 @@ const networkEndpoints = require('./lib/rest/networks')({ apiKey, target, basePa
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
@@ -932,17 +984,18 @@ const networkEndpoints = require('./lib/rest/networks')({ apiKey, target, basePa
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
             <td class="description last"><p>A space-separated list of tags to be applied to the network</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-            </td>
         </tr>
 
     
@@ -991,7 +1044,7 @@ const networkEndpoints = require('./lib/rest/networks')({ apiKey, target, basePa
 
     
 
-    <h4 class="name" id=".deleteNetwork"><span class="type-signature">(static) </span>deleteNetwork<span class="signature">(param)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id=".deleteNetwork"><span class="type-signature">(static) </span>deleteNetwork<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, networkId)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -1003,7 +1056,7 @@ const networkEndpoints = require('./lib/rest/networks')({ apiKey, target, basePa
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_networks.js.html">rest/networks.js</a>, <a href="rest_networks.js.html#line160">line 160</a>
+        <a href="rest_networks.js.html">rest/networks.js</a>, <a href="rest_networks.js.html#line164">line 164</a>
     </li></ul></dd>
     
 
@@ -1069,6 +1122,8 @@ const networkEndpoints = require('./lib/rest/networks')({ apiKey, target, basePa
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -1081,44 +1136,68 @@ const networkEndpoints = require('./lib/rest/networks')({ apiKey, target, basePa
 
         <tr>
             
-                <td class="name"><code>param</code></td>
+                <td class="name"><code>apiKey</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type">string</span>
 
 
             
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
-            <td class="description last"><p>The parameters for this request</p>
-                <h6>Properties</h6>
+            <td class="description last"><p>Optional custom apiKey for this request (if not set will take the inital apiKey)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>target</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
                 
 
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
+                
 
-        <th>Type</th>
+                
+                </td>
+            
 
-        
+            
 
-        
+            <td class="description last"><p>Optional custom target for this request (if not set will take the inital target)</p></td>
+        </tr>
 
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
     
 
         <tr>
@@ -1136,17 +1215,18 @@ const networkEndpoints = require('./lib/rest/networks')({ apiKey, target, basePa
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
             <td class="description last"><p>The id of the network to remove</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-            </td>
         </tr>
 
     
@@ -1195,7 +1275,7 @@ const networkEndpoints = require('./lib/rest/networks')({ apiKey, target, basePa
 
     
 
-    <h4 class="name" id=".listNetworkAccessPolicies"><span class="type-signature">(static) </span>listNetworkAccessPolicies<span class="signature">(param)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id=".listNetworkAccessPolicies"><span class="type-signature">(static) </span>listNetworkAccessPolicies<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, networkId)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -1207,7 +1287,7 @@ const networkEndpoints = require('./lib/rest/networks')({ apiKey, target, basePa
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_networks.js.html">rest/networks.js</a>, <a href="rest_networks.js.html#line288">line 288</a>
+        <a href="rest_networks.js.html">rest/networks.js</a>, <a href="rest_networks.js.html#line300">line 300</a>
     </li></ul></dd>
     
 
@@ -1309,6 +1389,8 @@ const networkEndpoints = require('./lib/rest/networks')({ apiKey, target, basePa
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -1321,44 +1403,68 @@ const networkEndpoints = require('./lib/rest/networks')({ apiKey, target, basePa
 
         <tr>
             
-                <td class="name"><code>param</code></td>
+                <td class="name"><code>apiKey</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type">string</span>
 
 
             
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
-            <td class="description last"><p>The parameters for this request</p>
-                <h6>Properties</h6>
+            <td class="description last"><p>Optional custom apiKey for this request (if not set will take the inital apiKey)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>target</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
                 
 
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
+                
 
-        <th>Type</th>
+                
+                </td>
+            
 
-        
+            
 
-        
+            <td class="description last"><p>Optional custom target for this request (if not set will take the inital target)</p></td>
+        </tr>
 
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
     
 
         <tr>
@@ -1376,17 +1482,18 @@ const networkEndpoints = require('./lib/rest/networks')({ apiKey, target, basePa
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
             <td class="description last"><p>The id of the network for which to list the access policies</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-            </td>
         </tr>
 
     
@@ -1435,7 +1542,7 @@ const networkEndpoints = require('./lib/rest/networks')({ apiKey, target, basePa
 
     
 
-    <h4 class="name" id=".listNetworks"><span class="type-signature">(static) </span>listNetworks<span class="signature">(param)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id=".listNetworks"><span class="type-signature">(static) </span>listNetworks<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, orgId, configTemplateId)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -1529,6 +1636,8 @@ const networkEndpoints = require('./lib/rest/networks')({ apiKey, target, basePa
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -1541,44 +1650,68 @@ const networkEndpoints = require('./lib/rest/networks')({ apiKey, target, basePa
 
         <tr>
             
-                <td class="name"><code>param</code></td>
+                <td class="name"><code>apiKey</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type">string</span>
 
 
             
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
-            <td class="description last"><p>The parameters for this request</p>
-                <h6>Properties</h6>
+            <td class="description last"><p>Optional custom apiKey for this request (if not set will take the inital apiKey)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>target</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
                 
 
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
+                
 
-        <th>Type</th>
+                
+                </td>
+            
 
-        
+            
 
-        
+            <td class="description last"><p>Optional custom target for this request (if not set will take the inital target)</p></td>
+        </tr>
 
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
     
 
         <tr>
@@ -1595,6 +1728,14 @@ const networkEndpoints = require('./lib/rest/networks')({ apiKey, target, basePa
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -1619,17 +1760,18 @@ const networkEndpoints = require('./lib/rest/networks')({ apiKey, target, basePa
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
             <td class="description last"><p>An optional parameter that is the ID of a config template. Will return all networks bound to that template</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-            </td>
         </tr>
 
     
@@ -1678,7 +1820,7 @@ const networkEndpoints = require('./lib/rest/networks')({ apiKey, target, basePa
 
     
 
-    <h4 class="name" id=".listTrafficAnalysis"><span class="type-signature">(static) </span>listTrafficAnalysis<span class="signature">(param)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id=".listTrafficAnalysis"><span class="type-signature">(static) </span>listTrafficAnalysis<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, networkId, timespan, deviceType)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -1690,7 +1832,7 @@ const networkEndpoints = require('./lib/rest/networks')({ apiKey, target, basePa
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_networks.js.html">rest/networks.js</a>, <a href="rest_networks.js.html#line240">line 240</a>
+        <a href="rest_networks.js.html">rest/networks.js</a>, <a href="rest_networks.js.html#line251">line 251</a>
     </li></ul></dd>
     
 
@@ -1788,6 +1930,8 @@ must be enabled on the network.</p>
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -1800,44 +1944,68 @@ must be enabled on the network.</p>
 
         <tr>
             
-                <td class="name"><code>param</code></td>
+                <td class="name"><code>apiKey</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type">string</span>
 
 
             
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
-            <td class="description last"><p>The parameters for this request</p>
-                <h6>Properties</h6>
+            <td class="description last"><p>Optional custom apiKey for this request (if not set will take the inital apiKey)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>target</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
                 
 
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
+                
 
-        <th>Type</th>
+                
+                </td>
+            
 
-        
+            
 
-        
+            <td class="description last"><p>Optional custom target for this request (if not set will take the inital target)</p></td>
+        </tr>
 
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
     
 
         <tr>
@@ -1854,6 +2022,14 @@ must be enabled on the network.</p>
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -1878,6 +2054,14 @@ must be enabled on the network.</p>
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
@@ -1901,17 +2085,18 @@ must be enabled on the network.</p>
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
             <td class="description last"><p>Filter the data by device type: combined (default), wireless, switch, appliance. When using combined, for each rule the data will come from the device type with the most usage.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-            </td>
         </tr>
 
     
@@ -1960,7 +2145,7 @@ must be enabled on the network.</p>
 
     
 
-    <h4 class="name" id=".showNetwork"><span class="type-signature">(static) </span>showNetwork<span class="signature">(param)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id=".showNetwork"><span class="type-signature">(static) </span>showNetwork<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, networkId)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -1972,7 +2157,7 @@ must be enabled on the network.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_networks.js.html">rest/networks.js</a>, <a href="rest_networks.js.html#line72">line 72</a>
+        <a href="rest_networks.js.html">rest/networks.js</a>, <a href="rest_networks.js.html#line73">line 73</a>
     </li></ul></dd>
     
 
@@ -2052,6 +2237,8 @@ must be enabled on the network.</p>
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -2064,44 +2251,68 @@ must be enabled on the network.</p>
 
         <tr>
             
-                <td class="name"><code>param</code></td>
+                <td class="name"><code>apiKey</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type">string</span>
 
 
             
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
-            <td class="description last"><p>The parameters for this request</p>
-                <h6>Properties</h6>
+            <td class="description last"><p>Optional custom apiKey for this request (if not set will take the inital apiKey)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>target</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
                 
 
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
+                
 
-        <th>Type</th>
+                
+                </td>
+            
 
-        
+            
 
-        
+            <td class="description last"><p>Optional custom target for this request (if not set will take the inital target)</p></td>
+        </tr>
 
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
     
 
         <tr>
@@ -2119,17 +2330,18 @@ must be enabled on the network.</p>
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
             <td class="description last"><p>The id of the network to return</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-            </td>
         </tr>
 
     
@@ -2178,7 +2390,7 @@ must be enabled on the network.</p>
 
     
 
-    <h4 class="name" id=".unbindNetworkFromTemplate"><span class="type-signature">(static) </span>unbindNetworkFromTemplate<span class="signature">(param)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id=".unbindNetworkFromTemplate"><span class="type-signature">(static) </span>unbindNetworkFromTemplate<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, networkId)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -2190,7 +2402,7 @@ must be enabled on the network.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_networks.js.html">rest/networks.js</a>, <a href="rest_networks.js.html#line195">line 195</a>
+        <a href="rest_networks.js.html">rest/networks.js</a>, <a href="rest_networks.js.html#line205">line 205</a>
     </li></ul></dd>
     
 
@@ -2256,6 +2468,8 @@ must be enabled on the network.</p>
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -2268,44 +2482,68 @@ must be enabled on the network.</p>
 
         <tr>
             
-                <td class="name"><code>param</code></td>
+                <td class="name"><code>apiKey</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type">string</span>
 
 
             
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
-            <td class="description last"><p>The parameters for this request</p>
-                <h6>Properties</h6>
+            <td class="description last"><p>Optional custom apiKey for this request (if not set will take the inital apiKey)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>target</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
                 
 
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
+                
 
-        <th>Type</th>
+                
+                </td>
+            
 
-        
+            
 
-        
+            <td class="description last"><p>Optional custom target for this request (if not set will take the inital target)</p></td>
+        </tr>
 
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
     
 
         <tr>
@@ -2323,17 +2561,18 @@ must be enabled on the network.</p>
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
             <td class="description last"><p>The id of the network to unbind</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-            </td>
         </tr>
 
     
@@ -2382,7 +2621,7 @@ must be enabled on the network.</p>
 
     
 
-    <h4 class="name" id=".updateNetwork"><span class="type-signature">(static) </span>updateNetwork<span class="signature">(param)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id=".updateNetwork"><span class="type-signature">(static) </span>updateNetwork<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, networkId, name, timeZone, tags)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -2394,7 +2633,7 @@ must be enabled on the network.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_networks.js.html">rest/networks.js</a>, <a href="rest_networks.js.html#line107">line 107</a>
+        <a href="rest_networks.js.html">rest/networks.js</a>, <a href="rest_networks.js.html#line109">line 109</a>
     </li></ul></dd>
     
 
@@ -2483,6 +2722,8 @@ must be enabled on the network.</p>
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -2495,44 +2736,68 @@ must be enabled on the network.</p>
 
         <tr>
             
-                <td class="name"><code>param</code></td>
+                <td class="name"><code>apiKey</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type">string</span>
 
 
             
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
-            <td class="description last"><p>The parameters for this request</p>
-                <h6>Properties</h6>
+            <td class="description last"><p>Optional custom apiKey for this request (if not set will take the inital apiKey)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>target</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
                 
 
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
+                
 
-        <th>Type</th>
+                
+                </td>
+            
 
-        
+            
 
-        
+            <td class="description last"><p>Optional custom target for this request (if not set will take the inital target)</p></td>
+        </tr>
 
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
     
 
         <tr>
@@ -2549,6 +2814,14 @@ must be enabled on the network.</p>
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -2573,6 +2846,14 @@ must be enabled on the network.</p>
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
@@ -2595,6 +2876,14 @@ must be enabled on the network.</p>
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -2619,17 +2908,18 @@ must be enabled on the network.</p>
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
             <td class="description last"><p>A space-separated list of tags to be applied to the network</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-            </td>
         </tr>
 
     
@@ -2693,7 +2983,7 @@ must be enabled on the network.</p>
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Thu Aug 30 2018 15:05:06 GMT+0200 (CEST) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Fri Aug 31 2018 14:54:44 GMT+0200 (CEST) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

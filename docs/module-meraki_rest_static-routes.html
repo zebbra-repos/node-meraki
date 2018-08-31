@@ -144,48 +144,6 @@ const routeEndpoints = require('./lib/rest/routes')({ apiKey, target, basePath, 
         <th>Type</th>
 
         
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>settings</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The configuration object used to create the api wrapper</p>
-                <h6>Properties</h6>
-                
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
         <th>Attributes</th>
         
 
@@ -354,13 +312,6 @@ const routeEndpoints = require('./lib/rest/routes')({ apiKey, target, basePath, 
     </tbody>
 </table>
 
-            </td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
 
 
 
@@ -423,7 +374,7 @@ const routeEndpoints = require('./lib/rest/routes')({ apiKey, target, basePath, 
 
     
 
-    <h4 class="name" id=".createStaticNetworkRoute"><span class="type-signature">(static) </span>createStaticNetworkRoute<span class="signature">(param)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id=".createStaticNetworkRoute"><span class="type-signature">(static) </span>createStaticNetworkRoute<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, networkId, name, subnet, gatewayIp)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -435,7 +386,7 @@ const routeEndpoints = require('./lib/rest/routes')({ apiKey, target, basePath, 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_routes.js.html">rest/routes.js</a>, <a href="rest_routes.js.html#line154">line 154</a>
+        <a href="rest_routes.js.html">rest/routes.js</a>, <a href="rest_routes.js.html#line157">line 157</a>
     </li></ul></dd>
     
 
@@ -522,6 +473,8 @@ const routeEndpoints = require('./lib/rest/routes')({ apiKey, target, basePath, 
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -534,44 +487,68 @@ const routeEndpoints = require('./lib/rest/routes')({ apiKey, target, basePath, 
 
         <tr>
             
-                <td class="name"><code>param</code></td>
+                <td class="name"><code>apiKey</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type">string</span>
 
 
             
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
-            <td class="description last"><p>The parameters for this request</p>
-                <h6>Properties</h6>
+            <td class="description last"><p>Optional custom apiKey for this request (if not set will take the inital apiKey)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>target</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
                 
 
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
+                
 
-        <th>Type</th>
+                
+                </td>
+            
 
-        
+            
 
-        
+            <td class="description last"><p>Optional custom target for this request (if not set will take the inital target)</p></td>
+        </tr>
 
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
     
 
         <tr>
@@ -588,6 +565,14 @@ const routeEndpoints = require('./lib/rest/routes')({ apiKey, target, basePath, 
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -612,6 +597,14 @@ const routeEndpoints = require('./lib/rest/routes')({ apiKey, target, basePath, 
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
@@ -634,6 +627,14 @@ const routeEndpoints = require('./lib/rest/routes')({ apiKey, target, basePath, 
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -658,17 +659,18 @@ const routeEndpoints = require('./lib/rest/routes')({ apiKey, target, basePath, 
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
             <td class="description last"><p>The gateway IP (next hop) of the static route</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-            </td>
         </tr>
 
     
@@ -717,7 +719,7 @@ const routeEndpoints = require('./lib/rest/routes')({ apiKey, target, basePath, 
 
     
 
-    <h4 class="name" id=".deleteStaticNetworkRoute"><span class="type-signature">(static) </span>deleteStaticNetworkRoute<span class="signature">(param)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id=".deleteStaticNetworkRoute"><span class="type-signature">(static) </span>deleteStaticNetworkRoute<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, networkId, srId)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -729,7 +731,7 @@ const routeEndpoints = require('./lib/rest/routes')({ apiKey, target, basePath, 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_routes.js.html">rest/routes.js</a>, <a href="rest_routes.js.html#line172">line 172</a>
+        <a href="rest_routes.js.html">rest/routes.js</a>, <a href="rest_routes.js.html#line176">line 176</a>
     </li></ul></dd>
     
 
@@ -795,6 +797,8 @@ const routeEndpoints = require('./lib/rest/routes')({ apiKey, target, basePath, 
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -807,44 +811,68 @@ const routeEndpoints = require('./lib/rest/routes')({ apiKey, target, basePath, 
 
         <tr>
             
-                <td class="name"><code>param</code></td>
+                <td class="name"><code>apiKey</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type">string</span>
 
 
             
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
-            <td class="description last"><p>The parameters for this request</p>
-                <h6>Properties</h6>
+            <td class="description last"><p>Optional custom apiKey for this request (if not set will take the inital apiKey)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>target</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
                 
 
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
+                
 
-        <th>Type</th>
+                
+                </td>
+            
 
-        
+            
 
-        
+            <td class="description last"><p>Optional custom target for this request (if not set will take the inital target)</p></td>
+        </tr>
 
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
     
 
         <tr>
@@ -861,6 +889,14 @@ const routeEndpoints = require('./lib/rest/routes')({ apiKey, target, basePath, 
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -885,17 +921,18 @@ const routeEndpoints = require('./lib/rest/routes')({ apiKey, target, basePath, 
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
             <td class="description last"><p>The id of the static route to remove</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-            </td>
         </tr>
 
     
@@ -944,7 +981,7 @@ const routeEndpoints = require('./lib/rest/routes')({ apiKey, target, basePath, 
 
     
 
-    <h4 class="name" id=".listStaticNetworkRoutes"><span class="type-signature">(static) </span>listStaticNetworkRoutes<span class="signature">(param)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id=".listStaticNetworkRoutes"><span class="type-signature">(static) </span>listStaticNetworkRoutes<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, networkId)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -1037,6 +1074,8 @@ const routeEndpoints = require('./lib/rest/routes')({ apiKey, target, basePath, 
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -1049,44 +1088,68 @@ const routeEndpoints = require('./lib/rest/routes')({ apiKey, target, basePath, 
 
         <tr>
             
-                <td class="name"><code>param</code></td>
+                <td class="name"><code>apiKey</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type">string</span>
 
 
             
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
-            <td class="description last"><p>The parameters for this request</p>
-                <h6>Properties</h6>
+            <td class="description last"><p>Optional custom apiKey for this request (if not set will take the inital apiKey)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>target</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
                 
 
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
+                
 
-        <th>Type</th>
+                
+                </td>
+            
 
-        
+            
 
-        
+            <td class="description last"><p>Optional custom target for this request (if not set will take the inital target)</p></td>
+        </tr>
 
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
     
 
         <tr>
@@ -1104,17 +1167,18 @@ const routeEndpoints = require('./lib/rest/routes')({ apiKey, target, basePath, 
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
             <td class="description last"><p>The id of the network for which to list the static routes</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-            </td>
         </tr>
 
     
@@ -1163,7 +1227,7 @@ const routeEndpoints = require('./lib/rest/routes')({ apiKey, target, basePath, 
 
     
 
-    <h4 class="name" id=".showStaticNetworkRoute"><span class="type-signature">(static) </span>showStaticNetworkRoute<span class="signature">(param)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id=".showStaticNetworkRoute"><span class="type-signature">(static) </span>showStaticNetworkRoute<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, networkId, srId)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -1175,7 +1239,7 @@ const routeEndpoints = require('./lib/rest/routes')({ apiKey, target, basePath, 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_routes.js.html">rest/routes.js</a>, <a href="rest_routes.js.html#line69">line 69</a>
+        <a href="rest_routes.js.html">rest/routes.js</a>, <a href="rest_routes.js.html#line70">line 70</a>
     </li></ul></dd>
     
 
@@ -1254,6 +1318,8 @@ const routeEndpoints = require('./lib/rest/routes')({ apiKey, target, basePath, 
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -1266,44 +1332,68 @@ const routeEndpoints = require('./lib/rest/routes')({ apiKey, target, basePath, 
 
         <tr>
             
-                <td class="name"><code>param</code></td>
+                <td class="name"><code>apiKey</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type">string</span>
 
 
             
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
-            <td class="description last"><p>The parameters for this request</p>
-                <h6>Properties</h6>
+            <td class="description last"><p>Optional custom apiKey for this request (if not set will take the inital apiKey)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>target</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
                 
 
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
+                
 
-        <th>Type</th>
+                
+                </td>
+            
 
-        
+            
 
-        
+            <td class="description last"><p>Optional custom target for this request (if not set will take the inital target)</p></td>
+        </tr>
 
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
     
 
         <tr>
@@ -1320,6 +1410,14 @@ const routeEndpoints = require('./lib/rest/routes')({ apiKey, target, basePath, 
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -1344,17 +1442,18 @@ const routeEndpoints = require('./lib/rest/routes')({ apiKey, target, basePath, 
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
             <td class="description last"><p>The id of the static route for which to show the details</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-            </td>
         </tr>
 
     
@@ -1403,7 +1502,7 @@ const routeEndpoints = require('./lib/rest/routes')({ apiKey, target, basePath, 
 
     
 
-    <h4 class="name" id=".updateStaticNetworkRoute"><span class="type-signature">(static) </span>updateStaticNetworkRoute<span class="signature">(param)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id=".updateStaticNetworkRoute"><span class="type-signature">(static) </span>updateStaticNetworkRoute<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, networkId, srId, name, subnet, gatewayIp, enabled, fixedIpAssignments, reservedIpRanges)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -1415,7 +1514,7 @@ const routeEndpoints = require('./lib/rest/routes')({ apiKey, target, basePath, 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_routes.js.html">rest/routes.js</a>, <a href="rest_routes.js.html#line118">line 118</a>
+        <a href="rest_routes.js.html">rest/routes.js</a>, <a href="rest_routes.js.html#line120">line 120</a>
     </li></ul></dd>
     
 
@@ -1512,6 +1611,8 @@ const routeEndpoints = require('./lib/rest/routes')({ apiKey, target, basePath, 
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -1524,44 +1625,68 @@ const routeEndpoints = require('./lib/rest/routes')({ apiKey, target, basePath, 
 
         <tr>
             
-                <td class="name"><code>param</code></td>
+                <td class="name"><code>apiKey</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type">string</span>
 
 
             
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
-            <td class="description last"><p>The parameters for this request</p>
-                <h6>Properties</h6>
+            <td class="description last"><p>Optional custom apiKey for this request (if not set will take the inital apiKey)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>target</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
                 
 
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
+                
 
-        <th>Type</th>
+                
+                </td>
+            
 
-        
+            
 
-        
+            <td class="description last"><p>Optional custom target for this request (if not set will take the inital target)</p></td>
+        </tr>
 
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
     
 
         <tr>
@@ -1578,6 +1703,14 @@ const routeEndpoints = require('./lib/rest/routes')({ apiKey, target, basePath, 
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -1602,6 +1735,14 @@ const routeEndpoints = require('./lib/rest/routes')({ apiKey, target, basePath, 
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
@@ -1624,6 +1765,14 @@ const routeEndpoints = require('./lib/rest/routes')({ apiKey, target, basePath, 
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -1648,6 +1797,14 @@ const routeEndpoints = require('./lib/rest/routes')({ apiKey, target, basePath, 
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
@@ -1670,6 +1827,14 @@ const routeEndpoints = require('./lib/rest/routes')({ apiKey, target, basePath, 
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -1694,6 +1859,14 @@ const routeEndpoints = require('./lib/rest/routes')({ apiKey, target, basePath, 
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
@@ -1716,6 +1889,14 @@ const routeEndpoints = require('./lib/rest/routes')({ apiKey, target, basePath, 
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -1740,17 +1921,18 @@ const routeEndpoints = require('./lib/rest/routes')({ apiKey, target, basePath, 
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
             <td class="description last"><p>The DHCP reserved IP ranges on the static route</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-            </td>
         </tr>
 
     
@@ -1814,7 +1996,7 @@ const routeEndpoints = require('./lib/rest/routes')({ apiKey, target, basePath, 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Thu Aug 30 2018 15:05:06 GMT+0200 (CEST) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Fri Aug 31 2018 14:54:44 GMT+0200 (CEST) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

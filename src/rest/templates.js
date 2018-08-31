@@ -3,11 +3,10 @@
  * [online documentation]{@link https://dashboard.meraki.com/api_docs#config-templates} for more information.
  *
  * @module meraki/rest/config-templates
- * @param { Object } settings                   The configuration object used to create the api wrapper
- * @param { string } [settings.apiKey='']       The Meraki api key
- * @param { string } [settings.target='api']    The Meraki target
- * @param { string } [settings.basePath='/']    The Meraki base path for the config template ressource
- * @param { string } settings.rateLimiter       The rate limiter (bottleneck) configuration
+ * @param { string } [apiKey='']       The Meraki api key
+ * @param { string } [target='api']    The Meraki target
+ * @param { string } [basePath='/']    The Meraki base path for the config template ressource
+ * @param { string } rateLimiter       The rate limiter (bottleneck) configuration
  * @return { Object } The initialized Meraki REST API wrapper for the config template ressource
  * @example
  * const apiKey = 'secret meraki api key'
@@ -26,8 +25,9 @@ function createTemplatesEndpoints ({ apiKey, target, basePath, baseUrl = 'https:
    * List the configuration templates for this organization.
    *
    * @memberof module:meraki/rest/config-templates
-   * @param { Object } param            The template information
-   * @param { string } param.orgId      The organization id
+   * @param { string } [apiKey]   Optional custom apiKey for this request (if not set will take the inital apiKey)
+   * @param { string } [target]   Optional custom target for this request (if not set will take the inital target)
+   * @param { string } orgId      The organization id
    * @return { Promise } A promise holding the configuration templates for this organization
    * @example <caption>Example response</caption>
    * [
@@ -37,24 +37,25 @@ function createTemplatesEndpoints ({ apiKey, target, basePath, baseUrl = 'https:
    *   }
    * ]
    */
-  function listConfigurationTemplates ({ orgId }) {
+  function listConfigurationTemplates ({ apiKey: localApiKey, target: localTarget, orgId }) {
     if (!orgId) {
       return Promise.reject(new Error('The parameter orgId is mandatory'))
     }
 
-    return axios._get(apiKey, target, `${basePath}/${orgId}/configTemplates`)
+    return axios._get(localApiKey || apiKey, localTarget || target, `${basePath}/${orgId}/configTemplates`)
   }
 
   /**
    * Remove a configuration template.
    *
    * @memberof module:meraki/rest/config-templates
-   * @param { Object } param                  The parameters for this request
-   * @param { string } param.orgId            The organization id
-   * @param { string } param.templateId       The id of the template to delete
+   * @param { string } [apiKey]   Optional custom apiKey for this request (if not set will take the inital apiKey)
+   * @param { string } [target]   Optional custom target for this request (if not set will take the inital target)
+   * @param { string } orgId      The organization id
+   * @param { string } templateId The id of the template to delete
    * @return { Promise } A promise with no data
    */
-  function deleteConfigurationTemplate ({ orgId, templateId }) {
+  function deleteConfigurationTemplate ({ apiKey: localApiKey, target: localTarget, orgId, templateId }) {
     if (!orgId) {
       return Promise.reject(new Error('The parameter orgId is mandatory'))
     }
@@ -62,7 +63,7 @@ function createTemplatesEndpoints ({ apiKey, target, basePath, baseUrl = 'https:
       return Promise.reject(new Error('The parameter templateId is mandatory'))
     }
 
-    return axios._delete(apiKey, target, `${basePath}/${orgId}/configTemplates/${templateId}`)
+    return axios._delete(localApiKey || apiKey, localTarget || target, `${basePath}/${orgId}/configTemplates/${templateId}`)
   }
 
   return {

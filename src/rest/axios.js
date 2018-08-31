@@ -3,9 +3,8 @@ const Bottleneck = require('bottleneck')
 const debug = require('debug')('node-meraki:axios')
 const JSONBigInt = require('json-bigint')({ 'storeAsString': true })
 
-let request = axios
-const limiter = new Bottleneck()
-limiter.initialized = false
+let instance
+let limiter
 
 const handleBigInt = (data) => {
   try {
@@ -15,80 +14,76 @@ const handleBigInt = (data) => {
   }
 }
 
-const getOptions = {
-  method: 'GET',
-  transformResponse: [handleBigInt]
-}
+function _exec ({ method, apiKey, target = 'api', url = '/', data, params }) {
+  const baseURL = instance.defaults.baseURL.replace(/api/, target)
 
-const postOptions = {
-  method: 'POST',
-  transformResponse: [handleBigInt]
-}
+  let maxRedirects = 5
+  if (target === 'api') {
+    maxRedirects = 0
+  }
 
-const putOptions = {
-  method: 'PUT',
-  transformResponse: [handleBigInt]
-}
-
-const deleteOptions = {
-  method: 'DELETE',
-  transformResponse: [handleBigInt]
-}
-
-function _createOptions ({ base, apiKey, target = 'api', url = '/', data, params }) {
-  const baseURL = base.baseURL.replace(/api/, target)
-
-  return Object.assign({}, base, {
+  const options = {
+    method,
     baseURL,
     url,
+    maxRedirects,
     headers: {
       'X-Cisco-Meraki-API-Key': apiKey,
-      'Content-Type': 'application/json',
-      'Cookie': null
+      maxredirects: maxRedirects
     },
     params,
     data
-  })
+  }
+
+  debug(options)
+  if (limiter) {
+    return limiter.schedule(instance, options).then((response) => response.data)
+  } else {
+    return instance(options).then((response) => response.data)
+  }
 }
 
 function _get (apiKey, target, url, params) {
-  const options = _createOptions({ base: getOptions, apiKey, target, url, params })
-  debug(`method=get options=${JSON.stringify(options)}`)
-
-  return request(options).then((response) => response.data)
+  return _exec({ method: 'GET', apiKey, target, url, params })
 }
 
 function _post (apiKey, target, url, data) {
-  const options = _createOptions({ base: postOptions, apiKey, target, url, data })
-  debug(`method=post options=${JSON.stringify(options)}`)
-
-  return request(options).then((response) => response.data)
+  return _exec({ method: 'POST', apiKey, target, url, data })
 }
 
 function _put (apiKey, target, url, data) {
-  const options = _createOptions({ base: putOptions, apiKey, target, url, data })
-  debug(`method=put options=${JSON.stringify(options)}`)
-
-  return request(options).then((response) => response.data)
+  return _exec({ method: 'PUT', apiKey, target, url, data })
 }
 
 function _delete (apiKey, target, url) {
-  const options = _createOptions({ base: deleteOptions, apiKey, target, url })
-  debug(`method=delete options=${JSON.stringify(options)}`)
-
-  return request(options).then((response) => response.data)
+  return _exec({ method: 'DELETE', apiKey, target, url })
 }
 
 module.exports = ({ baseUrl = 'https://api.meraki.com', rateLimiter }) => {
-  getOptions.baseURL = baseUrl
-  postOptions.baseURL = baseUrl
-  putOptions.baseURL = baseUrl
-  deleteOptions.baseURL = baseUrl
+  if (!instance) {
+    instance = axios.create({
+      baseURL: baseUrl,
+      transformResponse: [handleBigInt]
+    })
 
-  if (rateLimiter.enabled && !limiter.initialized) {
-    limiter.initialized = true
-    limiter.updateSettings(rateLimiter)
-    request = limiter.wrap(request)
+    instance.interceptors.response.use((res) => {
+      return res
+    }, (error) => {
+      if (error.response) {
+        if ([301, 302, 307, 308].indexOf(error.response.status) !== -1 && error.response.headers.location) {
+          const config = error.response.config
+          config.url = error.response.headers.location
+          return instance(config)
+        }
+      }
+
+      return Promise.reject(error)
+    })
+
+    if (rateLimiter.enabled) {
+      limiter = new Bottleneck()
+      limiter.updateSettings(rateLimiter)
+    }
   }
 
   return {

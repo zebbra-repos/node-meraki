@@ -19,6 +19,29 @@ npm install --save node-meraki
 ## Documentation
 The jsdoc documentation can be found [here](https://zebbra-repos.github.io/node-meraki/)
 
+## Options
+| Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| **version** | String | Which Meraki api version to use | `v0` |
+| **apiKey** | String | The Meraki api key | |
+| **target** | String | The Meraki target | `api` |
+| **baseUrl** | String | The Meraki base url | `https://api.meraki.com` |
+| **rateLimiter** | Object | The rate limiter [bottleneck](https://github.com/SGrondin/bottleneck/blob/master/README.md) configuration | `see Rate-Limiter section` |
+| **dashboardApiEnabled** | Boolean | Whether to use the dashboard api endpoints (experimental) | `false` |
+| **email** | String | The email to use for login into the dashboard api |  |
+| **password** | String | The password to use for login into the dashboard api |  |
+| **keepAlive** | Boolean | Whether to trigger the idleKeepAlive requests for the stored sessions for the dashboard api | `true` |
+
+### ApiKey and Target
+It is recommended to set the `apiKey` on the initial module configuration. This key will be used for all subsequent api requests. If you need to set the apiKey on a request-level you have the possebility to pass it along for each request.
+
+You have the following three possebilities to set the `target`:
+1. On the initial configuration level. This target will be used for all subsequent api requests.
+1. Leave the `target` blank. In this case the module will use the `api` target which triggers a redirect upon requests. The redirects are handled by this module.
+1. Set the `target` for each request.
+
+> If you want to use the `dashboard api` then you have to set the `target` for the initial configuration
+
 ## Rate-Limiter
 We make use of the [bottleneck](https://github.com/SGrondin/bottleneck) module to implement rate limited requests against the Meraki API. Most users will have a 5-requests-per-second rate limit. To enabled this functionality, pass the following configuration as options:
 ```javascript

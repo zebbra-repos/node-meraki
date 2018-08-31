@@ -3,11 +3,10 @@
  * [online documentation]{@link https://dashboard.meraki.com/api_docs#clients} for more information.
  *
  * @module meraki/rest/clients
- * @param { Object } settings                   The configuration object used to create the api wrapper
- * @param { string } [settings.apiKey='']       The Meraki api key
- * @param { string } [settings.target='api']    The Meraki target
- * @param { string } [settings.basePath='/']    The Meraki base path for the client ressource
- * @param { string } settings.rateLimiter       The rate limiter (bottleneck) configuration
+ * @param { string } [apiKey='']       The Meraki api key
+ * @param { string } [target='api']    The Meraki target
+ * @param { string } [basePath='/']    The Meraki base path for the client ressource
+ * @param { string } rateLimiter       The rate limiter (bottleneck) configuration
  * @return { Object } The initialized Meraki REST API wrapper for the client ressource
  * @example
  * const apiKey = 'secret meraki api key'
@@ -29,9 +28,10 @@ function createClientsEndpoints ({ apiKey = '', target = 'api', basePath = '/', 
    * the switchport field is null.
    *
    * @memberof module:meraki/rest/clients
-   * @param { Object } param                  The parameters for this request
-   * @param { string } param.deviceSerial     The serial number of the device for which to list the clients
-   * @param { number } param.timespan         The timespan for which clients will be fetched. Must be in seconds and less than or equal to a month (2592000 seconds)
+   * @param { string } [apiKey]       Optional custom apiKey for this request (if not set will take the inital apiKey)
+   * @param { string } [target]       Optional custom target for this request (if not set will take the inital target)
+   * @param { string } deviceSerial   The serial number of the device for which to list the clients
+   * @param { number } timespan       The timespan for which clients will be fetched. Must be in seconds and less than or equal to a month (2592000 seconds)
    * @return { Promise } A promise holding the clients for this device
    * @example <caption>Example response</caption>
    * [
@@ -48,23 +48,24 @@ function createClientsEndpoints ({ apiKey = '', target = 'api', basePath = '/', 
    *   ...
    * ]
    */
-  function listClients ({ deviceSerial, timespan = 2592000 }) {
+  function listClients ({ apiKey: localApiKey, target: localTarget, deviceSerial, timespan = 2592000 }) {
     if (!deviceSerial) {
       return Promise.reject(new Error('The parameter deviceSerial is mandatory'))
     }
 
     const params = { timespan }
-    return axios._get(apiKey, target, `${basePath}/devices/${deviceSerial}/clients`, params)
+    return axios._get(localApiKey || apiKey, localTarget || target, `${basePath}/devices/${deviceSerial}/clients`, params)
   }
 
   /**
    * Return the policy assigned to a client on the network.
    *
    * @memberof module:meraki/rest/clients
-   * @param { Object } param                  The parameters for this request
-   * @param { string } param.networkId        The id of the network for which to list the clients
-   * @param { number } param.timespan         The timespan for which clients will be fetched. Must be in seconds and less than or equal to a month (2592000 seconds)
-   * @param { string } param.mac              The mac address of the client for which to show the assigned policy
+   * @param { string } [apiKey]   Optional custom apiKey for this request (if not set will take the inital apiKey)
+   * @param { string } [target]   Optional custom target for this request (if not set will take the inital target)
+   * @param { string } networkId  The id of the network for which to list the clients
+   * @param { number } timespan   The timespan for which clients will be fetched. Must be in seconds and less than or equal to a month (2592000 seconds)
+   * @param { string } mac        The mac address of the client for which to show the assigned policy
    * @return { Promise } A promise holding the clients policy group
    * @example <caption>Example response</caption>
    * {
@@ -73,7 +74,7 @@ function createClientsEndpoints ({ apiKey = '', target = 'api', basePath = '/', 
    *   "groupPolicyId": 101
    * }
    */
-  function showClientPolicy ({ networkId, timespan = 2592000, mac }) {
+  function showClientPolicy ({ apiKey: localApiKey, target: localTarget, networkId, timespan = 2592000, mac }) {
     if (!networkId) {
       return Promise.reject(new Error('The parameter networkId is mandatory'))
     } else if (!mac) {
@@ -81,20 +82,20 @@ function createClientsEndpoints ({ apiKey = '', target = 'api', basePath = '/', 
     }
 
     const params = { timespan }
-    return axios._get(apiKey, target, `${basePath}/networks/${networkId}/clients/${mac}/policy`, params)
+    return axios._get(localApiKey || apiKey, localTarget || target, `${basePath}/networks/${networkId}/clients/${mac}/policy`, params)
   }
 
   /**
    * Update the policy assigned to a client on the network.
    *
    * @memberof module:meraki/rest/clients
-   * @param { Object } param                  The parameters for this request
-   * @param { string } param.networkId        The id of the network for which to list the clients
-   * @param { number } param.timespan         The timespan for which clients will be fetched. Must be in seconds and less than or equal to a month (2592000 seconds)
-   * @param { string } param.mac              The mac address of the client for which to show the assigned policy
-   * @param { string } param.devicePolicy     The group policy (Whitelisted, Blocked, Normal, Group policy)
-   * @param { number } param.groupPolicyId    [optional] If devicePolicy param is set to `group` this param is
-   *                                          used to specify the group ID
+   * @param { string } [apiKey]       Optional custom apiKey for this request (if not set will take the inital apiKey)
+   * @param { string } [target]       Optional custom target for this request (if not set will take the inital target)
+   * @param { string } networkId      The id of the network for which to list the clients
+   * @param { number } timespan       The timespan for which clients will be fetched. Must be in seconds and less than or equal to a month (2592000 seconds)
+   * @param { string } mac            The mac address of the client for which to show the assigned policy
+   * @param { string } devicePolicy   The group policy (Whitelisted, Blocked, Normal, Group policy)
+   * @param { number } groupPolicyId  [optional] If devicePolicy param is set to `group` this param is used to specify the group ID
    * @return { Promise } A promise holding the updated clients policy group
    * @example <caption>Example response</caption>
    * {
@@ -103,7 +104,7 @@ function createClientsEndpoints ({ apiKey = '', target = 'api', basePath = '/', 
    *   "groupPolicyId": 101
    * }
    */
-  function updateClientPolicy ({ networkId, timespan = 2592000, mac, devicePolicy, groupPolicyId }) {
+  function updateClientPolicy ({ apiKey: localApiKey, target: localTarget, networkId, timespan = 2592000, mac, devicePolicy, groupPolicyId }) {
     if (!networkId) {
       return Promise.reject(new Error('The parameter networkId is mandatory'))
     } else if (!mac) {
@@ -111,17 +112,18 @@ function createClientsEndpoints ({ apiKey = '', target = 'api', basePath = '/', 
     }
 
     const data = { timespan, devicePolicy, groupPolicyId }
-    return axios._put(apiKey, target, `${basePath}/networks/${networkId}/clients/${mac}/policy`, data)
+    return axios._put(localApiKey || apiKey, localTarget || target, `${basePath}/networks/${networkId}/clients/${mac}/policy`, data)
   }
 
   /**
    * Return the splash authorization for a client, for each SSID they've associated with through splash.
    *
    * @memberof module:meraki/rest/clients
-   * @param { Object } param                  The parameters for this request
-   * @param { string } param.networkId        The id of the network for which to list the clients
-   * @param { number } param.timespan         The timespan for which clients will be fetched. Must be in seconds and less than or equal to a month (2592000 seconds)
-   * @param { string } param.mac              The mac address of the client for which to show the assigned policy
+   * @param { string } [apiKey]   Optional custom apiKey for this request (if not set will take the inital apiKey)
+   * @param { string } [target]   Optional custom target for this request (if not set will take the inital target)
+   * @param { string } networkId  The id of the network for which to list the clients
+   * @param { number } timespan   The timespan for which clients will be fetched. Must be in seconds and less than or equal to a month (2592000 seconds)
+   * @param { string } mac        The mac address of the client for which to show the assigned policy
    * @return { Promise } A promise holding splash authorization information for this client
    * @example <caption>Example response</caption>
    * {
@@ -137,24 +139,25 @@ function createClientsEndpoints ({ apiKey = '', target = 'api', basePath = '/', 
    *   }
    * }
    */
-  function showClientSplashAuthorization ({ networkId, timespan = 2592000, mac }) {
+  function showClientSplashAuthorization ({ apiKey: localApiKey, target: localTarget, networkId, timespan = 2592000, mac }) {
     if (!networkId) {
       return Promise.reject(new Error('The parameter networkId is mandatory'))
     } else if (!mac) {
       return Promise.reject(new Error('The parameter mac is mandatory'))
     }
 
-    return axios._get(apiKey, target, `${basePath}/networks/${networkId}/clients/${mac}/splashAuthorizationStatus`)
+    return axios._get(localApiKey || apiKey, localTarget || target, `${basePath}/networks/${networkId}/clients/${mac}/splashAuthorizationStatus`)
   }
 
   /**
    * Update a client's splash authorization.
    *
    * @memberof module:meraki/rest/clients
-   * @param { Object } param                  The parameters for this request
-   * @param { string } param.networkId        The id of the network for which to list the clients
-   * @param { string } param.mac              The mac address of the client for which to show the assigned policy
-   * @param { Object } param.ssids            The target SSIDs. For each SSID where isAuthorized is true, the expiration time will automatically be set according to the SSID's splash frequency
+   * @param { string } [apiKey]   Optional custom apiKey for this request (if not set will take the inital apiKey)
+   * @param { string } [target]   Optional custom target for this request (if not set will take the inital target)
+   * @param { string } networkId  The id of the network for which to list the clients
+   * @param { string } mac        The mac address of the client for which to show the assigned policy
+   * @param { Object } ssids      The target SSIDs. For each SSID where isAuthorized is true, the expiration time will automatically be set according to the SSID's splash frequency
    * @return { Promise } A promise holding the updated splash authorization information for this client
    * @example <caption>Example ssids data</caption>
    * {
@@ -181,7 +184,7 @@ function createClientsEndpoints ({ apiKey = '', target = 'api', basePath = '/', 
    *   }
    * }
    */
-  function updateClientSplashAuthorization ({ networkId, mac, ssids }) {
+  function updateClientSplashAuthorization ({ apiKey: localApiKey, target: localTarget, networkId, mac, ssids }) {
     if (!networkId) {
       return Promise.reject(new Error('The parameter networkId is mandatory'))
     } else if (!mac) {
@@ -189,7 +192,7 @@ function createClientsEndpoints ({ apiKey = '', target = 'api', basePath = '/', 
     }
 
     const data = { ssids }
-    return axios._put(apiKey, target, `${basePath}/networks/${networkId}/clients/${mac}/splashAuthorizationStatus`, data)
+    return axios._put(localApiKey || apiKey, localTarget || target, `${basePath}/networks/${networkId}/clients/${mac}/splashAuthorizationStatus`, data)
   }
 
   return {
