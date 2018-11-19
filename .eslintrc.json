@@ -37,6 +37,7 @@
       "prefer-template": 2,
       "promise/valid-params": 0,
       "promise/no-nesting": 0,
-      "strict": [2, "never"]
+      "strict": [2, "never"],
+      "node/no-deprecated-api": 0
   }
 }
