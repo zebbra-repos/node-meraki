@@ -23,5 +23,9 @@
     "recurse": true,
     "verbose": true,
     "readme": "README.md"
+  },
+  "docdash": {
+    "search": true,
+    "collapse": true
   }
 }
