@@ -1,11 +1,10 @@
 const _ = require('lodash')
-const { extractEid } = require('../../lib/utils')
 
 describe('Workflow', () => {
   const { meraki, orgId: templateOrgId, serial, networkId } = global
   const timeout = 1000 * 60
 
-  let orgId, eid
+  let orgId
   it('clones the template organization', async () => {
     const clone = await meraki.cloneOrganization({ orgId: templateOrgId, name: 'Workflow Organization' })
     const expected = {
@@ -13,7 +12,6 @@ describe('Workflow', () => {
     }
 
     orgId = clone.id
-    eid = extractEid(clone.samlConsumerUrl)
     return expect(clone).toMatchObject(expected)
   }, timeout)
 
@@ -160,12 +158,5 @@ describe('Workflow', () => {
     const call = meraki.deleteNetwork({ networkId: network.id })
 
     return expect(call).resolves.toEqual('')
-  }, timeout)
-
-  it('deletes the organization', async () => {
-    const result = await meraki.deleteOrganizationDashboard({ eid })
-    const expected = `Successfully deleted organization eid=${eid}`
-
-    return expect(result).toEqual(expected)
   }, timeout)
 })

@@ -16,10 +16,6 @@ global.meraki = require('../lib')({
   apiKey: config.meraki.apiKey,
   target: config.meraki.target,
   baseUrl: 'http://localhost:8888',
-  dashboardApiEnabled: true,
-  email: config.meraki.email,
-  password: config.meraki.password,
-  keepAlive: false,
   rateLimiter: {
     enabled: true
   }
