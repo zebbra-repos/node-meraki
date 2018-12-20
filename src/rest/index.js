@@ -134,6 +134,14 @@ function createRestAPI (settings) {
    */
   const vlansEndpoints = require('./vlans')({ apiKey, target, baseUrl, basePath: `${basePath}/networks`, rateLimiter })
 
+  /**
+   * The MX L3 firewall endpoints
+   *
+   * @memberof module:meraki/rest
+   * @see module:meraki/rest/mxL3Firewall
+   */
+  const mxL3FirewallEndpoints = require('./mxL3Firewall')({ apiKey, target, baseUrl, basePath: `${basePath}/networks`, rateLimiter })
+
   return Object.assign({},
     adminEndpoints,
     clientEndpoints,
@@ -145,7 +153,8 @@ function createRestAPI (settings) {
     ssidsEndpoints,
     routesEndpoints,
     portsEndpoints,
-    vlansEndpoints
+    vlansEndpoints,
+    mxL3FirewallEndpoints
   )
 }
 

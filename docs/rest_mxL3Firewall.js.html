@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>rest/admins.js - Documentation</title>
+    <title>rest/mxL3Firewall.js - Documentation</title>
     
     
     <script src="scripts/prettify/prettify.js"></script>
@@ -31,7 +31,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">rest/admins.js</h1>
+    <h1 class="page-title">rest/mxL3Firewall.js</h1>
     
 
     
@@ -42,175 +42,122 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>/**
- * Create a Meraki REST API wrapper for the admin ressource. See the
- * [online documentation]{@link https://dashboard.meraki.com/api_docs#admins} for more information.
+ * Create a Meraki REST API wrapper for the mx-l3-firewall ressource. See the
+ * [online documentation]{@link https://dashboard.meraki.com/api_docs#mx-l3-firewall} for more information.
  *
- * @module meraki/rest/admins
- * @param { string } [apiKey='']       The Meraki api key
- * @param { string } [target='api']    The Meraki target
- * @param { string } [basePath='/']    The Meraki base path for the admin ressource
- * @param { string } rateLimiter       The rate limiter (bottleneck) configuration
- * @return { Object } The initialized Meraki REST API wrapper for the admin ressource
+ * @module meraki/rest/mxL3Firewall
+ * @param { string } [apiKey='']      The Meraki api key
+ * @param { string } [target='api']   The Meraki target
+ * @param { string } [basePath='/']   The Meraki base path for the mx-l3-firewall ressource
+ * @param { string } rateLimiter      The rate limiter (bottleneck) configuration
+ * @return { Object } The initialized Meraki REST API wrapper for the mx-l3-firewall ressource
  * @example
  * const apiKey = 'secret meraki api key'
+ * const organizationId = 'meraki organization id'
  * const version = 'v0'
  * const target = 'n12'
- * const basePath = `/${target}/${version}/organizations`
+ * const basePath = `/${target}/${version}/network`
  * const rateLimiter = {
  *  enabled: true
  * }
- * const adminEndpoints = require('./lib/rest/admins')({ apiKey, target, basePath, baseUrl, rateLimiter })
+ * const mxL3FirewallEndpoints = require('./lib/rest/mxL3Firewall')({ apiKey, target, basePath, baseUrl, rateLimiter })
  */
-function createAdminEndpoints ({ apiKey = '', target = 'api', basePath = '/', baseUrl = 'https://api.meraki.com', rateLimiter }) {
+function createMxL3FirewallEndpoints ({ apiKey = '', target = 'api', basePath = '/', baseUrl = 'https://api.meraki.com', rateLimiter }) {
   const axios = require('./axios')({ baseUrl, rateLimiter })
 
   /**
-   * List the dashboard administrators in this organization.
+   * List the L3 firewall rules for an MX network.
    *
-   * @memberof module:meraki/rest/admins
-   * @param { string } [apiKey]   Optional custom apiKey for this request (if not set will take the inital apiKey)
-   * @param { string } [target]   Optional custom target for this request (if not set will take the inital target)
-   * @param { string } orgId      The organization id for which to list the admins
-   * @return { Promise } A promise holding the dashboard administrators in this organization
+   * @memberof module:meraki/rest/mxL3Firewall
+   * @param { string } [apiKey]     Optional custom apiKey for this request (if not set will take the inital apiKey)
+   * @param { string } [target]     Optional custom target for this request (if not set will take the inital target)
+   * @param { string } networkId    The id of the MX network for which to list the L3 firewall rules
+   * @return { Promise } A promise holding the L3 firewall rules this MX network
    * @example &lt;caption>Example response&lt;/caption>
    * [
    *   {
-   *     "id":"1",
-   *     "name":"Miles Meraki",
-   *     "email":"miles@meraki.com",
-   *     "orgAccess":"none",
-   *     "tags":[
-   *       {
-   *         "tag":"west",
-   *         "access":"read-only"
-   *       }
-   *     ],
-   *     "networks":[
-   *       {
-   *         "id":"N_249",
-   *         "access":"full"
-   *       }
-   *     ]
+   *     "comment": "Allow TCP traffic to subnet with HTTP servers.",
+   *     "policy": "allow",
+   *     "protocol": "tcp",
+   *     "destPort": 443,
+   *     "destCidr": "192.168.1.0/24",
+   *     "srcPort": "Any",
+   *     "srcCidr": "Any",
+   *     "syslogEnabled": false
    *   }
    * ]
    */
-  function listAdmins ({ apiKey: localApiKey, target: localTarget, orgId }) {
-    if (!orgId) {
-      return Promise.reject(new Error('The parameter orgId is mandatory'))
+  function listMxL3FirewallRules ({ apiKey: localApiKey, target: localTarget, networkId }) {
+    if (!networkId) {
+      return this.Promise.reject(new Error('The parameter networkId is mandatory'))
     }
 
-    return axios._get(localApiKey || apiKey, localTarget || target, `${basePath}/${orgId}/admins`)
+    return axios._get(localApiKey || apiKey, localTarget || target, `${basePath}/${networkId}/l3FirewallRules`)
   }
 
   /**
-   * Create a new dashboard administrator.
+   * Update the L3 firewall rules of an MX network. Pass an empty array to remove all rules but the default rule.
+   * If the network is bound to a template you have to pass the template id instead of the network id.
    *
-   * @memberof module:meraki/rest/admins
-   * @param { string } [apiKey]   Optional custom apiKey for this request (if not set will take the inital apiKey)
-   * @param { string } [target]   Optional custom target for this request (if not set will take the inital target)
-   * @param { string } orgId      The organization id
-   * @param { string } email      The email of the dashboard administrator. This attribute can not be updated
-   * @param { string } name       The name of the dashboard administrator
-   * @param { string } orgAcess   The privilege of the dashboard administrator on the organization (full, read-only, none)
-   * @param { Array }  tags       The list of tags that the dashboard administrator has privileges on
-   * @return { Promise } A promise holding the newly created dashboard administrator
-   * @example &lt;caption>Example response&lt;/caption>
+   * @memberof module:meraki/rest/mxL3Firewall
+   * @param { string } [apiKey]             Optional custom apiKey for this request (if not set will take the inital apiKey)
+   * @param { string } [target]             Optional custom target for this request (if not set will take the inital target)
+   * @param { string } networkId            The id of the MX network for which to list the L3 firewall rules
+   * @param { array } rules
+   * @param { string } [rules.comment]      Description of the rule
+   * @param { string } rules.policy         'Allow' or 'Deny' traffic specified by this rule
+   * @param { string } rules.protocol       The type of protocol (must be 'tcp', 'udp', 'icmp' or 'any')
+   * @param { string } rules.srcPort        Comma-separated list of source port(s) (integer in the range 1-65535), or 'any'
+   * @param { string } rules.srcCidr        Comma-separated list of source IP address(es) (in IP or CIDR notation), or 'any' (note: FQDN not supported for source addresses)
+   * @param { string } rules.destPort       Comma-separated list of destination port(s) (integer in the range 1-65535), or 'any'
+   * @param { string } rules.destCidr       Comma-separated list of destination IP address(es) (in IP or CIDR notation), fully-qualified domain names (FQDN) or 'any'
+   * @param { string } rules.syslogEnabled  Log this rule to syslog (true or false, boolean value) - only applicable if a syslog has been configured (optional)
+   * @param { boolean } [syslogDefaultRule] Log the special default rule (boolean value - enable only if you've configured a syslog server)
+   * @return { Promise } A promise holding the updated L3 firewall rules this MX network
+   * @example &lt;caption>Example request data&lt;/caption>
    * {
-   *   "id":"212406",
-   *   "name":"Miles Meraki",
-   *   "email":"miles@meraki.com",
-   *   "orgAccess":"none",
-   *   "tags":[
-   *     {
-   *       "tag":"west",
-   *       "access":"read-only"
-   *     }
-   *   ],
-   *   "networks":[]
+   *   "comment": "Allow TCP traffic to subnet with HTTP servers.",
+   *   "policy": "allow",
+   *   "protocol": "tcp",
+   *   "destPort": 443,
+   *   "destCidr": "192.168.1.0/24",
+   *   "srcPort": "Any",
+   *   "srcCidr": "Any",
+   *   "syslogEnabled": false
    * }
-   */
-  function createAdmin ({ apiKey: localApiKey, target: localTarget, orgId, email, name, orgAccess, tags, networks }) {
-    if (!orgId) {
-      return Promise.reject(new Error('The parameter orgId is mandatory'))
-    }
-    if (!orgAccess &amp;&amp; !tags &amp;&amp; !networks) {
-      return Promise.reject(new Error('Administrator accounts must be granted access to either the Organization, Networks, or Tags'))
-    }
-
-    const data = { email, name, orgAccess, tags, networks }
-    return axios._post(localApiKey || apiKey, localTarget || target, `${basePath}/${orgId}/admins`, data)
-  }
-
-  /**
-   * Update an administrator.
-   *
-   * @memberof module:meraki/rest/admins
-   * @param { string } [apiKey]   Optional custom apiKey for this request (if not set will take the inital apiKey)
-   * @param { string } [target]   Optional custom target for this request (if not set will take the inital target)
-   * @param { string } orgId      The organization id
-   * @param { string } adminId    The id of the dashboard administrator
-   * @param { string } email      The email of the dashboard administrator. This attribute can not be updated
-   * @param { string } name       The name of the dashboard administrator
-   * @param { string } orgAcess   The privilege of the dashboard administrator on the organization (full, read-only, none)
-   * @param { Array }  tags       The list of tags that the dashboard administrator has privileges on
-   * @return { Promise } A promise holding the updated dashboard administrator
    * @example &lt;caption>Example response&lt;/caption>
-   * {
-   *   "id":"212406",
-   *   "name":"Miles Meraki",
-   *   "email":"miles@meraki.com",
-   *   "orgAccess":"read-only",
-   *   "tags":[
-   *     {
-   *       "tag":"west",
-   *       "access":"read-only"
-   *     }
-   *   ],
-   *   "networks":[]
-   * }
+   * [
+   *   {
+   *     "comment": "Allow TCP traffic to subnet with HTTP servers.",
+   *     "policy": "allow",
+   *     "protocol": "tcp",
+   *     "destPort": 443,
+   *     "destCidr": "192.168.1.0/24",
+   *     "srcPort": "Any",
+   *     "srcCidr": "Any",
+   *     "syslogEnabled": false
+   *   }
+   * ]
    */
-  function updateAdmin ({ apiKey: localApiKey, target: localTarget, orgId, adminId, email, name, orgAccess, tags, networks }) {
-    if (!orgId) {
-      return Promise.reject(new Error('The parameter orgId is mandatory'))
-    }
-    if (!adminId) {
-      return Promise.reject(new Error('The parameter adminId is mandatory'))
-    }
-
-    const data = { email, name, orgAccess, tags, networks }
-    return axios._put(localApiKey || apiKey, localTarget || target, `${basePath}/${orgId}/admins/${adminId}`, data)
-  }
-
-  /**
-   * Revoke all access for a dashboard administrator within this organization.
-   *
-   * @memberof module:meraki/rest/admins
-   * @param { string } [apiKey]   Optional custom apiKey for this request (if not set will take the inital apiKey)
-   * @param { string } [target]   Optional custom target for this request (if not set will take the inital target)
-   * @param { string } orgId      The organization id
-   * @param { string } adminId    The if of the dashboard administrator to delete
-   * @return { Promise } A promise with no data
-   */
-  function deleteAdmin ({ apiKey: localApiKey, target: localTarget, orgId, adminId }) {
-    if (!orgId) {
-      return Promise.reject(new Error('The parameter orgId is mandatory'))
-    }
-    if (!adminId) {
-      return Promise.reject(new Error('The parameter adminId is mandatory'))
+  function updateMxL3FirewallRule ({ apiKey: localApiKey, target: localTarget, networkId, rules, syslogDefaultRule }) {
+    if (!networkId) {
+      return Promise.reject(new Error('The parameter networkId is mandatory'))
+    } else if (!rules) {
+      return Promise.reject(new Error('The parameter rules is mandatory'))
+    } else if (!Array.isArray(rules)) {
+      return Promise.reject(new Error('The parameter rules must be of type array'))
     }
 
-    return axios._delete(localApiKey || apiKey, localTarget || target, `${basePath}/${orgId}/admins/${adminId}`)
+    return axios._put(localApiKey || apiKey, localTarget || target, `${basePath}/${networkId}/l3FirewallRules`, { rules, syslogDefaultRule })
   }
 
   return {
-    listAdmins,
-    createAdmin,
-    updateAdmin,
-    deleteAdmin
+    listMxL3FirewallRules,
+    updateMxL3FirewallRule
   }
 }
 
-module.exports = createAdminEndpoints
+module.exports = createMxL3FirewallEndpoints
 </code></pre>
         </article>
     </section>
