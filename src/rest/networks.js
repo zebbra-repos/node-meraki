@@ -305,6 +305,97 @@ function createNetworksEndpoints ({ apiKey = '', target = 'api', basePath = '/',
     return axios._get(localApiKey || apiKey, localTarget || target, `${basePath}/networks/${networkId}/accessPolicies`)
   }
 
+  /**
+   * List the site-to-site VPN settings of a network. Only valid for MX networks.
+   *
+   * @memberof module:meraki/rest/networks
+   * @param { string } [apiKey]   Optional custom apiKey for this request (if not set will take the inital apiKey)
+   * @param { string } [target]   Optional custom target for this request (if not set will take the inital target)
+   * @param { string } networkId  The id of the network for which to list the site-to-site VPN settings
+   * @return { Promise } A promise holding the network site-to-site VPN settings
+   * @example <caption>Example response</caption>
+   * {
+   *   "mode": "spoke",
+   *   "hubs": [
+   *     {
+   *       "hubId": "N_4901849",
+   *       "useDefaultRoute": true
+   *     },
+   *     {
+   *       "hubId": "N_1892489",
+   *       "useDefaultRoute": false
+   *     }
+   *   ],
+   *   "subnets": [
+   *     {
+   *       "localSubnet": "192.168.1.0/24",
+   *       "useVpn": true
+   *     },
+   *     {
+   *       "localSubnet": "192.168.128.0/24",
+   *       "useVpn": true
+   *     }
+   *   ]
+   * }
+   */
+  function listSiteToSiteVpn ({ apiKey: localApiKey, target: localTarget, networkId }) {
+    if (!networkId) {
+      return Promise.reject(new Error('The parameter networkId is mandatory'))
+    }
+
+    return axios._get(localApiKey || apiKey, localTarget || target, `${basePath}/networks/${networkId}/siteToSiteVpn`)
+  }
+
+  /**
+   * Update the site-to-site VPN settings of a network. Only valid for MX networks in NAT mode.
+   *
+   * @memberof module:meraki/rest/networks
+   * @param { string } [apiKey]   Optional custom apiKey for this request (if not set will take the inital apiKey)
+   * @param { string } [target]   Optional custom target for this request (if not set will take the inital target)
+   * @param { string } networkId  The id of the network for which to update the site-to-site VPN settings
+   * @param { string } mode       The site-to-site VPN mode: hub, spoke, or none
+   * @param { array } hubs        The list of VPN hubs, in order of preference. In spoke mode, at least 1 hub is required
+   * @param { array } subnets     The list of subnets and their VPN presence
+   * @return { Promise } A promise holding the updated network site-to-site VPN settings
+   * @example <caption>Example response</caption>
+   * {
+   *   "mode": "spoke",
+   *   "hubs": [
+   *     {
+   *       "hubId": "N_4901849",
+   *       "useDefaultRoute": true
+   *     },
+   *     {
+   *       "hubId": "N_1892489",
+   *       "useDefaultRoute": false
+   *     }
+   *   ],
+   *   "subnets": [
+   *     {
+   *       "localSubnet": "192.168.1.0/24",
+   *       "useVpn": true
+   *     },
+   *     {
+   *       "localSubnet": "192.168.128.0/24",
+   *       "useVpn": true
+   *     }
+   *   ]
+   * }
+   */
+  function updateSiteToSiteVpn ({ apiKey: localApiKey, target: localTarget, networkId, mode, hubs, subnets }) {
+    if (!networkId) {
+      return Promise.reject(new Error('The parameter networkId is mandatory'))
+    }
+
+    const data = {
+      mode,
+      hubs,
+      subnets
+    }
+
+    return axios._put(localApiKey || apiKey, localTarget || target, `${basePath}/networks/${networkId}/siteToSiteVpn`, data)
+  }
+
   return {
     listNetworks,
     showNetwork,
@@ -314,7 +405,9 @@ function createNetworksEndpoints ({ apiKey = '', target = 'api', basePath = '/',
     bindNetworkToTemplate,
     unbindNetworkFromTemplate,
     listTrafficAnalysis,
-    listNetworkAccessPolicies
+    listNetworkAccessPolicies,
+    listSiteToSiteVpn,
+    updateSiteToSiteVpn
   }
 }
 
