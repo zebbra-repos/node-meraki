@@ -1,10 +1,6 @@
 const config = require('config')
 const debug = require('debug')('node-meraki:test')
 
-require('jest-plugins')([
-  'jest-plugins-recommended'
-])
-
 global.orgId = config.meraki.orgId
 global.templateId = 'L_682858293500056960'
 global.networkId = 'L_682858293500060703'
