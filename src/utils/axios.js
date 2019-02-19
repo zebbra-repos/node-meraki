@@ -5,6 +5,7 @@ const JSONBigInt = require('json-bigint')({ 'storeAsString': true })
 
 let instance
 let limiter
+const cookies = new Map()
 
 const handleBigInt = (data) => {
   try {
@@ -29,8 +30,11 @@ function _exec ({ method, apiKey, target = 'api', url = '/', data, params = {} }
     maxRedirects,
     headers: {
       'X-Cisco-Meraki-API-Key': apiKey,
-      maxredirects: maxRedirects
+      maxredirects: maxRedirects,
+      'Cookie': Array.from(cookies).map((cookie) => `${cookie[0]}=${cookie[1]}`).join(';'),
+      accept: 'application/json'
     },
+    withCredentials: true,
     params,
     data
   }
@@ -59,6 +63,14 @@ function _delete (apiKey, target, url) {
   return _exec({ method: 'DELETE', apiKey, target, url })
 }
 
+function setCookie (key, value) {
+  cookies.set(key, value)
+}
+
+function deleteCookie (key) {
+  cookies.delete(key)
+}
+
 module.exports = ({ baseUrl, rateLimiter }) => {
   if (!instance) {
     instance = axios.create({
@@ -67,6 +79,11 @@ module.exports = ({ baseUrl, rateLimiter }) => {
     })
 
     instance.interceptors.response.use((res) => {
+      if (res.headers.hasOwnProperty('set-cookie')) {
+        for (const cookie of res.headers['set-cookie']) {
+          setCookie(cookie.split('=')[0], cookie.split('=')[1].split(';')[0])
+        }
+      }
       return res
     }, (error) => {
       if (error.response) {
@@ -90,6 +107,8 @@ module.exports = ({ baseUrl, rateLimiter }) => {
     _get,
     _post,
     _put,
-    _delete
+    _delete,
+    setCookie,
+    deleteCookie
   }
 }
