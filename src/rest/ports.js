@@ -20,7 +20,7 @@
  * const portEndpoints = require('./lib/rest/ports')({ apiKey, target, basePath, baseUrl, rateLimiter })
  */
 function createPortsEndpoints ({ apiKey = '', target = 'api', basePath = '/', baseUrl = 'https://api.meraki.com', rateLimiter }) {
-  const axios = require('./axios')({ baseUrl, rateLimiter })
+  const axios = require('../utils/axios')({ baseUrl, rateLimiter })
 
   /**
    * List the switch ports for a switch.

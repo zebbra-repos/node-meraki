@@ -20,7 +20,7 @@
  * const deviceEndpoints = require('./lib/rest/devices')({ apiKey, target, basePath, baseUrl, rateLimiter })
  */
 function createDevicesEndpoints ({ apiKey = '', target = 'api', basePath = '/', baseUrl = 'https://api.meraki.com', rateLimiter }) {
-  const axios = require('./axios')({ baseUrl, rateLimiter })
+  const axios = require('../utils/axios')({ baseUrl, rateLimiter })
 
   /**
    * List the devices in a network.

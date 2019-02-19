@@ -20,7 +20,7 @@
  * const routeEndpoints = require('./lib/rest/routes')({ apiKey, target, basePath, baseUrl })
  */
 function createRoutesEndpoints ({ apiKey, target, basePath, baseUrl = 'https://api.meraki.com', rateLimiter }) {
-  const axios = require('./axios')({ baseUrl, rateLimiter })
+  const axios = require('../utils/axios')({ baseUrl, rateLimiter })
 
   /**
    * List the static routes for this network.

@@ -19,7 +19,7 @@
  * const templateEndpoints = require('./lib/rest/templates')({ apiKey, target, basePath, baseUrl, rateLimiter })
  */
 function createTemplatesEndpoints ({ apiKey, target, basePath, baseUrl = 'https://api.meraki.com', rateLimiter }) {
-  const axios = require('./axios')({ baseUrl, rateLimiter })
+  const axios = require('../utils/axios')({ baseUrl, rateLimiter })
 
   /**
    * List the configuration templates for this organization.

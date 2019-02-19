@@ -14,8 +14,8 @@ const handleBigInt = (data) => {
   }
 }
 
-function _exec ({ method, apiKey, target = 'api', url = '/', data, params }) {
-  const baseURL = instance.defaults.baseURL.replace(/api/, target)
+function _exec ({ method, apiKey, target = 'api', url = '/', data, params = {} }) {
+  const baseURL = instance.defaults.baseURL.replace(/api/, target).replace(/account/, target)
 
   let maxRedirects = 5
   if (target === 'api') {
@@ -37,29 +37,29 @@ function _exec ({ method, apiKey, target = 'api', url = '/', data, params }) {
 
   debug(options)
   if (limiter) {
-    return limiter.schedule(instance, options).then((response) => response.data)
+    return limiter.schedule(instance, options).then((response) => (params.withFullResponse) ? response : response.data)
   } else {
-    return instance(options).then((response) => response.data)
+    return instance(options).then((response) => (params.withFullResponse) ? response : response.data)
   }
 }
 
-function _get (apiKey, target, url, params) {
+function _get (apiKey, target, url, params = {}) {
   return _exec({ method: 'GET', apiKey, target, url, params })
 }
 
-function _post (apiKey, target, url, data) {
-  return _exec({ method: 'POST', apiKey, target, url, data })
+function _post (apiKey, target, url, data, params = {}) {
+  return _exec({ method: 'POST', apiKey, target, url, data, params })
 }
 
-function _put (apiKey, target, url, data) {
-  return _exec({ method: 'PUT', apiKey, target, url, data })
+function _put (apiKey, target, url, data, params = {}) {
+  return _exec({ method: 'PUT', apiKey, target, url, data, params })
 }
 
 function _delete (apiKey, target, url) {
   return _exec({ method: 'DELETE', apiKey, target, url })
 }
 
-module.exports = ({ baseUrl = 'https://api.meraki.com', rateLimiter }) => {
+module.exports = ({ baseUrl, rateLimiter }) => {
   if (!instance) {
     instance = axios.create({
       baseURL: baseUrl,

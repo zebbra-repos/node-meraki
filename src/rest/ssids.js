@@ -20,7 +20,7 @@
  * const ssidEndpoints = require('./lib/rest/ssids')({ apiKey, target, basePath, baseUrl, rateLimiter })
  */
 function createSSIDsEndpoints ({ apiKey, target, basePath, baseUrl = 'https://api.meraki.com', rateLimiter }) {
-  const axios = require('./axios')({ baseUrl, rateLimiter })
+  const axios = require('../utils/axios')({ baseUrl, rateLimiter })
 
   /**
    * List the SSIDs in a network.

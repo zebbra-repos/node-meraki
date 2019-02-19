@@ -20,7 +20,7 @@
  * const networkEndpoints = require('./lib/rest/networks')({ apiKey, target, basePath, baseUrl, rateLimiter })
  */
 function createNetworksEndpoints ({ apiKey = '', target = 'api', basePath = '/', baseUrl = 'https://api.meraki.com', rateLimiter }) {
-  const axios = require('./axios')({ baseUrl, rateLimiter })
+  const axios = require('../utils/axios')({ baseUrl, rateLimiter })
 
   /**
    * List the networks in an organization.

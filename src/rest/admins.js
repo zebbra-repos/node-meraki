@@ -19,7 +19,7 @@
  * const adminEndpoints = require('./lib/rest/admins')({ apiKey, target, basePath, baseUrl, rateLimiter })
  */
 function createAdminEndpoints ({ apiKey = '', target = 'api', basePath = '/', baseUrl = 'https://api.meraki.com', rateLimiter }) {
-  const axios = require('./axios')({ baseUrl, rateLimiter })
+  const axios = require('../utils/axios')({ baseUrl, rateLimiter })
 
   /**
    * List the dashboard administrators in this organization.

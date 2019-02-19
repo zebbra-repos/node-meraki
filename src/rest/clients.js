@@ -20,7 +20,7 @@
  * const clientEndpoints = require('./lib/rest/clients')({ apiKey, target, basePath, baseUrl, rateLimiter })
  */
 function createClientsEndpoints ({ apiKey = '', target = 'api', basePath = '/', baseUrl = 'https://api.meraki.com', rateLimiter }) {
-  const axios = require('./axios')({ baseUrl, rateLimiter })
+  const axios = require('../utils/axios')({ baseUrl, rateLimiter })
 
   /**
    * List the clients of a device, up to a maximum of a month ago. The usage of each client is
