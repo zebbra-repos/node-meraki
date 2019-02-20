@@ -20,7 +20,7 @@
  * const mxL3FirewallEndpoints = require('./lib/rest/mxL3Firewall')({ apiKey, target, basePath, baseUrl, rateLimiter })
  */
 function createMxL3FirewallEndpoints ({ apiKey = '', target = 'api', basePath = '/', baseUrl = 'https://api.meraki.com', rateLimiter }) {
-  const axios = require('../utils/axios')({ baseUrl, rateLimiter })
+  const axios = require('./axios')({ baseUrl, rateLimiter })
 
   /**
    * List the L3 firewall rules for an MX network.

@@ -20,7 +20,7 @@
  * const vlanEndpoints = require('./lib/rest/vlans')({ apiKey, target, basePath, baseUrl, port, rateLimiter })
  */
 function createVlansEndpoints ({ apiKey, target, basePath, baseUrl = 'https://api.meraki.com', rateLimiter }) {
-  const axios = require('../utils/axios')({ baseUrl, rateLimiter })
+  const axios = require('./axios')({ baseUrl, rateLimiter })
 
   /**
    * List the VLANs for this network.

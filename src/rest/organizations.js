@@ -20,7 +20,7 @@
  * const organizationEndpoints = require('./lib/rest/organization')({ apiKey, target, basePath, baseUrl, rateLimiter })
  */
 function createOrganizationsEndpoints ({ apiKey = '', target = 'api', basePath = '/', baseUrl = 'https://api.meraki.com', rateLimiter }) {
-  const axios = require('../utils/axios')({ baseUrl, rateLimiter })
+  const axios = require('./axios')({ baseUrl, rateLimiter })
 
   /**
    * List the organizations that the user has privileges on.

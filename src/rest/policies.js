@@ -20,7 +20,7 @@
  * const policyEndpoints = require('./lib/rest/policies')({ apiKey, target, basePath, baseUrl, rateLimiter })
  */
 function createPoliciesEndpoints ({ apiKey = '', target = 'api', basePath = '/', baseUrl = 'https://api.meraki.com', rateLimiter }) {
-  const axios = require('../utils/axios')({ baseUrl, rateLimiter })
+  const axios = require('./axios')({ baseUrl, rateLimiter })
 
   /**
    * List the group policies in a network.
