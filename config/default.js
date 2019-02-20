@@ -14,7 +14,6 @@ module.exports = {
     target: 'n213',
     apiKey: 'secret',
     orgId: '730666',
-    email: 'secret',
-    password: 'secret'
+    frontend: false
   }
 }

@@ -6,6 +6,11 @@
  */
 module.exports = (settings) => {
   const api = require('./rest')(settings)
+  let frontend = {}
+  if (settings.frontend) frontend = require('./frontend')(settings)
 
-  return api
+  return Object.assign({},
+    api,
+    frontend
+  )
 }

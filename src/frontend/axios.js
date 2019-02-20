@@ -6,6 +6,7 @@ const JSONBigInt = require('json-bigint')({ 'storeAsString': true })
 let instance
 let limiter
 let csrfToken = 'asdf'
+let loginFunction = () => { }
 const cookies = new Map()
 
 const handleBigInt = (data) => {
@@ -16,7 +17,11 @@ const handleBigInt = (data) => {
   }
 }
 
-function _exec ({ method, apiKey, target = 'api', url = '/', data, params = {} }) {
+async function _exec ({ method, apiKey, target = 'api', url = '/', data, params = {} }) {
+  if (cookies.size < 1 && url !== '/login/login') {
+    await loginFunction()
+  }
+
   const baseURL = instance.defaults.baseURL.replace(/api/, target).replace(/account/, target)
 
   let maxRedirects = 5
@@ -46,10 +51,13 @@ function _exec ({ method, apiKey, target = 'api', url = '/', data, params = {} }
 
   debug(options)
   if (limiter) {
-    return limiter.schedule(instance, options).then((response) => {
+    return limiter.schedule(instance, options).then(async (response) => {
       try {
         const parsed = JSON.parse(response.data)
-        if (parsed.mode === 'login') return new Error('session ended')
+        if (parsed.mode === 'login') {
+          await loginFunction()
+          return _exec({ method, apiKey, target, url, data, params })
+        }
       } catch (err) { }
 
       if (params.withFullResponse) return response
@@ -57,10 +65,13 @@ function _exec ({ method, apiKey, target = 'api', url = '/', data, params = {} }
       return response.data
     })
   } else {
-    return instance(options).then((response) => {
+    return instance(options).then(async (response) => {
       try {
         const parsed = JSON.parse(response.data)
-        if (parsed.mode === 'login') return new Error('session ended')
+        if (parsed.mode === 'login') {
+          await loginFunction()
+          return _exec({ method, apiKey, target, url, data, params })
+        }
       } catch (err) { }
 
       if (params.withFullResponse) return response
@@ -96,6 +107,10 @@ function deleteCookie (key) {
 
 function setCSRFToken (token) {
   csrfToken = token
+}
+
+function setLoginFunction (func) {
+  loginFunction = func
 }
 
 module.exports = ({ baseUrl, rateLimiter, headers }) => {
@@ -139,6 +154,7 @@ module.exports = ({ baseUrl, rateLimiter, headers }) => {
     _delete,
     setCookie,
     deleteCookie,
-    setCSRFToken
+    setCSRFToken,
+    setLoginFunction
   }
 }

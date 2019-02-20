@@ -26,6 +26,9 @@ The jsdoc documentation can be found [here](https://zebbra-repos.github.io/node-
 | **apiKey** | String | The Meraki api key | |
 | **target** | String | The Meraki target | `api` |
 | **baseUrl** | String | The Meraki base url | `https://api.meraki.com` |
+| **frontend** | boolean | Activates the frontend API too | false |
+| **[email]** | string | E-Mail for the Frontend (mandatory if frontend is set to true) |  |
+| **[password]** | string | Password for the Frontend (mandatory if frontend is set to true) |  |
 | **rateLimiter** | Object | The rate limiter [bottleneck](https://github.com/SGrondin/bottleneck/blob/master/README.md) configuration | `see Rate-Limiter section` |
 
 ### ApiKey and Target

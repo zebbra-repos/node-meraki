@@ -17,7 +17,7 @@ const debug = require('debug')('node-meraki:frontend/authentication')
  * }
  * const authenticationEndpoints = require('./lib/frontend/authentication')({ basePath, baseUrl, rateLimiter })
  */
-function createAuthenticationEndpoints ({ targetOrg, basePath, baseUrl, rateLimiter }) {
+function createAuthenticationEndpoints ({ targetOrg, basePath, baseUrl, rateLimiter, emailOrg, passwordOrg }) {
   const axios = require('./axios')({ baseUrl, rateLimiter })
 
   /**
@@ -25,8 +25,8 @@ function createAuthenticationEndpoints ({ targetOrg, basePath, baseUrl, rateLimi
    *
    * @memberof module:meraki/frontend/authentication
    * @param { string } [target=targetOrt]   Optional custom target for this request (if not set will take the inital target)
-   * @param { string } [email]              email address of the user to authenticate with
-   * @param { string } [password]           password of the user to authenticate with
+   * @param { string } [email=emailOrg]              email address of the user to authenticate with
+   * @param { string } [password=passwordOrg]           password of the user to authenticate with
    * @return { Promise } A promise holding the organizations this user has privileges on
    * @example <caption>Example response</caption>
    * {
@@ -69,7 +69,7 @@ function createAuthenticationEndpoints ({ targetOrg, basePath, baseUrl, rateLimi
    *      support_password: '123' }],
    *    mobile_auth_token:'MY_SUPER_SECRET_TOKEN' }
    */
-  async function login ({ target = targetOrg, email, password }) {
+  async function login ({ target = targetOrg, email = emailOrg, password = passwordOrg }) {
     if (typeof email === 'undefined') return Promise.reject(new Error('the parameter email is mandatory'))
     if (email.indexOf('@') < -1) return Promise.reject(new Error('the parameter email is in the wrong format'))
     if (typeof password === 'undefined') return Promise.reject(new Error('the parameter password is mandatory'))

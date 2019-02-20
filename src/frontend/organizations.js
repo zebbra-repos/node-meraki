@@ -72,7 +72,7 @@ function createOrganizationEndpoints ({ targetOrg, basePath, baseUrl, rateLimite
       "support_password":"1234"
     }
    */
-  async function getOrganization ({ target, eid }) {
+  async function getOrganization ({ target = targetOrg, eid }) {
     if (typeof eid === 'undefined') return Promise.reject(new Error('the parameter email is mandatory'))
 
     debug(`get organization information ${eid}`)

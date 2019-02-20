@@ -24,8 +24,8 @@ const debug = require('debug')('node-meraki:frontend')
  * }
  * const meraki = require('./lib')({ target, baseUrl, rateLimiter })
  */
-async function createFrontendApi (settings) {
-  const { target = 'account', email, password } = settings
+function createFrontendApi (settings) {
+  const { target = 'account' } = settings
   let { baseUrl = 'https://account.meraki.com' } = settings
   baseUrl = baseUrl.replace(/account/, target)
 
@@ -57,8 +57,10 @@ async function createFrontendApi (settings) {
  */
   const organizationEndpoints = require('./organizations')({ target: target, basePath: '/o', baseUrl, rateLimiter })
 
-  // login into the account
-  await authenticationEndpoints.login({ target, email, password })
+  require('./axios')({ baseUrl, rateLimiter }).setLoginFunction(async () => {
+    const { email, password } = settings
+    return authenticationEndpoints.login({ email, password })
+  })
 
   return Object.assign({},
     authenticationEndpoints,
