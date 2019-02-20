@@ -12,6 +12,9 @@ global.meraki = require('../lib')({
   apiKey: config.meraki.apiKey,
   target: config.meraki.target,
   baseUrl: 'http://localhost:8888',
+  frontend: true,
+  email: 'test@email.com',
+  password: 'MY_SUPER_SECURE_PASSWORD',
   rateLimiter: {
     enabled: true
   }
