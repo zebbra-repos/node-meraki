@@ -15,7 +15,7 @@ const handleBigInt = (data) => {
 }
 
 function _exec ({ method, apiKey, target = 'api', url = '/', data, params = {} }) {
-  const baseURL = instance.defaults.baseURL.replace(/api/, target).replace(/account/, target)
+  const baseURL = instance.defaults.baseURL.replace(/api/, target)
 
   let maxRedirects = 5
   if (target === 'api') {
