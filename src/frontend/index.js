@@ -47,13 +47,22 @@ async function createFrontendApi (settings) {
    * @memberof module:meraki/frontend
    * @see module:meraki/frontend/authentication
    */
-  const authenticationEndpoints = require('./authentication')({ target, basePath: '', baseUrl, rateLimiter })
+  const authenticationEndpoints = require('./authentication')({ target: target, basePath: '', baseUrl, rateLimiter })
+
+  /**
+ * The organization endpoints
+ *
+ * @memberof module:meraki/frontend
+ * @see module:meraki/frontend/organizations
+ */
+  const organizationEndpoints = require('./organizations')({ target: target, basePath: '/o', baseUrl, rateLimiter })
 
   // login into the account
   await authenticationEndpoints.login({ target, email, password })
 
   return Object.assign({},
-    authenticationEndpoints
+    authenticationEndpoints,
+    organizationEndpoints
   )
 }
 
