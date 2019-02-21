@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>rest/templates.js - Documentation</title>
+    <title>frontend/index.js - Documentation</title>
     
     
     <script src="scripts/prettify/prettify.js"></script>
@@ -33,7 +33,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">rest/templates.js</h1>
+    <h1 class="page-title">frontend/index.js</h1>
     
 
     
@@ -43,81 +43,77 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/**
- * Create a Meraki REST API wrapper for the config template ressource. See the
- * [online documentation]{@link https://dashboard.meraki.com/api_docs#config-templates} for more information.
+            <pre class="prettyprint source linenums"><code>const Bottleneck = require('bottleneck')
+const debug = require('debug')('node-meraki:frontend')
+
+/**
+ * Create a Meraki Frontend API wrapper. This is uses the same API as the Meraki webfrontend. So stuff can break
  *
- * @module meraki/rest/config-templates
- * @param { string } [apiKey='']       The Meraki api key
- * @param { string } [target='api']    The Meraki target
- * @param { string } [basePath='/']    The Meraki base path for the config template ressource
- * @param { string } rateLimiter       The rate limiter (bottleneck) configuration
- * @return { Object } The initialized Meraki REST API wrapper for the config template ressource
+ * @module meraki/frontend
+ * @param { string } [target='account']                      The Meraki target
+ * @param { string } [baseUrl='https://account.meraki.com']  The Meraki organization id
+ * @param { string } [email]                             The E-Mail address to login with
+ * @param { string } [password]                          The password for the login process
+ * @param { Object } [rateLimiter]                       The rate limiter ([bottleneck]{@link https://github.com/SGrondin/bottleneck/blob/master/README.md}) configuration
+ * @param { boolean } [rateLimiter.enabled]              Whether use the rate limiter
+ * @param { number } [rateLimiter.maxConcurrent=5]       How many jobs can be running at the same time (null for unlimited)
+ * @param { number } [rateLimiter.minTime=200]           How long to wait after launching a job before launching another one
+ * @param { number } [rateLimiter.highWater=1000]        How long can the queue get? When the queue length exceeds that value, the selected `strategy` is executed to shed the load
+ * @param { string } [rateLimiter.strategy='LEAK']       Which strategy to use if the queue gets longer than the high water mark. [Read about strategies]{@link https://github.com/SGrondin/bottleneck/blob/master/README.md#strategies}.
+ * @return { Promise&lt;Object> } The initialized Meraki Frontend API wrapper
  * @example
- * const apiKey = 'secret meraki api key'
- * const version = 'v0'
  * const target = 'n12'
- * const basePath = `/${target}/${version}`
+ * const baseUrl = 'https://account.meraki.com' (default)
  * const rateLimiter = {
- *  enabled: true
+ *   enabled: true
  * }
- * const templateEndpoints = require('./lib/rest/templates')({ apiKey, target, basePath, baseUrl, rateLimiter })
+ * const meraki = require('./lib')({ target, baseUrl, rateLimiter })
  */
-function createTemplatesEndpoints ({ apiKey, target, basePath, baseUrl = 'https://api.meraki.com', rateLimiter }) {
-  const axios = require('./axios')({ baseUrl, rateLimiter })
+function createFrontendApi (settings) {
+  const { target = 'account' } = settings
+  let { baseUrl = 'https://account.meraki.com' } = settings
+  baseUrl = baseUrl.replace(/account/, target)
+
+  // setup the rate limiter configuration
+  const rateLimiterConfig = settings.rateLimiter || {}
+  const rateLimiter = {
+    enabled: rateLimiterConfig.enabled !== false,
+    maxConcurrent: rateLimiterConfig.maxConcurrent || 5,
+    minTime: rateLimiterConfig.minTime || 200,
+    highWater: rateLimiterConfig.highWater || 1000,
+    strategy: Bottleneck.strategy[rateLimiterConfig.strategy] || Bottleneck.strategy.LEAK
+  }
+
+  debug(`init frontend api wrapper with settings target=${target} baseUrl=${baseUrl} rateLimiter=${JSON.stringify(rateLimiter)}`)
 
   /**
-   * List the configuration templates for this organization.
+   * The authentication endpoints
    *
-   * @memberof module:meraki/rest/config-templates
-   * @param { string } [apiKey]   Optional custom apiKey for this request (if not set will take the inital apiKey)
-   * @param { string } [target]   Optional custom target for this request (if not set will take the inital target)
-   * @param { string } orgId      The organization id
-   * @return { Promise } A promise holding the configuration templates for this organization
-   * @example &lt;caption>Example response&lt;/caption>
-   * [
-   *   {
-   *     "id": "N_1234",
-   *     "name": "Your config template"
-   *   }
-   * ]
+   * @memberof module:meraki/frontend
+   * @see module:meraki/frontend/authentication
    */
-  function listConfigurationTemplates ({ apiKey: localApiKey, target: localTarget, orgId }) {
-    if (!orgId) {
-      return Promise.reject(new Error('The parameter orgId is mandatory'))
-    }
-
-    return axios._get(localApiKey || apiKey, localTarget || target, `${basePath}/${orgId}/configTemplates`)
-  }
+  const authenticationEndpoints = require('./authentication')({ target: target, basePath: '', baseUrl, rateLimiter })
 
   /**
-   * Remove a configuration template.
-   *
-   * @memberof module:meraki/rest/config-templates
-   * @param { string } [apiKey]   Optional custom apiKey for this request (if not set will take the inital apiKey)
-   * @param { string } [target]   Optional custom target for this request (if not set will take the inital target)
-   * @param { string } orgId      The organization id
-   * @param { string } templateId The id of the template to delete
-   * @return { Promise } A promise with no data
-   */
-  function deleteConfigurationTemplate ({ apiKey: localApiKey, target: localTarget, orgId, templateId }) {
-    if (!orgId) {
-      return Promise.reject(new Error('The parameter orgId is mandatory'))
-    }
-    if (!templateId) {
-      return Promise.reject(new Error('The parameter templateId is mandatory'))
-    }
+ * The organization endpoints
+ *
+ * @memberof module:meraki/frontend
+ * @see module:meraki/frontend/organizations
+ */
+  const organizationEndpoints = require('./organizations')({ target: target, basePath: '/o', baseUrl, rateLimiter })
 
-    return axios._delete(localApiKey || apiKey, localTarget || target, `${basePath}/${orgId}/configTemplates/${templateId}`)
-  }
+  require('./axios')({ baseUrl, rateLimiter }).setLoginFunction(async () => {
+    const { email, password } = settings
+    return authenticationEndpoints.login({ email, password })
+  })
 
-  return {
-    listConfigurationTemplates,
-    deleteConfigurationTemplate
-  }
+  return Object.assign({},
+    authenticationEndpoints,
+    organizationEndpoints
+  )
 }
 
-module.exports = createTemplatesEndpoints
+module.exports = createFrontendApi
 </code></pre>
         </article>
     </section>
