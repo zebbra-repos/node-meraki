@@ -14,7 +14,7 @@ const handleBigInt = (data) => {
   }
 }
 
-function _exec ({ method, apiKey, target = 'api', url = '/', data, params }) {
+function _exec ({ method, apiKey, target = 'api', url = '/', data, params = {} }) {
   const baseURL = instance.defaults.baseURL.replace(/api/, target)
 
   let maxRedirects = 5
@@ -31,35 +31,36 @@ function _exec ({ method, apiKey, target = 'api', url = '/', data, params }) {
       'X-Cisco-Meraki-API-Key': apiKey,
       maxredirects: maxRedirects
     },
+    withCredentials: true,
     params,
     data
   }
 
   debug(options)
   if (limiter) {
-    return limiter.schedule(instance, options).then((response) => response.data)
+    return limiter.schedule(instance, options).then((response) => (params.withFullResponse) ? response : response.data)
   } else {
-    return instance(options).then((response) => response.data)
+    return instance(options).then((response) => (params.withFullResponse) ? response : response.data)
   }
 }
 
-function _get (apiKey, target, url, params) {
+function _get (apiKey, target, url, params = {}) {
   return _exec({ method: 'GET', apiKey, target, url, params })
 }
 
-function _post (apiKey, target, url, data) {
-  return _exec({ method: 'POST', apiKey, target, url, data })
+function _post (apiKey, target, url, data, params = {}) {
+  return _exec({ method: 'POST', apiKey, target, url, data, params })
 }
 
-function _put (apiKey, target, url, data) {
-  return _exec({ method: 'PUT', apiKey, target, url, data })
+function _put (apiKey, target, url, data, params = {}) {
+  return _exec({ method: 'PUT', apiKey, target, url, data, params })
 }
 
 function _delete (apiKey, target, url) {
   return _exec({ method: 'DELETE', apiKey, target, url })
 }
 
-module.exports = ({ baseUrl = 'https://api.meraki.com', rateLimiter }) => {
+module.exports = ({ baseUrl, rateLimiter, headers }) => {
   if (!instance) {
     instance = axios.create({
       baseURL: baseUrl,
@@ -67,6 +68,7 @@ module.exports = ({ baseUrl = 'https://api.meraki.com', rateLimiter }) => {
     })
 
     instance.interceptors.response.use((res) => {
+      debug(res.headers)
       return res
     }, (error) => {
       if (error.response) {
