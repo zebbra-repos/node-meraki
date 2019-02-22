@@ -142,6 +142,14 @@ function createRestAPI (settings) {
    */
   const mxL3FirewallEndpoints = require('./mxL3Firewall')({ apiKey, target, baseUrl, basePath: `${basePath}/networks`, rateLimiter })
 
+  /**
+   * The HTTP server endpoint (Webhooks)
+   *
+   * @memberof module:meraki/rest
+   * @see module:meraki/rest/httpServers
+   */
+  const httpServesEndpoints = require('./httpServers')({ apiKey, target, baseUrl, basePath: `${basePath}/networks`, rateLimiter })
+
   return Object.assign({},
     adminEndpoints,
     clientEndpoints,
@@ -154,7 +162,8 @@ function createRestAPI (settings) {
     routesEndpoints,
     portsEndpoints,
     vlansEndpoints,
-    mxL3FirewallEndpoints
+    mxL3FirewallEndpoints,
+    httpServesEndpoints
   )
 }
 
