@@ -46,7 +46,7 @@ function createMxL3FirewallEndpoints ({ apiKey = '', target = 'api', basePath = 
    */
   function listMxL3FirewallRules ({ apiKey: localApiKey, target: localTarget, networkId }) {
     if (!networkId) {
-      return this.Promise.reject(new Error('The parameter networkId is mandatory'))
+      return Promise.reject(new Error('The parameter networkId is mandatory'))
     }
 
     return axios._get(localApiKey || apiKey, localTarget || target, `${basePath}/${networkId}/l3FirewallRules`)
