@@ -7,6 +7,7 @@
  * @param { string } [target='api']    The Meraki target
  * @param { string } [basePath='/']    The Meraki base path for the config template ressource
  * @param { string } rateLimiter       The rate limiter (bottleneck) configuration
+ * @param { object } [logger]          Logger to use if logging is enabled
  * @return { Object } The initialized Meraki REST API wrapper for the config template ressource
  * @example
  * const apiKey = 'secret meraki api key'
@@ -18,8 +19,8 @@
  * }
  * const templateEndpoints = require('./lib/rest/templates')({ apiKey, target, basePath, baseUrl, rateLimiter })
  */
-function createTemplatesEndpoints ({ apiKey, target, basePath, baseUrl = 'https://api.meraki.com', rateLimiter }) {
-  const axios = require('./axios')({ baseUrl, rateLimiter })
+function createTemplatesEndpoints ({ apiKey, target, basePath, baseUrl = 'https://api.meraki.com', rateLimiter, logger }) {
+  const axios = require('./axios')({ baseUrl, rateLimiter, logger })
 
   /**
    * List the configuration templates for this organization.

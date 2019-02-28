@@ -37,10 +37,39 @@ function _exec ({ method, apiKey, target = 'api', url = '/', data, params = {} }
   }
 
   debug(options)
+  if (instance.logger) {
+    let message = `=> ${options.method}: ${options.url}`
+    if (options.params) {
+      message += ` Params: ${JSON.stringify(options.params)}`
+    }
+    if (options.data) {
+      message += ` Data: ${JSON.stringify(options.data)}`
+    }
+
+    instance.logger.info(message)
+  }
+
   if (limiter) {
-    return limiter.schedule(instance, options).then((response) => (params.withFullResponse) ? response : response.data)
+    return limiter
+      .schedule(instance, options)
+      .then((response) => (params.withFullResponse) ? response : response.data)
+      .then((response) => {
+        if (instance.logger) {
+          instance.logger.info('<= DATA:', params.withFullResponse ? response : JSON.stringify(response))
+        }
+
+        return Promise.resolve(response)
+      })
   } else {
-    return instance(options).then((response) => (params.withFullResponse) ? response : response.data)
+    return instance(options)
+      .then((response) => (params.withFullResponse) ? response : response.data)
+      .then((response) => {
+        if (instance.logger) {
+          instance.logger.info('<= DATA:', params.withFullResponse ? response : JSON.stringify(response))
+        }
+
+        return Promise.resolve(response)
+      })
   }
 }
 
@@ -60,12 +89,16 @@ function _delete (apiKey, target, url) {
   return _exec({ method: 'DELETE', apiKey, target, url })
 }
 
-module.exports = ({ baseUrl, rateLimiter, headers }) => {
+module.exports = ({ baseUrl, rateLimiter, headers, logger }) => {
   if (!instance) {
     instance = axios.create({
       baseURL: baseUrl,
       transformResponse: [handleBigInt]
     })
+
+    if (logger) {
+      instance.logger = logger
+    }
 
     instance.interceptors.response.use((res) => {
       debug(res.headers)

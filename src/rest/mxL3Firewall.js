@@ -7,6 +7,7 @@
  * @param { string } [target='api']   The Meraki target
  * @param { string } [basePath='/']   The Meraki base path for the mx-l3-firewall ressource
  * @param { string } rateLimiter      The rate limiter (bottleneck) configuration
+ * @param { object } [logger]          Logger to use if logging is enabled
  * @return { Object } The initialized Meraki REST API wrapper for the mx-l3-firewall ressource
  * @example
  * const apiKey = 'secret meraki api key'
@@ -19,8 +20,8 @@
  * }
  * const mxL3FirewallEndpoints = require('./lib/rest/mxL3Firewall')({ apiKey, target, basePath, baseUrl, rateLimiter })
  */
-function createMxL3FirewallEndpoints ({ apiKey = '', target = 'api', basePath = '/', baseUrl = 'https://api.meraki.com', rateLimiter }) {
-  const axios = require('./axios')({ baseUrl, rateLimiter })
+function createMxL3FirewallEndpoints ({ apiKey = '', target = 'api', basePath = '/', baseUrl = 'https://api.meraki.com', rateLimiter, logger }) {
+  const axios = require('./axios')({ baseUrl, rateLimiter, logger })
 
   /**
    * List the L3 firewall rules for an MX network.

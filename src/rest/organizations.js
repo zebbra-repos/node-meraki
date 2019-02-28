@@ -7,6 +7,7 @@
  * @param { string } [target='api']  The Meraki target
  * @param { string } [basePath='/']  The Meraki base path for the organization ressource
  * @param { string } rateLimiter     The rate limiter (bottleneck) configuration
+ * @param { object } [logger]          Logger to use if logging is enabled
  * @return { Object } The initialized Meraki REST API wrapper for the organization ressource
  * @example
  * const apiKey = 'secret meraki api key'
@@ -19,8 +20,8 @@
  * }
  * const organizationEndpoints = require('./lib/rest/organization')({ apiKey, target, basePath, baseUrl, rateLimiter })
  */
-function createOrganizationsEndpoints ({ apiKey = '', target = 'api', basePath = '/', baseUrl = 'https://api.meraki.com', rateLimiter }) {
-  const axios = require('./axios')({ baseUrl, rateLimiter })
+function createOrganizationsEndpoints ({ apiKey = '', target = 'api', basePath = '/', baseUrl = 'https://api.meraki.com', rateLimiter, logger }) {
+  const axios = require('./axios')({ baseUrl, rateLimiter, logger })
 
   /**
    * List the organizations that the user has privileges on.

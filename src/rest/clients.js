@@ -7,6 +7,7 @@
  * @param { string } [target='api']    The Meraki target
  * @param { string } [basePath='/']    The Meraki base path for the client ressource
  * @param { string } rateLimiter       The rate limiter (bottleneck) configuration
+ * @param { object } [logger]          Logger to use if logging is enabled
  * @return { Object } The initialized Meraki REST API wrapper for the client ressource
  * @example
  * const apiKey = 'secret meraki api key'
@@ -19,8 +20,8 @@
  * }
  * const clientEndpoints = require('./lib/rest/clients')({ apiKey, target, basePath, baseUrl, rateLimiter })
  */
-function createClientsEndpoints ({ apiKey = '', target = 'api', basePath = '/', baseUrl = 'https://api.meraki.com', rateLimiter }) {
-  const axios = require('./axios')({ baseUrl, rateLimiter })
+function createClientsEndpoints ({ apiKey = '', target = 'api', basePath = '/', baseUrl = 'https://api.meraki.com', rateLimiter, logger }) {
+  const axios = require('./axios')({ baseUrl, rateLimiter, logger })
 
   /**
    * List the clients of a device, up to a maximum of a month ago. The usage of each client is

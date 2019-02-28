@@ -16,6 +16,8 @@ const debug = require('debug')('node-meraki:rest')
  * @param { number } [rateLimiter.minTime=200]           How long to wait after launching a job before launching another one
  * @param { number } [rateLimiter.highWater=1000]        How long can the queue get? When the queue length exceeds that value, the selected `strategy` is executed to shed the load
  * @param { string } [rateLimiter.strategy='LEAK']       Which strategy to use if the queue gets longer than the high water mark. [Read about strategies]{@link https://github.com/SGrondin/bottleneck/blob/master/README.md#strategies}.
+ * @param { boolean } [loggerEnabled=false]              Whether to use logging (request-based) or not
+ * @param { Object } [logger=console]                    Logger to be used in case loggerEnabled is set to true
  * @return { Object } The initialized Meraki REST API wrapper
  * @example
  * const apiKey = 'secret meraki api key'
@@ -26,9 +28,10 @@ const debug = require('debug')('node-meraki:rest')
  * const rateLimiter = {
  *   enabled: true
  * }
- * const meraki = require('./lib')({ version, apiKey, target, baseUrl, rateLimiter })
+ * const meraki = require('./lib')({ version, apiKey, target, baseUrl, rateLimiter, loggerEnabled: true })
  */
 function createRestAPI (settings) {
+  const logger = settings.loggerEnabled ? settings.logger ? settings.logger : console : false
   const { version = 'v0', apiKey = '', target = 'api' } = settings
   let { baseUrl = 'https://api.meraki.com' } = settings
   baseUrl = baseUrl.replace(/api/, target)
@@ -44,7 +47,7 @@ function createRestAPI (settings) {
     strategy: Bottleneck.strategy[rateLimiterConfig.strategy] || Bottleneck.strategy.LEAK
   }
 
-  debug(`init rest api wrapper with settings apiKey=${apiKey} target=${target} baseUrl=${baseUrl} basePath=${basePath} rateLimiter=${JSON.stringify(rateLimiter)}`)
+  debug(`init rest api wrapper with settings apiKey=${apiKey} target=${target} baseUrl=${baseUrl} basePath=${basePath} rateLimiter=${JSON.stringify(rateLimiter)} loggerEnabled=${!!settings.loggerEnabled}`)
 
   /**
    * The admin endpoints
@@ -52,7 +55,7 @@ function createRestAPI (settings) {
    * @memberof module:meraki/rest
    * @see module:meraki/rest/admins
    */
-  const adminEndpoints = require('./admins')({ apiKey, target, baseUrl, basePath: `${basePath}/organizations`, rateLimiter })
+  const adminEndpoints = require('./admins')({ apiKey, target, baseUrl, basePath: `${basePath}/organizations`, rateLimiter, logger })
 
   /**
    * The client endpoints
@@ -60,7 +63,7 @@ function createRestAPI (settings) {
    * @memberof module:meraki/rest
    * @see module:meraki/rest/clients
    */
-  const clientEndpoints = require('./clients')({ apiKey, target, baseUrl, basePath, rateLimiter })
+  const clientEndpoints = require('./clients')({ apiKey, target, baseUrl, basePath, rateLimiter, logger })
 
   /**
    * The config template endpoints
@@ -68,7 +71,7 @@ function createRestAPI (settings) {
    * @memberof module:meraki/rest
    * @see module:meraki/rest/templates
    */
-  const templatesEndpoints = require('./templates')({ apiKey, target, baseUrl, basePath: `${basePath}/organizations`, rateLimiter })
+  const templatesEndpoints = require('./templates')({ apiKey, target, baseUrl, basePath: `${basePath}/organizations`, rateLimiter, logger })
 
   /**
    * The device endpoints
@@ -76,7 +79,7 @@ function createRestAPI (settings) {
    * @memberof module:meraki/rest
    * @see module:meraki/rest/devices
    */
-  const devicesEndpoints = require('./devices')({ apiKey, target, baseUrl, basePath: `${basePath}/networks`, rateLimiter })
+  const devicesEndpoints = require('./devices')({ apiKey, target, baseUrl, basePath: `${basePath}/networks`, rateLimiter, logger })
 
   /**
    * The group policy endpoints
@@ -84,7 +87,7 @@ function createRestAPI (settings) {
    * @memberof module:meraki/rest
    * @see module:meraki/rest/policies
    */
-  const policiesEndpoints = require('./policies')({ apiKey, target, baseUrl, basePath: `${basePath}/networks`, rateLimiter })
+  const policiesEndpoints = require('./policies')({ apiKey, target, baseUrl, basePath: `${basePath}/networks`, rateLimiter, logger })
 
   /**
    * The network endpoints
@@ -92,7 +95,7 @@ function createRestAPI (settings) {
    * @memberof module:meraki/rest
    * @see module:meraki/rest/networks
    */
-  const networksEndpoints = require('./networks')({ apiKey, target, baseUrl, basePath, rateLimiter })
+  const networksEndpoints = require('./networks')({ apiKey, target, baseUrl, basePath, rateLimiter, logger })
 
   /**
    * The organization endpoints
@@ -100,7 +103,7 @@ function createRestAPI (settings) {
    * @memberof module:meraki/rest
    * @see module:meraki/rest/ogranizations
    */
-  const organizationEndpoints = require('./organizations')({ apiKey, target, baseUrl, basePath: `${basePath}/organizations`, rateLimiter })
+  const organizationEndpoints = require('./organizations')({ apiKey, target, baseUrl, basePath: `${basePath}/organizations`, rateLimiter, logger })
 
   /**
    * The SSID endpoints
@@ -108,7 +111,7 @@ function createRestAPI (settings) {
    * @memberof module:meraki/rest
    * @see module:meraki/rest/ssids
    */
-  const ssidsEndpoints = require('./ssids')({ apiKey, target, baseUrl, basePath: `${basePath}/networks`, rateLimiter })
+  const ssidsEndpoints = require('./ssids')({ apiKey, target, baseUrl, basePath: `${basePath}/networks`, rateLimiter, logger })
 
   /**
    * The static route endpoints
@@ -116,7 +119,7 @@ function createRestAPI (settings) {
    * @memberof module:meraki/rest
    * @see module:meraki/rest/routes
    */
-  const routesEndpoints = require('./routes')({ apiKey, target, baseUrl, basePath: `${basePath}/networks`, rateLimiter })
+  const routesEndpoints = require('./routes')({ apiKey, target, baseUrl, basePath: `${basePath}/networks`, rateLimiter, logger })
 
   /**
    * The switch port endpoints
@@ -124,7 +127,7 @@ function createRestAPI (settings) {
    * @memberof module:meraki/rest
    * @see module:meraki/rest/ports
    */
-  const portsEndpoints = require('./ports')({ apiKey, target, baseUrl, basePath: `${basePath}/devices`, rateLimiter })
+  const portsEndpoints = require('./ports')({ apiKey, target, baseUrl, basePath: `${basePath}/devices`, rateLimiter, logger })
 
   /**
    * The VLAN endpoints
@@ -132,7 +135,7 @@ function createRestAPI (settings) {
    * @memberof module:meraki/rest
    * @see module:meraki/rest/vlans
    */
-  const vlansEndpoints = require('./vlans')({ apiKey, target, baseUrl, basePath: `${basePath}/networks`, rateLimiter })
+  const vlansEndpoints = require('./vlans')({ apiKey, target, baseUrl, basePath: `${basePath}/networks`, rateLimiter, logger })
 
   /**
    * The MX L3 firewall endpoints
@@ -140,7 +143,7 @@ function createRestAPI (settings) {
    * @memberof module:meraki/rest
    * @see module:meraki/rest/mxL3Firewall
    */
-  const mxL3FirewallEndpoints = require('./mxL3Firewall')({ apiKey, target, baseUrl, basePath: `${basePath}/networks`, rateLimiter })
+  const mxL3FirewallEndpoints = require('./mxL3Firewall')({ apiKey, target, baseUrl, basePath: `${basePath}/networks`, rateLimiter, logger })
 
   /**
    * The samle role endpoints
@@ -148,7 +151,7 @@ function createRestAPI (settings) {
    * @memberof module:meraki/rest
    * @see module:meraki/rest/saml
    */
-  const samlEndpoints = require('./saml')({ apiKey, target, baseUrl, basePath: `${basePath}/organizations`, rateLimiter })
+  const samlEndpoints = require('./saml')({ apiKey, target, baseUrl, basePath: `${basePath}/organizations`, rateLimiter, logger })
 
   return Object.assign({},
     adminEndpoints,

@@ -30,6 +30,8 @@ The jsdoc documentation can be found [here](https://zebbra-repos.github.io/node-
 | **[email]** | string | E-Mail for the Frontend (mandatory if frontend is set to true) |  |
 | **[password]** | string | Password for the Frontend (mandatory if frontend is set to true) |  |
 | **rateLimiter** | Object | The rate limiter [bottleneck](https://github.com/SGrondin/bottleneck/blob/master/README.md) configuration | `see Rate-Limiter section` |
+| **[loggerEnabled]** | boolean | If enabled node-meraki will log request information | false |
+| **[logger]** | object | Custom logger | console |
 
 ### ApiKey and Target
 It is recommended to set the `apiKey` on the initial module configuration. This key will be used for all subsequent api requests. If you need to set the apiKey on a request-level you have the possebility to pass it along for each request.
@@ -112,7 +114,6 @@ It would be great to enhance the node-meraki API wrapper to include all missing 
 All endpoints for ressources for:
 * Air Marshal scans
 * Bluetooth
-* Firefall
-* SAML roles
+* Firewfall
 * SM
 * VPN

@@ -128,7 +128,7 @@ const baseUrl = 'https://api.meraki.com' (default)
 const rateLimiter = {
   enabled: true
 }
-const meraki = require('./lib')({ version, apiKey, target, baseUrl, rateLimiter })</code></pre>
+const meraki = require('./lib')({ version, apiKey, target, baseUrl, rateLimiter, loggerEnabled: true })</code></pre>
 
 
 
@@ -575,6 +575,84 @@ const meraki = require('./lib')({ version, apiKey, target, baseUrl, rateLimiter 
         </tr>
 
     
+
+        <tr>
+            
+                <td class="name"><code>loggerEnabled</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>false</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>Whether to use logging (request-based) or not</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>logger</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>console</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>Logger to be used in case loggerEnabled is set to true</p></td>
+        </tr>
+
+    
     </tbody>
 </table>
 
@@ -651,7 +729,7 @@ const meraki = require('./lib')({ version, apiKey, target, baseUrl, rateLimiter 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_index.js.html">rest/index.js</a>, <a href="rest_index.js.html#line55">line 55</a>
+        <a href="rest_index.js.html">rest/index.js</a>, <a href="rest_index.js.html#line58">line 58</a>
     </li></ul></dd>
     
 
@@ -721,7 +799,7 @@ const meraki = require('./lib')({ version, apiKey, target, baseUrl, rateLimiter 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_index.js.html">rest/index.js</a>, <a href="rest_index.js.html#line63">line 63</a>
+        <a href="rest_index.js.html">rest/index.js</a>, <a href="rest_index.js.html#line66">line 66</a>
     </li></ul></dd>
     
 
@@ -791,7 +869,7 @@ const meraki = require('./lib')({ version, apiKey, target, baseUrl, rateLimiter 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_index.js.html">rest/index.js</a>, <a href="rest_index.js.html#line79">line 79</a>
+        <a href="rest_index.js.html">rest/index.js</a>, <a href="rest_index.js.html#line82">line 82</a>
     </li></ul></dd>
     
 
@@ -861,7 +939,7 @@ const meraki = require('./lib')({ version, apiKey, target, baseUrl, rateLimiter 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_index.js.html">rest/index.js</a>, <a href="rest_index.js.html#line143">line 143</a>
+        <a href="rest_index.js.html">rest/index.js</a>, <a href="rest_index.js.html#line146">line 146</a>
     </li></ul></dd>
     
 
@@ -931,7 +1009,7 @@ const meraki = require('./lib')({ version, apiKey, target, baseUrl, rateLimiter 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_index.js.html">rest/index.js</a>, <a href="rest_index.js.html#line95">line 95</a>
+        <a href="rest_index.js.html">rest/index.js</a>, <a href="rest_index.js.html#line98">line 98</a>
     </li></ul></dd>
     
 
@@ -1001,7 +1079,7 @@ const meraki = require('./lib')({ version, apiKey, target, baseUrl, rateLimiter 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_index.js.html">rest/index.js</a>, <a href="rest_index.js.html#line103">line 103</a>
+        <a href="rest_index.js.html">rest/index.js</a>, <a href="rest_index.js.html#line106">line 106</a>
     </li></ul></dd>
     
 
@@ -1071,7 +1149,7 @@ const meraki = require('./lib')({ version, apiKey, target, baseUrl, rateLimiter 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_index.js.html">rest/index.js</a>, <a href="rest_index.js.html#line87">line 87</a>
+        <a href="rest_index.js.html">rest/index.js</a>, <a href="rest_index.js.html#line90">line 90</a>
     </li></ul></dd>
     
 
@@ -1141,7 +1219,7 @@ const meraki = require('./lib')({ version, apiKey, target, baseUrl, rateLimiter 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_index.js.html">rest/index.js</a>, <a href="rest_index.js.html#line127">line 127</a>
+        <a href="rest_index.js.html">rest/index.js</a>, <a href="rest_index.js.html#line130">line 130</a>
     </li></ul></dd>
     
 
@@ -1211,7 +1289,7 @@ const meraki = require('./lib')({ version, apiKey, target, baseUrl, rateLimiter 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_index.js.html">rest/index.js</a>, <a href="rest_index.js.html#line119">line 119</a>
+        <a href="rest_index.js.html">rest/index.js</a>, <a href="rest_index.js.html#line122">line 122</a>
     </li></ul></dd>
     
 
@@ -1281,7 +1359,7 @@ const meraki = require('./lib')({ version, apiKey, target, baseUrl, rateLimiter 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_index.js.html">rest/index.js</a>, <a href="rest_index.js.html#line151">line 151</a>
+        <a href="rest_index.js.html">rest/index.js</a>, <a href="rest_index.js.html#line154">line 154</a>
     </li></ul></dd>
     
 
@@ -1351,7 +1429,7 @@ const meraki = require('./lib')({ version, apiKey, target, baseUrl, rateLimiter 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_index.js.html">rest/index.js</a>, <a href="rest_index.js.html#line111">line 111</a>
+        <a href="rest_index.js.html">rest/index.js</a>, <a href="rest_index.js.html#line114">line 114</a>
     </li></ul></dd>
     
 
@@ -1421,7 +1499,7 @@ const meraki = require('./lib')({ version, apiKey, target, baseUrl, rateLimiter 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_index.js.html">rest/index.js</a>, <a href="rest_index.js.html#line71">line 71</a>
+        <a href="rest_index.js.html">rest/index.js</a>, <a href="rest_index.js.html#line74">line 74</a>
     </li></ul></dd>
     
 
@@ -1491,7 +1569,7 @@ const meraki = require('./lib')({ version, apiKey, target, baseUrl, rateLimiter 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_index.js.html">rest/index.js</a>, <a href="rest_index.js.html#line135">line 135</a>
+        <a href="rest_index.js.html">rest/index.js</a>, <a href="rest_index.js.html#line138">line 138</a>
     </li></ul></dd>
     
 
@@ -1570,7 +1648,7 @@ const meraki = require('./lib')({ version, apiKey, target, baseUrl, rateLimiter 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Thu Feb 28 2019 10:04:26 GMT+0100 (CET) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Thu Feb 28 2019 11:11:21 GMT+0100 (CET) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
