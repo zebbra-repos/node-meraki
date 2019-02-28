@@ -142,6 +142,14 @@ function createRestAPI (settings) {
    */
   const mxL3FirewallEndpoints = require('./mxL3Firewall')({ apiKey, target, baseUrl, basePath: `${basePath}/networks`, rateLimiter })
 
+  /**
+   * The samle role endpoints
+   *
+   * @memberof module:meraki/rest
+   * @see module:meraki/rest/saml
+   */
+  const samlEndpoints = require('./saml')({ apiKey, target, baseUrl, basePath: `${basePath}/organizations`, rateLimiter })
+
   return Object.assign({},
     adminEndpoints,
     clientEndpoints,
@@ -154,7 +162,8 @@ function createRestAPI (settings) {
     routesEndpoints,
     portsEndpoints,
     vlansEndpoints,
-    mxL3FirewallEndpoints
+    mxL3FirewallEndpoints,
+    samlEndpoints
   )
 }
 
