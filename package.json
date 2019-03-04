@@ -1,6 +1,6 @@
 {
   "name": "node-meraki",
-  "version": "5.2.0",
+  "version": "5.4.0",
   "description": "Meraki wrapper for nodejs",
   "main": "./lib/index.js",
   "scripts": {
@@ -33,7 +33,7 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
-    "bottleneck": "^2.16.2",
+    "bottleneck": "^2.17.0",
     "debug": "^4.1.1",
     "json-bigint": "^0.3.0",
     "qs": "^6.6.0",
@@ -41,7 +41,7 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",
-    "@babel/preset-env": "^7.3.1",
+    "@babel/preset-env": "^7.3.4",
     "babel-jest": "^24.1.0",
     "config": "^3.0.1",
     "docdash": "^1.0.3",

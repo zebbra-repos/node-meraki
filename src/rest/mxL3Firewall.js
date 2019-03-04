@@ -8,6 +8,7 @@
  * @param { string } [basePath='/']   The Meraki base path for the mx-l3-firewall ressource
  * @param { string } [baseUrl='https://api.meraki.com']   The Meraki base url for the ressource
  * @param { string } rateLimiter      The rate limiter (bottleneck) configuration
+ * @param { object } [logger]          Logger to use if logging is enabled
  * @return { Object } The initialized Meraki REST API wrapper for the mx-l3-firewall ressource
  * @example
  * const apiKey = 'secret meraki api key'
@@ -20,8 +21,8 @@
  * }
  * const mxL3FirewallEndpoints = require('./lib/rest/mxL3Firewall')({ apiKey, target, basePath, baseUrl, rateLimiter })
  */
-function createMxL3FirewallEndpoints ({ apiKey = '', target = 'api', basePath = '/', baseUrl = 'https://api.meraki.com', rateLimiter }) {
-  const axios = require('./axios')({ baseUrl, rateLimiter })
+function createMxL3FirewallEndpoints ({ apiKey = '', target = 'api', basePath = '/', baseUrl = 'https://api.meraki.com', rateLimiter, logger }) {
+  const axios = require('./axios')({ baseUrl, rateLimiter, logger })
 
   /**
    * List the L3 firewall rules for a MX network.
@@ -47,7 +48,7 @@ function createMxL3FirewallEndpoints ({ apiKey = '', target = 'api', basePath = 
    */
   function listMxL3FirewallRules ({ apiKey: localApiKey, target: localTarget, networkId }) {
     if (!networkId) {
-      return this.Promise.reject(new Error('The parameter networkId is mandatory'))
+      return Promise.reject(new Error('The parameter networkId is mandatory'))
     }
 
     return axios._get(localApiKey || apiKey, localTarget || target, `${basePath}/${networkId}/l3FirewallRules`)

@@ -7,6 +7,7 @@
  * @param { string } [target='api']    The Meraki target
  * @param { string } [basePath='/']    The Meraki base path for the device ressource
  * @param { string } rateLimiter       The rate limiter (bottleneck) configuration
+ * @param { object } [logger]          Logger to use if logging is enabled
  * @return { Object } The initialized Meraki REST API wrapper for the device ressource
  * @example
  * const apiKey = 'secret meraki api key'
@@ -19,8 +20,8 @@
  * }
  * const deviceEndpoints = require('./lib/rest/devices')({ apiKey, target, basePath, baseUrl, rateLimiter })
  */
-function createDevicesEndpoints ({ apiKey = '', target = 'api', basePath = '/', baseUrl = 'https://api.meraki.com', rateLimiter }) {
-  const axios = require('./axios')({ baseUrl, rateLimiter })
+function createDevicesEndpoints ({ apiKey = '', target = 'api', basePath = '/', baseUrl = 'https://api.meraki.com', rateLimiter, logger }) {
+  const axios = require('./axios')({ baseUrl, rateLimiter, logger })
 
   /**
    * List the devices in a network.

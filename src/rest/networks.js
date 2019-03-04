@@ -7,6 +7,7 @@
  * @param { string } [target='api']   The Meraki target
  * @param { string } [basePath='/']   The Meraki base path for the network ressource
  * @param { string } rateLimiter      The rate limiter (bottleneck) configuration
+ * @param { object } [logger]          Logger to use if logging is enabled
  * @return { Object } The initialized Meraki REST API wrapper for the network ressource
  * @example
  * const apiKey = 'secret meraki api key'
@@ -19,8 +20,8 @@
  * }
  * const networkEndpoints = require('./lib/rest/networks')({ apiKey, target, basePath, baseUrl, rateLimiter })
  */
-function createNetworksEndpoints ({ apiKey = '', target = 'api', basePath = '/', baseUrl = 'https://api.meraki.com', rateLimiter }) {
-  const axios = require('./axios')({ baseUrl, rateLimiter })
+function createNetworksEndpoints ({ apiKey = '', target = 'api', basePath = '/', baseUrl = 'https://api.meraki.com', rateLimiter, logger }) {
+  const axios = require('./axios')({ baseUrl, rateLimiter, logger })
 
   /**
    * List the networks in an organization.
