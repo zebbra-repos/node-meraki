@@ -153,6 +153,14 @@ function createRestAPI (settings) {
    */
   const samlEndpoints = require('./saml')({ apiKey, target, baseUrl, basePath: `${basePath}/organizations`, rateLimiter, logger })
 
+  /**
+   * The HTTP server endpoint (Webhooks)
+   *
+   * @memberof module:meraki/rest
+   * @see module:meraki/rest/httpServers
+   */
+  const httpServesEndpoints = require('./httpServers')({ apiKey, target, baseUrl, basePath: `${basePath}/networks`, rateLimiter })
+
   return Object.assign({},
     adminEndpoints,
     clientEndpoints,
@@ -166,6 +174,7 @@ function createRestAPI (settings) {
     portsEndpoints,
     vlansEndpoints,
     mxL3FirewallEndpoints,
+    httpServesEndpoints,
     samlEndpoints
   )
 }
