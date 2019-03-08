@@ -18,10 +18,10 @@
  * const rateLimiter = {
  *  enabled: true
  * }
- * const httpServersEndpoints = require('./lib/rest/httpServers')({ apiKey, target, basePath, baseUrl, rateLimiter })
+ * const httpServersEndpoints = require('./lib/rest/httpServers')({ apiKey, target, basePath, baseUrl, rateLimiter, logger })
  */
-function createHTTPServersEndpoints ({ apiKey = '', target = 'api', basePath = '/', baseUrl = 'https://api.meraki.com', rateLimiter }) {
-  const axios = require('./axios')({ baseUrl, rateLimiter })
+function createHTTPServersEndpoints ({ apiKey = '', target = 'api', basePath = '/', baseUrl = 'https://api.meraki.com', rateLimiter, logger }) {
+  const axios = require('./axios')({ baseUrl, rateLimiter, logger })
 
   /**
   * List the http servers for a network.
@@ -113,7 +113,7 @@ function createHTTPServersEndpoints ({ apiKey = '', target = 'api', basePath = '
   }
 
   /**
-   * add a http server.
+   * Add a http server.
    *
    * @memberof module:meraki/rest/httpServers
    * @param { string } [apiKey]             Optional custom apiKey for this request (if not set will take the inital apiKey)
@@ -197,7 +197,7 @@ function createHTTPServersEndpoints ({ apiKey = '', target = 'api', basePath = '
   }
 
   /**
-  * List the http servers for a network.
+  * Return the status of a webhook test.
   *
   * @memberof module:meraki/rest/httpServers
   * @param { string } [apiKey]      Optional custom apiKey for this request (if not set will take the inital apiKey)
