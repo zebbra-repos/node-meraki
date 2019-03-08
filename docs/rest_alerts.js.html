@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>rest/templates.js - Documentation</title>
+    <title>rest/alerts.js - Documentation</title>
     
     
     <script src="scripts/prettify/prettify.js"></script>
@@ -33,7 +33,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">rest/templates.js</h1>
+    <h1 class="page-title">rest/alerts.js</h1>
     
 
     
@@ -44,81 +44,135 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>/**
- * Create a Meraki REST API wrapper for the config template ressource. See the
- * [online documentation]{@link https://dashboard.meraki.com/api_docs#config-templates} for more information.
+ * Create a Meraki REST API wrapper for the alert settings ressource. See the
+ * [online documentation]{@link https://dashboard.meraki.com/api_docs#alert-settings} for more information.
  *
- * @module meraki/rest/config-templates
- * @param { string } [apiKey='']       The Meraki api key
- * @param { string } [target='api']    The Meraki target
- * @param { string } [basePath='/']    The Meraki base path for the config template ressource
- * @param { string } rateLimiter       The rate limiter (bottleneck) configuration
- * @param { object } [logger]          Logger to use if logging is enabled
- * @return { Object } The initialized Meraki REST API wrapper for the config template ressource
+ * @module meraki/rest/alerts
+ * @param { string } [apiKey='']      The Meraki api key
+ * @param { string } [target='api']   The Meraki target
+ * @param { string } [basePath='/']   The Meraki base path for the ressource
+ * @param { string } [baseUrl='https://api.meraki.com']   The Meraki base url for the ressource
+ * @param { string } rateLimiter      The rate limiter (bottleneck) configuration
+ * @return { Object } The initialized Meraki REST API wrapper for the alert settings ressource
  * @example
  * const apiKey = 'secret meraki api key'
+ * const organizationId = 'meraki organization id'
  * const version = 'v0'
  * const target = 'n12'
- * const basePath = `/${target}/${version}`
+ * const basePath = `/${target}/${version}/alertSettings`
  * const rateLimiter = {
  *  enabled: true
  * }
- * const templateEndpoints = require('./lib/rest/templates')({ apiKey, target, basePath, baseUrl, rateLimiter })
+ * const alertSettingsEndpoints = require('./lib/rest/alerts')({ apiKey, target, basePath, baseUrl, rateLimiter, logger })
  */
-function createTemplatesEndpoints ({ apiKey, target, basePath, baseUrl = 'https://api.meraki.com', rateLimiter, logger }) {
+function createAlertSettingsEndpoints ({ apiKey = '', target = 'api', basePath = '/', baseUrl = 'https://api.meraki.com', rateLimiter, logger }) {
   const axios = require('./axios')({ baseUrl, rateLimiter, logger })
 
   /**
-   * List the configuration templates for this organization.
-   *
-   * @memberof module:meraki/rest/config-templates
-   * @param { string } [apiKey]   Optional custom apiKey for this request (if not set will take the inital apiKey)
-   * @param { string } [target]   Optional custom target for this request (if not set will take the inital target)
-   * @param { string } orgId      The organization id
-   * @return { Promise } A promise holding the configuration templates for this organization
-   * @example &lt;caption>Example response&lt;/caption>
-   * [
-   *   {
-   *     "id": "N_1234",
-   *     "name": "Your config template"
-   *   }
-   * ]
-   */
-  function listConfigurationTemplates ({ apiKey: localApiKey, target: localTarget, orgId }) {
-    if (!orgId) {
-      return Promise.reject(new Error('The parameter orgId is mandatory'))
-    }
+  * Return the alert settings for this network.
+  *
+  * @memberof module:meraki/rest/alerts
+  * @param { string } [apiKey]     Optional custom apiKey for this request (if not set will take the inital apiKey)
+  * @param { string } [target]     Optional custom target for this request (if not set will take the inital target)
+  * @param { string } networkId    The id of the network
+  * @return { Promise } A promise holding the alert settings of this network
+  * @example &lt;caption>Example response&lt;/caption>
+  * {
+  *   "defaultDestinations": {
+  *     "emails": [
+  *       "miles@meraki.com"
+  *     ],
+  *     "allAdmins": true,
+  *     "snmp": true,
+  *     "httpServerIds": ["asdfasfasdfasfasdfasdfasf"]
+  *   },
+  *   "alerts": [
+  *     {
+  *       "type": "gatewayDown",
+  *       "enabled": true,
+  *       "alertDestinations": {
+  *         "emails": [
+  *           "miles@meraki.com"
+  *         ],
+  *         "allAdmins": false,
+  *         "snmp": false
+  *       },
+  *       "filters": {
+  *         "timeout": 60
+  *       }
+  *     }
+  *   ]
+  * }
+  */
+  function getAlertSettings ({ apiKey: localApiKey, target: localTarget, networkId }) {
+    if (!networkId) return Promise.reject(new Error('The parameter networkId is mandatory'))
 
-    return axios._get(localApiKey || apiKey, localTarget || target, `${basePath}/${orgId}/configTemplates`)
+    return axios._get(localApiKey || apiKey, localTarget || target, `${basePath}/${networkId}/alertSettings`)
   }
 
   /**
-   * Remove a configuration template.
+   * Update alert settings for this network.
    *
-   * @memberof module:meraki/rest/config-templates
-   * @param { string } [apiKey]   Optional custom apiKey for this request (if not set will take the inital apiKey)
-   * @param { string } [target]   Optional custom target for this request (if not set will take the inital target)
-   * @param { string } orgId      The organization id
-   * @param { string } templateId The id of the template to delete
-   * @return { Promise } A promise with no data
+   * @memberof module:meraki/rest/alerts
+   * @param { string } [apiKey]             Optional custom apiKey for this request (if not set will take the inital apiKey)
+   * @param { string } [target]             Optional custom target for this request (if not set will take the inital target)
+   * @param { string } networkId            The id of the network
+   * @param { object } defaultDestinations  The network_wide destinations for all alerts on the network.
+   * @param { array } defaultDestinations.emails        A list of emails that will recieve the alert(s).
+   * @param { boolean } defaultDestinations.allAdmins   If true, then all network admins will receive emails.
+   * @param { boolean } defaultDestinations.snmp        If true, then an SNMP trap will be sent if there is an SNMP trap server configured for this network.
+   * @param { array } defaultDestinations.httpServerIds A list of http server ids to which the alerts will be sent.
+   * @param { array } alerts                Alert-specific configuration for each type. Only alerts that pertain to the network can be updated.
+   * @param { string } alerts.type          The type of alert
+   * @param { boolean } alerts.enabled      A boolean depicting if the alert is turned on or off
+   * @param { object } alerts.alertDestinations         A hash of destinations for this specific alert. Keys include: emails: A list of emails that will recieve information about the alert, allAdmins: If true, then all network admins will receive emails, and snmp: If true, then an SNMP trap will be sent if there is an SNMP trap server configured for this network.
+   * @param { object } alerts.filters                   A hash of specific configuration data for the alert. Only filters specific to the alert will be updated.
+   * @return { Promise } A promise holding the updated alert settings
+   * @example &lt;caption>Example request data&lt;/caption>
+   * curl -L -H 'X-Cisco-Meraki-API-Key: &lt;key>' -H 'Content-Type: application/json' -X PUT --data-binary '{"defaultDestinations":{"emails":["miles@meraki.com"],"allAdmins":true,"snmp":true},"alerts":[{"type":"gatewayDown","enabled":true,"alertDestinations":{"emails":["miles@meraki.com"],"allAdmins":false,"snmp":false},"filters":{"timeout":60}}]}' 'https://api.meraki.com/api/v0/networks/[networkId]/alertSettings'
+   * @example &lt;caption>Example response&lt;/caption>
+   * {
+   *   "defaultDestinations": {
+   *     "emails": [
+   *       "miles@meraki.com"
+   *     ],
+   *     "allAdmins": true,
+   *     "snmp": true
+   *     "httpServerIds": ["asdfasfasdfasfasdfasdfasf"]
+   *   },
+   *   "alerts": [
+   *     {
+   *       "type": "gatewayDown",
+   *       "enabled": true,
+   *       "alertDestinations": {
+   *         "emails": [
+   *           "miles@meraki.com"
+   *         ],
+   *         "allAdmins": false,
+   *         "snmp": false
+   *       },
+   *       "filters": {
+   *         "timeout": 60
+   *       }
+   *     }
+   *   ]
+   * }
    */
-  function deleteConfigurationTemplate ({ apiKey: localApiKey, target: localTarget, orgId, templateId }) {
-    if (!orgId) {
-      return Promise.reject(new Error('The parameter orgId is mandatory'))
-    }
-    if (!templateId) {
-      return Promise.reject(new Error('The parameter templateId is mandatory'))
-    }
+  function updateAlertSettings (data) {
+    const { networkId, target: localTarget } = data
+    delete data.networkId
+    delete data.target
 
-    return axios._delete(localApiKey || apiKey, localTarget || target, `${basePath}/${orgId}/configTemplates/${templateId}`)
+    return axios._put(data.apiKey || apiKey, localTarget || target, `${basePath}/${networkId}/alertSettings/`, data)
   }
 
   return {
-    listConfigurationTemplates,
-    deleteConfigurationTemplate
+    getAlertSettings,
+    updateAlertSettings
   }
 }
 
-module.exports = createTemplatesEndpoints
+module.exports = createAlertSettingsEndpoints
 </code></pre>
         </article>
     </section>

@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>meraki/rest - Documentation</title>
+    <title>meraki/rest/alerts - Documentation</title>
     
     
     <script src="scripts/prettify/prettify.js"></script>
@@ -33,7 +33,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">meraki/rest</h1>
+    <h1 class="page-title">meraki/rest/alerts</h1>
     
 
     
@@ -56,8 +56,8 @@
         <div class="container-overview">
         
             
-                <div class="description"><p>Create a Meraki REST API wrapper. See the <a href="https://dashboard.meraki.com/api_docs">online documentation</a>
-for more information.</p></div>
+                <div class="description"><p>Create a Meraki REST API wrapper for the alert settings ressource. See the
+<a href="https://dashboard.meraki.com/api_docs#alert-settings">online documentation</a> for more information.</p></div>
             
 
             
@@ -71,7 +71,7 @@ for more information.</p></div>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_index.js.html">rest/index.js</a>, <a href="rest_index.js.html#line4">line 4</a>
+        <a href="rest_alerts.js.html">rest/alerts.js</a>, <a href="rest_alerts.js.html#line1">line 1</a>
     </li></ul></dd>
     
 
@@ -122,13 +122,13 @@ for more information.</p></div>
     
     <pre class="prettyprint"><code>const apiKey = 'secret meraki api key'
 const organizationId = 'meraki organization id'
-const version = 'v0' (default)
+const version = 'v0'
 const target = 'n12'
-const baseUrl = 'https://api.meraki.com' (default)
+const basePath = `/${target}/${version}/alertSettings`
 const rateLimiter = {
-  enabled: true
+ enabled: true
 }
-const meraki = require('./lib')({ version, apiKey, target, baseUrl, rateLimiter, loggerEnabled: true })</code></pre>
+const alertSettingsEndpoints = require('./lib/rest/alerts')({ apiKey, target, basePath, baseUrl, rateLimiter, logger })</code></pre>
 
 
 
@@ -158,45 +158,6 @@ const meraki = require('./lib')({ version, apiKey, target, baseUrl, rateLimiter,
     </thead>
 
     <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>version</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    <code>'v0'</code>
-                
-                </td>
-            
-
-            <td class="description last"><p>Which Meraki api version to use</p></td>
-        </tr>
-
     
 
         <tr>
@@ -279,6 +240,45 @@ const meraki = require('./lib')({ version, apiKey, target, baseUrl, rateLimiter,
 
         <tr>
             
+                <td class="name"><code>basePath</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>'/'</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>The Meraki base path for the ressource</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
                 <td class="name"><code>baseUrl</code></td>
             
 
@@ -311,7 +311,7 @@ const meraki = require('./lib')({ version, apiKey, target, baseUrl, rateLimiter,
                 </td>
             
 
-            <td class="description last"><p>The Meraki organization id</p></td>
+            <td class="description last"><p>The Meraki base url for the ressource</p></td>
         </tr>
 
     
@@ -319,220 +319,6 @@ const meraki = require('./lib')({ version, apiKey, target, baseUrl, rateLimiter,
         <tr>
             
                 <td class="name"><code>rateLimiter</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"><p>The rate limiter (<a href="https://github.com/SGrondin/bottleneck/blob/master/README.md">bottleneck</a>) configuration</p>
-                <h6>Properties</h6>
-                
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-        <th>Attributes</th>
-        
-
-        
-        <th>Default</th>
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>enabled</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">boolean</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"><p>Whether use the rate limiter</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>maxConcurrent</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    <code>5</code>
-                
-                </td>
-            
-
-            <td class="description last"><p>How many jobs can be running at the same time (null for unlimited)</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>minTime</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    <code>200</code>
-                
-                </td>
-            
-
-            <td class="description last"><p>How long to wait after launching a job before launching another one</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>highWater</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    <code>1000</code>
-                
-                </td>
-            
-
-            <td class="description last"><p>How long can the queue get? When the queue length exceeds that value, the selected <code>strategy</code> is executed to shed the load</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>strategy</code></td>
             
 
             <td class="type">
@@ -547,8 +333,6 @@ const meraki = require('./lib')({ version, apiKey, target, baseUrl, rateLimiter,
             
                 <td class="attributes">
                 
-                    &lt;optional><br>
-                
 
                 
 
@@ -559,97 +343,10 @@ const meraki = require('./lib')({ version, apiKey, target, baseUrl, rateLimiter,
             
                 <td class="default">
                 
-                    <code>'LEAK'</code>
-                
                 </td>
             
 
-            <td class="description last"><p>Which strategy to use if the queue gets longer than the high water mark. <a href="https://github.com/SGrondin/bottleneck/blob/master/README.md#strategies">Read about strategies</a>.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-            </td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>loggerEnabled</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">boolean</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    <code>false</code>
-                
-                </td>
-            
-
-            <td class="description last"><p>Whether to use logging (request-based) or not</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>logger</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    <code>console</code>
-                
-                </td>
-            
-
-            <td class="description last"><p>Logger to be used in case loggerEnabled is set to true</p></td>
+            <td class="description last"><p>The rate limiter (bottleneck) configuration</p></td>
         </tr>
 
     
@@ -675,7 +372,7 @@ const meraki = require('./lib')({ version, apiKey, target, baseUrl, rateLimiter,
 
         
 <div class="param-desc">
-    <p>The initialized Meraki REST API wrapper</p>
+    <p>The initialized Meraki REST API wrapper for the alert settings ressource</p>
 </div>
 
 
@@ -714,12 +411,18 @@ const meraki = require('./lib')({ version, apiKey, target, baseUrl, rateLimiter,
     
 
     
-        <h3 class="subsection-title">Members</h3>
+
+    
+        <h3 class="subsection-title">Methods</h3>
 
         
             
-<h4 class="name" id=".adminEndpoints"><span class="type-signature">(static, constant) </span>adminEndpoints<span class="type-signature"></span></h4>
 
+    
+
+    <h4 class="name" id=".getAlertSettings"><span class="type-signature">(static) </span>getAlertSettings<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, networkId)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+
+    
 
 
 
@@ -729,7 +432,7 @@ const meraki = require('./lib')({ version, apiKey, target, baseUrl, rateLimiter,
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_index.js.html">rest/index.js</a>, <a href="rest_index.js.html#line58">line 58</a>
+        <a href="rest_alerts.js.html">rest/alerts.js</a>, <a href="rest_alerts.js.html#line62">line 62</a>
     </li></ul></dd>
     
 
@@ -760,13 +463,6 @@ const meraki = require('./lib')({ version, apiKey, target, baseUrl, rateLimiter,
     
 
     
-    <dt class="tag-see">See:</dt>
-    <dd class="tag-see">
-        <ul>
-            <li><a href="module-meraki_rest_admins.html">module:meraki/rest/admins</a></li>
-        </ul>
-    </dd>
-    
 
     
 </dl>
@@ -776,7 +472,7 @@ const meraki = require('./lib')({ version, apiKey, target, baseUrl, rateLimiter,
 
 
 <div class="description">
-    <p>The admin endpoints</p>
+    <p>Return the alert settings for this network.</p>
 </div>
 
 
@@ -786,10 +482,213 @@ const meraki = require('./lib')({ version, apiKey, target, baseUrl, rateLimiter,
 
 
 
+
+    <h5>Example</h5>
+    
+        <p class="code-caption">Example response</p>
+    
+    <pre class="prettyprint"><code>{
+  "defaultDestinations": {
+    "emails": [
+      "miles@meraki.com"
+    ],
+    "allAdmins": true,
+    "snmp": true,
+    "httpServerIds": ["asdfasfasdfasfasdfasdfasf"]
+  },
+  "alerts": [
+    {
+      "type": "gatewayDown",
+      "enabled": true,
+      "alertDestinations": {
+        "emails": [
+          "miles@meraki.com"
+        ],
+        "allAdmins": false,
+        "snmp": false
+      },
+      "filters": {
+        "timeout": 60
+      }
+    }
+  ]
+}</code></pre>
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>apiKey</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Optional custom apiKey for this request (if not set will take the inital apiKey)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>target</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Optional custom target for this request (if not set will take the inital target)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>networkId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The id of the network</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>A promise holding the alert settings of this network</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
         
             
-<h4 class="name" id=".alertSettingsEndpoints"><span class="type-signature">(static, constant) </span>alertSettingsEndpoints<span class="type-signature"></span></h4>
 
+    
+
+    <h4 class="name" id=".updateAlertSettings"><span class="type-signature">(static) </span>updateAlertSettings<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, networkId, defaultDestinations, alerts)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+
+    
 
 
 
@@ -799,7 +698,7 @@ const meraki = require('./lib')({ version, apiKey, target, baseUrl, rateLimiter,
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_index.js.html">rest/index.js</a>, <a href="rest_index.js.html#line170">line 170</a>
+        <a href="rest_alerts.js.html">rest/alerts.js</a>, <a href="rest_alerts.js.html#line116">line 116</a>
     </li></ul></dd>
     
 
@@ -830,13 +729,6 @@ const meraki = require('./lib')({ version, apiKey, target, baseUrl, rateLimiter,
     
 
     
-    <dt class="tag-see">See:</dt>
-    <dd class="tag-see">
-        <ul>
-            <li><a href="module-meraki_rest_alerts.html">module:meraki/rest/alerts</a></li>
-        </ul>
-    </dd>
-    
 
     
 </dl>
@@ -846,7 +738,7 @@ const meraki = require('./lib')({ version, apiKey, target, baseUrl, rateLimiter,
 
 
 <div class="description">
-    <p>The alert settings endpoints</p>
+    <p>Update alert settings for this network.</p>
 </div>
 
 
@@ -856,919 +748,508 @@ const meraki = require('./lib')({ version, apiKey, target, baseUrl, rateLimiter,
 
 
 
+
+    <h5>Examples</h5>
+    
+        <p class="code-caption">Example request data</p>
+    
+    <pre class="prettyprint"><code>curl -L -H 'X-Cisco-Meraki-API-Key: &lt;key>' -H 'Content-Type: application/json' -X PUT --data-binary '{"defaultDestinations":{"emails":["miles@meraki.com"],"allAdmins":true,"snmp":true},"alerts":[{"type":"gatewayDown","enabled":true,"alertDestinations":{"emails":["miles@meraki.com"],"allAdmins":false,"snmp":false},"filters":{"timeout":60}}]}' 'https://api.meraki.com/api/v0/networks/[networkId]/alertSettings'</code></pre>
+
+        <p class="code-caption">Example response</p>
+    
+    <pre class="prettyprint"><code>{
+  "defaultDestinations": {
+    "emails": [
+      "miles@meraki.com"
+    ],
+    "allAdmins": true,
+    "snmp": true
+    "httpServerIds": ["asdfasfasdfasfasdfasdfasf"]
+  },
+  "alerts": [
+    {
+      "type": "gatewayDown",
+      "enabled": true,
+      "alertDestinations": {
+        "emails": [
+          "miles@meraki.com"
+        ],
+        "allAdmins": false,
+        "snmp": false
+      },
+      "filters": {
+        "timeout": 60
+      }
+    }
+  ]
+}</code></pre>
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
         
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
             
-<h4 class="name" id=".clientEndpoints"><span class="type-signature">(static, constant) </span>clientEndpoints<span class="type-signature"></span></h4>
-
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_index.js.html">rest/index.js</a>, <a href="rest_index.js.html#line66">line 66</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-see">See:</dt>
-    <dd class="tag-see">
-        <ul>
-            <li><a href="module-meraki_rest_clients.html">module:meraki/rest/clients</a></li>
-        </ul>
-    </dd>
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description">
-    <p>The client endpoints</p>
-</div>
-
-
-
-
-
-
-
-
-        
+                <td class="name"><code>apiKey</code></td>
             
-<h4 class="name" id=".devicesEndpoints"><span class="type-signature">(static, constant) </span>devicesEndpoints<span class="type-signature"></span></h4>
 
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_index.js.html">rest/index.js</a>, <a href="rest_index.js.html#line82">line 82</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-see">See:</dt>
-    <dd class="tag-see">
-        <ul>
-            <li><a href="module-meraki_rest_devices.html">module:meraki/rest/devices</a></li>
-        </ul>
-    </dd>
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description">
-    <p>The device endpoints</p>
-</div>
-
-
-
-
-
-
-
-
-        
+            <td class="type">
             
-<h4 class="name" id=".httpServesEndpoints"><span class="type-signature">(static, constant) </span>httpServesEndpoints<span class="type-signature"></span></h4>
+                
+<span class="param-type">string</span>
 
 
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_index.js.html">rest/index.js</a>, <a href="rest_index.js.html#line162">line 162</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-see">See:</dt>
-    <dd class="tag-see">
-        <ul>
-            <li><a href="module-meraki_rest_httpServers.html">module:meraki/rest/httpServers</a></li>
-        </ul>
-    </dd>
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description">
-    <p>The HTTP server endpoint (Webhooks)</p>
-</div>
-
-
-
-
-
-
-
-
-        
             
-<h4 class="name" id=".mxL3FirewallEndpoints"><span class="type-signature">(static, constant) </span>mxL3FirewallEndpoints<span class="type-signature"></span></h4>
+            </td>
 
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_index.js.html">rest/index.js</a>, <a href="rest_index.js.html#line146">line 146</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-see">See:</dt>
-    <dd class="tag-see">
-        <ul>
-            <li><a href="module-meraki_rest_mxL3Firewall.html">module:meraki/rest/mxL3Firewall</a></li>
-        </ul>
-    </dd>
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description">
-    <p>The MX L3 firewall endpoints</p>
-</div>
-
-
-
-
-
-
-
-
-        
             
-<h4 class="name" id=".networksEndpoints"><span class="type-signature">(static, constant) </span>networksEndpoints<span class="type-signature"></span></h4>
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
 
+                
 
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_index.js.html">rest/index.js</a>, <a href="rest_index.js.html#line98">line 98</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-see">See:</dt>
-    <dd class="tag-see">
-        <ul>
-            <li><a href="module-meraki_rest_networks.html">module:meraki/rest/networks</a></li>
-        </ul>
-    </dd>
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description">
-    <p>The network endpoints</p>
-</div>
-
-
-
-
-
-
-
-
-        
+                
+                </td>
             
-<h4 class="name" id=".organizationEndpoints"><span class="type-signature">(static, constant) </span>organizationEndpoints<span class="type-signature"></span></h4>
 
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_index.js.html">rest/index.js</a>, <a href="rest_index.js.html#line106">line 106</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-see">See:</dt>
-    <dd class="tag-see">
-        <ul>
-            <li>module:meraki/rest/ogranizations</li>
-        </ul>
-    </dd>
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description">
-    <p>The organization endpoints</p>
-</div>
-
-
-
-
-
-
-
-
-        
             
-<h4 class="name" id=".policiesEndpoints"><span class="type-signature">(static, constant) </span>policiesEndpoints<span class="type-signature"></span></h4>
 
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_index.js.html">rest/index.js</a>, <a href="rest_index.js.html#line90">line 90</a>
-    </li></ul></dd>
-    
+            <td class="description last"><p>Optional custom apiKey for this request (if not set will take the inital apiKey)</p></td>
+        </tr>
 
     
 
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-see">See:</dt>
-    <dd class="tag-see">
-        <ul>
-            <li>module:meraki/rest/policies</li>
-        </ul>
-    </dd>
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description">
-    <p>The group policy endpoints</p>
-</div>
-
-
-
-
-
-
-
-
-        
+        <tr>
             
-<h4 class="name" id=".portsEndpoints"><span class="type-signature">(static, constant) </span>portsEndpoints<span class="type-signature"></span></h4>
-
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_index.js.html">rest/index.js</a>, <a href="rest_index.js.html#line130">line 130</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-see">See:</dt>
-    <dd class="tag-see">
-        <ul>
-            <li>module:meraki/rest/ports</li>
-        </ul>
-    </dd>
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description">
-    <p>The switch port endpoints</p>
-</div>
-
-
-
-
-
-
-
-
-        
+                <td class="name"><code>target</code></td>
             
-<h4 class="name" id=".routesEndpoints"><span class="type-signature">(static, constant) </span>routesEndpoints<span class="type-signature"></span></h4>
 
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_index.js.html">rest/index.js</a>, <a href="rest_index.js.html#line122">line 122</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-see">See:</dt>
-    <dd class="tag-see">
-        <ul>
-            <li>module:meraki/rest/routes</li>
-        </ul>
-    </dd>
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description">
-    <p>The static route endpoints</p>
-</div>
-
-
-
-
-
-
-
-
-        
+            <td class="type">
             
-<h4 class="name" id=".samlEndpoints"><span class="type-signature">(static, constant) </span>samlEndpoints<span class="type-signature"></span></h4>
+                
+<span class="param-type">string</span>
 
 
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_index.js.html">rest/index.js</a>, <a href="rest_index.js.html#line154">line 154</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-see">See:</dt>
-    <dd class="tag-see">
-        <ul>
-            <li>module:meraki/rest/saml</li>
-        </ul>
-    </dd>
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description">
-    <p>The samle role endpoints</p>
-</div>
-
-
-
-
-
-
-
-
-        
             
-<h4 class="name" id=".ssidsEndpoints"><span class="type-signature">(static, constant) </span>ssidsEndpoints<span class="type-signature"></span></h4>
+            </td>
 
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_index.js.html">rest/index.js</a>, <a href="rest_index.js.html#line114">line 114</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-see">See:</dt>
-    <dd class="tag-see">
-        <ul>
-            <li><a href="module-meraki_rest_ssids.html">module:meraki/rest/ssids</a></li>
-        </ul>
-    </dd>
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description">
-    <p>The SSID endpoints</p>
-</div>
-
-
-
-
-
-
-
-
-        
             
-<h4 class="name" id=".templatesEndpoints"><span class="type-signature">(static, constant) </span>templatesEndpoints<span class="type-signature"></span></h4>
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
 
+                
 
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_index.js.html">rest/index.js</a>, <a href="rest_index.js.html#line74">line 74</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-see">See:</dt>
-    <dd class="tag-see">
-        <ul>
-            <li>module:meraki/rest/templates</li>
-        </ul>
-    </dd>
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description">
-    <p>The config template endpoints</p>
-</div>
-
-
-
-
-
-
-
-
-        
+                
+                </td>
             
-<h4 class="name" id=".vlansEndpoints"><span class="type-signature">(static, constant) </span>vlansEndpoints<span class="type-signature"></span></h4>
 
+            
 
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_index.js.html">rest/index.js</a>, <a href="rest_index.js.html#line138">line 138</a>
-    </li></ul></dd>
-    
+            <td class="description last"><p>Optional custom target for this request (if not set will take the inital target)</p></td>
+        </tr>
 
     
 
-    
+        <tr>
+            
+                <td class="name"><code>networkId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The id of the network</p></td>
+        </tr>
 
     
 
+        <tr>
+            
+                <td class="name"><code>defaultDestinations</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The network_wide destinations for all alerts on the network.</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
     
 
-    
+        <tr>
+            
+                <td class="name"><code>emails</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">array</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>A list of emails that will recieve the alert(s).</p></td>
+        </tr>
 
     
 
-    
+        <tr>
+            
+                <td class="name"><code>allAdmins</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>If true, then all network admins will receive emails.</p></td>
+        </tr>
 
     
 
-    
+        <tr>
+            
+                <td class="name"><code>snmp</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>If true, then an SNMP trap will be sent if there is an SNMP trap server configured for this network.</p></td>
+        </tr>
 
     
 
-    
+        <tr>
+            
+                <td class="name"><code>httpServerIds</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">array</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>A list of http server ids to which the alerts will be sent.</p></td>
+        </tr>
 
     
+    </tbody>
+</table>
+
+            </td>
+        </tr>
 
     
 
+        <tr>
+            
+                <td class="name"><code>alerts</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">array</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Alert-specific configuration for each type. Only alerts that pertain to the network can be updated.</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
     
-    <dt class="tag-see">See:</dt>
-    <dd class="tag-see">
-        <ul>
-            <li><a href="module-meraki_rest_vlans.html">module:meraki/rest/vlans</a></li>
-        </ul>
-    </dd>
-    
+
+        <tr>
+            
+                <td class="name"><code>type</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The type of alert</p></td>
+        </tr>
 
     
-</dl>
+
+        <tr>
+            
+                <td class="name"><code>enabled</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>A boolean depicting if the alert is turned on or off</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>alertDestinations</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>A hash of destinations for this specific alert. Keys include: emails: A list of emails that will recieve information about the alert, allAdmins: If true, then all network admins will receive emails, and snmp: If true, then an SNMP trap will be sent if there is an SNMP trap server configured for this network.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>filters</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>A hash of specific configuration data for the alert. Only filters specific to the alert will be updated.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
 
 
 
 
 
-<div class="description">
-    <p>The VLAN endpoints</p>
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>A promise holding the updated alert settings</p>
 </div>
 
 
 
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
 
 
+    </dd>
+</dl>
+
+    
 
 
 
         
-    
-
     
 
     

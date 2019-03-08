@@ -161,6 +161,14 @@ function createRestAPI (settings) {
    */
   const httpServesEndpoints = require('./httpServers')({ apiKey, target, baseUrl, basePath: `${basePath}/networks`, rateLimiter })
 
+  /**
+   * The alert settings endpoints
+   *
+   * @memberof module:meraki/rest
+   * @see module:meraki/rest/alerts
+   */
+  const alertSettingsEndpoints = require('./alerts')({ apiKey, target, baseUrl, basePath: `${basePath}/networks`, rateLimiter })
+
   return Object.assign({},
     adminEndpoints,
     clientEndpoints,
@@ -175,7 +183,8 @@ function createRestAPI (settings) {
     vlansEndpoints,
     mxL3FirewallEndpoints,
     httpServesEndpoints,
-    samlEndpoints
+    samlEndpoints,
+    alertSettingsEndpoints
   )
 }
 
