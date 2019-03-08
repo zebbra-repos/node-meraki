@@ -122,9 +122,10 @@ function createVlansEndpoints ({ apiKey, target, basePath, baseUrl = 'https://ap
    * }
    */
   function updateNetworkVLAN (data) {
-    const { networkId, vlanId } = data
+    const { networkId, vlanId, target: localTarget } = data
     delete data.networkId
     delete data.vlanId
+    delete data.target
 
     if (!networkId) {
       return Promise.reject(new Error('The parameter networkId is mandatory'))
@@ -132,7 +133,7 @@ function createVlansEndpoints ({ apiKey, target, basePath, baseUrl = 'https://ap
       return Promise.reject(new Error('The parameter vlanId is mandatory'))
     }
 
-    return axios._put(data.apiKey || apiKey, data.target || target, `${basePath}/${networkId}/vlans/${vlanId}`, data)
+    return axios._put(data.apiKey || apiKey, localTarget || target, `${basePath}/${networkId}/vlans/${vlanId}`, data)
   }
 
   /**

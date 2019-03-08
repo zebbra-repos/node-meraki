@@ -134,9 +134,10 @@ function createPortsEndpoints ({ apiKey = '', target = 'api', basePath = '/', ba
    * }
    */
   function updateSwitchPort (data = {}) {
-    const { deviceSerial, number } = data
+    const { deviceSerial, number, target: localTarget } = data
     delete data.deviceSerial
     delete data.number
+    delete data.target
 
     if (!deviceSerial) {
       return Promise.reject(new Error('The parameter deviceSerial is mandatory'))
@@ -144,7 +145,7 @@ function createPortsEndpoints ({ apiKey = '', target = 'api', basePath = '/', ba
       return Promise.reject(new Error('The parameter number is mandatory'))
     }
 
-    return axios._put(data.apiKey || apiKey, data.localTarget || target, `${basePath}/${deviceSerial}/switchPorts/${number}`, data)
+    return axios._put(data.apiKey || apiKey, localTarget || target, `${basePath}/${deviceSerial}/switchPorts/${number}`, data)
   }
 
   return {

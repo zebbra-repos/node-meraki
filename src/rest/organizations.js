@@ -262,13 +262,14 @@ function createOrganizationsEndpoints ({ apiKey = '', target = 'api', basePath =
    * }
    */
   function updateOrganizationSNMP (data = {}) {
-    const { orgId } = data
+    const { orgId, target: localTarget } = data
     if (!orgId) {
       return Promise.reject(new Error('The parameter orgId is mandatory'))
     }
     delete data.orgId
+    delete data.target
 
-    return axios._put(data.apiKey || apiKey, data.target || target, `${basePath}/${orgId}/snmp`, data)
+    return axios._put(data.apiKey || apiKey, localTarget || target, `${basePath}/${orgId}/snmp`, data)
   }
 
   /**

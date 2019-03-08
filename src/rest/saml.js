@@ -122,14 +122,15 @@ function createSamlEndpoints ({ apiKey = '', target = 'api', basePath = '/', bas
    * }
    */
   function createSamlRole (data) {
-    const { orgId } = data
+    const { orgId, target: localTarget } = data
     delete data.orgId
+    delete data.target
 
     if (!orgId) {
       return Promise.reject(new Error('The parameter orgId is mandatory'))
     }
 
-    return axios._post(data.apiKey || apiKey, data.target || target, `${basePath}/${orgId}/samlRoles`, data)
+    return axios._post(data.apiKey || apiKey, localTarget || target, `${basePath}/${orgId}/samlRoles`, data)
   }
 
   /**
@@ -165,9 +166,10 @@ function createSamlEndpoints ({ apiKey = '', target = 'api', basePath = '/', bas
    * }
    */
   function updateSamlRole (data) {
-    const { orgId, roleId } = data
+    const { orgId, roleId, target: localTarget } = data
     delete data.orgId
     delete data.roleId
+    delete data.target
 
     if (!orgId) {
       return Promise.reject(new Error('The parameter orgId is mandatory'))
@@ -177,7 +179,7 @@ function createSamlEndpoints ({ apiKey = '', target = 'api', basePath = '/', bas
       return Promise.reject(new Error('The parameter roleId is mandatory'))
     }
 
-    return axios._put(data.apiKey || apiKey, data.target || target, `${basePath}/${orgId}/samlRoles/${roleId}`, data)
+    return axios._put(data.apiKey || apiKey, localTarget || target, `${basePath}/${orgId}/samlRoles/${roleId}`, data)
   }
 
   /**

@@ -152,9 +152,10 @@ function createSSIDsEndpoints ({ apiKey, target, basePath, baseUrl = 'https://ap
    * }
    */
   function updateNetworkSSID (data) {
-    const { networkId, ssidNumber } = data
+    const { networkId, ssidNumber, target: localTarget } = data
     delete data.networkId
     delete data.ssidNumber
+    delete data.target
 
     if (!networkId) {
       return Promise.reject(new Error('The parameter networkId is mandatory'))
@@ -162,7 +163,7 @@ function createSSIDsEndpoints ({ apiKey, target, basePath, baseUrl = 'https://ap
       return Promise.reject(new Error('The parameter ssidNumber is mandatory'))
     }
 
-    return axios._put(data.apiKey || apiKey, data.target || target, `${basePath}/${networkId}/ssids/${ssidNumber}`, data)
+    return axios._put(data.apiKey || apiKey, localTarget || target, `${basePath}/${networkId}/ssids/${ssidNumber}`, data)
   }
 
   return {
