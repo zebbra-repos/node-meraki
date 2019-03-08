@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>rest/httpServers.js - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    <input type="text" id="nav-search" placeholder="Search" />
+    
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-meraki.html">meraki</a></li><li><a href="module-meraki_frontend.html">meraki/frontend</a></li><li><a href="module-meraki_frontend_authentication.html">meraki/frontend/authentication</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-meraki_frontend_authentication.html#.login">login</a></li></ul></li><li><a href="module-meraki_frontend_organizations.html">meraki/frontend/organizations</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-meraki_frontend_organizations.html#.deleteOrganization">deleteOrganization</a></li><li data-type='method' style='display: none;'><a href="module-meraki_frontend_organizations.html#.getOrganization">getOrganization</a></li></ul></li><li><a href="module-meraki_rest.html">meraki/rest</a></li><li><a href="module-meraki_rest_admins.html">meraki/rest/admins</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-meraki_rest_admins.html#.createAdmin">createAdmin</a></li><li data-type='method' style='display: none;'><a href="module-meraki_rest_admins.html#.deleteAdmin">deleteAdmin</a></li><li data-type='method' style='display: none;'><a href="module-meraki_rest_admins.html#.listAdmins">listAdmins</a></li><li data-type='method' style='display: none;'><a href="module-meraki_rest_admins.html#.updateAdmin">updateAdmin</a></li></ul></li><li><a href="module-meraki_rest_clients.html">meraki/rest/clients</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-meraki_rest_clients.html#.listClients">listClients</a></li><li data-type='method' style='display: none;'><a href="module-meraki_rest_clients.html#.showClientPolicy">showClientPolicy</a></li><li data-type='method' style='display: none;'><a href="module-meraki_rest_clients.html#.showClientSplashAuthorization">showClientSplashAuthorization</a></li><li data-type='method' style='display: none;'><a href="module-meraki_rest_clients.html#.updateClientPolicy">updateClientPolicy</a></li><li data-type='method' style='display: none;'><a href="module-meraki_rest_clients.html#.updateClientSplashAuthorization">updateClientSplashAuthorization</a></li></ul></li><li><a href="module-meraki_rest_config-templates.html">meraki/rest/config-templates</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-meraki_rest_config-templates.html#.deleteConfigurationTemplate">deleteConfigurationTemplate</a></li><li data-type='method' style='display: none;'><a href="module-meraki_rest_config-templates.html#.listConfigurationTemplates">listConfigurationTemplates</a></li></ul></li><li><a href="module-meraki_rest_devices.html">meraki/rest/devices</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-meraki_rest_devices.html#.claimNetworkDevice">claimNetworkDevice</a></li><li data-type='method' style='display: none;'><a href="module-meraki_rest_devices.html#.deleteNetworkDevice">deleteNetworkDevice</a></li><li data-type='method' style='display: none;'><a href="module-meraki_rest_devices.html#.listNetworkDevices">listNetworkDevices</a></li><li data-type='method' style='display: none;'><a href="module-meraki_rest_devices.html#.listNetworkDeviceUplinks">listNetworkDeviceUplinks</a></li><li data-type='method' style='display: none;'><a href="module-meraki_rest_devices.html#.showNetworkDevice">showNetworkDevice</a></li><li data-type='method' style='display: none;'><a href="module-meraki_rest_devices.html#.showNetworkDeviceLLDPandCDP">showNetworkDeviceLLDPandCDP</a></li><li data-type='method' style='display: none;'><a href="module-meraki_rest_devices.html#.updateNetworkDevice">updateNetworkDevice</a></li></ul></li><li><a href="module-meraki_rest_group-policies.html">meraki/rest/group-policies</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-meraki_rest_group-policies.html#.listNetworkGroupPolicies">listNetworkGroupPolicies</a></li></ul></li><li><a href="module-meraki_rest_httpServers.html">meraki/rest/httpServers</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-meraki_rest_httpServers.html#.addHTTPServer">addHTTPServer</a></li><li data-type='method' style='display: none;'><a href="module-meraki_rest_httpServers.html#.deleteHTTPServer">deleteHTTPServer</a></li><li data-type='method' style='display: none;'><a href="module-meraki_rest_httpServers.html#.getHTTPServer">getHTTPServer</a></li><li data-type='method' style='display: none;'><a href="module-meraki_rest_httpServers.html#.getWebhookTestStatus">getWebhookTestStatus</a></li><li data-type='method' style='display: none;'><a href="module-meraki_rest_httpServers.html#.listHTTPServers">listHTTPServers</a></li><li data-type='method' style='display: none;'><a href="module-meraki_rest_httpServers.html#.sendTestWebhook">sendTestWebhook</a></li><li data-type='method' style='display: none;'><a href="module-meraki_rest_httpServers.html#.updateHTTPServer">updateHTTPServer</a></li></ul></li><li><a href="module-meraki_rest_mxL3Firewall.html">meraki/rest/mxL3Firewall</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-meraki_rest_mxL3Firewall.html#.listMxL3FirewallRules">listMxL3FirewallRules</a></li><li data-type='method' style='display: none;'><a href="module-meraki_rest_mxL3Firewall.html#.updateMxL3FirewallRule">updateMxL3FirewallRule</a></li></ul></li><li><a href="module-meraki_rest_networks.html">meraki/rest/networks</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-meraki_rest_networks.html#.bindNetworkToTemplate">bindNetworkToTemplate</a></li><li data-type='method' style='display: none;'><a href="module-meraki_rest_networks.html#.createNetwork">createNetwork</a></li><li data-type='method' style='display: none;'><a href="module-meraki_rest_networks.html#.deleteNetwork">deleteNetwork</a></li><li data-type='method' style='display: none;'><a href="module-meraki_rest_networks.html#.listNetworkAccessPolicies">listNetworkAccessPolicies</a></li><li data-type='method' style='display: none;'><a href="module-meraki_rest_networks.html#.listNetworks">listNetworks</a></li><li data-type='method' style='display: none;'><a href="module-meraki_rest_networks.html#.listSiteToSiteVpn">listSiteToSiteVpn</a></li><li data-type='method' style='display: none;'><a href="module-meraki_rest_networks.html#.listTrafficAnalysis">listTrafficAnalysis</a></li><li data-type='method' style='display: none;'><a href="module-meraki_rest_networks.html#.showNetwork">showNetwork</a></li><li data-type='method' style='display: none;'><a href="module-meraki_rest_networks.html#.unbindNetworkFromTemplate">unbindNetworkFromTemplate</a></li><li data-type='method' style='display: none;'><a href="module-meraki_rest_networks.html#.updateNetwork">updateNetwork</a></li><li data-type='method' style='display: none;'><a href="module-meraki_rest_networks.html#.updateSiteToSiteVpn">updateSiteToSiteVpn</a></li></ul></li><li><a href="module-meraki_rest_organizations.html">meraki/rest/organizations</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-meraki_rest_organizations.html#.claimOrganization">claimOrganization</a></li><li data-type='method' style='display: none;'><a href="module-meraki_rest_organizations.html#.cloneOrganization">cloneOrganization</a></li><li data-type='method' style='display: none;'><a href="module-meraki_rest_organizations.html#.createOrganization">createOrganization</a></li><li data-type='method' style='display: none;'><a href="module-meraki_rest_organizations.html#.listOrganizationInventory">listOrganizationInventory</a></li><li data-type='method' style='display: none;'><a href="module-meraki_rest_organizations.html#.listOrganizations">listOrganizations</a></li><li data-type='method' style='display: none;'><a href="module-meraki_rest_organizations.html#.showOrganization">showOrganization</a></li><li data-type='method' style='display: none;'><a href="module-meraki_rest_organizations.html#.showOrganizationDeviceStatuses">showOrganizationDeviceStatuses</a></li><li data-type='method' style='display: none;'><a href="module-meraki_rest_organizations.html#.showOrganizationLicense">showOrganizationLicense</a></li><li data-type='method' style='display: none;'><a href="module-meraki_rest_organizations.html#.showOrganizationSNMP">showOrganizationSNMP</a></li><li data-type='method' style='display: none;'><a href="module-meraki_rest_organizations.html#.updateOrganization">updateOrganization</a></li><li data-type='method' style='display: none;'><a href="module-meraki_rest_organizations.html#.updateOrganizationSNMP">updateOrganizationSNMP</a></li></ul></li><li><a href="module-meraki_rest_saml-roles.html">meraki/rest/saml-roles</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-meraki_rest_saml-roles.html#.createSamlRole">createSamlRole</a></li><li data-type='method' style='display: none;'><a href="module-meraki_rest_saml-roles.html#.deleteSamlRole">deleteSamlRole</a></li><li data-type='method' style='display: none;'><a href="module-meraki_rest_saml-roles.html#.listSamlRoles">listSamlRoles</a></li><li data-type='method' style='display: none;'><a href="module-meraki_rest_saml-roles.html#.showSamlRole">showSamlRole</a></li><li data-type='method' style='display: none;'><a href="module-meraki_rest_saml-roles.html#.updateSamlRole">updateSamlRole</a></li></ul></li><li><a href="module-meraki_rest_ssids.html">meraki/rest/ssids</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-meraki_rest_ssids.html#.listNetworkSSIDs">listNetworkSSIDs</a></li><li data-type='method' style='display: none;'><a href="module-meraki_rest_ssids.html#.showNetworkSSID">showNetworkSSID</a></li><li data-type='method' style='display: none;'><a href="module-meraki_rest_ssids.html#.updateNetworkSSID">updateNetworkSSID</a></li></ul></li><li><a href="module-meraki_rest_static-routes.html">meraki/rest/static-routes</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-meraki_rest_static-routes.html#.createStaticNetworkRoute">createStaticNetworkRoute</a></li><li data-type='method' style='display: none;'><a href="module-meraki_rest_static-routes.html#.deleteStaticNetworkRoute">deleteStaticNetworkRoute</a></li><li data-type='method' style='display: none;'><a href="module-meraki_rest_static-routes.html#.listStaticNetworkRoutes">listStaticNetworkRoutes</a></li><li data-type='method' style='display: none;'><a href="module-meraki_rest_static-routes.html#.showStaticNetworkRoute">showStaticNetworkRoute</a></li><li data-type='method' style='display: none;'><a href="module-meraki_rest_static-routes.html#.updateStaticNetworkRoute">updateStaticNetworkRoute</a></li></ul></li><li><a href="module-meraki_rest_switch-ports.html">meraki/rest/switch-ports</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-meraki_rest_switch-ports.html#.listSwitchPorts">listSwitchPorts</a></li><li data-type='method' style='display: none;'><a href="module-meraki_rest_switch-ports.html#.showSwitchPort">showSwitchPort</a></li><li data-type='method' style='display: none;'><a href="module-meraki_rest_switch-ports.html#.updateSwitchPort">updateSwitchPort</a></li></ul></li><li><a href="module-meraki_rest_vlans.html">meraki/rest/vlans</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-meraki_rest_vlans.html#.createNetworkVLAN">createNetworkVLAN</a></li><li data-type='method' style='display: none;'><a href="module-meraki_rest_vlans.html#.deleteNetworkVLAN">deleteNetworkVLAN</a></li><li data-type='method' style='display: none;'><a href="module-meraki_rest_vlans.html#.listNetworkVLANs">listNetworkVLANs</a></li><li data-type='method' style='display: none;'><a href="module-meraki_rest_vlans.html#.showNetworkVLAN">showNetworkVLAN</a></li><li data-type='method' style='display: none;'><a href="module-meraki_rest_vlans.html#.updateNetworkVLAN">updateNetworkVLAN</a></li></ul></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">rest/httpServers.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Create a Meraki REST API wrapper for the http servers (webhooks) ressource. See the
+ * [online documentation]{@link https://dashboard.meraki.com/api_docs#http-servers} for more information.
+ *
+ * @module meraki/rest/httpServers
+ * @param { string } [apiKey='']      The Meraki api key
+ * @param { string } [target='api']   The Meraki target
+ * @param { string } [basePath='/']   The Meraki base path for the ressource
+ * @param { string } [baseUrl='https://api.meraki.com']   The Meraki base url for the ressource
+ * @param { string } rateLimiter      The rate limiter (bottleneck) configuration
+ * @return { Object } The initialized Meraki REST API wrapper for the http server (webhook) ressource
+ * @example
+ * const apiKey = 'secret meraki api key'
+ * const organizationId = 'meraki organization id'
+ * const version = 'v0'
+ * const target = 'n12'
+ * const basePath = `/${target}/${version}/network`
+ * const rateLimiter = {
+ *  enabled: true
+ * }
+ * const httpServersEndpoints = require('./lib/rest/httpServers')({ apiKey, target, basePath, baseUrl, rateLimiter, logger })
+ */
+function createHTTPServersEndpoints ({ apiKey = '', target = 'api', basePath = '/', baseUrl = 'https://api.meraki.com', rateLimiter, logger }) {
+  const axios = require('./axios')({ baseUrl, rateLimiter, logger })
+
+  /**
+  * List the http servers for a network.
+  *
+  * @memberof module:meraki/rest/httpServers
+  * @param { string } [apiKey]     Optional custom apiKey for this request (if not set will take the inital apiKey)
+  * @param { string } [target]     Optional custom target for this request (if not set will take the inital target)
+  * @param { string } networkId    The id of the network for which to list the http servers
+  * @return { Promise } A promise holding the http servers for this network
+  * @example &lt;caption>Example response&lt;/caption>
+  * [
+  *  {
+  *    "id": "ABC123",
+  *    "networkId": "N_123",
+  *    "name": "My HTTP server",
+  *    "url": "https://www.example.com/webhooks",
+  *    "sharedSecret": "foobar"
+  *  }
+  * ]
+  */
+  function listHTTPServers ({ apiKey: localApiKey, target: localTarget, networkId }) {
+    if (!networkId) return Promise.reject(new Error('The parameter networkId is mandatory'))
+
+    return axios._get(localApiKey || apiKey, localTarget || target, `${basePath}/${networkId}/httpServers`)
+  }
+
+  /**
+  * Get a http servers of a network.
+  *
+  * @memberof module:meraki/rest/httpServers
+  * @param { string } [apiKey]     Optional custom apiKey for this request (if not set will take the inital apiKey)
+  * @param { string } [target]     Optional custom target for this request (if not set will take the inital target)
+  * @param { string } networkId    The id of the network
+  * @param { string } webhookId    The id of the webhook (http server)
+  * @return { Promise } A promise holding the http server of this network
+  * @example &lt;caption>Example response&lt;/caption>
+  * {
+  *    "id": "ABC123",
+  *    "networkId": "N_123",
+  *    "name": "My HTTP server",
+  *    "url": "https://www.example.com/webhooks",
+  *    "sharedSecret": "foobar"
+  *  }
+  */
+  function getHTTPServer ({ apiKey: localApiKey, target: localTarget, networkId, webhookId }) {
+    if (!networkId) return Promise.reject(new Error('The parameter networkId is mandatory'))
+    if (!webhookId) return Promise.reject(new Error('The parameter webhookId is mandatory'))
+
+    return axios._get(localApiKey || apiKey, localTarget || target, `${basePath}/${networkId}/httpServers/${webhookId}`)
+  }
+
+  /**
+   * Update http server.
+   *
+   * @memberof module:meraki/rest/httpServers
+   * @param { string } [apiKey]             Optional custom apiKey for this request (if not set will take the inital apiKey)
+   * @param { string } [target]             Optional custom target for this request (if not set will take the inital target)
+   * @param { string } networkId            The id of the network
+   * @param { string } webhookId            The id of the webhook (http server)
+   * @param { object } webhook              The webhook (http server) itself
+   * @param { string } webhook.name         The name of the webhook
+   * @param { string } webhook.url          The url / target of the webhook
+   * @param { string } webhook.sharedSecret The shared secret of this webhook
+   * @return { Promise } A promise holding the updated webhook (http server)
+   * @example &lt;caption>Example request data&lt;/caption>
+   *   {
+   *     "name": "My HTTP server",
+   *     "url": "https://www.example.com/webhooks",
+   *     "sharedSecret": "foobar"
+   *   }
+   * @example &lt;caption>Example response&lt;/caption>
+   *   {
+   *     "id": "ABC123",
+   *     "networkId": "N_123",
+   *     "name": "My HTTP server",
+   *     "url": "https://www.example.com/webhooks",
+   *     "sharedSecret": "foobar"
+   *   }
+   */
+  function updateHTTPServer ({ apiKey: localApiKey, target: localTarget, networkId, webhookId, webhook }) {
+    if (!networkId) return Promise.reject(new Error('The parameter networkId is mandatory'))
+    if (!webhookId) return Promise.reject(new Error('The parameter webhookId is mandatory'))
+    if (!webhook) return Promise.reject(new Error('The parameter webhook is mandatory'))
+    if (!webhook.hasOwnProperty('name')) return Promise.reject(new Error('The parameter webhook must have a property name'))
+    if (!webhook.hasOwnProperty('url')) return Promise.reject(new Error('The parameter webhook must have a property url'))
+    if (!webhook.hasOwnProperty('sharedSecret')) return Promise.reject(new Error('The parameter webhook must have a property sharedSecret'))
+
+    return axios._put(localApiKey || apiKey, localTarget || target, `${basePath}/${networkId}/httpServers/${webhookId}`, webhook)
+  }
+
+  /**
+   * Add a http server.
+   *
+   * @memberof module:meraki/rest/httpServers
+   * @param { string } [apiKey]             Optional custom apiKey for this request (if not set will take the inital apiKey)
+   * @param { string } [target]             Optional custom target for this request (if not set will take the inital target)
+   * @param { string } networkId            The id of the network
+   * @param { object } webhook              The webhook (http server) itself
+   * @param { string } webhook.name         The name of the webhook
+   * @param { string } webhook.url          The url / target of the webhook
+   * @param { string } webhook.sharedSecret The shared secret of this webhook
+   * @return { Promise } A promise holding the webhook (http server)
+   * @example &lt;caption>Example request data&lt;/caption>
+   *   {
+   *     "name": "My HTTP server",
+   *     "url": "https://www.example.com/webhooks",
+   *     "sharedSecret": "foobar"
+   *   }
+   * @example &lt;caption>Example response&lt;/caption>
+   *   {
+   *     "id": "ABC123",
+   *     "networkId": "N_123",
+   *     "name": "My HTTP server",
+   *     "url": "https://www.example.com/webhooks",
+   *     "sharedSecret": "foobar"
+   *   }
+   */
+  function addHTTPServer ({ apiKey: localApiKey, target: localTarget, networkId, webhook }) {
+    if (!networkId) return Promise.reject(new Error('The parameter networkId is mandatory'))
+    if (!webhook) return Promise.reject(new Error('The parameter webhook is mandatory'))
+    if (!webhook.hasOwnProperty('name')) return Promise.reject(new Error('The parameter webhook must have a property name'))
+    if (!webhook.hasOwnProperty('url')) return Promise.reject(new Error('The parameter webhook must have a property url'))
+    if (!webhook.hasOwnProperty('sharedSecret')) return Promise.reject(new Error('The parameter webhook must have a property sharedSecret'))
+
+    return axios._post(localApiKey || apiKey, localTarget || target, `${basePath}/${networkId}/httpServers`, webhook)
+  }
+
+  /**
+  * Delete a http servers of a network.
+  *
+  * @memberof module:meraki/rest/httpServers
+  * @param { string } [apiKey]     Optional custom apiKey for this request (if not set will take the inital apiKey)
+  * @param { string } [target]     Optional custom target for this request (if not set will take the inital target)
+  * @param { string } networkId    The id of the network
+  * @param { string } webhookId    The id of the webhook (http server)
+  * @return { Promise } A promise holding nothing
+  * @example &lt;caption>Example response&lt;/caption>
+  * (empty)
+  */
+  function deleteHTTPServer ({ apiKey: localApiKey, target: localTarget, networkId, webhookId }) {
+    if (!networkId) return Promise.reject(new Error('The parameter networkId is mandatory'))
+    if (!webhookId) return Promise.reject(new Error('The parameter webhookId is mandatory'))
+
+    return axios._delete(localApiKey || apiKey, localTarget || target, `${basePath}/${networkId}/httpServers/${webhookId}`)
+  }
+
+  /**
+   * send a test webhook.
+   *
+   * @memberof module:meraki/rest/httpServers
+   * @param { string } [apiKey]             Optional custom apiKey for this request (if not set will take the inital apiKey)
+   * @param { string } [target]             Optional custom target for this request (if not set will take the inital target)
+   * @param { string } networkId            The id of the network
+   * @param { string } url                  The url where the webhook should be sent to
+   * @return { Promise } A promise holding the webhook test
+   * @example &lt;caption>Example request data&lt;/caption>
+   *   {
+   *     "url": "https://www.example.com/webhooks"
+   *   }
+   * @example &lt;caption>Example response&lt;/caption>
+   *   {
+   *     "id": "1234",
+   *     "url": "https://www.example.com/path",
+   *     "status": "enqueued"
+   *   }
+   */
+  function sendTestWebhook ({ apiKey: localApiKey, target: localTarget, networkId, url }) {
+    if (!networkId) return Promise.reject(new Error('The parameter networkId is mandatory'))
+    // I don't care if it is an empty string or 0
+    if (typeof url === 'undefined') return Promise.reject(new Error('The parameter url is mandatory'))
+
+    return axios._post(localApiKey || apiKey, localTarget || target, `${basePath}/${networkId}/httpServers/webhookTests`, { url: url })
+  }
+
+  /**
+  * Return the status of a webhook test.
+  *
+  * @memberof module:meraki/rest/httpServers
+  * @param { string } [apiKey]      Optional custom apiKey for this request (if not set will take the inital apiKey)
+  * @param { string } [target]      Optional custom target for this request (if not set will take the inital target)
+  * @param { string } networkId     The id of the network for which to list the http servers
+  * @param { string } webhookTestId The id of the test
+  * @return { Promise } A promise holding the status of this test
+  * @example &lt;caption>Example response&lt;/caption>
+  *   {
+  *     "id": "1234",
+  *     "url": "https://www.example.com/path",
+  *     "status": "enqueued"
+  *   }
+  */
+  function getWebhookTestStatus ({ apiKey: localApiKey, target: localTarget, networkId, webhookTestId }) {
+    if (!networkId) return Promise.reject(new Error('The parameter networkId is mandatory'))
+    if (!webhookTestId) return Promise.reject(new Error('The parameter webhookTestId is mandatory'))
+
+    return axios._get(localApiKey || apiKey, localTarget || target, `${basePath}/${networkId}/httpServers/webhookTests/${webhookTestId}`)
+  }
+
+  return {
+    listHTTPServers,
+    getHTTPServer,
+    updateHTTPServer,
+    addHTTPServer,
+    deleteHTTPServer,
+    sendTestWebhook,
+    getWebhookTestStatus
+  }
+}
+
+module.exports = createHTTPServersEndpoints
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Fri Mar 08 2019 07:57:27 GMT+0100 (CET) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+
+<script src="scripts/jquery-3.1.1.min.js"></script>
+
+<script src="scripts/search.js"></script>
+
+
+<script src="scripts/collapse.js"></script>
+
+
+
+</body>
+</html>
