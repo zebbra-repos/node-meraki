@@ -3,8 +3,8 @@ const Bottleneck = require('bottleneck')
 const debug = require('debug')('node-meraki:axios')
 const JSONBigInt = require('json-bigint')({ 'storeAsString': true })
 
-let instance
-let limiter
+const settings = {}
+const pool = {}
 
 const handleBigInt = (data) => {
   try {
@@ -14,8 +14,9 @@ const handleBigInt = (data) => {
   }
 }
 
-function _exec ({ method, apiKey, target = 'api', url = '/', data, params = {} }) {
-  const baseURL = instance.defaults.baseURL.replace(/api/, target)
+function _exec ({ method, apiKey, target = 'api', scope = 'default', url = '/', data, params = {} }) {
+  const scopedAxios = settings.rateLimiter.scoped === true ? _getScope(scope) : _getScope('default')
+  const baseURL = scopedAxios.instance.defaults.baseURL.replace(/api/, target)
 
   let maxRedirects = 5
   if (target === 'api') {
@@ -37,7 +38,7 @@ function _exec ({ method, apiKey, target = 'api', url = '/', data, params = {} }
   }
 
   debug(options)
-  if (instance.logger) {
+  if (settings.logger) {
     let message = `=> ${options.method}: ${options.url}`
     if (options.params) {
       message += ` Params: ${JSON.stringify(options.params)}`
@@ -46,26 +47,26 @@ function _exec ({ method, apiKey, target = 'api', url = '/', data, params = {} }
       message += ` Data: ${JSON.stringify(options.data)}`
     }
 
-    instance.logger.info(message)
+    settings.logger.info(message)
   }
 
-  if (limiter) {
-    return limiter
-      .schedule(instance, options)
+  if (scopedAxios.limiter) {
+    return scopedAxios.limiter
+      .schedule(scopedAxios.instance, options)
       .then((response) => (params.withFullResponse) ? response : response.data)
       .then((response) => {
-        if (instance.logger) {
-          instance.logger.info('<= DATA:', params.withFullResponse ? response : JSON.stringify(response))
+        if (settings.logger) {
+          settings.logger.info('<= DATA:', params.withFullResponse ? response : JSON.stringify(response))
         }
 
         return Promise.resolve(response)
       })
   } else {
-    return instance(options)
+    return scopedAxios.instance(options)
       .then((response) => (params.withFullResponse) ? response : response.data)
       .then((response) => {
-        if (instance.logger) {
-          instance.logger.info('<= DATA:', params.withFullResponse ? response : JSON.stringify(response))
+        if (settings.logger) {
+          settings.logger.info('<= DATA:', params.withFullResponse ? response : JSON.stringify(response))
         }
 
         return Promise.resolve(response)
@@ -73,32 +74,33 @@ function _exec ({ method, apiKey, target = 'api', url = '/', data, params = {} }
   }
 }
 
-function _get (apiKey, target, url, params = {}) {
-  return _exec({ method: 'GET', apiKey, target, url, params })
+function _get (apiKey, target, scope, url, params = {}) {
+  return _exec({ method: 'GET', apiKey, target, scope, url, params })
 }
 
-function _post (apiKey, target, url, data, params = {}) {
-  return _exec({ method: 'POST', apiKey, target, url, data, params })
+function _post (apiKey, target, scope, url, data, params = {}) {
+  return _exec({ method: 'POST', apiKey, target, scope, url, data, params })
 }
 
-function _put (apiKey, target, url, data, params = {}) {
-  return _exec({ method: 'PUT', apiKey, target, url, data, params })
+function _put (apiKey, target, scope, url, data, params = {}) {
+  return _exec({ method: 'PUT', apiKey, target, scope, url, data, params })
 }
 
-function _delete (apiKey, target, url) {
-  return _exec({ method: 'DELETE', apiKey, target, url })
+function _delete (apiKey, target, scope, url) {
+  return _exec({ method: 'DELETE', apiKey, target, scope, url })
 }
 
-module.exports = ({ baseUrl, rateLimiter, headers, logger }) => {
-  if (!instance) {
-    instance = axios.create({
-      baseURL: baseUrl,
+function _getScope (scope) {
+  if (!pool[scope]) {
+    if (settings.logger) {
+      settings.logger.info('On the fly creating scoped axios instance for scope:', scope)
+    }
+    pool[scope] = {}
+
+    const instance = axios.create({
+      baseURL: settings.baseURL,
       transformResponse: [handleBigInt]
     })
-
-    if (logger) {
-      instance.logger = logger
-    }
 
     instance.interceptors.response.use((res) => {
       debug(res.headers)
@@ -115,10 +117,26 @@ module.exports = ({ baseUrl, rateLimiter, headers, logger }) => {
       return Promise.reject(error)
     })
 
-    if (rateLimiter.enabled) {
-      limiter = new Bottleneck()
-      limiter.updateSettings(rateLimiter)
+    pool[scope].instance = instance
+
+    if (settings.rateLimiter.enabled) {
+      const limiter = new Bottleneck()
+      limiter.updateSettings(settings.rateLimiter)
+
+      pool[scope].limiter = limiter
     }
+  }
+
+  return pool[scope]
+}
+
+module.exports = ({ baseUrl, rateLimiter, logger = false }) => {
+  settings.baseURL = baseUrl
+  settings.rateLimiter = rateLimiter
+  settings.logger = logger
+
+  if (!rateLimiter.scoped) {
+    _getScope('default')
   }
 
   return {

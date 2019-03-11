@@ -29,6 +29,7 @@ function createOrganizationsEndpoints ({ apiKey = '', target = 'api', basePath =
    * @memberof module:meraki/rest/organizations
    * @param { string } [apiKey]   Optional custom apiKey for this request (if not set will take the inital apiKey)
    * @param { string } [target]   Optional custom target for this request (if not set will take the inital target)
+   * @param { string } [scope]    Optional custom scope for rate limiter
    * @return { Promise } A promise holding the organizations this user has privileges on
    * @example <caption>Example response</caption>
    * [
@@ -39,7 +40,12 @@ function createOrganizationsEndpoints ({ apiKey = '', target = 'api', basePath =
    * ]
    */
   function listOrganizations (data = {}) {
-    return axios._get(data.apiKey || apiKey, data.target || target, basePath)
+    const { apiKey: localApiKey, target: localTarget, scope } = data
+    delete data.apiKey
+    delete data.target
+    delete data.scope
+
+    return axios._get(localApiKey || apiKey, localTarget || target, scope, basePath)
   }
 
   /**
@@ -48,6 +54,7 @@ function createOrganizationsEndpoints ({ apiKey = '', target = 'api', basePath =
    * @memberof module:meraki/rest/organizations
    * @param { string } [apiKey]   Optional custom apiKey for this request (if not set will take the inital apiKey)
    * @param { string } [target]   Optional custom target for this request (if not set will take the inital target)
+   * @param { string } [scope]    Optional custom scope for rate limiter
    * @param { string } orgId      The organization id
    * @return { Promise } A promise holding the organization for this id
    * @example <caption>Example response</caption>
@@ -56,12 +63,12 @@ function createOrganizationsEndpoints ({ apiKey = '', target = 'api', basePath =
    *   "name":"My org"
    * }
    */
-  function showOrganization ({ apiKey: localApiKey, target: localTarget, orgId }) {
+  function showOrganization ({ apiKey: localApiKey, target: localTarget, scope, orgId }) {
     if (!orgId) {
       return Promise.reject(new Error('The parameter orgId is mandatory'))
     }
 
-    return axios._get(localApiKey || apiKey, localTarget || target, `${basePath}/${orgId}`)
+    return axios._get(localApiKey || apiKey, localTarget || target, scope, `${basePath}/${orgId}`)
   }
 
   /**
@@ -70,6 +77,7 @@ function createOrganizationsEndpoints ({ apiKey = '', target = 'api', basePath =
    * @memberof module:meraki/rest/organizations
    * @param { string } [apiKey]   Optional custom apiKey for this request (if not set will take the inital apiKey)
    * @param { string } [target]   Optional custom target for this request (if not set will take the inital target)
+   * @param { string } [scope]    Optional custom scope for rate limiter
    * @param { string } orgId      The organization id
    * @param { string } name       The name of the organization
    * @return { Promise } A promise holding the updated organization
@@ -79,13 +87,13 @@ function createOrganizationsEndpoints ({ apiKey = '', target = 'api', basePath =
    *   "name":"My org"
    * }
    */
-  function updateOrganization ({ apiKey: localApiKey, target: localTarget, orgId, name }) {
+  function updateOrganization ({ apiKey: localApiKey, target: localTarget, scope, orgId, name }) {
     if (!orgId) {
       return Promise.reject(new Error('The parameter orgId is mandatory'))
     }
 
     const data = { name }
-    return axios._put(localApiKey || apiKey, localTarget || target, `${basePath}/${orgId}`, data)
+    return axios._put(localApiKey || apiKey, localTarget || target, scope, `${basePath}/${orgId}`, data)
   }
 
   /**
@@ -94,6 +102,7 @@ function createOrganizationsEndpoints ({ apiKey = '', target = 'api', basePath =
    * @memberof module:meraki/rest/organizations
    * @param { string } [apiKey]   Optional custom apiKey for this request (if not set will take the inital apiKey)
    * @param { string } [target]   Optional custom target for this request (if not set will take the inital target)
+   * @param { string } [scope]    Optional custom scope for rate limiter
    * @param { string } name       The name of the organization
    * @return { Promise } A promise holding the newly created organization
    * @example <caption>Example response</caption>
@@ -102,9 +111,9 @@ function createOrganizationsEndpoints ({ apiKey = '', target = 'api', basePath =
    *   "name":"My org"
    * }
    */
-  function createOrganization ({ apiKey: localApiKey, target: localTarget, name }) {
+  function createOrganization ({ apiKey: localApiKey, target: localTarget, scope, name }) {
     const data = { name }
-    return axios._post(localApiKey || apiKey, localTarget || target, basePath, data)
+    return axios._post(localApiKey || apiKey, localTarget || target, scope, basePath, data)
   }
 
   /**
@@ -113,6 +122,7 @@ function createOrganizationsEndpoints ({ apiKey = '', target = 'api', basePath =
    * @memberof module:meraki/rest/organizations
    * @param { string } [apiKey]   Optional custom apiKey for this request (if not set will take the inital apiKey)
    * @param { string } [target]   Optional custom target for this request (if not set will take the inital target)
+   * @param { string } [scope]    Optional custom scope for rate limiter
    * @param { string } orgId      The id of the organization to clone
    * @param { string } name       The name of the new organization
    * @return { Promise } A promise holding the newly created / cloned organization
@@ -122,13 +132,13 @@ function createOrganizationsEndpoints ({ apiKey = '', target = 'api', basePath =
    *   "name":"My cloned org"
    * }
    */
-  function cloneOrganization ({ apiKey: localApiKey, target: localTarget, orgId, name }) {
+  function cloneOrganization ({ apiKey: localApiKey, target: localTarget, scope, orgId, name }) {
     if (!orgId) {
       return Promise.reject(new Error('The parameter orgId is mandatory'))
     }
 
     const data = { name }
-    return axios._post(localApiKey || apiKey, localTarget || target, `${basePath}/${orgId}/clone`, data)
+    return axios._post(localApiKey || apiKey, localTarget || target, scope, `${basePath}/${orgId}/clone`, data)
   }
 
   /**
@@ -140,6 +150,7 @@ function createOrganizationsEndpoints ({ apiKey = '', target = 'api', basePath =
    * @memberof module:meraki/rest/organizations
    * @param { string } [apiKey]     Optional custom apiKey for this request (if not set will take the inital apiKey)
    * @param { string } [target]     Optional custom target for this request (if not set will take the inital target)
+   * @param { string } [scope]      Optional custom scope for rate limiter
    * @param { string } orgId        The id of the organization to claime
    * @param { string } order        The order number that should be claimed
    * @param { string } serial       The serial of the device that should be claimed
@@ -147,13 +158,13 @@ function createOrganizationsEndpoints ({ apiKey = '', target = 'api', basePath =
    * @param { string } licenseMode  Either `renew` or `addDevices`. `addDevices` will increase the license limit, while `renew` will extend the amount of time until expiration. This parameter is required when claiming by licenseKey
    * @return { Promise } A promise with no data
    */
-  function claimOrganization ({ apiKey: localApiKey, target: localTarget, orgId, order, serial, licenseKey, licenseMode }) {
+  function claimOrganization ({ apiKey: localApiKey, target: localTarget, scope, orgId, order, serial, licenseKey, licenseMode }) {
     if (!orgId) {
       return Promise.reject(new Error('The parameter orgId is mandatory'))
     }
 
     const data = { order, serial, licenseKey, licenseMode }
-    return axios._post(localApiKey || apiKey, localTarget || target, `${basePath}/${orgId}/claim`, data)
+    return axios._post(localApiKey || apiKey, localTarget || target, scope, `${basePath}/${orgId}/claim`, data)
   }
 
   /**
@@ -162,6 +173,7 @@ function createOrganizationsEndpoints ({ apiKey = '', target = 'api', basePath =
    * @memberof module:meraki/rest/organizations
    * @param { string } [apiKey]   Optional custom apiKey for this request (if not set will take the inital apiKey)
    * @param { string } [target]   Optional custom target for this request (if not set will take the inital target)
+   * @param { string } [scope]    Optional custom scope for rate limiter
    * @param { string } orgId      The id of the organization
    * @return { Promise } A promise holding the license state for this organization
    * @example <caption>Example response</caption>
@@ -173,12 +185,12 @@ function createOrganizationsEndpoints ({ apiKey = '', target = 'api', basePath =
    *   }
    * }
    */
-  function showOrganizationLicense ({ apiKey: localApiKey, target: localTarget, orgId }) {
+  function showOrganizationLicense ({ apiKey: localApiKey, target: localTarget, scope, orgId }) {
     if (!orgId) {
       return Promise.reject(new Error('The parameter orgId is mandatory'))
     }
 
-    return axios._get(localApiKey || apiKey, localTarget || target, `${basePath}/${orgId}/licenseState`)
+    return axios._get(localApiKey || apiKey, localTarget || target, scope, `${basePath}/${orgId}/licenseState`)
   }
 
   /**
@@ -187,6 +199,7 @@ function createOrganizationsEndpoints ({ apiKey = '', target = 'api', basePath =
    * @memberof module:meraki/rest/organizations
    * @param { string } [apiKey]   Optional custom apiKey for this request (if not set will take the inital apiKey)
    * @param { string } [target]   Optional custom target for this request (if not set will take the inital target)
+   * @param { string } [scope]    Optional custom scope for rate limiter
    * @param { string } orgId      The id of the organization
    * @return { Promise } A promise holding the inventory for this organization
    * @example <caption>Example response</caption>
@@ -201,12 +214,12 @@ function createOrganizationsEndpoints ({ apiKey = '', target = 'api', basePath =
    *   }
    * ]
    */
-  function listOrganizationInventory ({ apiKey: localApiKey, target: localTarget, orgId }) {
+  function listOrganizationInventory ({ apiKey: localApiKey, target: localTarget, scope, orgId }) {
     if (!orgId) {
       return Promise.reject(new Error('The parameter orgId is mandatory'))
     }
 
-    return axios._get(localApiKey || apiKey, localTarget || target, `${basePath}/${orgId}/inventory`)
+    return axios._get(localApiKey || apiKey, localTarget || target, scope, `${basePath}/${orgId}/inventory`)
   }
 
   /**
@@ -215,6 +228,7 @@ function createOrganizationsEndpoints ({ apiKey = '', target = 'api', basePath =
    * @memberof module:meraki/rest/organizations
    * @param { string } [apiKey]   Optional custom apiKey for this request (if not set will take the inital apiKey)
    * @param { string } [target]   Optional custom target for this request (if not set will take the inital target)
+   * @param { string } [scope]    Optional custom scope for rate limiter
    * @param { string } orgId      The id of the organization
    * @return { Promise } A promise holding then SNMP settings for this organization
    * @example <caption>Example response</caption>
@@ -227,12 +241,12 @@ function createOrganizationsEndpoints ({ apiKey = '', target = 'api', basePath =
    *   "port":16100
    * }
    */
-  function showOrganizationSNMP ({ apiKey: localApiKey, target: localTarget, orgId }) {
+  function showOrganizationSNMP ({ apiKey: localApiKey, target: localTarget, scope, orgId }) {
     if (!orgId) {
       return Promise.reject(new Error('The parameter orgId is mandatory'))
     }
 
-    return axios._get(localApiKey || apiKey, localTarget || target, `${basePath}/${orgId}/snmp`)
+    return axios._get(localApiKey || apiKey, localTarget || target, scope, `${basePath}/${orgId}/snmp`)
   }
 
   /**
@@ -241,6 +255,7 @@ function createOrganizationsEndpoints ({ apiKey = '', target = 'api', basePath =
    * @memberof module:meraki/rest/organizations
    * @param { string } [apiKey]     Optional custom apiKey for this request (if not set will take the inital apiKey)
    * @param { string } [target]     Optional custom target for this request (if not set will take the inital target)
+   * @param { string } [scope]      Optional custom scope for rate limiter
    * @param { string } orgId        The id of the organization
    * @param { boolean } v2cEnabled  Boolean indicating whether SNMP version 2c is enabled for the organization
    * @param { boolean } v3Enabled   Boolean indicating whether SNMP version 3 is enabled for the organization
@@ -262,14 +277,15 @@ function createOrganizationsEndpoints ({ apiKey = '', target = 'api', basePath =
    * }
    */
   function updateOrganizationSNMP (data = {}) {
-    const { orgId, target: localTarget } = data
+    const { orgId, target: localTarget, scope } = data
     if (!orgId) {
       return Promise.reject(new Error('The parameter orgId is mandatory'))
     }
     delete data.orgId
     delete data.target
+    delete data.scope
 
-    return axios._put(data.apiKey || apiKey, localTarget || target, `${basePath}/${orgId}/snmp`, data)
+    return axios._put(data.apiKey || apiKey, localTarget || target, scope, `${basePath}/${orgId}/snmp`, data)
   }
 
   /**
@@ -278,6 +294,7 @@ function createOrganizationsEndpoints ({ apiKey = '', target = 'api', basePath =
    * @memberof module:meraki/rest/organizations
    * @param { string } [apiKey]   Optional custom apiKey for this request (if not set will take the inital apiKey)
    * @param { string } [target]   Optional custom target for this request (if not set will take the inital target)
+   * @param { string } [scope]    Optional custom scope for rate limiter
    * @param { string } orgId      The id of the organization
    * @return { Promise } A promise holding then device statues for this organization
    * @example <caption>Example response</caption>
@@ -293,12 +310,12 @@ function createOrganizationsEndpoints ({ apiKey = '', target = 'api', basePath =
    *   }
    * ]
    */
-  function showOrganizationDeviceStatuses ({ apiKey: localApiKey, target: localTarget, orgId }) {
+  function showOrganizationDeviceStatuses ({ apiKey: localApiKey, target: localTarget, scope, orgId }) {
     if (!orgId) {
       return Promise.reject(new Error('The parameter orgId is mandatory'))
     }
 
-    return axios._get(localApiKey || apiKey, localTarget || target, `${basePath}/${orgId}/deviceStatuses`)
+    return axios._get(localApiKey || apiKey, localTarget || target, scope, `${basePath}/${orgId}/deviceStatuses`)
   }
 
   return {

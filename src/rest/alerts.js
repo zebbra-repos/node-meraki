@@ -29,6 +29,7 @@ function createAlertSettingsEndpoints ({ apiKey = '', target = 'api', basePath =
   * @memberof module:meraki/rest/alerts
   * @param { string } [apiKey]     Optional custom apiKey for this request (if not set will take the inital apiKey)
   * @param { string } [target]     Optional custom target for this request (if not set will take the inital target)
+  * @param { string } [scope]      Optional custom scope for rate limiter
   * @param { string } networkId    The id of the network
   * @return { Promise } A promise holding the alert settings of this network
   * @example <caption>Example response</caption>
@@ -59,10 +60,10 @@ function createAlertSettingsEndpoints ({ apiKey = '', target = 'api', basePath =
   *   ]
   * }
   */
-  function getAlertSettings ({ apiKey: localApiKey, target: localTarget, networkId }) {
+  function getAlertSettings ({ apiKey: localApiKey, target: localTarget, scope, networkId }) {
     if (!networkId) return Promise.reject(new Error('The parameter networkId is mandatory'))
 
-    return axios._get(localApiKey || apiKey, localTarget || target, `${basePath}/${networkId}/alertSettings`)
+    return axios._get(localApiKey || apiKey, localTarget || target, scope, `${basePath}/${networkId}/alertSettings`)
   }
 
   /**
@@ -71,6 +72,7 @@ function createAlertSettingsEndpoints ({ apiKey = '', target = 'api', basePath =
    * @memberof module:meraki/rest/alerts
    * @param { string } [apiKey]             Optional custom apiKey for this request (if not set will take the inital apiKey)
    * @param { string } [target]             Optional custom target for this request (if not set will take the inital target)
+   * @param { string } [scope]              Optional custom scope for rate limiter
    * @param { string } networkId            The id of the network
    * @param { object } defaultDestinations  The network_wide destinations for all alerts on the network.
    * @param { array } defaultDestinations.emails        A list of emails that will recieve the alert(s).
@@ -114,11 +116,12 @@ function createAlertSettingsEndpoints ({ apiKey = '', target = 'api', basePath =
    * }
    */
   function updateAlertSettings (data) {
-    const { networkId, target: localTarget } = data
+    const { networkId, target: localTarget, scope } = data
     delete data.networkId
     delete data.target
+    delete data.scope
 
-    return axios._put(data.apiKey || apiKey, localTarget || target, `${basePath}/${networkId}/alertSettings/`, data)
+    return axios._put(data.apiKey || apiKey, localTarget || target, scope, `${basePath}/${networkId}/alertSettings/`, data)
   }
 
   return {

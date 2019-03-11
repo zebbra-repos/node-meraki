@@ -29,6 +29,7 @@ function createPoliciesEndpoints ({ apiKey = '', target = 'api', basePath = '/',
    * @memberof module:meraki/rest/group-policies
    * @param { string } [apiKey]   Optional custom apiKey for this request (if not set will take the inital apiKey)
    * @param { string } [target]   Optional custom target for this request (if not set will take the inital target)
+   * @param { string } [scope]    Optional custom scope for rate limiter
    * @param { string } networkId  The id of the network for which to list the group policies
    * @return { Promise } A promise holding the group policies of this network
    * @example <caption>Example response</caption>
@@ -40,12 +41,12 @@ function createPoliciesEndpoints ({ apiKey = '', target = 'api', basePath = '/',
    *   ...
    * ]
    */
-  function listNetworkGroupPolicies ({ apiKey: localApiKey, target: localTarget, networkId }) {
+  function listNetworkGroupPolicies ({ apiKey: localApiKey, target: localTarget, scope, networkId }) {
     if (!networkId) {
       return Promise.reject(new Error('The parameter networkId is mandatory'))
     }
 
-    return axios._get(localApiKey || apiKey, localTarget || target, `${basePath}/${networkId}/groupPolicies`)
+    return axios._get(localApiKey || apiKey, localTarget || target, scope, `${basePath}/${networkId}/groupPolicies`)
   }
 
   return { listNetworkGroupPolicies }

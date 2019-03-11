@@ -16,6 +16,7 @@ const debug = require('debug')('node-meraki:rest')
  * @param { number } [rateLimiter.minTime=200]           How long to wait after launching a job before launching another one
  * @param { number } [rateLimiter.highWater=1000]        How long can the queue get? When the queue length exceeds that value, the selected `strategy` is executed to shed the load
  * @param { string } [rateLimiter.strategy='LEAK']       Which strategy to use if the queue gets longer than the high water mark. [Read about strategies]{@link https://github.com/SGrondin/bottleneck/blob/master/README.md#strategies}.
+ * @param { string } [rateLimiter.scoped=false]          If set to true uses a scoped rate limiter instance (pooled) which can be defined on per request level by the `scope` field
  * @param { boolean } [loggerEnabled=false]              Whether to use logging (request-based) or not
  * @param { Object } [logger=console]                    Logger to be used in case loggerEnabled is set to true
  * @return { Object } The initialized Meraki REST API wrapper
@@ -44,7 +45,8 @@ function createRestAPI (settings) {
     maxConcurrent: rateLimiterConfig.maxConcurrent || 5,
     minTime: rateLimiterConfig.minTime || 200,
     highWater: rateLimiterConfig.highWater || 1000,
-    strategy: Bottleneck.strategy[rateLimiterConfig.strategy] || Bottleneck.strategy.LEAK
+    strategy: Bottleneck.strategy[rateLimiterConfig.strategy] || Bottleneck.strategy.LEAK,
+    scoped: rateLimiterConfig.scoped !== false
   }
 
   debug(`init rest api wrapper with settings apiKey=${apiKey} target=${target} baseUrl=${baseUrl} basePath=${basePath} rateLimiter=${JSON.stringify(rateLimiter)} loggerEnabled=${!!settings.loggerEnabled}`)
@@ -159,7 +161,7 @@ function createRestAPI (settings) {
    * @memberof module:meraki/rest
    * @see module:meraki/rest/httpServers
    */
-  const httpServesEndpoints = require('./httpServers')({ apiKey, target, baseUrl, basePath: `${basePath}/networks`, rateLimiter })
+  const httpServesEndpoints = require('./httpServers')({ apiKey, target, baseUrl, basePath: `${basePath}/networks`, rateLimiter, logger })
 
   /**
    * The alert settings endpoints
@@ -167,7 +169,7 @@ function createRestAPI (settings) {
    * @memberof module:meraki/rest
    * @see module:meraki/rest/alerts
    */
-  const alertSettingsEndpoints = require('./alerts')({ apiKey, target, baseUrl, basePath: `${basePath}/networks`, rateLimiter })
+  const alertSettingsEndpoints = require('./alerts')({ apiKey, target, baseUrl, basePath: `${basePath}/networks`, rateLimiter, logger })
 
   return Object.assign({},
     adminEndpoints,

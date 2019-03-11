@@ -418,7 +418,7 @@ const portEndpoints = require('./lib/rest/ports')({ apiKey, target, basePath, ba
 
     
 
-    <h4 class="name" id=".listSwitchPorts"><span class="type-signature">(static) </span>listSwitchPorts<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, deviceSerial)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id=".listSwitchPorts"><span class="type-signature">(static) </span>listSwitchPorts<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, scope<span class="signature-attributes">opt</span>, deviceSerial)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -430,7 +430,7 @@ const portEndpoints = require('./lib/rest/ports')({ apiKey, target, basePath, ba
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_ports.js.html">rest/ports.js</a>, <a href="rest_ports.js.html#line53">line 53</a>
+        <a href="rest_ports.js.html">rest/ports.js</a>, <a href="rest_ports.js.html#line54">line 54</a>
     </li></ul></dd>
     
 
@@ -599,6 +599,39 @@ const portEndpoints = require('./lib/rest/ports')({ apiKey, target, basePath, ba
 
         <tr>
             
+                <td class="name"><code>scope</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Optional custom scope for rate limiter</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
                 <td class="name"><code>deviceSerial</code></td>
             
 
@@ -675,7 +708,7 @@ const portEndpoints = require('./lib/rest/ports')({ apiKey, target, basePath, ba
 
     
 
-    <h4 class="name" id=".showSwitchPort"><span class="type-signature">(static) </span>showSwitchPort<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, deviceSerial, number)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id=".showSwitchPort"><span class="type-signature">(static) </span>showSwitchPort<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, scope<span class="signature-attributes">opt</span>, deviceSerial, number)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -687,7 +720,7 @@ const portEndpoints = require('./lib/rest/ports')({ apiKey, target, basePath, ba
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_ports.js.html">rest/ports.js</a>, <a href="rest_ports.js.html#line87">line 87</a>
+        <a href="rest_ports.js.html">rest/ports.js</a>, <a href="rest_ports.js.html#line89">line 89</a>
     </li></ul></dd>
     
 
@@ -854,6 +887,39 @@ const portEndpoints = require('./lib/rest/ports')({ apiKey, target, basePath, ba
 
         <tr>
             
+                <td class="name"><code>scope</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Optional custom scope for rate limiter</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
                 <td class="name"><code>deviceSerial</code></td>
             
 
@@ -961,7 +1027,7 @@ const portEndpoints = require('./lib/rest/ports')({ apiKey, target, basePath, ba
 
     
 
-    <h4 class="name" id=".updateSwitchPort"><span class="type-signature">(static) </span>updateSwitchPort<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, deviceSerial, number, name, tags, enabled, type, vlan, voiceVlan, allowedVlans, poeEnabled, isolationEnabled, rstpEnabled, stpGuard, accessPolicyNumber, linkNegotiation)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id=".updateSwitchPort"><span class="type-signature">(static) </span>updateSwitchPort<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, scope<span class="signature-attributes">opt</span>, deviceSerial, number, name, tags, enabled, type, vlan, voiceVlan, allowedVlans, poeEnabled, isolationEnabled, rstpEnabled, stpGuard, accessPolicyNumber, linkNegotiation)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -973,7 +1039,7 @@ const portEndpoints = require('./lib/rest/ports')({ apiKey, target, basePath, ba
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_ports.js.html">rest/ports.js</a>, <a href="rest_ports.js.html#line136">line 136</a>
+        <a href="rest_ports.js.html">rest/ports.js</a>, <a href="rest_ports.js.html#line139">line 139</a>
     </li></ul></dd>
     
 
@@ -1134,6 +1200,39 @@ const portEndpoints = require('./lib/rest/ports')({ apiKey, target, basePath, ba
             
 
             <td class="description last"><p>Optional custom target for this request (if not set will take the inital target)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>scope</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Optional custom scope for rate limiter</p></td>
         </tr>
 
     
@@ -1665,7 +1764,7 @@ const portEndpoints = require('./lib/rest/ports')({ apiKey, target, basePath, ba
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Fri Mar 08 2019 16:43:23 GMT+0100 (CET) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Mon Mar 11 2019 15:07:01 GMT+0100 (CET) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

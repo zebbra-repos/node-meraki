@@ -420,7 +420,7 @@ const httpServersEndpoints = require('./lib/rest/httpServers')({ apiKey, target,
 
     
 
-    <h4 class="name" id=".addHTTPServer"><span class="type-signature">(static) </span>addHTTPServer<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, networkId, webhook)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id=".addHTTPServer"><span class="type-signature">(static) </span>addHTTPServer<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, scope<span class="signature-attributes">opt</span>, networkId, webhook)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -432,7 +432,7 @@ const httpServersEndpoints = require('./lib/rest/httpServers')({ apiKey, target,
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_httpServers.js.html">rest/httpServers.js</a>, <a href="rest_httpServers.js.html#line142">line 142</a>
+        <a href="rest_httpServers.js.html">rest/httpServers.js</a>, <a href="rest_httpServers.js.html#line146">line 146</a>
     </li></ul></dd>
     
 
@@ -593,6 +593,39 @@ const httpServersEndpoints = require('./lib/rest/httpServers')({ apiKey, target,
             
 
             <td class="description last"><p>Optional custom target for this request (if not set will take the inital target)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>scope</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Optional custom scope for rate limiter</p></td>
         </tr>
 
     
@@ -801,7 +834,7 @@ const httpServersEndpoints = require('./lib/rest/httpServers')({ apiKey, target,
 
     
 
-    <h4 class="name" id=".deleteHTTPServer"><span class="type-signature">(static) </span>deleteHTTPServer<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, networkId, webhookId)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id=".deleteHTTPServer"><span class="type-signature">(static) </span>deleteHTTPServer<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, scope<span class="signature-attributes">opt</span>, networkId, webhookId)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -813,7 +846,7 @@ const httpServersEndpoints = require('./lib/rest/httpServers')({ apiKey, target,
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_httpServers.js.html">rest/httpServers.js</a>, <a href="rest_httpServers.js.html#line164">line 164</a>
+        <a href="rest_httpServers.js.html">rest/httpServers.js</a>, <a href="rest_httpServers.js.html#line169">line 169</a>
     </li></ul></dd>
     
 
@@ -966,6 +999,39 @@ const httpServersEndpoints = require('./lib/rest/httpServers')({ apiKey, target,
 
         <tr>
             
+                <td class="name"><code>scope</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Optional custom scope for rate limiter</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
                 <td class="name"><code>networkId</code></td>
             
 
@@ -1073,7 +1139,7 @@ const httpServersEndpoints = require('./lib/rest/httpServers')({ apiKey, target,
 
     
 
-    <h4 class="name" id=".getHTTPServer"><span class="type-signature">(static) </span>getHTTPServer<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, networkId, webhookId)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id=".getHTTPServer"><span class="type-signature">(static) </span>getHTTPServer<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, scope<span class="signature-attributes">opt</span>, networkId, webhookId)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -1085,7 +1151,7 @@ const httpServersEndpoints = require('./lib/rest/httpServers')({ apiKey, target,
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_httpServers.js.html">rest/httpServers.js</a>, <a href="rest_httpServers.js.html#line69">line 69</a>
+        <a href="rest_httpServers.js.html">rest/httpServers.js</a>, <a href="rest_httpServers.js.html#line71">line 71</a>
     </li></ul></dd>
     
 
@@ -1244,6 +1310,39 @@ const httpServersEndpoints = require('./lib/rest/httpServers')({ apiKey, target,
 
         <tr>
             
+                <td class="name"><code>scope</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Optional custom scope for rate limiter</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
                 <td class="name"><code>networkId</code></td>
             
 
@@ -1351,7 +1450,7 @@ const httpServersEndpoints = require('./lib/rest/httpServers')({ apiKey, target,
 
     
 
-    <h4 class="name" id=".getWebhookTestStatus"><span class="type-signature">(static) </span>getWebhookTestStatus<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, networkId, webhookTestId)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id=".getWebhookTestStatus"><span class="type-signature">(static) </span>getWebhookTestStatus<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, scope<span class="signature-attributes">opt</span>, networkId, webhookTestId)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -1363,7 +1462,7 @@ const httpServersEndpoints = require('./lib/rest/httpServers')({ apiKey, target,
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_httpServers.js.html">rest/httpServers.js</a>, <a href="rest_httpServers.js.html#line215">line 215</a>
+        <a href="rest_httpServers.js.html">rest/httpServers.js</a>, <a href="rest_httpServers.js.html#line222">line 222</a>
     </li></ul></dd>
     
 
@@ -1520,6 +1619,39 @@ const httpServersEndpoints = require('./lib/rest/httpServers')({ apiKey, target,
 
         <tr>
             
+                <td class="name"><code>scope</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Optional custom scope for rate limiter</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
                 <td class="name"><code>networkId</code></td>
             
 
@@ -1627,7 +1759,7 @@ const httpServersEndpoints = require('./lib/rest/httpServers')({ apiKey, target,
 
     
 
-    <h4 class="name" id=".listHTTPServers"><span class="type-signature">(static) </span>listHTTPServers<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, networkId)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id=".listHTTPServers"><span class="type-signature">(static) </span>listHTTPServers<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, scope<span class="signature-attributes">opt</span>, networkId)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -1639,7 +1771,7 @@ const httpServersEndpoints = require('./lib/rest/httpServers')({ apiKey, target,
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_httpServers.js.html">rest/httpServers.js</a>, <a href="rest_httpServers.js.html#line45">line 45</a>
+        <a href="rest_httpServers.js.html">rest/httpServers.js</a>, <a href="rest_httpServers.js.html#line46">line 46</a>
     </li></ul></dd>
     
 
@@ -1800,6 +1932,39 @@ const httpServersEndpoints = require('./lib/rest/httpServers')({ apiKey, target,
 
         <tr>
             
+                <td class="name"><code>scope</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Optional custom scope for rate limiter</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
                 <td class="name"><code>networkId</code></td>
             
 
@@ -1876,7 +2041,7 @@ const httpServersEndpoints = require('./lib/rest/httpServers')({ apiKey, target,
 
     
 
-    <h4 class="name" id=".sendTestWebhook"><span class="type-signature">(static) </span>sendTestWebhook<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, networkId, url)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id=".sendTestWebhook"><span class="type-signature">(static) </span>sendTestWebhook<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, scope<span class="signature-attributes">opt</span>, networkId, url)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -1888,7 +2053,7 @@ const httpServersEndpoints = require('./lib/rest/httpServers')({ apiKey, target,
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_httpServers.js.html">rest/httpServers.js</a>, <a href="rest_httpServers.js.html#line191">line 191</a>
+        <a href="rest_httpServers.js.html">rest/httpServers.js</a>, <a href="rest_httpServers.js.html#line197">line 197</a>
     </li></ul></dd>
     
 
@@ -2051,6 +2216,39 @@ const httpServersEndpoints = require('./lib/rest/httpServers')({ apiKey, target,
 
         <tr>
             
+                <td class="name"><code>scope</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Optional custom scope for rate limiter</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
                 <td class="name"><code>networkId</code></td>
             
 
@@ -2158,7 +2356,7 @@ const httpServersEndpoints = require('./lib/rest/httpServers')({ apiKey, target,
 
     
 
-    <h4 class="name" id=".updateHTTPServer"><span class="type-signature">(static) </span>updateHTTPServer<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, networkId, webhookId, webhook)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id=".updateHTTPServer"><span class="type-signature">(static) </span>updateHTTPServer<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, scope<span class="signature-attributes">opt</span>, networkId, webhookId, webhook)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -2170,7 +2368,7 @@ const httpServersEndpoints = require('./lib/rest/httpServers')({ apiKey, target,
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_httpServers.js.html">rest/httpServers.js</a>, <a href="rest_httpServers.js.html#line104">line 104</a>
+        <a href="rest_httpServers.js.html">rest/httpServers.js</a>, <a href="rest_httpServers.js.html#line107">line 107</a>
     </li></ul></dd>
     
 
@@ -2331,6 +2529,39 @@ const httpServersEndpoints = require('./lib/rest/httpServers')({ apiKey, target,
             
 
             <td class="description last"><p>Optional custom target for this request (if not set will take the inital target)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>scope</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Optional custom scope for rate limiter</p></td>
         </tr>
 
     
@@ -2585,7 +2816,7 @@ const httpServersEndpoints = require('./lib/rest/httpServers')({ apiKey, target,
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Fri Mar 08 2019 16:43:23 GMT+0100 (CET) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Mon Mar 11 2019 15:07:01 GMT+0100 (CET) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

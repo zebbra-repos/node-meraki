@@ -29,6 +29,7 @@ function createRoutesEndpoints ({ apiKey, target, basePath, baseUrl = 'https://a
    * @memberof module:meraki/rest/static-routes
    * @param { string } [apiKey]   Optional custom apiKey for this request (if not set will take the inital apiKey)
    * @param { string } [target]   Optional custom target for this request (if not set will take the inital target)
+   * @param { string } [scope]    Optional custom scope for rate limiter
    * @param { string } networkId  The id of the network for which to list the static routes
    * @return { Promise } A promise holding the static routes of this network
    * @example <caption>Example response</caption>
@@ -42,12 +43,12 @@ function createRoutesEndpoints ({ apiKey, target, basePath, baseUrl = 'https://a
    *   }
    * ]
    */
-  function listStaticNetworkRoutes ({ apiKey: localApiKey, target: localTarget, networkId }) {
+  function listStaticNetworkRoutes ({ apiKey: localApiKey, target: localTarget, scope, networkId }) {
     if (!networkId) {
       return Promise.reject(new Error('The parameter networkId is mandatory'))
     }
 
-    return axios._get(localApiKey || apiKey, localTarget || target, `${basePath}/${networkId}/staticRoutes`)
+    return axios._get(localApiKey || apiKey, localTarget || target, scope, `${basePath}/${networkId}/staticRoutes`)
   }
 
   /**
@@ -56,6 +57,7 @@ function createRoutesEndpoints ({ apiKey, target, basePath, baseUrl = 'https://a
    * @memberof module:meraki/rest/static-routes
    * @param { string } [apiKey]   Optional custom apiKey for this request (if not set will take the inital apiKey)
    * @param { string } [target]   Optional custom target for this request (if not set will take the inital target)
+   * @param { string } [scope]    Optional custom scope for rate limiter
    * @param { string } networkId  The id of the network for which to list the static routes
    * @param { string } srId       The id of the static route for which to show the details
    * @return { Promise } A promise holding the details of a static route this network
@@ -68,14 +70,14 @@ function createRoutesEndpoints ({ apiKey, target, basePath, baseUrl = 'https://a
    *   "subnet": "192.168.10.0/24"
    * }
    */
-  function showStaticNetworkRoute ({ apiKey: localApiKey, target: localTarget, networkId, srId }) {
+  function showStaticNetworkRoute ({ apiKey: localApiKey, target: localTarget, scope, networkId, srId }) {
     if (!networkId) {
       return Promise.reject(new Error('The parameter networkId is mandatory'))
     } else if (!srId) {
       return Promise.reject(new Error('The parameter srId is mandatory'))
     }
 
-    return axios._get(localApiKey || apiKey, localTarget || target, `${basePath}/${networkId}/staticRoutes/${srId}`)
+    return axios._get(localApiKey || apiKey, localTarget || target, scope, `${basePath}/${networkId}/staticRoutes/${srId}`)
   }
 
   /**
@@ -84,6 +86,7 @@ function createRoutesEndpoints ({ apiKey, target, basePath, baseUrl = 'https://a
    * @memberof module:meraki/rest/static-routes
    * @param { string } [apiKey]           Optional custom apiKey for this request (if not set will take the inital apiKey)
    * @param { string } [target]           Optional custom target for this request (if not set will take the inital target)
+   * @param { string } [scope]            Optional custom scope for rate limiter
    * @param { string } networkId          The id of the network for which to list the static routes
    * @param { string } srId               The id of the static route to update
    * @param { string } name               The name of the static route
@@ -118,7 +121,7 @@ function createRoutesEndpoints ({ apiKey, target, basePath, baseUrl = 'https://a
    *   "subnet": "192.168.10.0/24"
    * }
    */
-  function updateStaticNetworkRoute ({ apiKey: localApiKey, target: localTarget, networkId, srId, name, subnet, gatewayIp, enabled, fixedIpAssignments, reservedIpRanges }) {
+  function updateStaticNetworkRoute ({ apiKey: localApiKey, target: localTarget, scope, networkId, srId, name, subnet, gatewayIp, enabled, fixedIpAssignments, reservedIpRanges }) {
     if (!networkId) {
       return Promise.reject(new Error('The parameter networkId is mandatory'))
     } else if (!srId) {
@@ -126,7 +129,7 @@ function createRoutesEndpoints ({ apiKey, target, basePath, baseUrl = 'https://a
     }
 
     const data = { name, subnet, gatewayIp, enabled, fixedIpAssignments, reservedIpRanges }
-    return axios._put(localApiKey || apiKey, localTarget || target, `${basePath}/${networkId}/staticRoutes/${srId}`, data)
+    return axios._put(localApiKey || apiKey, localTarget || target, scope, `${basePath}/${networkId}/staticRoutes/${srId}`, data)
   }
 
   /**
@@ -135,6 +138,7 @@ function createRoutesEndpoints ({ apiKey, target, basePath, baseUrl = 'https://a
    * @memberof module:meraki/rest/static-routes
    * @param { string } [apiKey]   Optional custom apiKey for this request (if not set will take the inital apiKey)
    * @param { string } [target]   Optional custom target for this request (if not set will take the inital target)
+   * @param { string } [scope]    Optional custom scope for rate limiter
    * @param { string } networkId  The id of the network for which to list the static routes
    * @param { string } name       The name of the static route
    * @param { string } subnet     The subnet of the static route
@@ -155,13 +159,13 @@ function createRoutesEndpoints ({ apiKey, target, basePath, baseUrl = 'https://a
    *   "subnet": "192.168.10.0/24"
    * }
    */
-  function createStaticNetworkRoute ({ apiKey: localApiKey, target: localTarget, networkId, name, subnet, gatewayIp }) {
+  function createStaticNetworkRoute ({ apiKey: localApiKey, target: localTarget, scope, networkId, name, subnet, gatewayIp }) {
     if (!networkId) {
       return Promise.reject(new Error('The parameter networkId is mandatory'))
     }
 
     const data = { name, subnet, gatewayIp }
-    return axios._post(localApiKey || apiKey, localTarget || target, `${basePath}/${networkId}/staticRoutes`, data)
+    return axios._post(localApiKey || apiKey, localTarget || target, scope, `${basePath}/${networkId}/staticRoutes`, data)
   }
 
   /**
@@ -170,18 +174,19 @@ function createRoutesEndpoints ({ apiKey, target, basePath, baseUrl = 'https://a
    * @memberof module:meraki/rest/static-routes
    * @param { string } [apiKey]   Optional custom apiKey for this request (if not set will take the inital apiKey)
    * @param { string } [target]   Optional custom target for this request (if not set will take the inital target)
+   * @param { string } [scope]    Optional custom scope for rate limiter
    * @param { string } networkId  The id of the network for which to list the static routes
    * @param { string } srId       The id of the static route to remove
    * @return { Promise } A promise with no data
    */
-  function deleteStaticNetworkRoute ({ apiKey: localApiKey, target: localTarget, networkId, srId }) {
+  function deleteStaticNetworkRoute ({ apiKey: localApiKey, target: localTarget, scope, networkId, srId }) {
     if (!networkId) {
       return Promise.reject(new Error('The parameter networkId is mandatory'))
     } else if (!srId) {
       return Promise.reject(new Error('The parameter srId is mandatory'))
     }
 
-    return axios._delete(localApiKey || apiKey, localTarget || target, `${basePath}/${networkId}/staticRoutes/${srId}`)
+    return axios._delete(localApiKey || apiKey, localTarget || target, scope, `${basePath}/${networkId}/staticRoutes/${srId}`)
   }
 
   return {

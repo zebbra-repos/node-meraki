@@ -29,6 +29,7 @@ function createVlansEndpoints ({ apiKey, target, basePath, baseUrl = 'https://ap
    * @memberof module:meraki/rest/vlans
    * @param { string } [apiKey]   Optional custom apiKey for this request (if not set will take the inital apiKey)
    * @param { string } [target]   Optional custom target for this request (if not set will take the inital target)
+   * @param { string } [scope]    Optional custom scope for rate limiter
    * @param { string } networkId  The id of the network for which to list the VLANs
    * @return { Promise } A promise holding the VLANs of this network
    * @example <caption>Example response</caption>
@@ -42,12 +43,12 @@ function createVlansEndpoints ({ apiKey, target, basePath, baseUrl = 'https://ap
    *   }
    * ]
    */
-  function listNetworkVLANs ({ apiKey: localApiKey, target: localTarget, networkId }) {
+  function listNetworkVLANs ({ apiKey: localApiKey, target: localTarget, scope, networkId }) {
     if (!networkId) {
       return Promise.reject(new Error('The parameter networkId is mandatory'))
     }
 
-    return axios._get(localApiKey || apiKey, localTarget || target, `${basePath}/${networkId}/vlans`)
+    return axios._get(localApiKey || apiKey, localTarget || target, scope, `${basePath}/${networkId}/vlans`)
   }
 
   /**
@@ -56,6 +57,7 @@ function createVlansEndpoints ({ apiKey, target, basePath, baseUrl = 'https://ap
    * @memberof module:meraki/rest/vlans
    * @param { string } [apiKey]   Optional custom apiKey for this request (if not set will take the inital apiKey)
    * @param { string } [target]   Optional custom target for this request (if not set will take the inital target)
+   * @param { string } [scope]    Optional custom scope for rate limiter
    * @param { string } networkId  The id of the network for which to list the VLANs
    * @param { string } vlanId     The id of the VLAN for which to show the details
    * @return { Promise } A promise holding the details of this VLAN
@@ -68,14 +70,14 @@ function createVlansEndpoints ({ apiKey, target, basePath, baseUrl = 'https://ap
    *   "subnet": "192.168.10.0/24"
    * }
    */
-  function showNetworkVLAN ({ apiKey: localApiKey, target: localTarget, networkId, vlanId }) {
+  function showNetworkVLAN ({ apiKey: localApiKey, target: localTarget, scope, networkId, vlanId }) {
     if (!networkId) {
       return Promise.reject(new Error('The parameter networkId is mandatory'))
     } else if (!vlanId) {
       return Promise.reject(new Error('The parameter vlanId is mandatory'))
     }
 
-    return axios._get(localApiKey || apiKey, localTarget || target, `${basePath}/${networkId}/vlans/${vlanId}`)
+    return axios._get(localApiKey || apiKey, localTarget || target, scope, `${basePath}/${networkId}/vlans/${vlanId}`)
   }
 
   /**
@@ -84,6 +86,7 @@ function createVlansEndpoints ({ apiKey, target, basePath, baseUrl = 'https://ap
    * @memberof module:meraki/rest/vlans
    * @param { string } [apiKey]           Optional custom apiKey for this request (if not set will take the inital apiKey)
    * @param { string } [target]           Optional custom target for this request (if not set will take the inital target)
+   * @param { string } [scope]            Optional custom scope for rate limiter
    * @param { string } networkId          The id of the network for which to list the VLANs
    * @param { string } vlanId             The id of the VLAN to update
    * @param { string } name               The name of the VLAN
@@ -122,10 +125,11 @@ function createVlansEndpoints ({ apiKey, target, basePath, baseUrl = 'https://ap
    * }
    */
   function updateNetworkVLAN (data) {
-    const { networkId, vlanId, target: localTarget } = data
+    const { networkId, vlanId, target: localTarget, scope } = data
     delete data.networkId
     delete data.vlanId
     delete data.target
+    delete data.scope
 
     if (!networkId) {
       return Promise.reject(new Error('The parameter networkId is mandatory'))
@@ -133,7 +137,7 @@ function createVlansEndpoints ({ apiKey, target, basePath, baseUrl = 'https://ap
       return Promise.reject(new Error('The parameter vlanId is mandatory'))
     }
 
-    return axios._put(data.apiKey || apiKey, localTarget || target, `${basePath}/${networkId}/vlans/${vlanId}`, data)
+    return axios._put(data.apiKey || apiKey, localTarget || target, scope, `${basePath}/${networkId}/vlans/${vlanId}`, data)
   }
 
   /**
@@ -142,6 +146,7 @@ function createVlansEndpoints ({ apiKey, target, basePath, baseUrl = 'https://ap
    * @memberof module:meraki/rest/vlans
    * @param { string } [apiKey]     Optional custom apiKey for this request (if not set will take the inital apiKey)
    * @param { string } [target]     Optional custom target for this request (if not set will take the inital target)
+   * @param { string } [scope]      Optional custom scope for rate limiter
    * @param { string } networkId    The id of the network for which to list the VLANs
    * @param { string } id           The VLAN ID of the new VLAN (must be between 1 and 4094)
    * @param { string } name         The name of the VLAN
@@ -164,13 +169,13 @@ function createVlansEndpoints ({ apiKey, target, basePath, baseUrl = 'https://ap
    *   "subnet": "192.168.10.0/24"
    * }
    */
-  function createNetworkVLAN ({ apiKey: localApiKey, target: localTarget, networkId, id, name, subnet, applianceIp }) {
+  function createNetworkVLAN ({ apiKey: localApiKey, target: localTarget, scope, networkId, id, name, subnet, applianceIp }) {
     if (!networkId) {
       return Promise.reject(new Error('The parameter networkId is mandatory'))
     }
 
     const data = { id, name, subnet, applianceIp }
-    return axios._post(localApiKey || apiKey, localTarget || target, `${basePath}/${networkId}/vlans`, data)
+    return axios._post(localApiKey || apiKey, localTarget || target, scope, `${basePath}/${networkId}/vlans`, data)
   }
 
   /**
@@ -179,18 +184,19 @@ function createVlansEndpoints ({ apiKey, target, basePath, baseUrl = 'https://ap
    * @memberof module:meraki/rest/vlans
    * @param { string } [apiKey]   Optional custom apiKey for this request (if not set will take the inital apiKey)
    * @param { string } [target]   Optional custom target for this request (if not set will take the inital target)
+   * @param { string } [scope]    Optional custom scope for rate limiter
    * @param { string } networkId  The id of the network for which to list the VLANs
    * @param { string } vlanId     The id of the VLAN to delete
    * @return { Promise } A promise with no data
    */
-  function deleteNetworkVLAN ({ apiKey: localApiKey, target: localTarget, networkId, vlanId }) {
+  function deleteNetworkVLAN ({ apiKey: localApiKey, target: localTarget, scope, networkId, vlanId }) {
     if (!networkId) {
       return Promise.reject(new Error('The parameter networkId is mandatory'))
     } else if (!vlanId) {
       return Promise.reject(new Error('The parameter vlanId is mandatory'))
     }
 
-    return axios._delete(localApiKey || apiKey, localTarget || target, `${basePath}/${networkId}/vlans/${vlanId}`)
+    return axios._delete(localApiKey || apiKey, localTarget || target, scope, `${basePath}/${networkId}/vlans/${vlanId}`)
   }
 
   return {

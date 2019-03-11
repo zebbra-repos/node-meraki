@@ -49,6 +49,9 @@ const rateLimiter = {
 }
 ```
 
+### Scoped Rate-Limiter
+If you manage more than one organisation you can enable the `Rate-Limiter` to use a pool of instances, one instance for each organisation (Meraki rate limit is restricted on a per-organisation level). Simply pass the `scoped=true` settings on `node-meraki` initialization. Each request accepts a `scope` attribute (for example the organisation id) which will be used to access the scoped `Rate-Limiter` instance. If no instance exists for the given instance one will be created on the fly and stored in the pool for all following requests.
+
 Following configuration defaults are set and can be overwritten:
 ```javascript
 const rateLimiter = {
@@ -56,7 +59,8 @@ const rateLimiter = {
   maxConcurrent: 5,
   minTime: 200,
   highWater: 1000,
-  strategy: Bottleneck.strategy.LEAK
+  strategy: Bottleneck.strategy.LEAK,
+  scoped: false
 }
 ```
 

@@ -30,6 +30,7 @@ function createMxL3FirewallEndpoints ({ apiKey = '', target = 'api', basePath = 
    * @memberof module:meraki/rest/mxL3Firewall
    * @param { string } [apiKey]     Optional custom apiKey for this request (if not set will take the inital apiKey)
    * @param { string } [target]     Optional custom target for this request (if not set will take the inital target)
+   * @param { string } [scope]      Optional custom scope for rate limiter
    * @param { string } networkId    The id of the MX network for which to list the L3 firewall rules
    * @return { Promise } A promise holding the L3 firewall rules this MX network
    * @example <caption>Example response</caption>
@@ -46,12 +47,12 @@ function createMxL3FirewallEndpoints ({ apiKey = '', target = 'api', basePath = 
    *   }
    * ]
    */
-  function listMxL3FirewallRules ({ apiKey: localApiKey, target: localTarget, networkId }) {
+  function listMxL3FirewallRules ({ apiKey: localApiKey, target: localTarget, scope, networkId }) {
     if (!networkId) {
       return Promise.reject(new Error('The parameter networkId is mandatory'))
     }
 
-    return axios._get(localApiKey || apiKey, localTarget || target, `${basePath}/${networkId}/l3FirewallRules`)
+    return axios._get(localApiKey || apiKey, localTarget || target, scope, `${basePath}/${networkId}/l3FirewallRules`)
   }
 
   /**
@@ -61,6 +62,7 @@ function createMxL3FirewallEndpoints ({ apiKey = '', target = 'api', basePath = 
    * @memberof module:meraki/rest/mxL3Firewall
    * @param { string } [apiKey]             Optional custom apiKey for this request (if not set will take the inital apiKey)
    * @param { string } [target]             Optional custom target for this request (if not set will take the inital target)
+   * @param { string } [scope]              Optional custom scope for rate limiter
    * @param { string } networkId            The id of the MX network for which to list the L3 firewall rules
    * @param { array } rules
    * @param { string } [rules.comment]      Description of the rule
@@ -98,7 +100,7 @@ function createMxL3FirewallEndpoints ({ apiKey = '', target = 'api', basePath = 
    *   }
    * ]
    */
-  function updateMxL3FirewallRule ({ apiKey: localApiKey, target: localTarget, networkId, rules, syslogDefaultRule }) {
+  function updateMxL3FirewallRule ({ apiKey: localApiKey, target: localTarget, scope, networkId, rules, syslogDefaultRule }) {
     if (!networkId) {
       return Promise.reject(new Error('The parameter networkId is mandatory'))
     } else if (!rules) {
@@ -107,7 +109,7 @@ function createMxL3FirewallEndpoints ({ apiKey = '', target = 'api', basePath = 
       return Promise.reject(new Error('The parameter rules must be of type array'))
     }
 
-    return axios._put(localApiKey || apiKey, localTarget || target, `${basePath}/${networkId}/l3FirewallRules`, { rules, syslogDefaultRule })
+    return axios._put(localApiKey || apiKey, localTarget || target, scope, `${basePath}/${networkId}/l3FirewallRules`, { rules, syslogDefaultRule })
   }
 
   return {

@@ -418,7 +418,7 @@ const routeEndpoints = require('./lib/rest/routes')({ apiKey, target, basePath, 
 
     
 
-    <h4 class="name" id=".createStaticNetworkRoute"><span class="type-signature">(static) </span>createStaticNetworkRoute<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, networkId, name, subnet, gatewayIp)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id=".createStaticNetworkRoute"><span class="type-signature">(static) </span>createStaticNetworkRoute<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, scope<span class="signature-attributes">opt</span>, networkId, name, subnet, gatewayIp)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -430,7 +430,7 @@ const routeEndpoints = require('./lib/rest/routes')({ apiKey, target, basePath, 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_routes.js.html">rest/routes.js</a>, <a href="rest_routes.js.html#line158">line 158</a>
+        <a href="rest_routes.js.html">rest/routes.js</a>, <a href="rest_routes.js.html#line162">line 162</a>
     </li></ul></dd>
     
 
@@ -591,6 +591,39 @@ const routeEndpoints = require('./lib/rest/routes')({ apiKey, target, basePath, 
             
 
             <td class="description last"><p>Optional custom target for this request (if not set will take the inital target)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>scope</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Optional custom scope for rate limiter</p></td>
         </tr>
 
     
@@ -766,7 +799,7 @@ const routeEndpoints = require('./lib/rest/routes')({ apiKey, target, basePath, 
 
     
 
-    <h4 class="name" id=".deleteStaticNetworkRoute"><span class="type-signature">(static) </span>deleteStaticNetworkRoute<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, networkId, srId)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id=".deleteStaticNetworkRoute"><span class="type-signature">(static) </span>deleteStaticNetworkRoute<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, scope<span class="signature-attributes">opt</span>, networkId, srId)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -778,7 +811,7 @@ const routeEndpoints = require('./lib/rest/routes')({ apiKey, target, basePath, 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_routes.js.html">rest/routes.js</a>, <a href="rest_routes.js.html#line177">line 177</a>
+        <a href="rest_routes.js.html">rest/routes.js</a>, <a href="rest_routes.js.html#line182">line 182</a>
     </li></ul></dd>
     
 
@@ -924,6 +957,39 @@ const routeEndpoints = require('./lib/rest/routes')({ apiKey, target, basePath, 
 
         <tr>
             
+                <td class="name"><code>scope</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Optional custom scope for rate limiter</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
                 <td class="name"><code>networkId</code></td>
             
 
@@ -1031,7 +1097,7 @@ const routeEndpoints = require('./lib/rest/routes')({ apiKey, target, basePath, 
 
     
 
-    <h4 class="name" id=".listStaticNetworkRoutes"><span class="type-signature">(static) </span>listStaticNetworkRoutes<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, networkId)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id=".listStaticNetworkRoutes"><span class="type-signature">(static) </span>listStaticNetworkRoutes<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, scope<span class="signature-attributes">opt</span>, networkId)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -1043,7 +1109,7 @@ const routeEndpoints = require('./lib/rest/routes')({ apiKey, target, basePath, 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_routes.js.html">rest/routes.js</a>, <a href="rest_routes.js.html#line45">line 45</a>
+        <a href="rest_routes.js.html">rest/routes.js</a>, <a href="rest_routes.js.html#line46">line 46</a>
     </li></ul></dd>
     
 
@@ -1204,6 +1270,39 @@ const routeEndpoints = require('./lib/rest/routes')({ apiKey, target, basePath, 
 
         <tr>
             
+                <td class="name"><code>scope</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Optional custom scope for rate limiter</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
                 <td class="name"><code>networkId</code></td>
             
 
@@ -1280,7 +1379,7 @@ const routeEndpoints = require('./lib/rest/routes')({ apiKey, target, basePath, 
 
     
 
-    <h4 class="name" id=".showStaticNetworkRoute"><span class="type-signature">(static) </span>showStaticNetworkRoute<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, networkId, srId)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id=".showStaticNetworkRoute"><span class="type-signature">(static) </span>showStaticNetworkRoute<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, scope<span class="signature-attributes">opt</span>, networkId, srId)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -1292,7 +1391,7 @@ const routeEndpoints = require('./lib/rest/routes')({ apiKey, target, basePath, 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_routes.js.html">rest/routes.js</a>, <a href="rest_routes.js.html#line71">line 71</a>
+        <a href="rest_routes.js.html">rest/routes.js</a>, <a href="rest_routes.js.html#line73">line 73</a>
     </li></ul></dd>
     
 
@@ -1451,6 +1550,39 @@ const routeEndpoints = require('./lib/rest/routes')({ apiKey, target, basePath, 
 
         <tr>
             
+                <td class="name"><code>scope</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Optional custom scope for rate limiter</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
                 <td class="name"><code>networkId</code></td>
             
 
@@ -1558,7 +1690,7 @@ const routeEndpoints = require('./lib/rest/routes')({ apiKey, target, basePath, 
 
     
 
-    <h4 class="name" id=".updateStaticNetworkRoute"><span class="type-signature">(static) </span>updateStaticNetworkRoute<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, networkId, srId, name, subnet, gatewayIp, enabled, fixedIpAssignments, reservedIpRanges)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id=".updateStaticNetworkRoute"><span class="type-signature">(static) </span>updateStaticNetworkRoute<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, scope<span class="signature-attributes">opt</span>, networkId, srId, name, subnet, gatewayIp, enabled, fixedIpAssignments, reservedIpRanges)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -1570,7 +1702,7 @@ const routeEndpoints = require('./lib/rest/routes')({ apiKey, target, basePath, 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_routes.js.html">rest/routes.js</a>, <a href="rest_routes.js.html#line121">line 121</a>
+        <a href="rest_routes.js.html">rest/routes.js</a>, <a href="rest_routes.js.html#line124">line 124</a>
     </li></ul></dd>
     
 
@@ -1741,6 +1873,39 @@ const routeEndpoints = require('./lib/rest/routes')({ apiKey, target, basePath, 
             
 
             <td class="description last"><p>Optional custom target for this request (if not set will take the inital target)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>scope</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Optional custom scope for rate limiter</p></td>
         </tr>
 
     
@@ -2055,7 +2220,7 @@ const routeEndpoints = require('./lib/rest/routes')({ apiKey, target, basePath, 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Fri Mar 08 2019 16:43:23 GMT+0100 (CET) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Mon Mar 11 2019 15:07:01 GMT+0100 (CET) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

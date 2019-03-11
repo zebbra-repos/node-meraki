@@ -418,7 +418,7 @@ const organizationEndpoints = require('./lib/rest/organization')({ apiKey, targe
 
     
 
-    <h4 class="name" id=".claimOrganization"><span class="type-signature">(static) </span>claimOrganization<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, orgId, order, serial, licenseKey, licenseMode)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id=".claimOrganization"><span class="type-signature">(static) </span>claimOrganization<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, scope<span class="signature-attributes">opt</span>, orgId, order, serial, licenseKey, licenseMode)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -430,7 +430,7 @@ const organizationEndpoints = require('./lib/rest/organization')({ apiKey, targe
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_organizations.js.html">rest/organizations.js</a>, <a href="rest_organizations.js.html#line150">line 150</a>
+        <a href="rest_organizations.js.html">rest/organizations.js</a>, <a href="rest_organizations.js.html#line161">line 161</a>
     </li></ul></dd>
     
 
@@ -573,6 +573,39 @@ and cannot be performed in one request.</p>
             
 
             <td class="description last"><p>Optional custom target for this request (if not set will take the inital target)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>scope</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Optional custom scope for rate limiter</p></td>
         </tr>
 
     
@@ -779,7 +812,7 @@ and cannot be performed in one request.</p>
 
     
 
-    <h4 class="name" id=".cloneOrganization"><span class="type-signature">(static) </span>cloneOrganization<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, orgId, name)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id=".cloneOrganization"><span class="type-signature">(static) </span>cloneOrganization<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, scope<span class="signature-attributes">opt</span>, orgId, name)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -791,7 +824,7 @@ and cannot be performed in one request.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_organizations.js.html">rest/organizations.js</a>, <a href="rest_organizations.js.html#line125">line 125</a>
+        <a href="rest_organizations.js.html">rest/organizations.js</a>, <a href="rest_organizations.js.html#line135">line 135</a>
     </li></ul></dd>
     
 
@@ -947,6 +980,39 @@ and cannot be performed in one request.</p>
 
         <tr>
             
+                <td class="name"><code>scope</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Optional custom scope for rate limiter</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
                 <td class="name"><code>orgId</code></td>
             
 
@@ -1054,7 +1120,7 @@ and cannot be performed in one request.</p>
 
     
 
-    <h4 class="name" id=".createOrganization"><span class="type-signature">(static) </span>createOrganization<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, name)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id=".createOrganization"><span class="type-signature">(static) </span>createOrganization<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, scope<span class="signature-attributes">opt</span>, name)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -1066,7 +1132,7 @@ and cannot be performed in one request.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_organizations.js.html">rest/organizations.js</a>, <a href="rest_organizations.js.html#line105">line 105</a>
+        <a href="rest_organizations.js.html">rest/organizations.js</a>, <a href="rest_organizations.js.html#line114">line 114</a>
     </li></ul></dd>
     
 
@@ -1222,6 +1288,39 @@ and cannot be performed in one request.</p>
 
         <tr>
             
+                <td class="name"><code>scope</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Optional custom scope for rate limiter</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
                 <td class="name"><code>name</code></td>
             
 
@@ -1298,7 +1397,7 @@ and cannot be performed in one request.</p>
 
     
 
-    <h4 class="name" id=".listOrganizationInventory"><span class="type-signature">(static) </span>listOrganizationInventory<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, orgId)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id=".listOrganizationInventory"><span class="type-signature">(static) </span>listOrganizationInventory<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, scope<span class="signature-attributes">opt</span>, orgId)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -1310,7 +1409,7 @@ and cannot be performed in one request.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_organizations.js.html">rest/organizations.js</a>, <a href="rest_organizations.js.html#line204">line 204</a>
+        <a href="rest_organizations.js.html">rest/organizations.js</a>, <a href="rest_organizations.js.html#line217">line 217</a>
     </li></ul></dd>
     
 
@@ -1472,6 +1571,39 @@ and cannot be performed in one request.</p>
 
         <tr>
             
+                <td class="name"><code>scope</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Optional custom scope for rate limiter</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
                 <td class="name"><code>orgId</code></td>
             
 
@@ -1548,7 +1680,7 @@ and cannot be performed in one request.</p>
 
     
 
-    <h4 class="name" id=".listOrganizations"><span class="type-signature">(static) </span>listOrganizations<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id=".listOrganizations"><span class="type-signature">(static) </span>listOrganizations<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, scope<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -1560,7 +1692,7 @@ and cannot be performed in one request.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_organizations.js.html">rest/organizations.js</a>, <a href="rest_organizations.js.html#line41">line 41</a>
+        <a href="rest_organizations.js.html">rest/organizations.js</a>, <a href="rest_organizations.js.html#line42">line 42</a>
     </li></ul></dd>
     
 
@@ -1715,6 +1847,39 @@ and cannot be performed in one request.</p>
         </tr>
 
     
+
+        <tr>
+            
+                <td class="name"><code>scope</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Optional custom scope for rate limiter</p></td>
+        </tr>
+
+    
     </tbody>
 </table>
 
@@ -1763,7 +1928,7 @@ and cannot be performed in one request.</p>
 
     
 
-    <h4 class="name" id=".showOrganization"><span class="type-signature">(static) </span>showOrganization<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, orgId)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id=".showOrganization"><span class="type-signature">(static) </span>showOrganization<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, scope<span class="signature-attributes">opt</span>, orgId)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -1775,7 +1940,7 @@ and cannot be performed in one request.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_organizations.js.html">rest/organizations.js</a>, <a href="rest_organizations.js.html#line59">line 59</a>
+        <a href="rest_organizations.js.html">rest/organizations.js</a>, <a href="rest_organizations.js.html#line66">line 66</a>
     </li></ul></dd>
     
 
@@ -1931,6 +2096,39 @@ and cannot be performed in one request.</p>
 
         <tr>
             
+                <td class="name"><code>scope</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Optional custom scope for rate limiter</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
                 <td class="name"><code>orgId</code></td>
             
 
@@ -2007,7 +2205,7 @@ and cannot be performed in one request.</p>
 
     
 
-    <h4 class="name" id=".showOrganizationDeviceStatuses"><span class="type-signature">(static) </span>showOrganizationDeviceStatuses<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, orgId)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id=".showOrganizationDeviceStatuses"><span class="type-signature">(static) </span>showOrganizationDeviceStatuses<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, scope<span class="signature-attributes">opt</span>, orgId)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -2019,7 +2217,7 @@ and cannot be performed in one request.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_organizations.js.html">rest/organizations.js</a>, <a href="rest_organizations.js.html#line296">line 296</a>
+        <a href="rest_organizations.js.html">rest/organizations.js</a>, <a href="rest_organizations.js.html#line313">line 313</a>
     </li></ul></dd>
     
 
@@ -2182,6 +2380,39 @@ and cannot be performed in one request.</p>
 
         <tr>
             
+                <td class="name"><code>scope</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Optional custom scope for rate limiter</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
                 <td class="name"><code>orgId</code></td>
             
 
@@ -2258,7 +2489,7 @@ and cannot be performed in one request.</p>
 
     
 
-    <h4 class="name" id=".showOrganizationLicense"><span class="type-signature">(static) </span>showOrganizationLicense<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, orgId)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id=".showOrganizationLicense"><span class="type-signature">(static) </span>showOrganizationLicense<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, scope<span class="signature-attributes">opt</span>, orgId)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -2270,7 +2501,7 @@ and cannot be performed in one request.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_organizations.js.html">rest/organizations.js</a>, <a href="rest_organizations.js.html#line176">line 176</a>
+        <a href="rest_organizations.js.html">rest/organizations.js</a>, <a href="rest_organizations.js.html#line188">line 188</a>
     </li></ul></dd>
     
 
@@ -2429,6 +2660,39 @@ and cannot be performed in one request.</p>
 
         <tr>
             
+                <td class="name"><code>scope</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Optional custom scope for rate limiter</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
                 <td class="name"><code>orgId</code></td>
             
 
@@ -2505,7 +2769,7 @@ and cannot be performed in one request.</p>
 
     
 
-    <h4 class="name" id=".showOrganizationSNMP"><span class="type-signature">(static) </span>showOrganizationSNMP<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, orgId)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id=".showOrganizationSNMP"><span class="type-signature">(static) </span>showOrganizationSNMP<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, scope<span class="signature-attributes">opt</span>, orgId)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -2517,7 +2781,7 @@ and cannot be performed in one request.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_organizations.js.html">rest/organizations.js</a>, <a href="rest_organizations.js.html#line230">line 230</a>
+        <a href="rest_organizations.js.html">rest/organizations.js</a>, <a href="rest_organizations.js.html#line244">line 244</a>
     </li></ul></dd>
     
 
@@ -2677,6 +2941,39 @@ and cannot be performed in one request.</p>
 
         <tr>
             
+                <td class="name"><code>scope</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Optional custom scope for rate limiter</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
                 <td class="name"><code>orgId</code></td>
             
 
@@ -2753,7 +3050,7 @@ and cannot be performed in one request.</p>
 
     
 
-    <h4 class="name" id=".updateOrganization"><span class="type-signature">(static) </span>updateOrganization<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, orgId, name)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id=".updateOrganization"><span class="type-signature">(static) </span>updateOrganization<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, scope<span class="signature-attributes">opt</span>, orgId, name)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -2765,7 +3062,7 @@ and cannot be performed in one request.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_organizations.js.html">rest/organizations.js</a>, <a href="rest_organizations.js.html#line82">line 82</a>
+        <a href="rest_organizations.js.html">rest/organizations.js</a>, <a href="rest_organizations.js.html#line90">line 90</a>
     </li></ul></dd>
     
 
@@ -2921,6 +3218,39 @@ and cannot be performed in one request.</p>
 
         <tr>
             
+                <td class="name"><code>scope</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Optional custom scope for rate limiter</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
                 <td class="name"><code>orgId</code></td>
             
 
@@ -3028,7 +3358,7 @@ and cannot be performed in one request.</p>
 
     
 
-    <h4 class="name" id=".updateOrganizationSNMP"><span class="type-signature">(static) </span>updateOrganizationSNMP<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, orgId, v2cEnabled, v3Enabled, v3AuthMode, v3AuthPass, v3PrivMode, v3PrivPass, peerIps)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id=".updateOrganizationSNMP"><span class="type-signature">(static) </span>updateOrganizationSNMP<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, scope<span class="signature-attributes">opt</span>, orgId, v2cEnabled, v3Enabled, v3AuthMode, v3AuthPass, v3PrivMode, v3PrivPass, peerIps)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -3040,7 +3370,7 @@ and cannot be performed in one request.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_organizations.js.html">rest/organizations.js</a>, <a href="rest_organizations.js.html#line264">line 264</a>
+        <a href="rest_organizations.js.html">rest/organizations.js</a>, <a href="rest_organizations.js.html#line279">line 279</a>
     </li></ul></dd>
     
 
@@ -3195,6 +3525,39 @@ and cannot be performed in one request.</p>
             
 
             <td class="description last"><p>Optional custom target for this request (if not set will take the inital target)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>scope</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Optional custom scope for rate limiter</p></td>
         </tr>
 
     
@@ -3509,7 +3872,7 @@ and cannot be performed in one request.</p>
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Fri Mar 08 2019 16:43:23 GMT+0100 (CET) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Mon Mar 11 2019 15:07:01 GMT+0100 (CET) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

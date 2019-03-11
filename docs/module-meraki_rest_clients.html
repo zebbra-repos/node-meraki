@@ -418,7 +418,7 @@ const clientEndpoints = require('./lib/rest/clients')({ apiKey, target, basePath
 
     
 
-    <h4 class="name" id=".listClients"><span class="type-signature">(static) </span>listClients<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, deviceSerial, timespan)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id=".listClients"><span class="type-signature">(static) </span>listClients<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, scope<span class="signature-attributes">opt</span>, deviceSerial, timespan)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -430,7 +430,7 @@ const clientEndpoints = require('./lib/rest/clients')({ apiKey, target, basePath
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_clients.js.html">rest/clients.js</a>, <a href="rest_clients.js.html#line52">line 52</a>
+        <a href="rest_clients.js.html">rest/clients.js</a>, <a href="rest_clients.js.html#line53">line 53</a>
     </li></ul></dd>
     
 
@@ -597,6 +597,39 @@ the switchport field is null.</p>
 
         <tr>
             
+                <td class="name"><code>scope</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Optional custom scope for rate limiter</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
                 <td class="name"><code>deviceSerial</code></td>
             
 
@@ -704,7 +737,7 @@ the switchport field is null.</p>
 
     
 
-    <h4 class="name" id=".showClientPolicy"><span class="type-signature">(static) </span>showClientPolicy<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, networkId, timespan, mac)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id=".showClientPolicy"><span class="type-signature">(static) </span>showClientPolicy<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, scope<span class="signature-attributes">opt</span>, networkId, timespan, mac)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -716,7 +749,7 @@ the switchport field is null.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_clients.js.html">rest/clients.js</a>, <a href="rest_clients.js.html#line78">line 78</a>
+        <a href="rest_clients.js.html">rest/clients.js</a>, <a href="rest_clients.js.html#line80">line 80</a>
     </li></ul></dd>
     
 
@@ -873,6 +906,39 @@ the switchport field is null.</p>
 
         <tr>
             
+                <td class="name"><code>scope</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Optional custom scope for rate limiter</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
                 <td class="name"><code>networkId</code></td>
             
 
@@ -1011,7 +1077,7 @@ the switchport field is null.</p>
 
     
 
-    <h4 class="name" id=".showClientSplashAuthorization"><span class="type-signature">(static) </span>showClientSplashAuthorization<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, networkId, timespan, mac)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id=".showClientSplashAuthorization"><span class="type-signature">(static) </span>showClientSplashAuthorization<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, scope<span class="signature-attributes">opt</span>, networkId, timespan, mac)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -1023,7 +1089,7 @@ the switchport field is null.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_clients.js.html">rest/clients.js</a>, <a href="rest_clients.js.html#line143">line 143</a>
+        <a href="rest_clients.js.html">rest/clients.js</a>, <a href="rest_clients.js.html#line147">line 147</a>
     </li></ul></dd>
     
 
@@ -1187,6 +1253,39 @@ the switchport field is null.</p>
 
         <tr>
             
+                <td class="name"><code>scope</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Optional custom scope for rate limiter</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
                 <td class="name"><code>networkId</code></td>
             
 
@@ -1325,7 +1424,7 @@ the switchport field is null.</p>
 
     
 
-    <h4 class="name" id=".updateClientPolicy"><span class="type-signature">(static) </span>updateClientPolicy<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, networkId, timespan, mac, devicePolicy, groupPolicyId)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id=".updateClientPolicy"><span class="type-signature">(static) </span>updateClientPolicy<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, scope<span class="signature-attributes">opt</span>, networkId, timespan, mac, devicePolicy, groupPolicyId)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -1337,7 +1436,7 @@ the switchport field is null.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_clients.js.html">rest/clients.js</a>, <a href="rest_clients.js.html#line108">line 108</a>
+        <a href="rest_clients.js.html">rest/clients.js</a>, <a href="rest_clients.js.html#line111">line 111</a>
     </li></ul></dd>
     
 
@@ -1488,6 +1587,39 @@ the switchport field is null.</p>
             
 
             <td class="description last"><p>Optional custom target for this request (if not set will take the inital target)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>scope</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Optional custom scope for rate limiter</p></td>
         </tr>
 
     
@@ -1694,7 +1826,7 @@ the switchport field is null.</p>
 
     
 
-    <h4 class="name" id=".updateClientSplashAuthorization"><span class="type-signature">(static) </span>updateClientSplashAuthorization<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, networkId, mac, ssids)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id=".updateClientSplashAuthorization"><span class="type-signature">(static) </span>updateClientSplashAuthorization<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, scope<span class="signature-attributes">opt</span>, networkId, mac, ssids)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -1706,7 +1838,7 @@ the switchport field is null.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_clients.js.html">rest/clients.js</a>, <a href="rest_clients.js.html#line188">line 188</a>
+        <a href="rest_clients.js.html">rest/clients.js</a>, <a href="rest_clients.js.html#line193">line 193</a>
     </li></ul></dd>
     
 
@@ -1883,6 +2015,39 @@ the switchport field is null.</p>
 
         <tr>
             
+                <td class="name"><code>scope</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Optional custom scope for rate limiter</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
                 <td class="name"><code>networkId</code></td>
             
 
@@ -2036,7 +2201,7 @@ the switchport field is null.</p>
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Fri Mar 08 2019 16:43:23 GMT+0100 (CET) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Mon Mar 11 2019 15:07:01 GMT+0100 (CET) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

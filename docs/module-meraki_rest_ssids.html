@@ -418,7 +418,7 @@ const ssidEndpoints = require('./lib/rest/ssids')({ apiKey, target, basePath, ba
 
     
 
-    <h4 class="name" id=".listNetworkSSIDs"><span class="type-signature">(static) </span>listNetworkSSIDs<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, networkId)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id=".listNetworkSSIDs"><span class="type-signature">(static) </span>listNetworkSSIDs<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, scope<span class="signature-attributes">opt</span>, networkId)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -430,7 +430,7 @@ const ssidEndpoints = require('./lib/rest/ssids')({ apiKey, target, basePath, ba
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_ssids.js.html">rest/ssids.js</a>, <a href="rest_ssids.js.html#line44">line 44</a>
+        <a href="rest_ssids.js.html">rest/ssids.js</a>, <a href="rest_ssids.js.html#line45">line 45</a>
     </li></ul></dd>
     
 
@@ -590,6 +590,39 @@ const ssidEndpoints = require('./lib/rest/ssids')({ apiKey, target, basePath, ba
 
         <tr>
             
+                <td class="name"><code>scope</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Optional custom scope for rate limiter</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
                 <td class="name"><code>networkId</code></td>
             
 
@@ -666,7 +699,7 @@ const ssidEndpoints = require('./lib/rest/ssids')({ apiKey, target, basePath, ba
 
     
 
-    <h4 class="name" id=".showNetworkSSID"><span class="type-signature">(static) </span>showNetworkSSID<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, networkId, ssidNumber)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id=".showNetworkSSID"><span class="type-signature">(static) </span>showNetworkSSID<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, scope<span class="signature-attributes">opt</span>, networkId, ssidNumber)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -678,7 +711,7 @@ const ssidEndpoints = require('./lib/rest/ssids')({ apiKey, target, basePath, ba
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_ssids.js.html">rest/ssids.js</a>, <a href="rest_ssids.js.html#line78">line 78</a>
+        <a href="rest_ssids.js.html">rest/ssids.js</a>, <a href="rest_ssids.js.html#line80">line 80</a>
     </li></ul></dd>
     
 
@@ -845,6 +878,39 @@ const ssidEndpoints = require('./lib/rest/ssids')({ apiKey, target, basePath, ba
 
         <tr>
             
+                <td class="name"><code>scope</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Optional custom scope for rate limiter</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
                 <td class="name"><code>networkId</code></td>
             
 
@@ -952,7 +1018,7 @@ const ssidEndpoints = require('./lib/rest/ssids')({ apiKey, target, basePath, ba
 
     
 
-    <h4 class="name" id=".updateNetworkSSID"><span class="type-signature">(static) </span>updateNetworkSSID<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, networkId, ssidNumber, name, enabled, authMode, encryptionMode, psk, wpaEncryptionMode, splashPage, radiusServers, radiusCoaEnabled, radiusAccountingEnabled, radiusAccountingServers, ipAssignmentMode, useVlanTagging, concentratorNetworkId, vlanId, defaultVlanId, apTagsAndVlanIds, walledGardenEnabled, walledGardenRanges, minBitrate, bandSelection, perClientBandwidthLimitUp, perClientBandwidthLimitDown)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id=".updateNetworkSSID"><span class="type-signature">(static) </span>updateNetworkSSID<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, scope<span class="signature-attributes">opt</span>, networkId, ssidNumber, name, enabled, authMode, encryptionMode, psk, wpaEncryptionMode, splashPage, radiusServers, radiusCoaEnabled, radiusAccountingEnabled, radiusAccountingServers, ipAssignmentMode, useVlanTagging, concentratorNetworkId, vlanId, defaultVlanId, apTagsAndVlanIds, walledGardenEnabled, walledGardenRanges, minBitrate, bandSelection, perClientBandwidthLimitUp, perClientBandwidthLimitDown)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -964,7 +1030,7 @@ const ssidEndpoints = require('./lib/rest/ssids')({ apiKey, target, basePath, ba
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_ssids.js.html">rest/ssids.js</a>, <a href="rest_ssids.js.html#line154">line 154</a>
+        <a href="rest_ssids.js.html">rest/ssids.js</a>, <a href="rest_ssids.js.html#line157">line 157</a>
     </li></ul></dd>
     
 
@@ -1136,6 +1202,39 @@ const ssidEndpoints = require('./lib/rest/ssids')({ apiKey, target, basePath, ba
             
 
             <td class="description last"><p>Optional custom target for this request (if not set will take the inital target)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>scope</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Optional custom scope for rate limiter</p></td>
         </tr>
 
     
@@ -2239,7 +2338,7 @@ const ssidEndpoints = require('./lib/rest/ssids')({ apiKey, target, basePath, ba
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Fri Mar 08 2019 16:43:23 GMT+0100 (CET) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Mon Mar 11 2019 15:07:01 GMT+0100 (CET) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

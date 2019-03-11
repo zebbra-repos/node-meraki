@@ -28,6 +28,7 @@ function createTemplatesEndpoints ({ apiKey, target, basePath, baseUrl = 'https:
    * @memberof module:meraki/rest/config-templates
    * @param { string } [apiKey]   Optional custom apiKey for this request (if not set will take the inital apiKey)
    * @param { string } [target]   Optional custom target for this request (if not set will take the inital target)
+   * @param { string } [scope]    Optional custom scope for rate limiter
    * @param { string } orgId      The organization id
    * @return { Promise } A promise holding the configuration templates for this organization
    * @example <caption>Example response</caption>
@@ -38,12 +39,12 @@ function createTemplatesEndpoints ({ apiKey, target, basePath, baseUrl = 'https:
    *   }
    * ]
    */
-  function listConfigurationTemplates ({ apiKey: localApiKey, target: localTarget, orgId }) {
+  function listConfigurationTemplates ({ apiKey: localApiKey, target: localTarget, scope, orgId }) {
     if (!orgId) {
       return Promise.reject(new Error('The parameter orgId is mandatory'))
     }
 
-    return axios._get(localApiKey || apiKey, localTarget || target, `${basePath}/${orgId}/configTemplates`)
+    return axios._get(localApiKey || apiKey, localTarget || target, scope, `${basePath}/${orgId}/configTemplates`)
   }
 
   /**
@@ -52,11 +53,12 @@ function createTemplatesEndpoints ({ apiKey, target, basePath, baseUrl = 'https:
    * @memberof module:meraki/rest/config-templates
    * @param { string } [apiKey]   Optional custom apiKey for this request (if not set will take the inital apiKey)
    * @param { string } [target]   Optional custom target for this request (if not set will take the inital target)
+   * @param { string } [scope]    Optional custom scope for rate limiter
    * @param { string } orgId      The organization id
    * @param { string } templateId The id of the template to delete
    * @return { Promise } A promise with no data
    */
-  function deleteConfigurationTemplate ({ apiKey: localApiKey, target: localTarget, orgId, templateId }) {
+  function deleteConfigurationTemplate ({ apiKey: localApiKey, target: localTarget, scope, orgId, templateId }) {
     if (!orgId) {
       return Promise.reject(new Error('The parameter orgId is mandatory'))
     }
@@ -64,7 +66,7 @@ function createTemplatesEndpoints ({ apiKey, target, basePath, baseUrl = 'https:
       return Promise.reject(new Error('The parameter templateId is mandatory'))
     }
 
-    return axios._delete(localApiKey || apiKey, localTarget || target, `${basePath}/${orgId}/configTemplates/${templateId}`)
+    return axios._delete(localApiKey || apiKey, localTarget || target, scope, `${basePath}/${orgId}/configTemplates/${templateId}`)
   }
 
   return {

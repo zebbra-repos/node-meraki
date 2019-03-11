@@ -28,6 +28,7 @@ function createAdminEndpoints ({ apiKey = '', target = 'api', basePath = '/', ba
    * @memberof module:meraki/rest/admins
    * @param { string } [apiKey]   Optional custom apiKey for this request (if not set will take the inital apiKey)
    * @param { string } [target]   Optional custom target for this request (if not set will take the inital target)
+   * @param { string } [scope]    Optional custom scope for rate limiter
    * @param { string } orgId      The organization id for which to list the admins
    * @return { Promise } A promise holding the dashboard administrators in this organization
    * @example <caption>Example response</caption>
@@ -52,12 +53,12 @@ function createAdminEndpoints ({ apiKey = '', target = 'api', basePath = '/', ba
    *   }
    * ]
    */
-  function listAdmins ({ apiKey: localApiKey, target: localTarget, orgId }) {
+  function listAdmins ({ apiKey: localApiKey, target: localTarget, scope, orgId }) {
     if (!orgId) {
       return Promise.reject(new Error('The parameter orgId is mandatory'))
     }
 
-    return axios._get(localApiKey || apiKey, localTarget || target, `${basePath}/${orgId}/admins`)
+    return axios._get(localApiKey || apiKey, localTarget || target, scope, `${basePath}/${orgId}/admins`)
   }
 
   /**
@@ -66,6 +67,7 @@ function createAdminEndpoints ({ apiKey = '', target = 'api', basePath = '/', ba
    * @memberof module:meraki/rest/admins
    * @param { string } [apiKey]   Optional custom apiKey for this request (if not set will take the inital apiKey)
    * @param { string } [target]   Optional custom target for this request (if not set will take the inital target)
+   * @param { string } [scope]    Optional custom scope for rate limiter
    * @param { string } orgId      The organization id
    * @param { string } email      The email of the dashboard administrator. This attribute can not be updated
    * @param { string } name       The name of the dashboard administrator
@@ -87,7 +89,7 @@ function createAdminEndpoints ({ apiKey = '', target = 'api', basePath = '/', ba
    *   "networks":[]
    * }
    */
-  function createAdmin ({ apiKey: localApiKey, target: localTarget, orgId, email, name, orgAccess, tags, networks }) {
+  function createAdmin ({ apiKey: localApiKey, target: localTarget, scope, orgId, email, name, orgAccess, tags, networks }) {
     if (!orgId) {
       return Promise.reject(new Error('The parameter orgId is mandatory'))
     }
@@ -96,7 +98,7 @@ function createAdminEndpoints ({ apiKey = '', target = 'api', basePath = '/', ba
     }
 
     const data = { email, name, orgAccess, tags, networks }
-    return axios._post(localApiKey || apiKey, localTarget || target, `${basePath}/${orgId}/admins`, data)
+    return axios._post(localApiKey || apiKey, localTarget || target, scope, `${basePath}/${orgId}/admins`, data)
   }
 
   /**
@@ -105,6 +107,7 @@ function createAdminEndpoints ({ apiKey = '', target = 'api', basePath = '/', ba
    * @memberof module:meraki/rest/admins
    * @param { string } [apiKey]   Optional custom apiKey for this request (if not set will take the inital apiKey)
    * @param { string } [target]   Optional custom target for this request (if not set will take the inital target)
+   * @param { string } [scope]    Optional custom scope for rate limiter
    * @param { string } orgId      The organization id
    * @param { string } adminId    The id of the dashboard administrator
    * @param { string } email      The email of the dashboard administrator. This attribute can not be updated
@@ -127,7 +130,7 @@ function createAdminEndpoints ({ apiKey = '', target = 'api', basePath = '/', ba
    *   "networks":[]
    * }
    */
-  function updateAdmin ({ apiKey: localApiKey, target: localTarget, orgId, adminId, email, name, orgAccess, tags, networks }) {
+  function updateAdmin ({ apiKey: localApiKey, target: localTarget, scope, orgId, adminId, email, name, orgAccess, tags, networks }) {
     if (!orgId) {
       return Promise.reject(new Error('The parameter orgId is mandatory'))
     }
@@ -136,7 +139,7 @@ function createAdminEndpoints ({ apiKey = '', target = 'api', basePath = '/', ba
     }
 
     const data = { email, name, orgAccess, tags, networks }
-    return axios._put(localApiKey || apiKey, localTarget || target, `${basePath}/${orgId}/admins/${adminId}`, data)
+    return axios._put(localApiKey || apiKey, localTarget || target, scope, `${basePath}/${orgId}/admins/${adminId}`, data)
   }
 
   /**
@@ -145,11 +148,12 @@ function createAdminEndpoints ({ apiKey = '', target = 'api', basePath = '/', ba
    * @memberof module:meraki/rest/admins
    * @param { string } [apiKey]   Optional custom apiKey for this request (if not set will take the inital apiKey)
    * @param { string } [target]   Optional custom target for this request (if not set will take the inital target)
+   * @param { string } [scope]    Optional custom scope for rate limiter
    * @param { string } orgId      The organization id
    * @param { string } adminId    The if of the dashboard administrator to delete
    * @return { Promise } A promise with no data
    */
-  function deleteAdmin ({ apiKey: localApiKey, target: localTarget, orgId, adminId }) {
+  function deleteAdmin ({ apiKey: localApiKey, target: localTarget, scope, orgId, adminId }) {
     if (!orgId) {
       return Promise.reject(new Error('The parameter orgId is mandatory'))
     }
@@ -157,7 +161,7 @@ function createAdminEndpoints ({ apiKey = '', target = 'api', basePath = '/', ba
       return Promise.reject(new Error('The parameter adminId is mandatory'))
     }
 
-    return axios._delete(localApiKey || apiKey, localTarget || target, `${basePath}/${orgId}/admins/${adminId}`)
+    return axios._delete(localApiKey || apiKey, localTarget || target, scope, `${basePath}/${orgId}/admins/${adminId}`)
   }
 
   return {

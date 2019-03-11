@@ -29,6 +29,7 @@ function createSamlEndpoints ({ apiKey = '', target = 'api', basePath = '/', bas
    * @memberof module:meraki/rest/saml-roles
    * @param { string } [apiKey]         Optional custom apiKey for this request (if not set will take the inital apiKey)
    * @param { string } [target]         Optional custom target for this request (if not set will take the inital target)
+   * @param { string } [scope]          Optional custom scope for rate limiter
    * @param { string } orgId            The organization id
    * @return { Promise } A promise holding the SAML roles this organization
    * @example <caption>Example response</caption>
@@ -46,12 +47,12 @@ function createSamlEndpoints ({ apiKey = '', target = 'api', basePath = '/', bas
    *   }]
    * }]
    */
-  function listSamlRoles ({ apiKey: localApiKey, target: localTarget, orgId }) {
+  function listSamlRoles ({ apiKey: localApiKey, target: localTarget, scope, orgId }) {
     if (!orgId) {
       return Promise.reject(new Error('The parameter orgId is mandatory'))
     }
 
-    return axios._get(localApiKey || apiKey, localTarget || target, `${basePath}/${orgId}/samlRoles`)
+    return axios._get(localApiKey || apiKey, localTarget || target, scope, `${basePath}/${orgId}/samlRoles`)
   }
 
   /**
@@ -60,6 +61,7 @@ function createSamlEndpoints ({ apiKey = '', target = 'api', basePath = '/', bas
    * @memberof module:meraki/rest/saml-roles
    * @param { string } [apiKey]         Optional custom apiKey for this request (if not set will take the inital apiKey)
    * @param { string } [target]         Optional custom target for this request (if not set will take the inital target)
+   * @param { string } [scope]          Optional custom scope for rate limiter
    * @param { string } orgId            The organization id
    * @param { string } roleId           The SAML role id
    * @return { Promise } A promise holding the SAML role for this role id
@@ -78,7 +80,7 @@ function createSamlEndpoints ({ apiKey = '', target = 'api', basePath = '/', bas
    *   }]
    * }
    */
-  function showSamlRole ({ apiKey: localApiKey, target: localTarget, orgId, roleId }) {
+  function showSamlRole ({ apiKey: localApiKey, target: localTarget, scope, orgId, roleId }) {
     if (!orgId) {
       return Promise.reject(new Error('The parameter orgId is mandatory'))
     }
@@ -87,7 +89,7 @@ function createSamlEndpoints ({ apiKey = '', target = 'api', basePath = '/', bas
       return Promise.reject(new Error('The parameter roleId is mandatory'))
     }
 
-    return axios._get(localApiKey || apiKey, localTarget || target, `${basePath}/${orgId}/samlRoles/${roleId}`)
+    return axios._get(localApiKey || apiKey, localTarget || target, scope, `${basePath}/${orgId}/samlRoles/${roleId}`)
   }
 
   /**
@@ -96,6 +98,7 @@ function createSamlEndpoints ({ apiKey = '', target = 'api', basePath = '/', bas
    * @memberof module:meraki/rest/saml-roles
    * @param { string } [apiKey]         Optional custom apiKey for this request (if not set will take the inital apiKey)
    * @param { string } [target]         Optional custom target for this request (if not set will take the inital target)
+   * @param { string } [scope]          Optional custom scope for rate limiter
    * @param { string } orgId            The organization id
    * @param { string } role             The role of the SAML administrator
    * @param { string } orgAccess        The privilege of the SAML administrator on the organization (none, read-only, full)
@@ -122,15 +125,16 @@ function createSamlEndpoints ({ apiKey = '', target = 'api', basePath = '/', bas
    * }
    */
   function createSamlRole (data) {
-    const { orgId, target: localTarget } = data
+    const { orgId, target: localTarget, scope } = data
     delete data.orgId
     delete data.target
+    delete data.scope
 
     if (!orgId) {
       return Promise.reject(new Error('The parameter orgId is mandatory'))
     }
 
-    return axios._post(data.apiKey || apiKey, localTarget || target, `${basePath}/${orgId}/samlRoles`, data)
+    return axios._post(data.apiKey || apiKey, localTarget || target, scope, `${basePath}/${orgId}/samlRoles`, data)
   }
 
   /**
@@ -139,6 +143,7 @@ function createSamlEndpoints ({ apiKey = '', target = 'api', basePath = '/', bas
    * @memberof module:meraki/rest/saml-roles
    * @param { string } [apiKey]         Optional custom apiKey for this request (if not set will take the inital apiKey)
    * @param { string } [target]         Optional custom target for this request (if not set will take the inital target)
+   * @param { string } [scope]          Optional custom scope for rate limiter
    * @param { string } orgId            The organization id
    * @param { string } roleId           The SAML role id
    * @param { string } role             The role of the SAML administrator
@@ -166,10 +171,11 @@ function createSamlEndpoints ({ apiKey = '', target = 'api', basePath = '/', bas
    * }
    */
   function updateSamlRole (data) {
-    const { orgId, roleId, target: localTarget } = data
+    const { orgId, roleId, target: localTarget, scope } = data
     delete data.orgId
     delete data.roleId
     delete data.target
+    delete data.scope
 
     if (!orgId) {
       return Promise.reject(new Error('The parameter orgId is mandatory'))
@@ -179,7 +185,7 @@ function createSamlEndpoints ({ apiKey = '', target = 'api', basePath = '/', bas
       return Promise.reject(new Error('The parameter roleId is mandatory'))
     }
 
-    return axios._put(data.apiKey || apiKey, localTarget || target, `${basePath}/${orgId}/samlRoles/${roleId}`, data)
+    return axios._put(data.apiKey || apiKey, localTarget || target, scope, `${basePath}/${orgId}/samlRoles/${roleId}`, data)
   }
 
   /**
@@ -188,11 +194,12 @@ function createSamlEndpoints ({ apiKey = '', target = 'api', basePath = '/', bas
    * @memberof module:meraki/rest/saml-roles
    * @param { string } [apiKey]         Optional custom apiKey for this request (if not set will take the inital apiKey)
    * @param { string } [target]         Optional custom target for this request (if not set will take the inital target)
+   * @param { string } [scope]          Optional custom scope for rate limiter
    * @param { string } orgId            The organization id
    * @param { string } roleId           The SAML role id
    * @return { Promise } A promise with no data
    */
-  function deleteSamlRole ({ apiKey: localApiKey, target: localTarget, orgId, roleId }) {
+  function deleteSamlRole ({ apiKey: localApiKey, target: localTarget, scope, orgId, roleId }) {
     if (!orgId) {
       return Promise.reject(new Error('The parameter orgId is mandatory'))
     }
@@ -201,7 +208,7 @@ function createSamlEndpoints ({ apiKey = '', target = 'api', basePath = '/', bas
       return Promise.reject(new Error('The parameter roleId is mandatory'))
     }
 
-    return axios._delete(localApiKey || apiKey, localTarget || target, `${basePath}/${orgId}/samlRoles/${roleId}`)
+    return axios._delete(localApiKey || apiKey, localTarget || target, scope, `${basePath}/${orgId}/samlRoles/${roleId}`)
   }
 
   return {

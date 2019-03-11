@@ -29,6 +29,7 @@ function createNetworksEndpoints ({ apiKey = '', target = 'api', basePath = '/',
    * @memberof module:meraki/rest/networks
    * @param { string } [apiKey]         Optional custom apiKey for this request (if not set will take the inital apiKey)
    * @param { string } [target]         Optional custom target for this request (if not set will take the inital target)
+   * @param { string } [scope]          Optional custom scope for rate limiter
    * @param { string } orgId            The organization id
    * @param { string } configTemplateId An optional parameter that is the ID of a config template. Will return all networks bound to that template
    * @return { Promise } A promise holding the networks this organization
@@ -44,13 +45,13 @@ function createNetworksEndpoints ({ apiKey = '', target = 'api', basePath = '/',
    *   }
    * ]
    */
-  function listNetworks ({ apiKey: localApiKey, target: localTarget, orgId, configTemplateId }) {
+  function listNetworks ({ apiKey: localApiKey, target: localTarget, scope, orgId, configTemplateId }) {
     if (!orgId) {
       return Promise.reject(new Error('The parameter orgId is mandatory'))
     }
 
     const params = { configTemplateId }
-    return axios._get(localApiKey || apiKey, localTarget || target, `${basePath}/organizations/${orgId}/networks`, params)
+    return axios._get(localApiKey || apiKey, localTarget || target, scope, `${basePath}/organizations/${orgId}/networks`, params)
   }
 
   /**
@@ -59,6 +60,7 @@ function createNetworksEndpoints ({ apiKey = '', target = 'api', basePath = '/',
    * @memberof module:meraki/rest/networks
    * @param { string } [apiKey]   Optional custom apiKey for this request (if not set will take the inital apiKey)
    * @param { string } [target]   Optional custom target for this request (if not set will take the inital target)
+   * @param { string } [scope]    Optional custom scope for rate limiter
    * @param { string } networkId  The id of the network to return
    * @return { Promise } A promise holding the network details
    * @example <caption>Example response</caption>
@@ -71,12 +73,12 @@ function createNetworksEndpoints ({ apiKey = '', target = 'api', basePath = '/',
    *   "tags": null
    * }
    */
-  function showNetwork ({ apiKey: localApiKey, target: localTarget, networkId }) {
+  function showNetwork ({ apiKey: localApiKey, target: localTarget, scope, networkId }) {
     if (!networkId) {
       return Promise.reject(new Error('The parameter networkId is mandatory'))
     }
 
-    return axios._get(localApiKey || apiKey, localTarget || target, `${basePath}/networks/${networkId}`)
+    return axios._get(localApiKey || apiKey, localTarget || target, scope, `${basePath}/networks/${networkId}`)
   }
 
   /**
@@ -85,6 +87,7 @@ function createNetworksEndpoints ({ apiKey = '', target = 'api', basePath = '/',
    * @memberof module:meraki/rest/networks
    * @param { string } [apiKey]   Optional custom apiKey for this request (if not set will take the inital apiKey)
    * @param { string } [target]   Optional custom target for this request (if not set will take the inital target)
+   * @param { string } [scope]    Optional custom scope for rate limiter
    * @param { string } networkId  The id of the network to update
    * @param { string } name       The name of the new network
    * @param { string } timeZone   The timezone of the network. For a list of allowed timezones, please see the 'TZ' column in the table in [this article]{@link https://en.wikipedia.org/wiki/List_of_tz_database_time_zones}
@@ -107,13 +110,13 @@ function createNetworksEndpoints ({ apiKey = '', target = 'api', basePath = '/',
    *   "tags": null
    * }
    */
-  function updateNetwork ({ apiKey: localApiKey, target: localTarget, networkId, name, timeZone, tags }) {
+  function updateNetwork ({ apiKey: localApiKey, target: localTarget, scope, networkId, name, timeZone, tags }) {
     if (!networkId) {
       return Promise.reject(new Error('The parameter networkId is mandatory'))
     }
 
     const data = { name, timeZone, tags }
-    return axios._put(localApiKey || apiKey, localTarget || target, `${basePath}/networks/${networkId}`, data)
+    return axios._put(localApiKey || apiKey, localTarget || target, scope, `${basePath}/networks/${networkId}`, data)
   }
 
   /**
@@ -122,6 +125,7 @@ function createNetworksEndpoints ({ apiKey = '', target = 'api', basePath = '/',
    * @memberof module:meraki/rest/networks
    * @param { string } [apiKey]   Optional custom apiKey for this request (if not set will take the inital apiKey)
    * @param { string } [target]   Optional custom target for this request (if not set will take the inital target)
+   * @param { string } [scope]    Optional custom scope for rate limiter
    * @param { string } orgId      The organization id
    * @param { string } name       The name of the new network
    * @param { string } type       The type of the new network. Valid types are `wireless` (for MR), `switch` (for MS), `appliance` (for MX, Z1, or Z3), `phone` (for MC), or a space-separated list of those for a combined network
@@ -144,13 +148,13 @@ function createNetworksEndpoints ({ apiKey = '', target = 'api', basePath = '/',
    *   "tags": null
    * }
    */
-  function createNetwork ({ apiKey: localApiKey, target: localTarget, orgId, name, type, timeZone, tags }) {
+  function createNetwork ({ apiKey: localApiKey, target: localTarget, scope, orgId, name, type, timeZone, tags }) {
     if (!orgId) {
       return Promise.reject(new Error('The parameter orgId is mandatory'))
     }
 
     const data = { name, type, timeZone, tags }
-    return axios._post(localApiKey || apiKey, localTarget || target, `${basePath}/organizations/${orgId}/networks`, data)
+    return axios._post(localApiKey || apiKey, localTarget || target, scope, `${basePath}/organizations/${orgId}/networks`, data)
   }
 
   /**
@@ -159,15 +163,16 @@ function createNetworksEndpoints ({ apiKey = '', target = 'api', basePath = '/',
    * @memberof module:meraki/rest/networks
    * @param { string } [apiKey]   Optional custom apiKey for this request (if not set will take the inital apiKey)
    * @param { string } [target]   Optional custom target for this request (if not set will take the inital target)
+   * @param { string } [scope]    Optional custom scope for rate limiter
    * @param { string } networkId  The id of the network to remove
    * @return { Promise } A promise with no data
    */
-  function deleteNetwork ({ apiKey: localApiKey, target: localTarget, networkId }) {
+  function deleteNetwork ({ apiKey: localApiKey, target: localTarget, scope, networkId }) {
     if (!networkId) {
       return Promise.reject(new Error('The parameter networkId is mandatory'))
     }
 
-    return axios._delete(localApiKey || apiKey, localTarget || target, `${basePath}/networks/${networkId}`)
+    return axios._delete(localApiKey || apiKey, localTarget || target, scope, `${basePath}/networks/${networkId}`)
   }
 
   /**
@@ -176,12 +181,13 @@ function createNetworksEndpoints ({ apiKey = '', target = 'api', basePath = '/',
    * @memberof module:meraki/rest/networks
    * @param { string } [apiKey]         Optional custom apiKey for this request (if not set will take the inital apiKey)
    * @param { string } [target]         Optional custom target for this request (if not set will take the inital target)
+   * @param { string } [scope]          Optional custom scope for rate limiter
    * @param { string } networkId        The id of the network to bind to the template
    * @param { string } configTemplateId The ID of the template to which the network should be bound
    * @param { boolean } autoBind        Optional boolean indicating whether the network's switches should automatically bind to profiles of the same model. Defaults to false if left unspecified. This option only affects switch networks and switch templates. Auto-bind is not valid unless the switch template has at least one profile and has at most one profile per switch model
    * @return { Promise } A promise with no data
    */
-  function bindNetworkToTemplate ({ apiKey: localApiKey, target: localTarget, networkId, configTemplateId, autoBind }) {
+  function bindNetworkToTemplate ({ apiKey: localApiKey, target: localTarget, scope, networkId, configTemplateId, autoBind }) {
     if (!networkId) {
       return Promise.reject(new Error('The parameter networkId is mandatory'))
     }
@@ -191,7 +197,7 @@ function createNetworksEndpoints ({ apiKey = '', target = 'api', basePath = '/',
     }
 
     const data = { configTemplateId, autoBind }
-    return axios._post(localApiKey || apiKey, localTarget || target, `${basePath}/networks/${networkId}/bind`, data)
+    return axios._post(localApiKey || apiKey, localTarget || target, scope, `${basePath}/networks/${networkId}/bind`, data)
   }
 
   /**
@@ -200,15 +206,16 @@ function createNetworksEndpoints ({ apiKey = '', target = 'api', basePath = '/',
    * @memberof module:meraki/rest/networks
    * @param { string } [apiKey]   Optional custom apiKey for this request (if not set will take the inital apiKey)
    * @param { string } [target]   Optional custom target for this request (if not set will take the inital target)
+   * @param { string } [scope]    Optional custom scope for rate limiter
    * @param { string } networkId  The id of the network to unbind
    * @return { Promise } A promise with no data
    */
-  function unbindNetworkFromTemplate ({ apiKey: localApiKey, target: localTarget, networkId }) {
+  function unbindNetworkFromTemplate ({ apiKey: localApiKey, target: localTarget, scope, networkId }) {
     if (!networkId) {
       return Promise.reject(new Error('The parameter networkId is mandatory'))
     }
 
-    return axios._post(localApiKey || apiKey, localTarget || target, `${basePath}/networks/${networkId}/unbind`)
+    return axios._post(localApiKey || apiKey, localTarget || target, scope, `${basePath}/networks/${networkId}/unbind`)
   }
 
   /**
@@ -219,6 +226,7 @@ function createNetworksEndpoints ({ apiKey = '', target = 'api', basePath = '/',
    * @memberof module:meraki/rest/networks
    * @param { string } [apiKey]   Optional custom apiKey for this request (if not set will take the inital apiKey)
    * @param { string } [target]   Optional custom target for this request (if not set will take the inital target)
+   * @param { string } [scope]    Optional custom scope for rate limiter
    * @param { string } networkId  The id of the network for which to list the traffic analysis
    * @param { number } timespan   The timespan for the data. Must be an integer representing a duration in seconds between two hours and one month. (Mandatory.)
    * @param { number } deviceType Filter the data by device type: combined (default), wireless, switch, appliance. When using combined, for each rule the data will come from the device type with the most usage.
@@ -249,13 +257,13 @@ function createNetworksEndpoints ({ apiKey = '', target = 'api', basePath = '/',
    *   }
    * ]
    */
-  function listTrafficAnalysis ({ apiKey: localApiKey, target: localTarget, networkId, timespan = 2592000, deviceType }) {
+  function listTrafficAnalysis ({ apiKey: localApiKey, target: localTarget, scope, networkId, timespan = 2592000, deviceType }) {
     if (!networkId) {
       return Promise.reject(new Error('The parameter networkId is mandatory'))
     }
 
     const params = { timespan, deviceType }
-    return axios._get(localApiKey || apiKey, localTarget || target, `${basePath}/networks/${networkId}/traffic`, params)
+    return axios._get(localApiKey || apiKey, localTarget || target, scope, `${basePath}/networks/${networkId}/traffic`, params)
   }
 
   /**
@@ -264,6 +272,7 @@ function createNetworksEndpoints ({ apiKey = '', target = 'api', basePath = '/',
    * @memberof module:meraki/rest/networks
    * @param { string } [apiKey]   Optional custom apiKey for this request (if not set will take the inital apiKey)
    * @param { string } [target]   Optional custom target for this request (if not set will take the inital target)
+   * @param { string } [scope]    Optional custom scope for rate limiter
    * @param { string } networkId  The id of the network for which to list the access policies
    * @return { Promise } A promise holding the network access policies
    * @example <caption>Example response</caption>
@@ -298,12 +307,12 @@ function createNetworksEndpoints ({ apiKey = '', target = 'api', basePath = '/',
    *   }
    * ]
    */
-  function listNetworkAccessPolicies ({ apiKey: localApiKey, target: localTarget, networkId }) {
+  function listNetworkAccessPolicies ({ apiKey: localApiKey, target: localTarget, scope, networkId }) {
     if (!networkId) {
       return Promise.reject(new Error('The parameter networkId is mandatory'))
     }
 
-    return axios._get(localApiKey || apiKey, localTarget || target, `${basePath}/networks/${networkId}/accessPolicies`)
+    return axios._get(localApiKey || apiKey, localTarget || target, scope, `${basePath}/networks/${networkId}/accessPolicies`)
   }
 
   /**
@@ -312,6 +321,7 @@ function createNetworksEndpoints ({ apiKey = '', target = 'api', basePath = '/',
    * @memberof module:meraki/rest/networks
    * @param { string } [apiKey]   Optional custom apiKey for this request (if not set will take the inital apiKey)
    * @param { string } [target]   Optional custom target for this request (if not set will take the inital target)
+   * @param { string } [scope]    Optional custom scope for rate limiter
    * @param { string } networkId  The id of the network for which to list the site-to-site VPN settings
    * @return { Promise } A promise holding the network site-to-site VPN settings
    * @example <caption>Example response</caption>
@@ -339,12 +349,12 @@ function createNetworksEndpoints ({ apiKey = '', target = 'api', basePath = '/',
    *   ]
    * }
    */
-  function listSiteToSiteVpn ({ apiKey: localApiKey, target: localTarget, networkId }) {
+  function listSiteToSiteVpn ({ apiKey: localApiKey, target: localTarget, scope, networkId }) {
     if (!networkId) {
       return Promise.reject(new Error('The parameter networkId is mandatory'))
     }
 
-    return axios._get(localApiKey || apiKey, localTarget || target, `${basePath}/networks/${networkId}/siteToSiteVpn`)
+    return axios._get(localApiKey || apiKey, localTarget || target, scope, `${basePath}/networks/${networkId}/siteToSiteVpn`)
   }
 
   /**
@@ -353,6 +363,7 @@ function createNetworksEndpoints ({ apiKey = '', target = 'api', basePath = '/',
    * @memberof module:meraki/rest/networks
    * @param { string } [apiKey]   Optional custom apiKey for this request (if not set will take the inital apiKey)
    * @param { string } [target]   Optional custom target for this request (if not set will take the inital target)
+   * @param { string } [scope]    Optional custom scope for rate limiter
    * @param { string } networkId  The id of the network for which to update the site-to-site VPN settings
    * @param { string } mode       The site-to-site VPN mode: hub, spoke, or none
    * @param { array } hubs        The list of VPN hubs, in order of preference. In spoke mode, at least 1 hub is required
@@ -383,7 +394,7 @@ function createNetworksEndpoints ({ apiKey = '', target = 'api', basePath = '/',
    *   ]
    * }
    */
-  function updateSiteToSiteVpn ({ apiKey: localApiKey, target: localTarget, networkId, mode, hubs, subnets }) {
+  function updateSiteToSiteVpn ({ apiKey: localApiKey, target: localTarget, scope, networkId, mode, hubs, subnets }) {
     if (!networkId) {
       return Promise.reject(new Error('The parameter networkId is mandatory'))
     }
@@ -394,7 +405,7 @@ function createNetworksEndpoints ({ apiKey = '', target = 'api', basePath = '/',
       subnets
     }
 
-    return axios._put(localApiKey || apiKey, localTarget || target, `${basePath}/networks/${networkId}/siteToSiteVpn`, data)
+    return axios._put(localApiKey || apiKey, localTarget || target, scope, `${basePath}/networks/${networkId}/siteToSiteVpn`, data)
   }
 
   return {
