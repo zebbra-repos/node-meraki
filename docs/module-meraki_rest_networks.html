@@ -430,7 +430,7 @@ const networkEndpoints = require('./lib/rest/networks')({ apiKey, target, basePa
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_networks.js.html">rest/networks.js</a>, <a href="rest_networks.js.html#line190">line 190</a>
+        <a href="rest_networks.js.html">rest/networks.js</a>, <a href="rest_networks.js.html#line191">line 191</a>
     </li></ul></dd>
     
 
@@ -747,7 +747,7 @@ const networkEndpoints = require('./lib/rest/networks')({ apiKey, target, basePa
 
     
 
-    <h4 class="name" id=".createNetwork"><span class="type-signature">(static) </span>createNetwork<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, scope<span class="signature-attributes">opt</span>, orgId, name, type, timeZone, tags)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id=".createNetwork"><span class="type-signature">(static) </span>createNetwork<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, scope<span class="signature-attributes">opt</span>, orgId, name, type, timeZone, tags, copyFromNetworkId)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -759,7 +759,7 @@ const networkEndpoints = require('./lib/rest/networks')({ apiKey, target, basePa
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_networks.js.html">rest/networks.js</a>, <a href="rest_networks.js.html#line151">line 151</a>
+        <a href="rest_networks.js.html">rest/networks.js</a>, <a href="rest_networks.js.html#line152">line 152</a>
     </li></ul></dd>
     
 
@@ -1112,6 +1112,37 @@ const networkEndpoints = require('./lib/rest/networks')({ apiKey, target, basePa
         </tr>
 
     
+
+        <tr>
+            
+                <td class="name"><code>copyFromNetworkId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The ID of the network to copy configuration from. Other provided parameters will override the copied configuration, except type which must match this network's type exactly</p></td>
+        </tr>
+
+    
     </tbody>
 </table>
 
@@ -1172,7 +1203,7 @@ const networkEndpoints = require('./lib/rest/networks')({ apiKey, target, basePa
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_networks.js.html">rest/networks.js</a>, <a href="rest_networks.js.html#line170">line 170</a>
+        <a href="rest_networks.js.html">rest/networks.js</a>, <a href="rest_networks.js.html#line171">line 171</a>
     </li></ul></dd>
     
 
@@ -1439,7 +1470,7 @@ const networkEndpoints = require('./lib/rest/networks')({ apiKey, target, basePa
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_networks.js.html">rest/networks.js</a>, <a href="rest_networks.js.html#line310">line 310</a>
+        <a href="rest_networks.js.html">rest/networks.js</a>, <a href="rest_networks.js.html#line311">line 311</a>
     </li></ul></dd>
     
 
@@ -2056,7 +2087,7 @@ const networkEndpoints = require('./lib/rest/networks')({ apiKey, target, basePa
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_networks.js.html">rest/networks.js</a>, <a href="rest_networks.js.html#line352">line 352</a>
+        <a href="rest_networks.js.html">rest/networks.js</a>, <a href="rest_networks.js.html#line353">line 353</a>
     </li></ul></dd>
     
 
@@ -2352,7 +2383,7 @@ const networkEndpoints = require('./lib/rest/networks')({ apiKey, target, basePa
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_networks.js.html">rest/networks.js</a>, <a href="rest_networks.js.html#line260">line 260</a>
+        <a href="rest_networks.js.html">rest/networks.js</a>, <a href="rest_networks.js.html#line261">line 261</a>
     </li></ul></dd>
     
 
@@ -2994,7 +3025,7 @@ must be enabled on the network.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_networks.js.html">rest/networks.js</a>, <a href="rest_networks.js.html#line213">line 213</a>
+        <a href="rest_networks.js.html">rest/networks.js</a>, <a href="rest_networks.js.html#line214">line 214</a>
     </li></ul></dd>
     
 
@@ -3644,7 +3675,7 @@ must be enabled on the network.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_networks.js.html">rest/networks.js</a>, <a href="rest_networks.js.html#line397">line 397</a>
+        <a href="rest_networks.js.html">rest/networks.js</a>, <a href="rest_networks.js.html#line398">line 398</a>
     </li></ul></dd>
     
 
@@ -4036,7 +4067,7 @@ must be enabled on the network.</p>
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Fri Apr 26 2019 13:52:05 GMT+0200 (CEST) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Fri Apr 26 2019 15:44:12 GMT+0200 (CEST) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

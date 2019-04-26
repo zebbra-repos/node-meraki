@@ -131,6 +131,7 @@ function createNetworksEndpoints ({ apiKey = '', target = 'api', basePath = '/',
    * @param { string } type       The type of the new network. Valid types are `wireless` (for MR), `switch` (for MS), `appliance` (for MX, Z1, or Z3), `phone` (for MC), or a space-separated list of those for a combined network
    * @param { string } timeZone   The timezone of the network. For a list of allowed timezones, please see the 'TZ' column in the table in [this article]{@link https://en.wikipedia.org/wiki/List_of_tz_database_time_zones}
    * @param { string } tags       A space-separated list of tags to be applied to the network
+   * @param { string } copyFromNetworkId The ID of the network to copy configuration from. Other provided parameters will override the copied configuration, except type which must match this network's type exactly
    * @return { Promise } A promise holding the newly create network details
    * @example <caption>Example network data</caption>
    * {
@@ -148,12 +149,12 @@ function createNetworksEndpoints ({ apiKey = '', target = 'api', basePath = '/',
    *   "tags": null
    * }
    */
-  function createNetwork ({ apiKey: localApiKey, target: localTarget, scope, orgId, name, type, timeZone, tags }) {
+  function createNetwork ({ apiKey: localApiKey, target: localTarget, scope, orgId, name, type, timeZone, tags, copyFromNetworkId }) {
     if (!orgId) {
       return Promise.reject(new Error('The parameter orgId is mandatory'))
     }
 
-    const data = { name, type, timeZone, tags }
+    const data = { name, type, timeZone, tags, copyFromNetworkId }
     return axios._post(localApiKey || apiKey, localTarget || target, scope, `${basePath}/organizations/${orgId}/networks`, data)
   }
 
