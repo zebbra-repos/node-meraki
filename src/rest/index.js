@@ -171,6 +171,14 @@ function createRestAPI (settings) {
    */
   const alertSettingsEndpoints = require('./alerts')({ apiKey, target, baseUrl, basePath: `${basePath}/networks`, rateLimiter, logger })
 
+  /**
+   * The raw endpoints for GET, POST, PUT, and DELETE requests with raw paths, params, and data
+   *
+   * @memberof module:meraki/rest
+   * @see module:meraki/rest/raw
+   */
+  const rawEndpoints = require('./raw')({ apiKey, target, baseUrl, basePath: `${basePath}/`, rateLimiter, logger })
+
   return Object.assign({},
     adminEndpoints,
     clientEndpoints,
@@ -186,7 +194,8 @@ function createRestAPI (settings) {
     mxL3FirewallEndpoints,
     httpServesEndpoints,
     samlEndpoints,
-    alertSettingsEndpoints
+    alertSettingsEndpoints,
+    rawEndpoints
   )
 }
 
