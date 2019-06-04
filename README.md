@@ -78,7 +78,7 @@ const baseUrl = 'https://api.meraki.com' // this is the default an can be overwr
 // baseUrl and port are optional
 const meraki = require('./lib')({ version, apiKey, target,  baseUrl, rateLimiter })
 
-function handleErros (error) {
+function handleErrors (error) {
   if (error.response) {
     // The request was made and the server responded with a status code
     // that falls out of the range of 2xx
