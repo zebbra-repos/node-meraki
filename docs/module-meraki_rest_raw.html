@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>meraki/rest/switch-ports - Documentation</title>
+    <title>meraki/rest/raw - Documentation</title>
     
     
     <script src="scripts/prettify/prettify.js"></script>
@@ -34,7 +34,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">meraki/rest/switch-ports</h1>
+    <h1 class="page-title">meraki/rest/raw</h1>
     
 
     
@@ -57,8 +57,7 @@
         <div class="container-overview">
         
             
-                <div class="description"><p>Create a Meraki REST API wrapper for the switch port ressource. See the
-<a href="https://dashboard.meraki.com/api_docs#switch-ports">online documentation</a> for more information.</p></div>
+                <div class="description"><p>Create a Meraki REST API wrapper for the raw requests.</p></div>
             
 
             
@@ -72,7 +71,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_ports.js.html">rest/ports.js</a>, <a href="rest_ports.js.html#line1">line 1</a>
+        <a href="rest_raw.js.html">rest/raw.js</a>, <a href="rest_raw.js.html#line1">line 1</a>
     </li></ul></dd>
     
 
@@ -125,11 +124,11 @@
 const organizationId = 'meraki organization id'
 const version = 'v0'
 const target = 'n12'
-const basePath = `/${target}/${version}/devices`
+const basePath = `/${target}/${version}`
 const rateLimiter = {
  enabled: true
 }
-const portEndpoints = require('./lib/rest/ports')({ apiKey, target, basePath, baseUrl, rateLimiter })</code></pre>
+const rawEndpoints = require('./lib/rest/raw')({ apiKey, target, basePath, baseUrl, rateLimiter })</code></pre>
 
 
 
@@ -273,7 +272,7 @@ const portEndpoints = require('./lib/rest/ports')({ apiKey, target, basePath, ba
                 </td>
             
 
-            <td class="description last"><p>The Meraki base path for the switch port ressource</p></td>
+            <td class="description last"><p>The Meraki base path</p></td>
         </tr>
 
     
@@ -371,7 +370,7 @@ const portEndpoints = require('./lib/rest/ports')({ apiKey, target, basePath, ba
 
         
 <div class="param-desc">
-    <p>The initialized Meraki REST API wrapper for the switch port ressource</p>
+    <p>The initialized Meraki REST API wrapper for the raw requests</p>
 </div>
 
 
@@ -419,7 +418,7 @@ const portEndpoints = require('./lib/rest/ports')({ apiKey, target, basePath, ba
 
     
 
-    <h4 class="name" id=".listSwitchPorts"><span class="type-signature">(static) </span>listSwitchPorts<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, scope<span class="signature-attributes">opt</span>, deviceSerial)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id=".deleteRaw"><span class="type-signature">(static) </span>deleteRaw<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, scope<span class="signature-attributes">opt</span>, path)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -431,7 +430,7 @@ const portEndpoints = require('./lib/rest/ports')({ apiKey, target, basePath, ba
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_ports.js.html">rest/ports.js</a>, <a href="rest_ports.js.html#line61">line 61</a>
+        <a href="rest_raw.js.html">rest/raw.js</a>, <a href="rest_raw.js.html#line108">line 108</a>
     </li></ul></dd>
     
 
@@ -471,7 +470,7 @@ const portEndpoints = require('./lib/rest/ports')({ apiKey, target, basePath, ba
 
 
 <div class="description">
-    <p>List the switch ports for a switch.</p>
+    <p>Call a specific meraki DELETE endpoint</p>
 </div>
 
 
@@ -480,29 +479,6 @@ const portEndpoints = require('./lib/rest/ports')({ apiKey, target, basePath, ba
 
 
 
-
-
-    <h5>Example</h5>
-    
-        <p class="code-caption">Example response</p>
-    
-    <pre class="prettyprint"><code>[
-  {
-    "number": 1,
-    "name": "my port",
-    "tags": "dorm-room limited",
-    "enabled": true,
-    "type": "access",
-    "vlan": 10,
-    "voiceVlan": 20,
-    "poeEnabled": true,
-    "isolationEnabled": false,
-    "rstpEnabled": true,
-    "stpGuard": "disabled",
-    "accessPolicyNumber": "asdf1234",
-    "linkNegotiation": "Auto negotiate"
-  }
-]</code></pre>
 
 
 
@@ -633,7 +609,7 @@ const portEndpoints = require('./lib/rest/ports')({ apiKey, target, basePath, ba
 
         <tr>
             
-                <td class="name"><code>deviceSerial</code></td>
+                <td class="name"><code>path</code></td>
             
 
             <td class="type">
@@ -657,7 +633,7 @@ const portEndpoints = require('./lib/rest/ports')({ apiKey, target, basePath, ba
 
             
 
-            <td class="description last"><p>The serial of the device for which to list the switch ports</p></td>
+            <td class="description last"><p>The ressource path to call</p></td>
         </tr>
 
     
@@ -683,7 +659,7 @@ const portEndpoints = require('./lib/rest/ports')({ apiKey, target, basePath, ba
 
         
 <div class="param-desc">
-    <p>A promise holding the switch ports of this device</p>
+    <p>A promise holding the meraki api response</p>
 </div>
 
 
@@ -709,7 +685,7 @@ const portEndpoints = require('./lib/rest/ports')({ apiKey, target, basePath, ba
 
     
 
-    <h4 class="name" id=".showSwitchPort"><span class="type-signature">(static) </span>showSwitchPort<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, scope<span class="signature-attributes">opt</span>, deviceSerial, number)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id=".getRaw"><span class="type-signature">(static) </span>getRaw<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, scope<span class="signature-attributes">opt</span>, path)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -721,7 +697,7 @@ const portEndpoints = require('./lib/rest/ports')({ apiKey, target, basePath, ba
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_ports.js.html">rest/ports.js</a>, <a href="rest_ports.js.html#line108">line 108</a>
+        <a href="rest_raw.js.html">rest/raw.js</a>, <a href="rest_raw.js.html#line44">line 44</a>
     </li></ul></dd>
     
 
@@ -761,7 +737,7 @@ const portEndpoints = require('./lib/rest/ports')({ apiKey, target, basePath, ba
 
 
 <div class="description">
-    <p>Return a switch port.</p>
+    <p>Call a specific meraki GET endpoint</p>
 </div>
 
 
@@ -770,27 +746,6 @@ const portEndpoints = require('./lib/rest/ports')({ apiKey, target, basePath, ba
 
 
 
-
-
-    <h5>Example</h5>
-    
-        <p class="code-caption">Example response</p>
-    
-    <pre class="prettyprint"><code>{
-  "number": 1,
-  "name": "my port",
-  "tags": "dorm-room limited",
-  "enabled": true,
-  "type": "access",
-  "vlan": 10,
-  "voiceVlan": 20,
-  "poeEnabled": true,
-  "isolationEnabled": false,
-  "rstpEnabled": true,
-  "stpGuard": "disabled",
-  "accessPolicyNumber": "asdf1234",
-  "linkNegotiation": "Auto negotiate"
-}</code></pre>
 
 
 
@@ -921,7 +876,7 @@ const portEndpoints = require('./lib/rest/ports')({ apiKey, target, basePath, ba
 
         <tr>
             
-                <td class="name"><code>deviceSerial</code></td>
+                <td class="name"><code>path</code></td>
             
 
             <td class="type">
@@ -945,38 +900,7 @@ const portEndpoints = require('./lib/rest/ports')({ apiKey, target, basePath, ba
 
             
 
-            <td class="description last"><p>The serial of the device for which to list the switch ports</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>number</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last"><p>The number of the switch port for which to show the details</p></td>
+            <td class="description last"><p>The ressource path to call</p></td>
         </tr>
 
     
@@ -1002,7 +926,7 @@ const portEndpoints = require('./lib/rest/ports')({ apiKey, target, basePath, ba
 
         
 <div class="param-desc">
-    <p>A promise holding the details of this switch port</p>
+    <p>A promise holding the meraki api response</p>
 </div>
 
 
@@ -1028,7 +952,7 @@ const portEndpoints = require('./lib/rest/ports')({ apiKey, target, basePath, ba
 
     
 
-    <h4 class="name" id=".updateSwitchPort"><span class="type-signature">(static) </span>updateSwitchPort<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, scope<span class="signature-attributes">opt</span>, deviceSerial, number, name, tags, enabled, type, vlan, voiceVlan, allowedVlans, poeEnabled, isolationEnabled, rstpEnabled, stpGuard, accessPolicyNumber, linkNegotiation)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id=".postRaw"><span class="type-signature">(static) </span>postRaw<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, scope<span class="signature-attributes">opt</span>, path, data)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -1040,7 +964,7 @@ const portEndpoints = require('./lib/rest/ports')({ apiKey, target, basePath, ba
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rest_ports.js.html">rest/ports.js</a>, <a href="rest_ports.js.html#line171">line 171</a>
+        <a href="rest_raw.js.html">rest/raw.js</a>, <a href="rest_raw.js.html#line65">line 65</a>
     </li></ul></dd>
     
 
@@ -1080,7 +1004,7 @@ const portEndpoints = require('./lib/rest/ports')({ apiKey, target, basePath, ba
 
 
 <div class="description">
-    <p>Update a switch port.</p>
+    <p>Call a specific meraki POST endpoint</p>
 </div>
 
 
@@ -1089,27 +1013,6 @@ const portEndpoints = require('./lib/rest/ports')({ apiKey, target, basePath, ba
 
 
 
-
-
-    <h5>Example</h5>
-    
-        <p class="code-caption">Example response</p>
-    
-    <pre class="prettyprint"><code>{
-  "number": 1,
-  "name": "my port",
-  "tags": "dorm-room limited",
-  "enabled": true,
-  "type": "access",
-  "vlan": 10,
-  "voiceVlan": 20,
-  "poeEnabled": true,
-  "isolationEnabled": false,
-  "rstpEnabled": true,
-  "stpGuard": "disabled",
-  "accessPolicyNumber": "asdf1234",
-  "linkNegotiation": "Auto negotiate"
-}</code></pre>
 
 
 
@@ -1240,7 +1143,7 @@ const portEndpoints = require('./lib/rest/ports')({ apiKey, target, basePath, ba
 
         <tr>
             
-                <td class="name"><code>deviceSerial</code></td>
+                <td class="name"><code>path</code></td>
             
 
             <td class="type">
@@ -1264,20 +1167,20 @@ const portEndpoints = require('./lib/rest/ports')({ apiKey, target, basePath, ba
 
             
 
-            <td class="description last"><p>The serial of the device for which to list the switch ports</p></td>
+            <td class="description last"><p>The ressource path to call</p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>number</code></td>
+                <td class="name"><code>data</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">number</span>
+<span class="param-type">object</span>
 
 
             
@@ -1295,410 +1198,7 @@ const portEndpoints = require('./lib/rest/ports')({ apiKey, target, basePath, ba
 
             
 
-            <td class="description last"><p>The number of the switch port to update</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>name</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last"><p>The name of the switch port</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>tags</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last"><p>The tags of the switch port</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>enabled</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">boolean</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last"><p>The status of the switch port</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>type</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last"><p>The type of the switch port (<code>access</code> or <code>trunk</code>)</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>vlan</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last"><p>The VLAN of the switch port</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>voiceVlan</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last"><p>The voice VLAN of the switch port. Only applicable to access ports</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>allowedVlans</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Array</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last"><p>The VLANs allowed on the switch port. Only applicable to trunk ports</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>poeEnabled</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">boolean</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last"><p>The PoE status of the switch port</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>isolationEnabled</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">boolean</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last"><p>The isolation status of the switch port</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>rstpEnabled</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">boolean</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last"><p>The rapid spanning tree protocol status</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>stpGuard</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last"><p>The state of the STP guard (<code>disabled</code>, <code>Root guard</code>, <code>BPDU guard</code>, <code>Loop guard</code>)</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>accessPolicyNumber</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last"><p>The number of the access policy of the switch port. Only applicable to access ports</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>linkNegotiation</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last"><p>The link speed for the switch port</p></td>
+            <td class="description last"><p>The data to pass to the POST request</p></td>
         </tr>
 
     
@@ -1724,7 +1224,305 @@ const portEndpoints = require('./lib/rest/ports')({ apiKey, target, basePath, ba
 
         
 <div class="param-desc">
-    <p>A promise holding the updated switch port</p>
+    <p>A promise holding the meraki api response</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".putRaw"><span class="type-signature">(static) </span>putRaw<span class="signature">(apiKey<span class="signature-attributes">opt</span>, target<span class="signature-attributes">opt</span>, scope<span class="signature-attributes">opt</span>, path, data)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="rest_raw.js.html">rest/raw.js</a>, <a href="rest_raw.js.html#line87">line 87</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Call a specific meraki PUT endpoint</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>apiKey</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Optional custom apiKey for this request (if not set will take the inital apiKey)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>target</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Optional custom target for this request (if not set will take the inital target)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>scope</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Optional custom scope for rate limiter</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>path</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The ressource path to call</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>data</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The data to pass to the PUT request</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>A promise holding the meraki api response</p>
 </div>
 
 

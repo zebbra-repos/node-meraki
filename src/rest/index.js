@@ -95,7 +95,7 @@ function createRestAPI (settings) {
    * The config template endpoints
    *
    * @memberof module:meraki/rest
-   * @see module:meraki/rest/templates
+   * @see module:meraki/rest/config-templates
    */
   const templatesEndpoints = require('./templates')({
     apiKey,
@@ -125,7 +125,7 @@ function createRestAPI (settings) {
    * The group policy endpoints
    *
    * @memberof module:meraki/rest
-   * @see module:meraki/rest/policies
+   * @see module:meraki/rest/group-policies
    */
   const policiesEndpoints = require('./policies')({
     apiKey,
@@ -155,7 +155,7 @@ function createRestAPI (settings) {
    * The organization endpoints
    *
    * @memberof module:meraki/rest
-   * @see module:meraki/rest/ogranizations
+   * @see module:meraki/rest/organizations
    */
   const organizationEndpoints = require('./organizations')({
     apiKey,
@@ -185,7 +185,7 @@ function createRestAPI (settings) {
    * The static route endpoints
    *
    * @memberof module:meraki/rest
-   * @see module:meraki/rest/routes
+   * @see module:meraki/rest/static-routes
    */
   const routesEndpoints = require('./routes')({
     apiKey,
@@ -200,7 +200,7 @@ function createRestAPI (settings) {
    * The switch port endpoints
    *
    * @memberof module:meraki/rest
-   * @see module:meraki/rest/ports
+   * @see module:meraki/rest/switch-ports
    */
   const portsEndpoints = require('./ports')({
     apiKey,
@@ -245,7 +245,7 @@ function createRestAPI (settings) {
    * The samle role endpoints
    *
    * @memberof module:meraki/rest
-   * @see module:meraki/rest/saml
+   * @see module:meraki/rest/saml-roles
    */
   const samlEndpoints = require('./saml')({
     apiKey,
@@ -296,7 +296,6 @@ function createRestAPI (settings) {
     apiKey,
     target,
     baseUrl,
-    basePath: `${basePath}/`,
     rateLimiter,
     logger
   })
