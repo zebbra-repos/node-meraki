@@ -1,6 +1,6 @@
 {
   "name": "node-meraki",
-  "version": "5.9.1",
+  "version": "5.9.2",
   "description": "Meraki wrapper for nodejs",
   "main": "./lib/index.js",
   "scripts": {
