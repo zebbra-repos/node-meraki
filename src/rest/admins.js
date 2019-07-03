@@ -19,7 +19,14 @@
  * }
  * const adminEndpoints = require('./lib/rest/admins')({ apiKey, target, basePath, baseUrl, rateLimiter })
  */
-function createAdminEndpoints ({ apiKey = '', target = 'api', basePath = '/', baseUrl = 'https://api.meraki.com', rateLimiter, logger }) {
+function createAdminEndpoints ({
+  apiKey = '',
+  target = 'api',
+  basePath = '/',
+  baseUrl = 'https://api.meraki.com',
+  rateLimiter,
+  logger
+}) {
   const axios = require('./axios')({ baseUrl, rateLimiter, logger })
 
   /**
@@ -53,12 +60,22 @@ function createAdminEndpoints ({ apiKey = '', target = 'api', basePath = '/', ba
    *   }
    * ]
    */
-  function listAdmins ({ apiKey: localApiKey, target: localTarget, scope, orgId }) {
+  function listAdmins ({
+    apiKey: localApiKey,
+    target: localTarget,
+    scope,
+    orgId
+  }) {
     if (!orgId) {
       return Promise.reject(new Error('The parameter orgId is mandatory'))
     }
 
-    return axios._get(localApiKey || apiKey, localTarget || target, scope, `${basePath}/${orgId}/admins`)
+    return axios._get(
+      localApiKey || apiKey,
+      localTarget || target,
+      scope,
+      `${basePath}/${orgId}/admins`
+    )
   }
 
   /**
@@ -89,16 +106,36 @@ function createAdminEndpoints ({ apiKey = '', target = 'api', basePath = '/', ba
    *   "networks":[]
    * }
    */
-  function createAdmin ({ apiKey: localApiKey, target: localTarget, scope, orgId, email, name, orgAccess, tags, networks }) {
+  function createAdmin ({
+    apiKey: localApiKey,
+    target: localTarget,
+    scope,
+    orgId,
+    email,
+    name,
+    orgAccess,
+    tags,
+    networks
+  }) {
     if (!orgId) {
       return Promise.reject(new Error('The parameter orgId is mandatory'))
     }
     if (!orgAccess && !tags && !networks) {
-      return Promise.reject(new Error('Administrator accounts must be granted access to either the Organization, Networks, or Tags'))
+      return Promise.reject(
+        new Error(
+          'Administrator accounts must be granted access to either the Organization, Networks, or Tags'
+        )
+      )
     }
 
     const data = { email, name, orgAccess, tags, networks }
-    return axios._post(localApiKey || apiKey, localTarget || target, scope, `${basePath}/${orgId}/admins`, data)
+    return axios._post(
+      localApiKey || apiKey,
+      localTarget || target,
+      scope,
+      `${basePath}/${orgId}/admins`,
+      data
+    )
   }
 
   /**
@@ -130,7 +167,18 @@ function createAdminEndpoints ({ apiKey = '', target = 'api', basePath = '/', ba
    *   "networks":[]
    * }
    */
-  function updateAdmin ({ apiKey: localApiKey, target: localTarget, scope, orgId, adminId, email, name, orgAccess, tags, networks }) {
+  function updateAdmin ({
+    apiKey: localApiKey,
+    target: localTarget,
+    scope,
+    orgId,
+    adminId,
+    email,
+    name,
+    orgAccess,
+    tags,
+    networks
+  }) {
     if (!orgId) {
       return Promise.reject(new Error('The parameter orgId is mandatory'))
     }
@@ -139,7 +187,13 @@ function createAdminEndpoints ({ apiKey = '', target = 'api', basePath = '/', ba
     }
 
     const data = { email, name, orgAccess, tags, networks }
-    return axios._put(localApiKey || apiKey, localTarget || target, scope, `${basePath}/${orgId}/admins/${adminId}`, data)
+    return axios._put(
+      localApiKey || apiKey,
+      localTarget || target,
+      scope,
+      `${basePath}/${orgId}/admins/${adminId}`,
+      data
+    )
   }
 
   /**
@@ -153,7 +207,13 @@ function createAdminEndpoints ({ apiKey = '', target = 'api', basePath = '/', ba
    * @param { string } adminId    The if of the dashboard administrator to delete
    * @return { Promise } A promise with no data
    */
-  function deleteAdmin ({ apiKey: localApiKey, target: localTarget, scope, orgId, adminId }) {
+  function deleteAdmin ({
+    apiKey: localApiKey,
+    target: localTarget,
+    scope,
+    orgId,
+    adminId
+  }) {
     if (!orgId) {
       return Promise.reject(new Error('The parameter orgId is mandatory'))
     }
@@ -161,7 +221,12 @@ function createAdminEndpoints ({ apiKey = '', target = 'api', basePath = '/', ba
       return Promise.reject(new Error('The parameter adminId is mandatory'))
     }
 
-    return axios._delete(localApiKey || apiKey, localTarget || target, scope, `${basePath}/${orgId}/admins/${adminId}`)
+    return axios._delete(
+      localApiKey || apiKey,
+      localTarget || target,
+      scope,
+      `${basePath}/${orgId}/admins/${adminId}`
+    )
   }
 
   return {

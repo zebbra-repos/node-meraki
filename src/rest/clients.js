@@ -20,7 +20,14 @@
  * }
  * const clientEndpoints = require('./lib/rest/clients')({ apiKey, target, basePath, baseUrl, rateLimiter })
  */
-function createClientsEndpoints ({ apiKey = '', target = 'api', basePath = '/', baseUrl = 'https://api.meraki.com', rateLimiter, logger }) {
+function createClientsEndpoints ({
+  apiKey = '',
+  target = 'api',
+  basePath = '/',
+  baseUrl = 'https://api.meraki.com',
+  rateLimiter,
+  logger
+}) {
   const axios = require('./axios')({ baseUrl, rateLimiter, logger })
 
   /**
@@ -50,13 +57,27 @@ function createClientsEndpoints ({ apiKey = '', target = 'api', basePath = '/', 
    *   ...
    * ]
    */
-  function listClients ({ apiKey: localApiKey, target: localTarget, scope, deviceSerial, timespan = 2592000 }) {
+  function listClients ({
+    apiKey: localApiKey,
+    target: localTarget,
+    scope,
+    deviceSerial,
+    timespan = 2592000
+  }) {
     if (!deviceSerial) {
-      return Promise.reject(new Error('The parameter deviceSerial is mandatory'))
+      return Promise.reject(
+        new Error('The parameter deviceSerial is mandatory')
+      )
     }
 
     const params = { timespan }
-    return axios._get(localApiKey || apiKey, localTarget || target, scope, `${basePath}/devices/${deviceSerial}/clients`, params)
+    return axios._get(
+      localApiKey || apiKey,
+      localTarget || target,
+      scope,
+      `${basePath}/devices/${deviceSerial}/clients`,
+      params
+    )
   }
 
   /**
@@ -77,7 +98,14 @@ function createClientsEndpoints ({ apiKey = '', target = 'api', basePath = '/', 
    *   "groupPolicyId": 101
    * }
    */
-  function showClientPolicy ({ apiKey: localApiKey, target: localTarget, scope, networkId, timespan = 2592000, mac }) {
+  function showClientPolicy ({
+    apiKey: localApiKey,
+    target: localTarget,
+    scope,
+    networkId,
+    timespan = 2592000,
+    mac
+  }) {
     if (!networkId) {
       return Promise.reject(new Error('The parameter networkId is mandatory'))
     } else if (!mac) {
@@ -85,7 +113,13 @@ function createClientsEndpoints ({ apiKey = '', target = 'api', basePath = '/', 
     }
 
     const params = { timespan }
-    return axios._get(localApiKey || apiKey, localTarget || target, scope, `${basePath}/networks/${networkId}/clients/${mac}/policy`, params)
+    return axios._get(
+      localApiKey || apiKey,
+      localTarget || target,
+      scope,
+      `${basePath}/networks/${networkId}/clients/${mac}/policy`,
+      params
+    )
   }
 
   /**
@@ -108,7 +142,16 @@ function createClientsEndpoints ({ apiKey = '', target = 'api', basePath = '/', 
    *   "groupPolicyId": 101
    * }
    */
-  function updateClientPolicy ({ apiKey: localApiKey, target: localTarget, scope, networkId, timespan = 2592000, mac, devicePolicy, groupPolicyId }) {
+  function updateClientPolicy ({
+    apiKey: localApiKey,
+    target: localTarget,
+    scope,
+    networkId,
+    timespan = 2592000,
+    mac,
+    devicePolicy,
+    groupPolicyId
+  }) {
     if (!networkId) {
       return Promise.reject(new Error('The parameter networkId is mandatory'))
     } else if (!mac) {
@@ -116,7 +159,13 @@ function createClientsEndpoints ({ apiKey = '', target = 'api', basePath = '/', 
     }
 
     const data = { timespan, devicePolicy, groupPolicyId }
-    return axios._put(localApiKey || apiKey, localTarget || target, scope, `${basePath}/networks/${networkId}/clients/${mac}/policy`, data)
+    return axios._put(
+      localApiKey || apiKey,
+      localTarget || target,
+      scope,
+      `${basePath}/networks/${networkId}/clients/${mac}/policy`,
+      data
+    )
   }
 
   /**
@@ -144,14 +193,26 @@ function createClientsEndpoints ({ apiKey = '', target = 'api', basePath = '/', 
    *   }
    * }
    */
-  function showClientSplashAuthorization ({ apiKey: localApiKey, target: localTarget, scope, networkId, timespan = 2592000, mac }) {
+  function showClientSplashAuthorization ({
+    apiKey: localApiKey,
+    target: localTarget,
+    scope,
+    networkId,
+    timespan = 2592000,
+    mac
+  }) {
     if (!networkId) {
       return Promise.reject(new Error('The parameter networkId is mandatory'))
     } else if (!mac) {
       return Promise.reject(new Error('The parameter mac is mandatory'))
     }
 
-    return axios._get(localApiKey || apiKey, localTarget || target, scope, `${basePath}/networks/${networkId}/clients/${mac}/splashAuthorizationStatus`)
+    return axios._get(
+      localApiKey || apiKey,
+      localTarget || target,
+      scope,
+      `${basePath}/networks/${networkId}/clients/${mac}/splashAuthorizationStatus`
+    )
   }
 
   /**
@@ -190,7 +251,14 @@ function createClientsEndpoints ({ apiKey = '', target = 'api', basePath = '/', 
    *   }
    * }
    */
-  function updateClientSplashAuthorization ({ apiKey: localApiKey, target: localTarget, scope, networkId, mac, ssids }) {
+  function updateClientSplashAuthorization ({
+    apiKey: localApiKey,
+    target: localTarget,
+    scope,
+    networkId,
+    mac,
+    ssids
+  }) {
     if (!networkId) {
       return Promise.reject(new Error('The parameter networkId is mandatory'))
     } else if (!mac) {
@@ -198,7 +266,13 @@ function createClientsEndpoints ({ apiKey = '', target = 'api', basePath = '/', 
     }
 
     const data = { ssids }
-    return axios._put(localApiKey || apiKey, localTarget || target, scope, `${basePath}/networks/${networkId}/clients/${mac}/splashAuthorizationStatus`, data)
+    return axios._put(
+      localApiKey || apiKey,
+      localTarget || target,
+      scope,
+      `${basePath}/networks/${networkId}/clients/${mac}/splashAuthorizationStatus`,
+      data
+    )
   }
 
   return {

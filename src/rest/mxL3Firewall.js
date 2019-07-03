@@ -21,7 +21,14 @@
  * }
  * const mxL3FirewallEndpoints = require('./lib/rest/mxL3Firewall')({ apiKey, target, basePath, baseUrl, rateLimiter })
  */
-function createMxL3FirewallEndpoints ({ apiKey = '', target = 'api', basePath = '/', baseUrl = 'https://api.meraki.com', rateLimiter, logger }) {
+function createMxL3FirewallEndpoints ({
+  apiKey = '',
+  target = 'api',
+  basePath = '/',
+  baseUrl = 'https://api.meraki.com',
+  rateLimiter,
+  logger
+}) {
   const axios = require('./axios')({ baseUrl, rateLimiter, logger })
 
   /**
@@ -47,12 +54,22 @@ function createMxL3FirewallEndpoints ({ apiKey = '', target = 'api', basePath = 
    *   }
    * ]
    */
-  function listMxL3FirewallRules ({ apiKey: localApiKey, target: localTarget, scope, networkId }) {
+  function listMxL3FirewallRules ({
+    apiKey: localApiKey,
+    target: localTarget,
+    scope,
+    networkId
+  }) {
     if (!networkId) {
       return Promise.reject(new Error('The parameter networkId is mandatory'))
     }
 
-    return axios._get(localApiKey || apiKey, localTarget || target, scope, `${basePath}/${networkId}/l3FirewallRules`)
+    return axios._get(
+      localApiKey || apiKey,
+      localTarget || target,
+      scope,
+      `${basePath}/${networkId}/l3FirewallRules`
+    )
   }
 
   /**
@@ -100,16 +117,31 @@ function createMxL3FirewallEndpoints ({ apiKey = '', target = 'api', basePath = 
    *   }
    * ]
    */
-  function updateMxL3FirewallRule ({ apiKey: localApiKey, target: localTarget, scope, networkId, rules, syslogDefaultRule }) {
+  function updateMxL3FirewallRule ({
+    apiKey: localApiKey,
+    target: localTarget,
+    scope,
+    networkId,
+    rules,
+    syslogDefaultRule
+  }) {
     if (!networkId) {
       return Promise.reject(new Error('The parameter networkId is mandatory'))
     } else if (!rules) {
       return Promise.reject(new Error('The parameter rules is mandatory'))
     } else if (!Array.isArray(rules)) {
-      return Promise.reject(new Error('The parameter rules must be of type array'))
+      return Promise.reject(
+        new Error('The parameter rules must be of type array')
+      )
     }
 
-    return axios._put(localApiKey || apiKey, localTarget || target, scope, `${basePath}/${networkId}/l3FirewallRules`, { rules, syslogDefaultRule })
+    return axios._put(
+      localApiKey || apiKey,
+      localTarget || target,
+      scope,
+      `${basePath}/${networkId}/l3FirewallRules`,
+      { rules, syslogDefaultRule }
+    )
   }
 
   return {

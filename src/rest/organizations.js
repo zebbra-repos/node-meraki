@@ -20,7 +20,14 @@
  * }
  * const organizationEndpoints = require('./lib/rest/organization')({ apiKey, target, basePath, baseUrl, rateLimiter })
  */
-function createOrganizationsEndpoints ({ apiKey = '', target = 'api', basePath = '/', baseUrl = 'https://api.meraki.com', rateLimiter, logger }) {
+function createOrganizationsEndpoints ({
+  apiKey = '',
+  target = 'api',
+  basePath = '/',
+  baseUrl = 'https://api.meraki.com',
+  rateLimiter,
+  logger
+}) {
   const axios = require('./axios')({ baseUrl, rateLimiter, logger })
 
   /**
@@ -45,7 +52,12 @@ function createOrganizationsEndpoints ({ apiKey = '', target = 'api', basePath =
     delete data.target
     delete data.scope
 
-    return axios._get(localApiKey || apiKey, localTarget || target, scope, basePath)
+    return axios._get(
+      localApiKey || apiKey,
+      localTarget || target,
+      scope,
+      basePath
+    )
   }
 
   /**
@@ -63,12 +75,22 @@ function createOrganizationsEndpoints ({ apiKey = '', target = 'api', basePath =
    *   "name":"My org"
    * }
    */
-  function showOrganization ({ apiKey: localApiKey, target: localTarget, scope, orgId }) {
+  function showOrganization ({
+    apiKey: localApiKey,
+    target: localTarget,
+    scope,
+    orgId
+  }) {
     if (!orgId) {
       return Promise.reject(new Error('The parameter orgId is mandatory'))
     }
 
-    return axios._get(localApiKey || apiKey, localTarget || target, scope, `${basePath}/${orgId}`)
+    return axios._get(
+      localApiKey || apiKey,
+      localTarget || target,
+      scope,
+      `${basePath}/${orgId}`
+    )
   }
 
   /**
@@ -87,13 +109,25 @@ function createOrganizationsEndpoints ({ apiKey = '', target = 'api', basePath =
    *   "name":"My org"
    * }
    */
-  function updateOrganization ({ apiKey: localApiKey, target: localTarget, scope, orgId, name }) {
+  function updateOrganization ({
+    apiKey: localApiKey,
+    target: localTarget,
+    scope,
+    orgId,
+    name
+  }) {
     if (!orgId) {
       return Promise.reject(new Error('The parameter orgId is mandatory'))
     }
 
     const data = { name }
-    return axios._put(localApiKey || apiKey, localTarget || target, scope, `${basePath}/${orgId}`, data)
+    return axios._put(
+      localApiKey || apiKey,
+      localTarget || target,
+      scope,
+      `${basePath}/${orgId}`,
+      data
+    )
   }
 
   /**
@@ -111,9 +145,20 @@ function createOrganizationsEndpoints ({ apiKey = '', target = 'api', basePath =
    *   "name":"My org"
    * }
    */
-  function createOrganization ({ apiKey: localApiKey, target: localTarget, scope, name }) {
+  function createOrganization ({
+    apiKey: localApiKey,
+    target: localTarget,
+    scope,
+    name
+  }) {
     const data = { name }
-    return axios._post(localApiKey || apiKey, localTarget || target, scope, basePath, data)
+    return axios._post(
+      localApiKey || apiKey,
+      localTarget || target,
+      scope,
+      basePath,
+      data
+    )
   }
 
   /**
@@ -132,13 +177,25 @@ function createOrganizationsEndpoints ({ apiKey = '', target = 'api', basePath =
    *   "name":"My cloned org"
    * }
    */
-  function cloneOrganization ({ apiKey: localApiKey, target: localTarget, scope, orgId, name }) {
+  function cloneOrganization ({
+    apiKey: localApiKey,
+    target: localTarget,
+    scope,
+    orgId,
+    name
+  }) {
     if (!orgId) {
       return Promise.reject(new Error('The parameter orgId is mandatory'))
     }
 
     const data = { name }
-    return axios._post(localApiKey || apiKey, localTarget || target, scope, `${basePath}/${orgId}/clone`, data)
+    return axios._post(
+      localApiKey || apiKey,
+      localTarget || target,
+      scope,
+      `${basePath}/${orgId}/clone`,
+      data
+    )
   }
 
   /**
@@ -158,13 +215,28 @@ function createOrganizationsEndpoints ({ apiKey = '', target = 'api', basePath =
    * @param { string } licenseMode  Either `renew` or `addDevices`. `addDevices` will increase the license limit, while `renew` will extend the amount of time until expiration. This parameter is required when claiming by licenseKey
    * @return { Promise } A promise with no data
    */
-  function claimOrganization ({ apiKey: localApiKey, target: localTarget, scope, orgId, order, serial, licenseKey, licenseMode }) {
+  function claimOrganization ({
+    apiKey: localApiKey,
+    target: localTarget,
+    scope,
+    orgId,
+    order,
+    serial,
+    licenseKey,
+    licenseMode
+  }) {
     if (!orgId) {
       return Promise.reject(new Error('The parameter orgId is mandatory'))
     }
 
     const data = { order, serial, licenseKey, licenseMode }
-    return axios._post(localApiKey || apiKey, localTarget || target, scope, `${basePath}/${orgId}/claim`, data)
+    return axios._post(
+      localApiKey || apiKey,
+      localTarget || target,
+      scope,
+      `${basePath}/${orgId}/claim`,
+      data
+    )
   }
 
   /**
@@ -185,12 +257,22 @@ function createOrganizationsEndpoints ({ apiKey = '', target = 'api', basePath =
    *   }
    * }
    */
-  function showOrganizationLicense ({ apiKey: localApiKey, target: localTarget, scope, orgId }) {
+  function showOrganizationLicense ({
+    apiKey: localApiKey,
+    target: localTarget,
+    scope,
+    orgId
+  }) {
     if (!orgId) {
       return Promise.reject(new Error('The parameter orgId is mandatory'))
     }
 
-    return axios._get(localApiKey || apiKey, localTarget || target, scope, `${basePath}/${orgId}/licenseState`)
+    return axios._get(
+      localApiKey || apiKey,
+      localTarget || target,
+      scope,
+      `${basePath}/${orgId}/licenseState`
+    )
   }
 
   /**
@@ -214,12 +296,22 @@ function createOrganizationsEndpoints ({ apiKey = '', target = 'api', basePath =
    *   }
    * ]
    */
-  function listOrganizationInventory ({ apiKey: localApiKey, target: localTarget, scope, orgId }) {
+  function listOrganizationInventory ({
+    apiKey: localApiKey,
+    target: localTarget,
+    scope,
+    orgId
+  }) {
     if (!orgId) {
       return Promise.reject(new Error('The parameter orgId is mandatory'))
     }
 
-    return axios._get(localApiKey || apiKey, localTarget || target, scope, `${basePath}/${orgId}/inventory`)
+    return axios._get(
+      localApiKey || apiKey,
+      localTarget || target,
+      scope,
+      `${basePath}/${orgId}/inventory`
+    )
   }
 
   /**
@@ -241,12 +333,22 @@ function createOrganizationsEndpoints ({ apiKey = '', target = 'api', basePath =
    *   "port":16100
    * }
    */
-  function showOrganizationSNMP ({ apiKey: localApiKey, target: localTarget, scope, orgId }) {
+  function showOrganizationSNMP ({
+    apiKey: localApiKey,
+    target: localTarget,
+    scope,
+    orgId
+  }) {
     if (!orgId) {
       return Promise.reject(new Error('The parameter orgId is mandatory'))
     }
 
-    return axios._get(localApiKey || apiKey, localTarget || target, scope, `${basePath}/${orgId}/snmp`)
+    return axios._get(
+      localApiKey || apiKey,
+      localTarget || target,
+      scope,
+      `${basePath}/${orgId}/snmp`
+    )
   }
 
   /**
@@ -285,7 +387,13 @@ function createOrganizationsEndpoints ({ apiKey = '', target = 'api', basePath =
     delete data.target
     delete data.scope
 
-    return axios._put(data.apiKey || apiKey, localTarget || target, scope, `${basePath}/${orgId}/snmp`, data)
+    return axios._put(
+      data.apiKey || apiKey,
+      localTarget || target,
+      scope,
+      `${basePath}/${orgId}/snmp`,
+      data
+    )
   }
 
   /**
@@ -310,12 +418,22 @@ function createOrganizationsEndpoints ({ apiKey = '', target = 'api', basePath =
    *   }
    * ]
    */
-  function showOrganizationDeviceStatuses ({ apiKey: localApiKey, target: localTarget, scope, orgId }) {
+  function showOrganizationDeviceStatuses ({
+    apiKey: localApiKey,
+    target: localTarget,
+    scope,
+    orgId
+  }) {
     if (!orgId) {
       return Promise.reject(new Error('The parameter orgId is mandatory'))
     }
 
-    return axios._get(localApiKey || apiKey, localTarget || target, scope, `${basePath}/${orgId}/deviceStatuses`)
+    return axios._get(
+      localApiKey || apiKey,
+      localTarget || target,
+      scope,
+      `${basePath}/${orgId}/deviceStatuses`
+    )
   }
 
   return {

@@ -19,7 +19,14 @@
  * }
  * const templateEndpoints = require('./lib/rest/templates')({ apiKey, target, basePath, baseUrl, rateLimiter })
  */
-function createTemplatesEndpoints ({ apiKey, target, basePath, baseUrl = 'https://api.meraki.com', rateLimiter, logger }) {
+function createTemplatesEndpoints ({
+  apiKey,
+  target,
+  basePath,
+  baseUrl = 'https://api.meraki.com',
+  rateLimiter,
+  logger
+}) {
   const axios = require('./axios')({ baseUrl, rateLimiter, logger })
 
   /**
@@ -39,12 +46,22 @@ function createTemplatesEndpoints ({ apiKey, target, basePath, baseUrl = 'https:
    *   }
    * ]
    */
-  function listConfigurationTemplates ({ apiKey: localApiKey, target: localTarget, scope, orgId }) {
+  function listConfigurationTemplates ({
+    apiKey: localApiKey,
+    target: localTarget,
+    scope,
+    orgId
+  }) {
     if (!orgId) {
       return Promise.reject(new Error('The parameter orgId is mandatory'))
     }
 
-    return axios._get(localApiKey || apiKey, localTarget || target, scope, `${basePath}/${orgId}/configTemplates`)
+    return axios._get(
+      localApiKey || apiKey,
+      localTarget || target,
+      scope,
+      `${basePath}/${orgId}/configTemplates`
+    )
   }
 
   /**
@@ -58,7 +75,13 @@ function createTemplatesEndpoints ({ apiKey, target, basePath, baseUrl = 'https:
    * @param { string } templateId The id of the template to delete
    * @return { Promise } A promise with no data
    */
-  function deleteConfigurationTemplate ({ apiKey: localApiKey, target: localTarget, scope, orgId, templateId }) {
+  function deleteConfigurationTemplate ({
+    apiKey: localApiKey,
+    target: localTarget,
+    scope,
+    orgId,
+    templateId
+  }) {
     if (!orgId) {
       return Promise.reject(new Error('The parameter orgId is mandatory'))
     }
@@ -66,7 +89,12 @@ function createTemplatesEndpoints ({ apiKey, target, basePath, baseUrl = 'https:
       return Promise.reject(new Error('The parameter templateId is mandatory'))
     }
 
-    return axios._delete(localApiKey || apiKey, localTarget || target, scope, `${basePath}/${orgId}/configTemplates/${templateId}`)
+    return axios._delete(
+      localApiKey || apiKey,
+      localTarget || target,
+      scope,
+      `${basePath}/${orgId}/configTemplates/${templateId}`
+    )
   }
 
   return {

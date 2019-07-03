@@ -1,7 +1,7 @@
 const axios = require('axios')
 const Bottleneck = require('bottleneck')
 const debug = require('debug')('node-meraki:axios')
-const JSONBigInt = require('json-bigint')({ 'storeAsString': true })
+const JSONBigInt = require('json-bigint')({ storeAsString: true })
 
 const settings = {}
 const pool = {}
@@ -14,8 +14,19 @@ const handleBigInt = (data) => {
   }
 }
 
-function _exec ({ method, apiKey, target = 'api', scope = 'default', url = '/', data, params = {} }) {
-  const scopedAxios = settings.rateLimiter.scoped === true ? _getScope(scope) : _getScope('default')
+function _exec ({
+  method,
+  apiKey,
+  target = 'api',
+  scope = 'default',
+  url = '/',
+  data,
+  params = {}
+}) {
+  const scopedAxios =
+    settings.rateLimiter.scoped === true
+      ? _getScope(scope)
+      : _getScope('default')
   const baseURL = scopedAxios.instance.defaults.baseURL.replace(/api/, target)
 
   let maxRedirects = 5
@@ -53,23 +64,30 @@ function _exec ({ method, apiKey, target = 'api', scope = 'default', url = '/', 
   if (scopedAxios.limiter) {
     return scopedAxios.limiter
       .schedule(scopedAxios.instance, options)
-      .then((response) => (params.withFullResponse) ? response : response.data)
+      .then((response) => (params.withFullResponse ? response : response.data))
       .then((response) => {
         if (settings.logger) {
-          settings.logger.info('<= DATA:', params.withFullResponse ? response : JSON.stringify(response))
+          settings.logger.info(
+            '<= DATA:',
+            params.withFullResponse ? response : JSON.stringify(response)
+          )
         }
 
-        return Promise.resolve(response)
+        return response
       })
   } else {
-    return scopedAxios.instance(options)
-      .then((response) => (params.withFullResponse) ? response : response.data)
+    return scopedAxios
+      .instance(options)
+      .then((response) => (params.withFullResponse ? response : response.data))
       .then((response) => {
         if (settings.logger) {
-          settings.logger.info('<= DATA:', params.withFullResponse ? response : JSON.stringify(response))
+          settings.logger.info(
+            '<= DATA:',
+            params.withFullResponse ? response : JSON.stringify(response)
+          )
         }
 
-        return Promise.resolve(response)
+        return response
       })
   }
 }
@@ -93,7 +111,10 @@ function _delete (apiKey, target, scope, url) {
 function _getScope (scope) {
   if (!pool[scope]) {
     if (settings.logger) {
-      settings.logger.info('On the fly creating scoped axios instance for scope:', scope)
+      settings.logger.info(
+        'On the fly creating scoped axios instance for scope:',
+        scope
+      )
     }
     pool[scope] = {}
 
@@ -102,20 +123,26 @@ function _getScope (scope) {
       transformResponse: [handleBigInt]
     })
 
-    instance.interceptors.response.use((res) => {
-      debug(res.headers)
-      return res
-    }, (error) => {
-      if (error.response) {
-        if ([301, 302, 307, 308].indexOf(error.response.status) !== -1 && error.response.headers.location) {
-          const config = error.response.config
-          config.url = error.response.headers.location
-          return instance(config)
+    instance.interceptors.response.use(
+      (res) => {
+        debug(res.headers)
+        return res
+      },
+      (error) => {
+        if (error.response) {
+          if (
+            [301, 302, 307, 308].indexOf(error.response.status) !== -1 &&
+            error.response.headers.location
+          ) {
+            const config = error.response.config
+            config.url = error.response.headers.location
+            return instance(config)
+          }
         }
-      }
 
-      return Promise.reject(error)
-    })
+        return Promise.reject(error)
+      }
+    )
 
     pool[scope].instance = instance
 

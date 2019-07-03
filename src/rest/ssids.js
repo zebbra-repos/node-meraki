@@ -20,7 +20,14 @@
  * }
  * const ssidEndpoints = require('./lib/rest/ssids')({ apiKey, target, basePath, baseUrl, rateLimiter })
  */
-function createSSIDsEndpoints ({ apiKey, target, basePath, baseUrl = 'https://api.meraki.com', rateLimiter, logger }) {
+function createSSIDsEndpoints ({
+  apiKey,
+  target,
+  basePath,
+  baseUrl = 'https://api.meraki.com',
+  rateLimiter,
+  logger
+}) {
   const axios = require('./axios')({ baseUrl, rateLimiter, logger })
 
   /**
@@ -42,12 +49,22 @@ function createSSIDsEndpoints ({ apiKey, target, basePath, baseUrl = 'https://ap
    *   }
    * ]
    */
-  function listNetworkSSIDs ({ apiKey: localApiKey, target: localTarget, scope, networkId }) {
+  function listNetworkSSIDs ({
+    apiKey: localApiKey,
+    target: localTarget,
+    scope,
+    networkId
+  }) {
     if (!networkId) {
       return Promise.reject(new Error('The parameter networkId is mandatory'))
     }
 
-    return axios._get(localApiKey || apiKey, localTarget || target, scope, `${basePath}/${networkId}/ssids`)
+    return axios._get(
+      localApiKey || apiKey,
+      localTarget || target,
+      scope,
+      `${basePath}/${networkId}/ssids`
+    )
   }
 
   /**
@@ -77,14 +94,25 @@ function createSSIDsEndpoints ({ apiKey, target, basePath, baseUrl = 'https://ap
    *   "walledGardenRanges":"192.168.1.1/24 192.168.37.10/32"
    * }
    */
-  function showNetworkSSID ({ apiKey: localApiKey, target: localTarget, scope, networkId, ssidNumber }) {
+  function showNetworkSSID ({
+    apiKey: localApiKey,
+    target: localTarget,
+    scope,
+    networkId,
+    ssidNumber
+  }) {
     if (!networkId) {
       return Promise.reject(new Error('The parameter networkId is mandatory'))
     } else if (!ssidNumber) {
       return Promise.reject(new Error('The parameter ssidNumber is mandatory'))
     }
 
-    return axios._get(localApiKey || apiKey, localTarget || target, scope, `${basePath}/${networkId}/ssids/${ssidNumber}`)
+    return axios._get(
+      localApiKey || apiKey,
+      localTarget || target,
+      scope,
+      `${basePath}/${networkId}/ssids/${ssidNumber}`
+    )
   }
 
   /**
@@ -167,7 +195,13 @@ function createSSIDsEndpoints ({ apiKey, target, basePath, baseUrl = 'https://ap
       return Promise.reject(new Error('The parameter ssidNumber is mandatory'))
     }
 
-    return axios._put(data.apiKey || apiKey, localTarget || target, scope, `${basePath}/${networkId}/ssids/${ssidNumber}`, data)
+    return axios._put(
+      data.apiKey || apiKey,
+      localTarget || target,
+      scope,
+      `${basePath}/${networkId}/ssids/${ssidNumber}`,
+      data
+    )
   }
 
   return {

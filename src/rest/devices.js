@@ -20,7 +20,14 @@
  * }
  * const deviceEndpoints = require('./lib/rest/devices')({ apiKey, target, basePath, baseUrl, rateLimiter })
  */
-function createDevicesEndpoints ({ apiKey = '', target = 'api', basePath = '/', baseUrl = 'https://api.meraki.com', rateLimiter, logger }) {
+function createDevicesEndpoints ({
+  apiKey = '',
+  target = 'api',
+  basePath = '/',
+  baseUrl = 'https://api.meraki.com',
+  rateLimiter,
+  logger
+}) {
   const axios = require('./axios')({ baseUrl, rateLimiter, logger })
 
   /**
@@ -53,12 +60,22 @@ function createDevicesEndpoints ({ apiKey = '', target = 'api', basePath = '/', 
    *   }
    * ]
    */
-  function listNetworkDevices ({ apiKey: localApiKey, target: localTarget, scope, networkId }) {
+  function listNetworkDevices ({
+    apiKey: localApiKey,
+    target: localTarget,
+    scope,
+    networkId
+  }) {
     if (!networkId) {
       return Promise.reject(new Error('The parameter networkId is mandatory'))
     }
 
-    return axios._get(localApiKey || apiKey, localTarget || target, scope, `${basePath}/${networkId}/devices`)
+    return axios._get(
+      localApiKey || apiKey,
+      localTarget || target,
+      scope,
+      `${basePath}/${networkId}/devices`
+    )
   }
 
   /**
@@ -90,14 +107,27 @@ function createDevicesEndpoints ({ apiKey = '', target = 'api', basePath = '/', 
    *   }
    * }
    */
-  function showNetworkDevice ({ apiKey: localApiKey, target: localTarget, scope, networkId, deviceSerial }) {
+  function showNetworkDevice ({
+    apiKey: localApiKey,
+    target: localTarget,
+    scope,
+    networkId,
+    deviceSerial
+  }) {
     if (!networkId) {
       return Promise.reject(new Error('The parameter networkId is mandatory'))
     } else if (!deviceSerial) {
-      return Promise.reject(new Error('The parameter deviceSerial is mandatory'))
+      return Promise.reject(
+        new Error('The parameter deviceSerial is mandatory')
+      )
     }
 
-    return axios._get(localApiKey || apiKey, localTarget || target, scope, `${basePath}/${networkId}/devices/${deviceSerial}`)
+    return axios._get(
+      localApiKey || apiKey,
+      localTarget || target,
+      scope,
+      `${basePath}/${networkId}/devices/${deviceSerial}`
+    )
   }
 
   /**
@@ -132,14 +162,27 @@ function createDevicesEndpoints ({ apiKey = '', target = 'api', basePath = '/', 
    *   }
    * ]
    */
-  function listNetworkDeviceUplinks ({ apiKey: localApiKey, target: localTarget, scope, networkId, deviceSerial }) {
+  function listNetworkDeviceUplinks ({
+    apiKey: localApiKey,
+    target: localTarget,
+    scope,
+    networkId,
+    deviceSerial
+  }) {
     if (!networkId) {
       return Promise.reject(new Error('The parameter networkId is mandatory'))
     } else if (!deviceSerial) {
-      return Promise.reject(new Error('The parameter deviceSerial is mandatory'))
+      return Promise.reject(
+        new Error('The parameter deviceSerial is mandatory')
+      )
     }
 
-    return axios._get(localApiKey || apiKey, localTarget || target, scope, `${basePath}/${networkId}/devices/${deviceSerial}/uplink`)
+    return axios._get(
+      localApiKey || apiKey,
+      localTarget || target,
+      scope,
+      `${basePath}/${networkId}/devices/${deviceSerial}/uplink`
+    )
   }
 
   /**
@@ -181,15 +224,35 @@ function createDevicesEndpoints ({ apiKey = '', target = 'api', basePath = '/', 
    *   "lanIp":"1.2.3.4"
    * }
    */
-  function updateNetworkDevice ({ apiKey: localApiKey, target: localTarget, scope, networkId, deviceSerial, name, tags, lat, lng, address, moveMapMarker }) {
+  function updateNetworkDevice ({
+    apiKey: localApiKey,
+    target: localTarget,
+    scope,
+    networkId,
+    deviceSerial,
+    name,
+    tags,
+    lat,
+    lng,
+    address,
+    moveMapMarker
+  }) {
     if (!networkId) {
       return Promise.reject(new Error('The parameter networkId is mandatory'))
     } else if (!deviceSerial) {
-      return Promise.reject(new Error('The parameter deviceSerial is mandatory'))
+      return Promise.reject(
+        new Error('The parameter deviceSerial is mandatory')
+      )
     }
 
     const data = { name, tags, lat, lng, address, moveMapMarker }
-    return axios._put(localApiKey || apiKey, localTarget || target, scope, `${basePath}/${networkId}/devices/${deviceSerial}`, data)
+    return axios._put(
+      localApiKey || apiKey,
+      localTarget || target,
+      scope,
+      `${basePath}/${networkId}/devices/${deviceSerial}`,
+      data
+    )
   }
 
   /**
@@ -203,15 +266,29 @@ function createDevicesEndpoints ({ apiKey = '', target = 'api', basePath = '/', 
    * @param { string } deviceSerial The serial number of the device to claim into the network
    * @return { Promise } A promise with no data
    */
-  function claimNetworkDevice ({ apiKey: localApiKey, target: localTarget, scope, networkId, deviceSerial }) {
+  function claimNetworkDevice ({
+    apiKey: localApiKey,
+    target: localTarget,
+    scope,
+    networkId,
+    deviceSerial
+  }) {
     if (!networkId) {
       return Promise.reject(new Error('The parameter networkId is mandatory'))
     } else if (!deviceSerial) {
-      return Promise.reject(new Error('The parameter deviceSerial is mandatory'))
+      return Promise.reject(
+        new Error('The parameter deviceSerial is mandatory')
+      )
     }
 
     const data = { serial: deviceSerial }
-    return axios._post(localApiKey || apiKey, localTarget || target, scope, `${basePath}/${networkId}/devices/claim`, data)
+    return axios._post(
+      localApiKey || apiKey,
+      localTarget || target,
+      scope,
+      `${basePath}/${networkId}/devices/claim`,
+      data
+    )
   }
 
   /**
@@ -225,14 +302,27 @@ function createDevicesEndpoints ({ apiKey = '', target = 'api', basePath = '/', 
    * @param { string } deviceSerial The serial number of the device to remove from the network
    * @return { Promise } A promise with no data
    */
-  function deleteNetworkDevice ({ apiKey: localApiKey, target: localTarget, scope, networkId, deviceSerial }) {
+  function deleteNetworkDevice ({
+    apiKey: localApiKey,
+    target: localTarget,
+    scope,
+    networkId,
+    deviceSerial
+  }) {
     if (!networkId) {
       return Promise.reject(new Error('The parameter networkId is mandatory'))
     } else if (!deviceSerial) {
-      return Promise.reject(new Error('The parameter deviceSerial is mandatory'))
+      return Promise.reject(
+        new Error('The parameter deviceSerial is mandatory')
+      )
     }
 
-    return axios._post(localApiKey || apiKey, localTarget || target, scope, `${basePath}/${networkId}/devices/${deviceSerial}/remove`)
+    return axios._post(
+      localApiKey || apiKey,
+      localTarget || target,
+      scope,
+      `${basePath}/${networkId}/devices/${deviceSerial}/remove`
+    )
   }
 
   /**
@@ -275,14 +365,29 @@ function createDevicesEndpoints ({ apiKey = '', target = 'api', basePath = '/', 
    *   }
    * }
    */
-  function showNetworkDeviceLLDPandCDP ({ apiKey: localApiKey, target: localTarget, scope, networkId, deviceSerial, timespan = 2592000 }) {
+  function showNetworkDeviceLLDPandCDP ({
+    apiKey: localApiKey,
+    target: localTarget,
+    scope,
+    networkId,
+    deviceSerial,
+    timespan = 2592000
+  }) {
     if (!networkId) {
       return Promise.reject(new Error('The parameter networkId is mandatory'))
     } else if (!deviceSerial) {
-      return Promise.reject(new Error('The parameter deviceSerial is mandatory'))
+      return Promise.reject(
+        new Error('The parameter deviceSerial is mandatory')
+      )
     }
 
-    return axios._get(localApiKey || apiKey, localTarget || target, scope, `${basePath}/${networkId}/devices/${deviceSerial}/lldp_cdp`, { timespan })
+    return axios._get(
+      localApiKey || apiKey,
+      localTarget || target,
+      scope,
+      `${basePath}/${networkId}/devices/${deviceSerial}/lldp_cdp`,
+      { timespan }
+    )
   }
 
   return {

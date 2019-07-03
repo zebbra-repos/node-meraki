@@ -20,50 +20,69 @@
  * }
  * const alertSettingsEndpoints = require('./lib/rest/alerts')({ apiKey, target, basePath, baseUrl, rateLimiter, logger })
  */
-function createAlertSettingsEndpoints ({ apiKey = '', target = 'api', basePath = '/', baseUrl = 'https://api.meraki.com', rateLimiter, logger }) {
+function createAlertSettingsEndpoints ({
+  apiKey = '',
+  target = 'api',
+  basePath = '/',
+  baseUrl = 'https://api.meraki.com',
+  rateLimiter,
+  logger
+}) {
   const axios = require('./axios')({ baseUrl, rateLimiter, logger })
 
   /**
-  * Return the alert settings for this network.
-  *
-  * @memberof module:meraki/rest/alerts
-  * @param { string } [apiKey]     Optional custom apiKey for this request (if not set will take the inital apiKey)
-  * @param { string } [target]     Optional custom target for this request (if not set will take the inital target)
-  * @param { string } [scope]      Optional custom scope for rate limiter
-  * @param { string } networkId    The id of the network
-  * @return { Promise } A promise holding the alert settings of this network
-  * @example <caption>Example response</caption>
-  * {
-  *   "defaultDestinations": {
-  *     "emails": [
-  *       "miles@meraki.com"
-  *     ],
-  *     "allAdmins": true,
-  *     "snmp": true,
-  *     "httpServerIds": ["asdfasfasdfasfasdfasdfasf"]
-  *   },
-  *   "alerts": [
-  *     {
-  *       "type": "gatewayDown",
-  *       "enabled": true,
-  *       "alertDestinations": {
-  *         "emails": [
-  *           "miles@meraki.com"
-  *         ],
-  *         "allAdmins": false,
-  *         "snmp": false
-  *       },
-  *       "filters": {
-  *         "timeout": 60
-  *       }
-  *     }
-  *   ]
-  * }
-  */
-  function getAlertSettings ({ apiKey: localApiKey, target: localTarget, scope, networkId }) {
-    if (!networkId) return Promise.reject(new Error('The parameter networkId is mandatory'))
+   * Return the alert settings for this network.
+   *
+   * @memberof module:meraki/rest/alerts
+   * @param { string } [apiKey]     Optional custom apiKey for this request (if not set will take the inital apiKey)
+   * @param { string } [target]     Optional custom target for this request (if not set will take the inital target)
+   * @param { string } [scope]      Optional custom scope for rate limiter
+   * @param { string } networkId    The id of the network
+   * @return { Promise } A promise holding the alert settings of this network
+   * @example <caption>Example response</caption>
+   * {
+   *   "defaultDestinations": {
+   *     "emails": [
+   *       "miles@meraki.com"
+   *     ],
+   *     "allAdmins": true,
+   *     "snmp": true,
+   *     "httpServerIds": ["asdfasfasdfasfasdfasdfasf"]
+   *   },
+   *   "alerts": [
+   *     {
+   *       "type": "gatewayDown",
+   *       "enabled": true,
+   *       "alertDestinations": {
+   *         "emails": [
+   *           "miles@meraki.com"
+   *         ],
+   *         "allAdmins": false,
+   *         "snmp": false
+   *       },
+   *       "filters": {
+   *         "timeout": 60
+   *       }
+   *     }
+   *   ]
+   * }
+   */
+  function getAlertSettings ({
+    apiKey: localApiKey,
+    target: localTarget,
+    scope,
+    networkId
+  }) {
+    if (!networkId) {
+      return Promise.reject(new Error('The parameter networkId is mandatory'))
+    }
 
-    return axios._get(localApiKey || apiKey, localTarget || target, scope, `${basePath}/${networkId}/alertSettings`)
+    return axios._get(
+      localApiKey || apiKey,
+      localTarget || target,
+      scope,
+      `${basePath}/${networkId}/alertSettings`
+    )
   }
 
   /**
@@ -121,7 +140,13 @@ function createAlertSettingsEndpoints ({ apiKey = '', target = 'api', basePath =
     delete data.target
     delete data.scope
 
-    return axios._put(data.apiKey || apiKey, localTarget || target, scope, `${basePath}/${networkId}/alertSettings/`, data)
+    return axios._put(
+      data.apiKey || apiKey,
+      localTarget || target,
+      scope,
+      `${basePath}/${networkId}/alertSettings/`,
+      data
+    )
   }
 
   return {

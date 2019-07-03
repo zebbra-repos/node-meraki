@@ -20,7 +20,14 @@
  * }
  * const samlEndpoints = require('./lib/rest/saml')({ apiKey, target, basePath, baseUrl, rateLimiter })
  */
-function createSamlEndpoints ({ apiKey = '', target = 'api', basePath = '/', baseUrl = 'https://api.meraki.com', rateLimiter, logger }) {
+function createSamlEndpoints ({
+  apiKey = '',
+  target = 'api',
+  basePath = '/',
+  baseUrl = 'https://api.meraki.com',
+  rateLimiter,
+  logger
+}) {
   const axios = require('./axios')({ baseUrl, rateLimiter, logger })
 
   /**
@@ -47,12 +54,22 @@ function createSamlEndpoints ({ apiKey = '', target = 'api', basePath = '/', bas
    *   }]
    * }]
    */
-  function listSamlRoles ({ apiKey: localApiKey, target: localTarget, scope, orgId }) {
+  function listSamlRoles ({
+    apiKey: localApiKey,
+    target: localTarget,
+    scope,
+    orgId
+  }) {
     if (!orgId) {
       return Promise.reject(new Error('The parameter orgId is mandatory'))
     }
 
-    return axios._get(localApiKey || apiKey, localTarget || target, scope, `${basePath}/${orgId}/samlRoles`)
+    return axios._get(
+      localApiKey || apiKey,
+      localTarget || target,
+      scope,
+      `${basePath}/${orgId}/samlRoles`
+    )
   }
 
   /**
@@ -80,7 +97,13 @@ function createSamlEndpoints ({ apiKey = '', target = 'api', basePath = '/', bas
    *   }]
    * }
    */
-  function showSamlRole ({ apiKey: localApiKey, target: localTarget, scope, orgId, roleId }) {
+  function showSamlRole ({
+    apiKey: localApiKey,
+    target: localTarget,
+    scope,
+    orgId,
+    roleId
+  }) {
     if (!orgId) {
       return Promise.reject(new Error('The parameter orgId is mandatory'))
     }
@@ -89,7 +112,12 @@ function createSamlEndpoints ({ apiKey = '', target = 'api', basePath = '/', bas
       return Promise.reject(new Error('The parameter roleId is mandatory'))
     }
 
-    return axios._get(localApiKey || apiKey, localTarget || target, scope, `${basePath}/${orgId}/samlRoles/${roleId}`)
+    return axios._get(
+      localApiKey || apiKey,
+      localTarget || target,
+      scope,
+      `${basePath}/${orgId}/samlRoles/${roleId}`
+    )
   }
 
   /**
@@ -134,7 +162,13 @@ function createSamlEndpoints ({ apiKey = '', target = 'api', basePath = '/', bas
       return Promise.reject(new Error('The parameter orgId is mandatory'))
     }
 
-    return axios._post(data.apiKey || apiKey, localTarget || target, scope, `${basePath}/${orgId}/samlRoles`, data)
+    return axios._post(
+      data.apiKey || apiKey,
+      localTarget || target,
+      scope,
+      `${basePath}/${orgId}/samlRoles`,
+      data
+    )
   }
 
   /**
@@ -185,7 +219,13 @@ function createSamlEndpoints ({ apiKey = '', target = 'api', basePath = '/', bas
       return Promise.reject(new Error('The parameter roleId is mandatory'))
     }
 
-    return axios._put(data.apiKey || apiKey, localTarget || target, scope, `${basePath}/${orgId}/samlRoles/${roleId}`, data)
+    return axios._put(
+      data.apiKey || apiKey,
+      localTarget || target,
+      scope,
+      `${basePath}/${orgId}/samlRoles/${roleId}`,
+      data
+    )
   }
 
   /**
@@ -199,7 +239,13 @@ function createSamlEndpoints ({ apiKey = '', target = 'api', basePath = '/', bas
    * @param { string } roleId           The SAML role id
    * @return { Promise } A promise with no data
    */
-  function deleteSamlRole ({ apiKey: localApiKey, target: localTarget, scope, orgId, roleId }) {
+  function deleteSamlRole ({
+    apiKey: localApiKey,
+    target: localTarget,
+    scope,
+    orgId,
+    roleId
+  }) {
     if (!orgId) {
       return Promise.reject(new Error('The parameter orgId is mandatory'))
     }
@@ -208,7 +254,12 @@ function createSamlEndpoints ({ apiKey = '', target = 'api', basePath = '/', bas
       return Promise.reject(new Error('The parameter roleId is mandatory'))
     }
 
-    return axios._delete(localApiKey || apiKey, localTarget || target, scope, `${basePath}/${orgId}/samlRoles/${roleId}`)
+    return axios._delete(
+      localApiKey || apiKey,
+      localTarget || target,
+      scope,
+      `${basePath}/${orgId}/samlRoles/${roleId}`
+    )
   }
 
   return {

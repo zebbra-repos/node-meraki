@@ -20,7 +20,14 @@
  * }
  * const portEndpoints = require('./lib/rest/ports')({ apiKey, target, basePath, baseUrl, rateLimiter })
  */
-function createPortsEndpoints ({ apiKey = '', target = 'api', basePath = '/', baseUrl = 'https://api.meraki.com', rateLimiter, logger }) {
+function createPortsEndpoints ({
+  apiKey = '',
+  target = 'api',
+  basePath = '/',
+  baseUrl = 'https://api.meraki.com',
+  rateLimiter,
+  logger
+}) {
   const axios = require('./axios')({ baseUrl, rateLimiter, logger })
 
   /**
@@ -51,12 +58,24 @@ function createPortsEndpoints ({ apiKey = '', target = 'api', basePath = '/', ba
    *   }
    * ]
    */
-  function listSwitchPorts ({ apiKey: localApiKey, target: localTarget, scope, deviceSerial }) {
+  function listSwitchPorts ({
+    apiKey: localApiKey,
+    target: localTarget,
+    scope,
+    deviceSerial
+  }) {
     if (!deviceSerial) {
-      return Promise.reject(new Error('The parameter deviceSerial is mandatory'))
+      return Promise.reject(
+        new Error('The parameter deviceSerial is mandatory')
+      )
     }
 
-    return axios._get(localApiKey || apiKey, localTarget || target, scope, `${basePath}/${deviceSerial}/switchPorts`)
+    return axios._get(
+      localApiKey || apiKey,
+      localTarget || target,
+      scope,
+      `${basePath}/${deviceSerial}/switchPorts`
+    )
   }
 
   /**
@@ -86,14 +105,27 @@ function createPortsEndpoints ({ apiKey = '', target = 'api', basePath = '/', ba
    *   "linkNegotiation": "Auto negotiate"
    * }
    */
-  function showSwitchPort ({ apiKey: localApiKey, target: localTarget, scope, deviceSerial, number }) {
+  function showSwitchPort ({
+    apiKey: localApiKey,
+    target: localTarget,
+    scope,
+    deviceSerial,
+    number
+  }) {
     if (!deviceSerial) {
-      return Promise.reject(new Error('The parameter deviceSerial is mandatory'))
+      return Promise.reject(
+        new Error('The parameter deviceSerial is mandatory')
+      )
     } else if (!number) {
       return Promise.reject(new Error('The parameter number is mandatory'))
     }
 
-    return axios._get(localApiKey || apiKey, localTarget || target, scope, `${basePath}/${deviceSerial}/switchPorts/${number}`)
+    return axios._get(
+      localApiKey || apiKey,
+      localTarget || target,
+      scope,
+      `${basePath}/${deviceSerial}/switchPorts/${number}`
+    )
   }
 
   /**
@@ -144,12 +176,20 @@ function createPortsEndpoints ({ apiKey = '', target = 'api', basePath = '/', ba
     delete data.scope
 
     if (!deviceSerial) {
-      return Promise.reject(new Error('The parameter deviceSerial is mandatory'))
+      return Promise.reject(
+        new Error('The parameter deviceSerial is mandatory')
+      )
     } else if (!number) {
       return Promise.reject(new Error('The parameter number is mandatory'))
     }
 
-    return axios._put(data.apiKey || apiKey, localTarget || target, scope, `${basePath}/${deviceSerial}/switchPorts/${number}`, data)
+    return axios._put(
+      data.apiKey || apiKey,
+      localTarget || target,
+      scope,
+      `${basePath}/${deviceSerial}/switchPorts/${number}`,
+      data
+    )
   }
 
   return {

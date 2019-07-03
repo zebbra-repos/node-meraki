@@ -20,7 +20,14 @@
  * }
  * const policyEndpoints = require('./lib/rest/policies')({ apiKey, target, basePath, baseUrl, rateLimiter })
  */
-function createPoliciesEndpoints ({ apiKey = '', target = 'api', basePath = '/', baseUrl = 'https://api.meraki.com', rateLimiter, logger }) {
+function createPoliciesEndpoints ({
+  apiKey = '',
+  target = 'api',
+  basePath = '/',
+  baseUrl = 'https://api.meraki.com',
+  rateLimiter,
+  logger
+}) {
   const axios = require('./axios')({ baseUrl, rateLimiter, logger })
 
   /**
@@ -41,12 +48,22 @@ function createPoliciesEndpoints ({ apiKey = '', target = 'api', basePath = '/',
    *   ...
    * ]
    */
-  function listNetworkGroupPolicies ({ apiKey: localApiKey, target: localTarget, scope, networkId }) {
+  function listNetworkGroupPolicies ({
+    apiKey: localApiKey,
+    target: localTarget,
+    scope,
+    networkId
+  }) {
     if (!networkId) {
       return Promise.reject(new Error('The parameter networkId is mandatory'))
     }
 
-    return axios._get(localApiKey || apiKey, localTarget || target, scope, `${basePath}/${networkId}/groupPolicies`)
+    return axios._get(
+      localApiKey || apiKey,
+      localTarget || target,
+      scope,
+      `${basePath}/${networkId}/groupPolicies`
+    )
   }
 
   return { listNetworkGroupPolicies }

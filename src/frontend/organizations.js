@@ -17,7 +17,12 @@ const debug = require('debug')('node-meraki:frontend/organizations')
  * }
  * const organizationEndpoints = require('./lib/frontend/organizations')({ basePath, baseUrl, rateLimiter })
  */
-function createOrganizationEndpoints ({ targetOrg, basePath, baseUrl, rateLimiter }) {
+function createOrganizationEndpoints ({
+  targetOrg,
+  basePath,
+  baseUrl,
+  rateLimiter
+}) {
   const axios = require('./axios')({ baseUrl, rateLimiter })
 
   /**
@@ -73,7 +78,7 @@ function createOrganizationEndpoints ({ targetOrg, basePath, baseUrl, rateLimite
     }
    */
   async function getOrganization ({ target = targetOrg, eid }) {
-    if (typeof eid === 'undefined') return Promise.reject(new Error('the parameter email is mandatory'))
+    if (typeof eid === 'undefined') { return Promise.reject(new Error('the parameter email is mandatory')) }
 
     debug(`get organization information ${eid}`)
     return axios._get('', target, `${basePath}/${eid}/manage/organization/map`)
@@ -90,7 +95,7 @@ function createOrganizationEndpoints ({ targetOrg, basePath, baseUrl, rateLimite
    * { success:true }
    */
   async function deleteOrganization ({ target, eid }) {
-    if (typeof eid === 'undefined') return Promise.reject(new Error('the parameter email is mandatory'))
+    if (typeof eid === 'undefined') { return Promise.reject(new Error('the parameter email is mandatory')) }
 
     // the correct shard id is needed to build the url
     const org = await getOrganization({ target: 'account', eid })
@@ -98,18 +103,31 @@ function createOrganizationEndpoints ({ targetOrg, basePath, baseUrl, rateLimite
     if (org && org.hasOwnProperty('shard_id') && org.shard_id) {
       shardId = org.shard_id
     } else {
-      return Promise.reject(new Error('unable to determine the correct shard id'))
+      return Promise.reject(
+        new Error('unable to determine the correct shard id')
+      )
     }
     debug(`got the correct shard_id ${shardId}`)
 
     // because it is an form in the frontend it need also a csrfToken (no JSON access)
-    const csrfSource = await axios._get('', `n${shardId}`, `${basePath}/${eid}/manage/organization/edit`)
-    const csrfToken = csrfSource.split('Mkiconf.authenticity_token = "')[1].split('";')[0]
+    const csrfSource = await axios._get(
+      '',
+      `n${shardId}`,
+      `${basePath}/${eid}/manage/organization/edit`
+    )
+    const csrfToken = csrfSource
+      .split('Mkiconf.authenticity_token = "')[1]
+      .split('";')[0]
     debug(`got csrf token ${csrfToken}`)
     axios.setCSRFToken(csrfToken)
 
     // delete the organization and remove the csrf token
-    const delResponse = await axios._post('', `n${shardId}`, `${basePath}/${eid}/manage/organization/delete_org`, ``)
+    const delResponse = await axios._post(
+      '',
+      `n${shardId}`,
+      `${basePath}/${eid}/manage/organization/delete_org`,
+      ``
+    )
     debug(`organization ${eid} deleted`)
     axios.setCSRFToken('')
 

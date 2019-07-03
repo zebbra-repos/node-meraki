@@ -36,10 +36,16 @@ function createFrontendApi (settings) {
     maxConcurrent: rateLimiterConfig.maxConcurrent || 5,
     minTime: rateLimiterConfig.minTime || 200,
     highWater: rateLimiterConfig.highWater || 1000,
-    strategy: Bottleneck.strategy[rateLimiterConfig.strategy] || Bottleneck.strategy.LEAK
+    strategy:
+      Bottleneck.strategy[rateLimiterConfig.strategy] ||
+      Bottleneck.strategy.LEAK
   }
 
-  debug(`init frontend api wrapper with settings target=${target} baseUrl=${baseUrl} rateLimiter=${JSON.stringify(rateLimiter)}`)
+  debug(
+    `init frontend api wrapper with settings target=${target} baseUrl=${baseUrl} rateLimiter=${JSON.stringify(
+      rateLimiter
+    )}`
+  )
 
   /**
    * The authentication endpoints
@@ -47,25 +53,32 @@ function createFrontendApi (settings) {
    * @memberof module:meraki/frontend
    * @see module:meraki/frontend/authentication
    */
-  const authenticationEndpoints = require('./authentication')({ target: target, basePath: '', baseUrl, rateLimiter })
+  const authenticationEndpoints = require('./authentication')({
+    target: target,
+    basePath: '',
+    baseUrl,
+    rateLimiter
+  })
 
   /**
- * The organization endpoints
- *
- * @memberof module:meraki/frontend
- * @see module:meraki/frontend/organizations
- */
-  const organizationEndpoints = require('./organizations')({ target: target, basePath: '/o', baseUrl, rateLimiter })
+   * The organization endpoints
+   *
+   * @memberof module:meraki/frontend
+   * @see module:meraki/frontend/organizations
+   */
+  const organizationEndpoints = require('./organizations')({
+    target: target,
+    basePath: '/o',
+    baseUrl,
+    rateLimiter
+  })
 
   require('./axios')({ baseUrl, rateLimiter }).setLoginFunction(async () => {
     const { email, password } = settings
     return authenticationEndpoints.login({ email, password })
   })
 
-  return Object.assign({},
-    authenticationEndpoints,
-    organizationEndpoints
-  )
+  return Object.assign({}, authenticationEndpoints, organizationEndpoints)
 }
 
 module.exports = createFrontendApi

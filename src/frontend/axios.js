@@ -1,12 +1,12 @@
 const axios = require('axios')
 const Bottleneck = require('bottleneck')
 const debug = require('debug')('node-meraki:axios')
-const JSONBigInt = require('json-bigint')({ 'storeAsString': true })
+const JSONBigInt = require('json-bigint')({ storeAsString: true })
 
 let instance
 let limiter
 let csrfToken = 'asdf'
-let loginFunction = () => { }
+let loginFunction = () => {}
 const cookies = new Map()
 
 const handleBigInt = (data) => {
@@ -17,12 +17,21 @@ const handleBigInt = (data) => {
   }
 }
 
-async function _exec ({ method, apiKey, target = 'api', url = '/', data, params = {} }) {
+async function _exec ({
+  method,
+  apiKey,
+  target = 'api',
+  url = '/',
+  data,
+  params = {}
+}) {
   if (cookies.size < 1 && url !== '/login/login') {
     await loginFunction()
   }
 
-  const baseURL = instance.defaults.baseURL.replace(/api/, target).replace(/account/, target)
+  const baseURL = instance.defaults.baseURL
+    .replace(/api/, target)
+    .replace(/account/, target)
 
   let maxRedirects = 5
   if (target === 'api') {
@@ -32,7 +41,9 @@ async function _exec ({ method, apiKey, target = 'api', url = '/', data, params 
   const headers = {
     'X-Cisco-Meraki-API-Key': apiKey,
     maxredirects: maxRedirects,
-    'Cookie': Array.from(cookies).map((cookie) => `${cookie[0]}=${cookie[1]}`).join(';'),
+    Cookie: Array.from(cookies)
+      .map((cookie) => `${cookie[0]}=${cookie[1]}`)
+      .join(';'),
     accept: 'application/json,text/html',
     'X-Requested-With': 'XMLHTTPRequest',
     'X-CSRF-Token': csrfToken
@@ -58,7 +69,7 @@ async function _exec ({ method, apiKey, target = 'api', url = '/', data, params 
           await loginFunction()
           return _exec({ method, apiKey, target, url, data, params })
         }
-      } catch (err) { }
+      } catch (err) {}
 
       if (params.withFullResponse) return response
 
@@ -72,7 +83,7 @@ async function _exec ({ method, apiKey, target = 'api', url = '/', data, params 
           await loginFunction()
           return _exec({ method, apiKey, target, url, data, params })
         }
-      } catch (err) { }
+      } catch (err) {}
 
       if (params.withFullResponse) return response
 
@@ -120,26 +131,32 @@ module.exports = ({ baseUrl, rateLimiter, headers }) => {
       transformResponse: [handleBigInt]
     })
 
-    instance.interceptors.response.use((res) => {
-      debug(res.headers)
-      if (res.headers.hasOwnProperty('set-cookie')) {
-        for (const cookie of res.headers['set-cookie']) {
-          setCookie(cookie.split('=')[0], cookie.split('=')[1].split(';')[0])
+    instance.interceptors.response.use(
+      (res) => {
+        debug(res.headers)
+        if (res.headers.hasOwnProperty('set-cookie')) {
+          for (const cookie of res.headers['set-cookie']) {
+            setCookie(cookie.split('=')[0], cookie.split('=')[1].split(';')[0])
+          }
         }
-      }
 
-      return res
-    }, (error) => {
-      if (error.response) {
-        if ([301, 302, 307, 308].indexOf(error.response.status) !== -1 && error.response.headers.location) {
-          const config = error.response.config
-          config.url = error.response.headers.location
-          return instance(config)
+        return res
+      },
+      (error) => {
+        if (error.response) {
+          if (
+            [301, 302, 307, 308].indexOf(error.response.status) !== -1 &&
+            error.response.headers.location
+          ) {
+            const config = error.response.config
+            config.url = error.response.headers.location
+            return instance(config)
+          }
         }
-      }
 
-      return Promise.reject(error)
-    })
+        return Promise.reject(error)
+      }
+    )
 
     if (rateLimiter.enabled) {
       limiter = new Bottleneck()

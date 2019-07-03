@@ -20,59 +20,87 @@
  * }
  * const httpServersEndpoints = require('./lib/rest/httpServers')({ apiKey, target, basePath, baseUrl, rateLimiter, logger })
  */
-function createHTTPServersEndpoints ({ apiKey = '', target = 'api', basePath = '/', baseUrl = 'https://api.meraki.com', rateLimiter, logger }) {
+function createHTTPServersEndpoints ({
+  apiKey = '',
+  target = 'api',
+  basePath = '/',
+  baseUrl = 'https://api.meraki.com',
+  rateLimiter,
+  logger
+}) {
   const axios = require('./axios')({ baseUrl, rateLimiter, logger })
 
   /**
-  * List the http servers for a network.
-  *
-  * @memberof module:meraki/rest/httpServers
-  * @param { string } [apiKey]     Optional custom apiKey for this request (if not set will take the inital apiKey)
-  * @param { string } [target]     Optional custom target for this request (if not set will take the inital target)
-  * @param { string } [scope]      Optional custom scope for rate limiter
-  * @param { string } networkId    The id of the network for which to list the http servers
-  * @return { Promise } A promise holding the http servers for this network
-  * @example <caption>Example response</caption>
-  * [
-  *  {
-  *    "id": "ABC123",
-  *    "networkId": "N_123",
-  *    "name": "My HTTP server",
-  *    "url": "https://www.example.com/webhooks",
-  *    "sharedSecret": "foobar"
-  *  }
-  * ]
-  */
-  function listHTTPServers ({ apiKey: localApiKey, target: localTarget, scope, networkId }) {
-    if (!networkId) return Promise.reject(new Error('The parameter networkId is mandatory'))
+   * List the http servers for a network.
+   *
+   * @memberof module:meraki/rest/httpServers
+   * @param { string } [apiKey]     Optional custom apiKey for this request (if not set will take the inital apiKey)
+   * @param { string } [target]     Optional custom target for this request (if not set will take the inital target)
+   * @param { string } [scope]      Optional custom scope for rate limiter
+   * @param { string } networkId    The id of the network for which to list the http servers
+   * @return { Promise } A promise holding the http servers for this network
+   * @example <caption>Example response</caption>
+   * [
+   *  {
+   *    "id": "ABC123",
+   *    "networkId": "N_123",
+   *    "name": "My HTTP server",
+   *    "url": "https://www.example.com/webhooks",
+   *    "sharedSecret": "foobar"
+   *  }
+   * ]
+   */
+  function listHTTPServers ({
+    apiKey: localApiKey,
+    target: localTarget,
+    scope,
+    networkId
+  }) {
+    if (!networkId) { return Promise.reject(new Error('The parameter networkId is mandatory')) }
 
-    return axios._get(localApiKey || apiKey, localTarget || target, scope, `${basePath}/${networkId}/httpServers`)
+    return axios._get(
+      localApiKey || apiKey,
+      localTarget || target,
+      scope,
+      `${basePath}/${networkId}/httpServers`
+    )
   }
 
   /**
-  * Get a http servers of a network.
-  *
-  * @memberof module:meraki/rest/httpServers
-  * @param { string } [apiKey]     Optional custom apiKey for this request (if not set will take the inital apiKey)
-  * @param { string } [target]     Optional custom target for this request (if not set will take the inital target)
-  * @param { string } [scope]      Optional custom scope for rate limiter
-  * @param { string } networkId    The id of the network
-  * @param { string } webhookId    The id of the webhook (http server)
-  * @return { Promise } A promise holding the http server of this network
-  * @example <caption>Example response</caption>
-  * {
-  *    "id": "ABC123",
-  *    "networkId": "N_123",
-  *    "name": "My HTTP server",
-  *    "url": "https://www.example.com/webhooks",
-  *    "sharedSecret": "foobar"
-  *  }
-  */
-  function getHTTPServer ({ apiKey: localApiKey, target: localTarget, scope, networkId, webhookId }) {
-    if (!networkId) return Promise.reject(new Error('The parameter networkId is mandatory'))
-    if (!webhookId) return Promise.reject(new Error('The parameter webhookId is mandatory'))
+   * Get a http servers of a network.
+   *
+   * @memberof module:meraki/rest/httpServers
+   * @param { string } [apiKey]     Optional custom apiKey for this request (if not set will take the inital apiKey)
+   * @param { string } [target]     Optional custom target for this request (if not set will take the inital target)
+   * @param { string } [scope]      Optional custom scope for rate limiter
+   * @param { string } networkId    The id of the network
+   * @param { string } webhookId    The id of the webhook (http server)
+   * @return { Promise } A promise holding the http server of this network
+   * @example <caption>Example response</caption>
+   * {
+   *    "id": "ABC123",
+   *    "networkId": "N_123",
+   *    "name": "My HTTP server",
+   *    "url": "https://www.example.com/webhooks",
+   *    "sharedSecret": "foobar"
+   *  }
+   */
+  function getHTTPServer ({
+    apiKey: localApiKey,
+    target: localTarget,
+    scope,
+    networkId,
+    webhookId
+  }) {
+    if (!networkId) { return Promise.reject(new Error('The parameter networkId is mandatory')) }
+    if (!webhookId) { return Promise.reject(new Error('The parameter webhookId is mandatory')) }
 
-    return axios._get(localApiKey || apiKey, localTarget || target, scope, `${basePath}/${networkId}/httpServers/${webhookId}`)
+    return axios._get(
+      localApiKey || apiKey,
+      localTarget || target,
+      scope,
+      `${basePath}/${networkId}/httpServers/${webhookId}`
+    )
   }
 
   /**
@@ -104,15 +132,40 @@ function createHTTPServersEndpoints ({ apiKey = '', target = 'api', basePath = '
    *     "sharedSecret": "foobar"
    *   }
    */
-  function updateHTTPServer ({ apiKey: localApiKey, target: localTarget, scope, networkId, webhookId, webhook }) {
-    if (!networkId) return Promise.reject(new Error('The parameter networkId is mandatory'))
-    if (!webhookId) return Promise.reject(new Error('The parameter webhookId is mandatory'))
-    if (!webhook) return Promise.reject(new Error('The parameter webhook is mandatory'))
-    if (!webhook.hasOwnProperty('name')) return Promise.reject(new Error('The parameter webhook must have a property name'))
-    if (!webhook.hasOwnProperty('url')) return Promise.reject(new Error('The parameter webhook must have a property url'))
-    if (!webhook.hasOwnProperty('sharedSecret')) return Promise.reject(new Error('The parameter webhook must have a property sharedSecret'))
+  function updateHTTPServer ({
+    apiKey: localApiKey,
+    target: localTarget,
+    scope,
+    networkId,
+    webhookId,
+    webhook
+  }) {
+    if (!networkId) { return Promise.reject(new Error('The parameter networkId is mandatory')) }
+    if (!webhookId) { return Promise.reject(new Error('The parameter webhookId is mandatory')) }
+    if (!webhook) { return Promise.reject(new Error('The parameter webhook is mandatory')) }
+    if (!webhook.hasOwnProperty('name')) {
+      return Promise.reject(
+        new Error('The parameter webhook must have a property name')
+      )
+    }
+    if (!webhook.hasOwnProperty('url')) {
+      return Promise.reject(
+        new Error('The parameter webhook must have a property url')
+      )
+    }
+    if (!webhook.hasOwnProperty('sharedSecret')) {
+      return Promise.reject(
+        new Error('The parameter webhook must have a property sharedSecret')
+      )
+    }
 
-    return axios._put(localApiKey || apiKey, localTarget || target, scope, `${basePath}/${networkId}/httpServers/${webhookId}`, webhook)
+    return axios._put(
+      localApiKey || apiKey,
+      localTarget || target,
+      scope,
+      `${basePath}/${networkId}/httpServers/${webhookId}`,
+      webhook
+    )
   }
 
   /**
@@ -143,34 +196,69 @@ function createHTTPServersEndpoints ({ apiKey = '', target = 'api', basePath = '
    *     "sharedSecret": "foobar"
    *   }
    */
-  function addHTTPServer ({ apiKey: localApiKey, target: localTarget, scope, networkId, webhook }) {
-    if (!networkId) return Promise.reject(new Error('The parameter networkId is mandatory'))
-    if (!webhook) return Promise.reject(new Error('The parameter webhook is mandatory'))
-    if (!webhook.hasOwnProperty('name')) return Promise.reject(new Error('The parameter webhook must have a property name'))
-    if (!webhook.hasOwnProperty('url')) return Promise.reject(new Error('The parameter webhook must have a property url'))
-    if (!webhook.hasOwnProperty('sharedSecret')) return Promise.reject(new Error('The parameter webhook must have a property sharedSecret'))
+  function addHTTPServer ({
+    apiKey: localApiKey,
+    target: localTarget,
+    scope,
+    networkId,
+    webhook
+  }) {
+    if (!networkId) { return Promise.reject(new Error('The parameter networkId is mandatory')) }
+    if (!webhook) { return Promise.reject(new Error('The parameter webhook is mandatory')) }
+    if (!webhook.hasOwnProperty('name')) {
+      return Promise.reject(
+        new Error('The parameter webhook must have a property name')
+      )
+    }
+    if (!webhook.hasOwnProperty('url')) {
+      return Promise.reject(
+        new Error('The parameter webhook must have a property url')
+      )
+    }
+    if (!webhook.hasOwnProperty('sharedSecret')) {
+      return Promise.reject(
+        new Error('The parameter webhook must have a property sharedSecret')
+      )
+    }
 
-    return axios._post(localApiKey || apiKey, localTarget || target, scope, `${basePath}/${networkId}/httpServers`, webhook)
+    return axios._post(
+      localApiKey || apiKey,
+      localTarget || target,
+      scope,
+      `${basePath}/${networkId}/httpServers`,
+      webhook
+    )
   }
 
   /**
-  * Delete a http servers of a network.
-  *
-  * @memberof module:meraki/rest/httpServers
-  * @param { string } [apiKey]     Optional custom apiKey for this request (if not set will take the inital apiKey)
-  * @param { string } [target]     Optional custom target for this request (if not set will take the inital target)
-  * @param { string } [scope]      Optional custom scope for rate limiter
-  * @param { string } networkId    The id of the network
-  * @param { string } webhookId    The id of the webhook (http server)
-  * @return { Promise } A promise holding nothing
-  * @example <caption>Example response</caption>
-  * (empty)
-  */
-  function deleteHTTPServer ({ apiKey: localApiKey, target: localTarget, scope, networkId, webhookId }) {
-    if (!networkId) return Promise.reject(new Error('The parameter networkId is mandatory'))
-    if (!webhookId) return Promise.reject(new Error('The parameter webhookId is mandatory'))
+   * Delete a http servers of a network.
+   *
+   * @memberof module:meraki/rest/httpServers
+   * @param { string } [apiKey]     Optional custom apiKey for this request (if not set will take the inital apiKey)
+   * @param { string } [target]     Optional custom target for this request (if not set will take the inital target)
+   * @param { string } [scope]      Optional custom scope for rate limiter
+   * @param { string } networkId    The id of the network
+   * @param { string } webhookId    The id of the webhook (http server)
+   * @return { Promise } A promise holding nothing
+   * @example <caption>Example response</caption>
+   * (empty)
+   */
+  function deleteHTTPServer ({
+    apiKey: localApiKey,
+    target: localTarget,
+    scope,
+    networkId,
+    webhookId
+  }) {
+    if (!networkId) { return Promise.reject(new Error('The parameter networkId is mandatory')) }
+    if (!webhookId) { return Promise.reject(new Error('The parameter webhookId is mandatory')) }
 
-    return axios._delete(localApiKey || apiKey, localTarget || target, scope, `${basePath}/${networkId}/httpServers/${webhookId}`)
+    return axios._delete(
+      localApiKey || apiKey,
+      localTarget || target,
+      scope,
+      `${basePath}/${networkId}/httpServers/${webhookId}`
+    )
   }
 
   /**
@@ -194,36 +282,63 @@ function createHTTPServersEndpoints ({ apiKey = '', target = 'api', basePath = '
    *     "status": "enqueued"
    *   }
    */
-  function sendTestWebhook ({ apiKey: localApiKey, target: localTarget, scope, networkId, url }) {
-    if (!networkId) return Promise.reject(new Error('The parameter networkId is mandatory'))
+  function sendTestWebhook ({
+    apiKey: localApiKey,
+    target: localTarget,
+    scope,
+    networkId,
+    url
+  }) {
+    if (!networkId) { return Promise.reject(new Error('The parameter networkId is mandatory')) }
     // I don't care if it is an empty string or 0
-    if (typeof url === 'undefined') return Promise.reject(new Error('The parameter url is mandatory'))
+    if (typeof url === 'undefined') { return Promise.reject(new Error('The parameter url is mandatory')) }
 
-    return axios._post(localApiKey || apiKey, localTarget || target, scope, `${basePath}/${networkId}/httpServers/webhookTests`, { url: url })
+    return axios._post(
+      localApiKey || apiKey,
+      localTarget || target,
+      scope,
+      `${basePath}/${networkId}/httpServers/webhookTests`,
+      { url: url }
+    )
   }
 
   /**
-  * Return the status of a webhook test.
-  *
-  * @memberof module:meraki/rest/httpServers
-  * @param { string } [apiKey]      Optional custom apiKey for this request (if not set will take the inital apiKey)
-  * @param { string } [target]      Optional custom target for this request (if not set will take the inital target)
-  * @param { string } [scope]       Optional custom scope for rate limiter
-  * @param { string } networkId     The id of the network for which to list the http servers
-  * @param { string } webhookTestId The id of the test
-  * @return { Promise } A promise holding the status of this test
-  * @example <caption>Example response</caption>
-  *   {
-  *     "id": "1234",
-  *     "url": "https://www.example.com/path",
-  *     "status": "enqueued"
-  *   }
-  */
-  function getWebhookTestStatus ({ apiKey: localApiKey, target: localTarget, scope, networkId, webhookTestId }) {
-    if (!networkId) return Promise.reject(new Error('The parameter networkId is mandatory'))
-    if (!webhookTestId) return Promise.reject(new Error('The parameter webhookTestId is mandatory'))
+   * Return the status of a webhook test.
+   *
+   * @memberof module:meraki/rest/httpServers
+   * @param { string } [apiKey]      Optional custom apiKey for this request (if not set will take the inital apiKey)
+   * @param { string } [target]      Optional custom target for this request (if not set will take the inital target)
+   * @param { string } [scope]       Optional custom scope for rate limiter
+   * @param { string } networkId     The id of the network for which to list the http servers
+   * @param { string } webhookTestId The id of the test
+   * @return { Promise } A promise holding the status of this test
+   * @example <caption>Example response</caption>
+   *   {
+   *     "id": "1234",
+   *     "url": "https://www.example.com/path",
+   *     "status": "enqueued"
+   *   }
+   */
+  function getWebhookTestStatus ({
+    apiKey: localApiKey,
+    target: localTarget,
+    scope,
+    networkId,
+    webhookTestId
+  }) {
+    if (!networkId) { return Promise.reject(new Error('The parameter networkId is mandatory')) }
+    if (!webhookTestId) {
+      return Promise.reject(
+        new Error('The parameter webhookTestId is mandatory')
+      )
+    }
 
-    return axios._get(localApiKey || apiKey, localTarget || target, scope, `${basePath}/${networkId}/httpServers/webhookTests/${webhookTestId}`)
+    return axios._get(
+      localApiKey || apiKey,
+      localTarget || target,
+      scope,
+      `${basePath}/${networkId}/httpServers/webhookTests/${webhookTestId}`
+    )
   }
 
   return {

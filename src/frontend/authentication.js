@@ -17,7 +17,14 @@ const debug = require('debug')('node-meraki:frontend/authentication')
  * }
  * const authenticationEndpoints = require('./lib/frontend/authentication')({ basePath, baseUrl, rateLimiter })
  */
-function createAuthenticationEndpoints ({ targetOrg, basePath, baseUrl, rateLimiter, emailOrg, passwordOrg }) {
+function createAuthenticationEndpoints ({
+  targetOrg,
+  basePath,
+  baseUrl,
+  rateLimiter,
+  emailOrg,
+  passwordOrg
+}) {
   const axios = require('./axios')({ baseUrl, rateLimiter })
 
   /**
@@ -69,29 +76,58 @@ function createAuthenticationEndpoints ({ targetOrg, basePath, baseUrl, rateLimi
    *      support_password: '123' }],
    *    mobile_auth_token:'MY_SUPER_SECRET_TOKEN' }
    */
-  async function login ({ target = targetOrg, email = emailOrg, password = passwordOrg }) {
-    if (typeof email === 'undefined') return Promise.reject(new Error('the parameter email is mandatory'))
-    if (email.indexOf('@') < -1) return Promise.reject(new Error('the parameter email is in the wrong format'))
-    if (typeof password === 'undefined') return Promise.reject(new Error('the parameter password is mandatory'))
+  async function login ({
+    target = targetOrg,
+    email = emailOrg,
+    password = passwordOrg
+  }) {
+    if (typeof email === 'undefined') { return Promise.reject(new Error('the parameter email is mandatory')) }
+    if (email.indexOf('@') < -1) {
+      return Promise.reject(
+        new Error('the parameter email is in the wrong format')
+      )
+    }
+    if (typeof password === 'undefined') { return Promise.reject(new Error('the parameter password is mandatory')) }
 
     debug(`Login step 1: Authenticate`)
-    const info = await axios._post('', target, `${basePath}/login/login`, `email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`)
+    const info = await axios._post(
+      '',
+      target,
+      `${basePath}/login/login`,
+      `email=${encodeURIComponent(email)}&password=${encodeURIComponent(
+        password
+      )}`
+    )
 
     debug(`Login step 2: Choose organisation`)
-    const orgChoosen = await axios._get('', target, `${basePath}/login/org_choose?eid=${info.orgs[0].eid}`)
+    const orgChoosen = await axios._get(
+      '',
+      target,
+      `${basePath}/login/org_choose?eid=${info.orgs[0].eid}`
+    )
 
     debug(`Login step 3: gather the cookies`)
     const shardIdsGathered = []
     const axiosPromises = []
     for (const org of orgChoosen.orgs) {
       if (shardIdsGathered.indexOf(org.shard_id) < 0) {
-        axiosPromises.push(axios._get('', `n${org.shard_id}`, `${basePath}/login/org_choose?eid=${info.orgs[0].eid}`))
+        axiosPromises.push(
+          axios._get(
+            '',
+            `n${org.shard_id}`,
+            `${basePath}/login/org_choose?eid=${info.orgs[0].eid}`
+          )
+        )
         shardIdsGathered.push(org.shard_id)
       }
     }
 
     debug(shardIdsGathered)
-    await axios._get('', target, `${basePath}/login/org_choose?eid=${info.orgs[0].eid}`)
+    await axios._get(
+      '',
+      target,
+      `${basePath}/login/org_choose?eid=${info.orgs[0].eid}`
+    )
 
     await Promise.all(axiosPromises)
     return orgChoosen

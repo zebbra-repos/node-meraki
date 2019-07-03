@@ -20,7 +20,14 @@
  * }
  * const routeEndpoints = require('./lib/rest/routes')({ apiKey, target, basePath, baseUrl })
  */
-function createRoutesEndpoints ({ apiKey, target, basePath, baseUrl = 'https://api.meraki.com', rateLimiter, logger }) {
+function createRoutesEndpoints ({
+  apiKey,
+  target,
+  basePath,
+  baseUrl = 'https://api.meraki.com',
+  rateLimiter,
+  logger
+}) {
   const axios = require('./axios')({ baseUrl, rateLimiter, logger })
 
   /**
@@ -43,12 +50,22 @@ function createRoutesEndpoints ({ apiKey, target, basePath, baseUrl = 'https://a
    *   }
    * ]
    */
-  function listStaticNetworkRoutes ({ apiKey: localApiKey, target: localTarget, scope, networkId }) {
+  function listStaticNetworkRoutes ({
+    apiKey: localApiKey,
+    target: localTarget,
+    scope,
+    networkId
+  }) {
     if (!networkId) {
       return Promise.reject(new Error('The parameter networkId is mandatory'))
     }
 
-    return axios._get(localApiKey || apiKey, localTarget || target, scope, `${basePath}/${networkId}/staticRoutes`)
+    return axios._get(
+      localApiKey || apiKey,
+      localTarget || target,
+      scope,
+      `${basePath}/${networkId}/staticRoutes`
+    )
   }
 
   /**
@@ -70,14 +87,25 @@ function createRoutesEndpoints ({ apiKey, target, basePath, baseUrl = 'https://a
    *   "subnet": "192.168.10.0/24"
    * }
    */
-  function showStaticNetworkRoute ({ apiKey: localApiKey, target: localTarget, scope, networkId, srId }) {
+  function showStaticNetworkRoute ({
+    apiKey: localApiKey,
+    target: localTarget,
+    scope,
+    networkId,
+    srId
+  }) {
     if (!networkId) {
       return Promise.reject(new Error('The parameter networkId is mandatory'))
     } else if (!srId) {
       return Promise.reject(new Error('The parameter srId is mandatory'))
     }
 
-    return axios._get(localApiKey || apiKey, localTarget || target, scope, `${basePath}/${networkId}/staticRoutes/${srId}`)
+    return axios._get(
+      localApiKey || apiKey,
+      localTarget || target,
+      scope,
+      `${basePath}/${networkId}/staticRoutes/${srId}`
+    )
   }
 
   /**
@@ -121,15 +149,40 @@ function createRoutesEndpoints ({ apiKey, target, basePath, baseUrl = 'https://a
    *   "subnet": "192.168.10.0/24"
    * }
    */
-  function updateStaticNetworkRoute ({ apiKey: localApiKey, target: localTarget, scope, networkId, srId, name, subnet, gatewayIp, enabled, fixedIpAssignments, reservedIpRanges }) {
+  function updateStaticNetworkRoute ({
+    apiKey: localApiKey,
+    target: localTarget,
+    scope,
+    networkId,
+    srId,
+    name,
+    subnet,
+    gatewayIp,
+    enabled,
+    fixedIpAssignments,
+    reservedIpRanges
+  }) {
     if (!networkId) {
       return Promise.reject(new Error('The parameter networkId is mandatory'))
     } else if (!srId) {
       return Promise.reject(new Error('The parameter srId is mandatory'))
     }
 
-    const data = { name, subnet, gatewayIp, enabled, fixedIpAssignments, reservedIpRanges }
-    return axios._put(localApiKey || apiKey, localTarget || target, scope, `${basePath}/${networkId}/staticRoutes/${srId}`, data)
+    const data = {
+      name,
+      subnet,
+      gatewayIp,
+      enabled,
+      fixedIpAssignments,
+      reservedIpRanges
+    }
+    return axios._put(
+      localApiKey || apiKey,
+      localTarget || target,
+      scope,
+      `${basePath}/${networkId}/staticRoutes/${srId}`,
+      data
+    )
   }
 
   /**
@@ -159,13 +212,27 @@ function createRoutesEndpoints ({ apiKey, target, basePath, baseUrl = 'https://a
    *   "subnet": "192.168.10.0/24"
    * }
    */
-  function createStaticNetworkRoute ({ apiKey: localApiKey, target: localTarget, scope, networkId, name, subnet, gatewayIp }) {
+  function createStaticNetworkRoute ({
+    apiKey: localApiKey,
+    target: localTarget,
+    scope,
+    networkId,
+    name,
+    subnet,
+    gatewayIp
+  }) {
     if (!networkId) {
       return Promise.reject(new Error('The parameter networkId is mandatory'))
     }
 
     const data = { name, subnet, gatewayIp }
-    return axios._post(localApiKey || apiKey, localTarget || target, scope, `${basePath}/${networkId}/staticRoutes`, data)
+    return axios._post(
+      localApiKey || apiKey,
+      localTarget || target,
+      scope,
+      `${basePath}/${networkId}/staticRoutes`,
+      data
+    )
   }
 
   /**
@@ -179,14 +246,25 @@ function createRoutesEndpoints ({ apiKey, target, basePath, baseUrl = 'https://a
    * @param { string } srId       The id of the static route to remove
    * @return { Promise } A promise with no data
    */
-  function deleteStaticNetworkRoute ({ apiKey: localApiKey, target: localTarget, scope, networkId, srId }) {
+  function deleteStaticNetworkRoute ({
+    apiKey: localApiKey,
+    target: localTarget,
+    scope,
+    networkId,
+    srId
+  }) {
     if (!networkId) {
       return Promise.reject(new Error('The parameter networkId is mandatory'))
     } else if (!srId) {
       return Promise.reject(new Error('The parameter srId is mandatory'))
     }
 
-    return axios._delete(localApiKey || apiKey, localTarget || target, scope, `${basePath}/${networkId}/staticRoutes/${srId}`)
+    return axios._delete(
+      localApiKey || apiKey,
+      localTarget || target,
+      scope,
+      `${basePath}/${networkId}/staticRoutes/${srId}`
+    )
   }
 
   return {

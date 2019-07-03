@@ -20,7 +20,14 @@
  * }
  * const networkEndpoints = require('./lib/rest/networks')({ apiKey, target, basePath, baseUrl, rateLimiter })
  */
-function createNetworksEndpoints ({ apiKey = '', target = 'api', basePath = '/', baseUrl = 'https://api.meraki.com', rateLimiter, logger }) {
+function createNetworksEndpoints ({
+  apiKey = '',
+  target = 'api',
+  basePath = '/',
+  baseUrl = 'https://api.meraki.com',
+  rateLimiter,
+  logger
+}) {
   const axios = require('./axios')({ baseUrl, rateLimiter, logger })
 
   /**
@@ -45,13 +52,25 @@ function createNetworksEndpoints ({ apiKey = '', target = 'api', basePath = '/',
    *   }
    * ]
    */
-  function listNetworks ({ apiKey: localApiKey, target: localTarget, scope, orgId, configTemplateId }) {
+  function listNetworks ({
+    apiKey: localApiKey,
+    target: localTarget,
+    scope,
+    orgId,
+    configTemplateId
+  }) {
     if (!orgId) {
       return Promise.reject(new Error('The parameter orgId is mandatory'))
     }
 
     const params = { configTemplateId }
-    return axios._get(localApiKey || apiKey, localTarget || target, scope, `${basePath}/organizations/${orgId}/networks`, params)
+    return axios._get(
+      localApiKey || apiKey,
+      localTarget || target,
+      scope,
+      `${basePath}/organizations/${orgId}/networks`,
+      params
+    )
   }
 
   /**
@@ -73,12 +92,22 @@ function createNetworksEndpoints ({ apiKey = '', target = 'api', basePath = '/',
    *   "tags": null
    * }
    */
-  function showNetwork ({ apiKey: localApiKey, target: localTarget, scope, networkId }) {
+  function showNetwork ({
+    apiKey: localApiKey,
+    target: localTarget,
+    scope,
+    networkId
+  }) {
     if (!networkId) {
       return Promise.reject(new Error('The parameter networkId is mandatory'))
     }
 
-    return axios._get(localApiKey || apiKey, localTarget || target, scope, `${basePath}/networks/${networkId}`)
+    return axios._get(
+      localApiKey || apiKey,
+      localTarget || target,
+      scope,
+      `${basePath}/networks/${networkId}`
+    )
   }
 
   /**
@@ -110,13 +139,27 @@ function createNetworksEndpoints ({ apiKey = '', target = 'api', basePath = '/',
    *   "tags": null
    * }
    */
-  function updateNetwork ({ apiKey: localApiKey, target: localTarget, scope, networkId, name, timeZone, tags }) {
+  function updateNetwork ({
+    apiKey: localApiKey,
+    target: localTarget,
+    scope,
+    networkId,
+    name,
+    timeZone,
+    tags
+  }) {
     if (!networkId) {
       return Promise.reject(new Error('The parameter networkId is mandatory'))
     }
 
     const data = { name, timeZone, tags }
-    return axios._put(localApiKey || apiKey, localTarget || target, scope, `${basePath}/networks/${networkId}`, data)
+    return axios._put(
+      localApiKey || apiKey,
+      localTarget || target,
+      scope,
+      `${basePath}/networks/${networkId}`,
+      data
+    )
   }
 
   /**
@@ -149,13 +192,29 @@ function createNetworksEndpoints ({ apiKey = '', target = 'api', basePath = '/',
    *   "tags": null
    * }
    */
-  function createNetwork ({ apiKey: localApiKey, target: localTarget, scope, orgId, name, type, timeZone, tags, copyFromNetworkId }) {
+  function createNetwork ({
+    apiKey: localApiKey,
+    target: localTarget,
+    scope,
+    orgId,
+    name,
+    type,
+    timeZone,
+    tags,
+    copyFromNetworkId
+  }) {
     if (!orgId) {
       return Promise.reject(new Error('The parameter orgId is mandatory'))
     }
 
     const data = { name, type, timeZone, tags, copyFromNetworkId }
-    return axios._post(localApiKey || apiKey, localTarget || target, scope, `${basePath}/organizations/${orgId}/networks`, data)
+    return axios._post(
+      localApiKey || apiKey,
+      localTarget || target,
+      scope,
+      `${basePath}/organizations/${orgId}/networks`,
+      data
+    )
   }
 
   /**
@@ -168,12 +227,22 @@ function createNetworksEndpoints ({ apiKey = '', target = 'api', basePath = '/',
    * @param { string } networkId  The id of the network to remove
    * @return { Promise } A promise with no data
    */
-  function deleteNetwork ({ apiKey: localApiKey, target: localTarget, scope, networkId }) {
+  function deleteNetwork ({
+    apiKey: localApiKey,
+    target: localTarget,
+    scope,
+    networkId
+  }) {
     if (!networkId) {
       return Promise.reject(new Error('The parameter networkId is mandatory'))
     }
 
-    return axios._delete(localApiKey || apiKey, localTarget || target, scope, `${basePath}/networks/${networkId}`)
+    return axios._delete(
+      localApiKey || apiKey,
+      localTarget || target,
+      scope,
+      `${basePath}/networks/${networkId}`
+    )
   }
 
   /**
@@ -188,17 +257,32 @@ function createNetworksEndpoints ({ apiKey = '', target = 'api', basePath = '/',
    * @param { boolean } autoBind        Optional boolean indicating whether the network's switches should automatically bind to profiles of the same model. Defaults to false if left unspecified. This option only affects switch networks and switch templates. Auto-bind is not valid unless the switch template has at least one profile and has at most one profile per switch model
    * @return { Promise } A promise with no data
    */
-  function bindNetworkToTemplate ({ apiKey: localApiKey, target: localTarget, scope, networkId, configTemplateId, autoBind }) {
+  function bindNetworkToTemplate ({
+    apiKey: localApiKey,
+    target: localTarget,
+    scope,
+    networkId,
+    configTemplateId,
+    autoBind
+  }) {
     if (!networkId) {
       return Promise.reject(new Error('The parameter networkId is mandatory'))
     }
 
     if (!configTemplateId) {
-      return Promise.reject(new Error('The parameter configTemplateId is mandatory'))
+      return Promise.reject(
+        new Error('The parameter configTemplateId is mandatory')
+      )
     }
 
     const data = { configTemplateId, autoBind }
-    return axios._post(localApiKey || apiKey, localTarget || target, scope, `${basePath}/networks/${networkId}/bind`, data)
+    return axios._post(
+      localApiKey || apiKey,
+      localTarget || target,
+      scope,
+      `${basePath}/networks/${networkId}/bind`,
+      data
+    )
   }
 
   /**
@@ -211,12 +295,22 @@ function createNetworksEndpoints ({ apiKey = '', target = 'api', basePath = '/',
    * @param { string } networkId  The id of the network to unbind
    * @return { Promise } A promise with no data
    */
-  function unbindNetworkFromTemplate ({ apiKey: localApiKey, target: localTarget, scope, networkId }) {
+  function unbindNetworkFromTemplate ({
+    apiKey: localApiKey,
+    target: localTarget,
+    scope,
+    networkId
+  }) {
     if (!networkId) {
       return Promise.reject(new Error('The parameter networkId is mandatory'))
     }
 
-    return axios._post(localApiKey || apiKey, localTarget || target, scope, `${basePath}/networks/${networkId}/unbind`)
+    return axios._post(
+      localApiKey || apiKey,
+      localTarget || target,
+      scope,
+      `${basePath}/networks/${networkId}/unbind`
+    )
   }
 
   /**
@@ -258,13 +352,26 @@ function createNetworksEndpoints ({ apiKey = '', target = 'api', basePath = '/',
    *   }
    * ]
    */
-  function listTrafficAnalysis ({ apiKey: localApiKey, target: localTarget, scope, networkId, timespan = 2592000, deviceType }) {
+  function listTrafficAnalysis ({
+    apiKey: localApiKey,
+    target: localTarget,
+    scope,
+    networkId,
+    timespan = 2592000,
+    deviceType
+  }) {
     if (!networkId) {
       return Promise.reject(new Error('The parameter networkId is mandatory'))
     }
 
     const params = { timespan, deviceType }
-    return axios._get(localApiKey || apiKey, localTarget || target, scope, `${basePath}/networks/${networkId}/traffic`, params)
+    return axios._get(
+      localApiKey || apiKey,
+      localTarget || target,
+      scope,
+      `${basePath}/networks/${networkId}/traffic`,
+      params
+    )
   }
 
   /**
@@ -308,12 +415,22 @@ function createNetworksEndpoints ({ apiKey = '', target = 'api', basePath = '/',
    *   }
    * ]
    */
-  function listNetworkAccessPolicies ({ apiKey: localApiKey, target: localTarget, scope, networkId }) {
+  function listNetworkAccessPolicies ({
+    apiKey: localApiKey,
+    target: localTarget,
+    scope,
+    networkId
+  }) {
     if (!networkId) {
       return Promise.reject(new Error('The parameter networkId is mandatory'))
     }
 
-    return axios._get(localApiKey || apiKey, localTarget || target, scope, `${basePath}/networks/${networkId}/accessPolicies`)
+    return axios._get(
+      localApiKey || apiKey,
+      localTarget || target,
+      scope,
+      `${basePath}/networks/${networkId}/accessPolicies`
+    )
   }
 
   /**
@@ -350,12 +467,22 @@ function createNetworksEndpoints ({ apiKey = '', target = 'api', basePath = '/',
    *   ]
    * }
    */
-  function listSiteToSiteVpn ({ apiKey: localApiKey, target: localTarget, scope, networkId }) {
+  function listSiteToSiteVpn ({
+    apiKey: localApiKey,
+    target: localTarget,
+    scope,
+    networkId
+  }) {
     if (!networkId) {
       return Promise.reject(new Error('The parameter networkId is mandatory'))
     }
 
-    return axios._get(localApiKey || apiKey, localTarget || target, scope, `${basePath}/networks/${networkId}/siteToSiteVpn`)
+    return axios._get(
+      localApiKey || apiKey,
+      localTarget || target,
+      scope,
+      `${basePath}/networks/${networkId}/siteToSiteVpn`
+    )
   }
 
   /**
@@ -395,7 +522,15 @@ function createNetworksEndpoints ({ apiKey = '', target = 'api', basePath = '/',
    *   ]
    * }
    */
-  function updateSiteToSiteVpn ({ apiKey: localApiKey, target: localTarget, scope, networkId, mode, hubs, subnets }) {
+  function updateSiteToSiteVpn ({
+    apiKey: localApiKey,
+    target: localTarget,
+    scope,
+    networkId,
+    mode,
+    hubs,
+    subnets
+  }) {
     if (!networkId) {
       return Promise.reject(new Error('The parameter networkId is mandatory'))
     }
@@ -406,7 +541,13 @@ function createNetworksEndpoints ({ apiKey = '', target = 'api', basePath = '/',
       subnets
     }
 
-    return axios._put(localApiKey || apiKey, localTarget || target, scope, `${basePath}/networks/${networkId}/siteToSiteVpn`, data)
+    return axios._put(
+      localApiKey || apiKey,
+      localTarget || target,
+      scope,
+      `${basePath}/networks/${networkId}/siteToSiteVpn`,
+      data
+    )
   }
 
   return {

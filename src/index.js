@@ -9,8 +9,5 @@ module.exports = (settings) => {
   let frontend = {}
   if (settings.frontend) frontend = require('./frontend')(settings)
 
-  return Object.assign({},
-    api,
-    frontend
-  )
+  return Object.assign({}, api, frontend)
 }
