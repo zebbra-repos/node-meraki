@@ -38,15 +38,17 @@ function rawEndpoints ({
      * @param { string } [target] Optional custom target for this request (if not set will take the inital target)
      * @param { string } [scope]  Optional custom scope for rate limiter
      * @param { string } path     The ressource path to call
+     * @param { object } [params] Optional params to pass to the get request
      * @return { Promise } A promise holding the meraki api response
      *
      */
-    getRaw ({ apiKey: localApiKey, target: localTarget, scope, path }) {
+    getRaw ({ apiKey: localApiKey, target: localTarget, scope, path, params }) {
       return axios._get(
         localApiKey || apiKey,
         localTarget || target,
         scope,
-        path
+        path,
+        params
       )
     },
 
