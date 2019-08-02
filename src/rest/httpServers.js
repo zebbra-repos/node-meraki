@@ -56,7 +56,9 @@ function createHTTPServersEndpoints ({
     scope,
     networkId
   }) {
-    if (!networkId) { return Promise.reject(new Error('The parameter networkId is mandatory')) }
+    if (!networkId) {
+      return Promise.reject(new Error('The parameter networkId is mandatory'))
+    }
 
     return axios._get(
       localApiKey || apiKey,
@@ -92,8 +94,12 @@ function createHTTPServersEndpoints ({
     networkId,
     webhookId
   }) {
-    if (!networkId) { return Promise.reject(new Error('The parameter networkId is mandatory')) }
-    if (!webhookId) { return Promise.reject(new Error('The parameter webhookId is mandatory')) }
+    if (!networkId) {
+      return Promise.reject(new Error('The parameter networkId is mandatory'))
+    }
+    if (!webhookId) {
+      return Promise.reject(new Error('The parameter webhookId is mandatory'))
+    }
 
     return axios._get(
       localApiKey || apiKey,
@@ -140,20 +146,26 @@ function createHTTPServersEndpoints ({
     webhookId,
     webhook
   }) {
-    if (!networkId) { return Promise.reject(new Error('The parameter networkId is mandatory')) }
-    if (!webhookId) { return Promise.reject(new Error('The parameter webhookId is mandatory')) }
-    if (!webhook) { return Promise.reject(new Error('The parameter webhook is mandatory')) }
-    if (!webhook.hasOwnProperty('name')) {
+    if (!networkId) {
+      return Promise.reject(new Error('The parameter networkId is mandatory'))
+    }
+    if (!webhookId) {
+      return Promise.reject(new Error('The parameter webhookId is mandatory'))
+    }
+    if (!webhook) {
+      return Promise.reject(new Error('The parameter webhook is mandatory'))
+    }
+    if (!webhook.name) {
       return Promise.reject(
         new Error('The parameter webhook must have a property name')
       )
     }
-    if (!webhook.hasOwnProperty('url')) {
+    if (!webhook.url) {
       return Promise.reject(
         new Error('The parameter webhook must have a property url')
       )
     }
-    if (!webhook.hasOwnProperty('sharedSecret')) {
+    if (!webhook.sharedSecret) {
       return Promise.reject(
         new Error('The parameter webhook must have a property sharedSecret')
       )
@@ -203,19 +215,23 @@ function createHTTPServersEndpoints ({
     networkId,
     webhook
   }) {
-    if (!networkId) { return Promise.reject(new Error('The parameter networkId is mandatory')) }
-    if (!webhook) { return Promise.reject(new Error('The parameter webhook is mandatory')) }
-    if (!webhook.hasOwnProperty('name')) {
+    if (!networkId) {
+      return Promise.reject(new Error('The parameter networkId is mandatory'))
+    }
+    if (!webhook) {
+      return Promise.reject(new Error('The parameter webhook is mandatory'))
+    }
+    if (!webhook.name) {
       return Promise.reject(
         new Error('The parameter webhook must have a property name')
       )
     }
-    if (!webhook.hasOwnProperty('url')) {
+    if (!webhook.url) {
       return Promise.reject(
         new Error('The parameter webhook must have a property url')
       )
     }
-    if (!webhook.hasOwnProperty('sharedSecret')) {
+    if (!webhook.sharedSecret) {
       return Promise.reject(
         new Error('The parameter webhook must have a property sharedSecret')
       )
@@ -250,8 +266,12 @@ function createHTTPServersEndpoints ({
     networkId,
     webhookId
   }) {
-    if (!networkId) { return Promise.reject(new Error('The parameter networkId is mandatory')) }
-    if (!webhookId) { return Promise.reject(new Error('The parameter webhookId is mandatory')) }
+    if (!networkId) {
+      return Promise.reject(new Error('The parameter networkId is mandatory'))
+    }
+    if (!webhookId) {
+      return Promise.reject(new Error('The parameter webhookId is mandatory'))
+    }
 
     return axios._delete(
       localApiKey || apiKey,
@@ -289,9 +309,13 @@ function createHTTPServersEndpoints ({
     networkId,
     url
   }) {
-    if (!networkId) { return Promise.reject(new Error('The parameter networkId is mandatory')) }
+    if (!networkId) {
+      return Promise.reject(new Error('The parameter networkId is mandatory'))
+    }
     // I don't care if it is an empty string or 0
-    if (typeof url === 'undefined') { return Promise.reject(new Error('The parameter url is mandatory')) }
+    if (typeof url === 'undefined') {
+      return Promise.reject(new Error('The parameter url is mandatory'))
+    }
 
     return axios._post(
       localApiKey || apiKey,
@@ -326,7 +350,9 @@ function createHTTPServersEndpoints ({
     networkId,
     webhookTestId
   }) {
-    if (!networkId) { return Promise.reject(new Error('The parameter networkId is mandatory')) }
+    if (!networkId) {
+      return Promise.reject(new Error('The parameter networkId is mandatory'))
+    }
     if (!webhookTestId) {
       return Promise.reject(
         new Error('The parameter webhookTestId is mandatory')

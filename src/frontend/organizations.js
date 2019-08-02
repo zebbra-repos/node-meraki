@@ -78,7 +78,9 @@ function createOrganizationEndpoints ({
     }
    */
   async function getOrganization ({ target = targetOrg, eid }) {
-    if (typeof eid === 'undefined') { return Promise.reject(new Error('the parameter email is mandatory')) }
+    if (typeof eid === 'undefined') {
+      return Promise.reject(new Error('the parameter email is mandatory'))
+    }
 
     debug(`get organization information ${eid}`)
     return axios._get('', target, `${basePath}/${eid}/manage/organization/map`)
@@ -95,12 +97,14 @@ function createOrganizationEndpoints ({
    * { success:true }
    */
   async function deleteOrganization ({ target, eid }) {
-    if (typeof eid === 'undefined') { return Promise.reject(new Error('the parameter email is mandatory')) }
+    if (typeof eid === 'undefined') {
+      return Promise.reject(new Error('the parameter email is mandatory'))
+    }
 
     // the correct shard id is needed to build the url
     const org = await getOrganization({ target: 'account', eid })
     let shardId = 0
-    if (org && org.hasOwnProperty('shard_id') && org.shard_id) {
+    if (org && org.shard_id) {
       shardId = org.shard_id
     } else {
       return Promise.reject(

@@ -134,7 +134,7 @@ module.exports = ({ baseUrl, rateLimiter, headers }) => {
     instance.interceptors.response.use(
       (res) => {
         debug(res.headers)
-        if (res.headers.hasOwnProperty('set-cookie')) {
+        if (res.headers['set-cookie']) {
           for (const cookie of res.headers['set-cookie']) {
             setCookie(cookie.split('=')[0], cookie.split('=')[1].split(';')[0])
           }

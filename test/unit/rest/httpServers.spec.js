@@ -32,17 +32,23 @@ describe('http servers endpoint', () => {
   })
 
   it('list the http servers of a network', () => {
-    expect(meraki.listHTTPServers({ networkId }))
-      .resolves.toHaveLength(1)
+    return expect(meraki.listHTTPServers({ networkId })).resolves.toHaveLength(
+      1
+    )
   })
 
   it('get a http servers of a network', () => {
-    expect(meraki.getHTTPServer({ networkId, webhookId: createdWebhook.id }))
-      .resolves.toMatchObject(createdWebhook)
+    return expect(
+      meraki.getHTTPServer({ networkId, webhookId: createdWebhook.id })
+    ).resolves.toMatchObject(createdWebhook)
   })
 
   it('update http server', async () => {
-    const res = await meraki.updateHTTPServer({ networkId, webhookId: createdWebhook.id, webhook: webhookUpdate })
+    const res = await meraki.updateHTTPServer({
+      networkId,
+      webhookId: createdWebhook.id,
+      webhook: webhookUpdate
+    })
     expect(res).toMatchObject(webhookUpdate)
     createdWebhook = res
   })
@@ -57,9 +63,10 @@ describe('http servers endpoint', () => {
     testWebhook = res
   })
 
-  it('get test status', async () => {
-    expect(meraki.getWebhookTestStatus({ networkId, webhookTestId: testWebhook.id }))
-      .resolves.toMatchObject(testWebhook)
+  it('get test status', () => {
+    return expect(
+      meraki.getWebhookTestStatus({ networkId, webhookTestId: testWebhook.id })
+    ).resolves.toMatchObject(testWebhook)
   })
 
   it('delete http server', async () => {
