@@ -42,13 +42,21 @@ function rawEndpoints ({
      * @return { Promise } A promise holding the meraki api response
      *
      */
-    getRaw ({ apiKey: localApiKey, target: localTarget, scope, path, params }) {
+    getRaw ({
+      apiKey: localApiKey,
+      target: localTarget,
+      scope,
+      path,
+      params,
+      priority = 5
+    }) {
       return axios._get(
         localApiKey || apiKey,
         localTarget || target,
         scope,
         path,
-        params
+        params,
+        priority
       )
     },
 
@@ -64,13 +72,21 @@ function rawEndpoints ({
      * @return { Promise } A promise holding the meraki api response
      *
      */
-    postRaw ({ apiKey: localApiKey, target: localTarget, scope, path, data }) {
+    postRaw ({
+      apiKey: localApiKey,
+      target: localTarget,
+      scope,
+      path,
+      data,
+      priority = 5
+    }) {
       return axios._post(
         localApiKey || apiKey,
         localTarget || target,
         scope,
         path,
-        data
+        data,
+        priority
       )
     },
 
@@ -86,13 +102,21 @@ function rawEndpoints ({
      * @return { Promise } A promise holding the meraki api response
      *
      */
-    putRaw ({ apiKey: localApiKey, target: localTarget, scope, path, data }) {
+    putRaw ({
+      apiKey: localApiKey,
+      target: localTarget,
+      scope,
+      path,
+      data,
+      priority = 5
+    }) {
       return axios._put(
         localApiKey || apiKey,
         localTarget || target,
         scope,
         path,
-        data
+        data,
+        priority
       )
     },
 
@@ -107,12 +131,19 @@ function rawEndpoints ({
      * @return { Promise } A promise holding the meraki api response
      *
      */
-    deleteRaw ({ apiKey: localApiKey, target: localTarget, scope, path }) {
+    deleteRaw ({
+      apiKey: localApiKey,
+      target: localTarget,
+      scope,
+      path,
+      priority = 5
+    }) {
       return axios._put(
         localApiKey || apiKey,
         localTarget || target,
         scope,
-        path
+        path,
+        priority
       )
     }
   }

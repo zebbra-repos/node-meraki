@@ -21,7 +21,8 @@ function _exec ({
   scope = 'default',
   url = '/',
   data,
-  params = {}
+  params = {},
+  priority = 5
 }) {
   const scopedAxios =
     settings.rateLimiter.scoped === true
@@ -62,8 +63,14 @@ function _exec ({
   }
 
   if (scopedAxios.limiter) {
+    if (priority < 0) {
+      priority = 0
+    } else if (priority > 9) {
+      priority = 9
+    }
+
     return scopedAxios.limiter
-      .schedule(scopedAxios.instance, options)
+      .schedule({ priority }, scopedAxios.instance, options)
       .then((response) => (params.withFullResponse ? response : response.data))
       .then((response) => {
         if (settings.logger) {
@@ -92,20 +99,38 @@ function _exec ({
   }
 }
 
-function _get (apiKey, target, scope, url, params = {}) {
-  return _exec({ method: 'GET', apiKey, target, scope, url, params })
+function _get (apiKey, target, scope, url, params = {}, priority = 5) {
+  return _exec({ method: 'GET', apiKey, target, scope, url, params, priority })
 }
 
-function _post (apiKey, target, scope, url, data, params = {}) {
-  return _exec({ method: 'POST', apiKey, target, scope, url, data, params })
+function _post (apiKey, target, scope, url, data, params = {}, priority = 5) {
+  return _exec({
+    method: 'POST',
+    apiKey,
+    target,
+    scope,
+    url,
+    data,
+    params,
+    priority
+  })
 }
 
-function _put (apiKey, target, scope, url, data, params = {}) {
-  return _exec({ method: 'PUT', apiKey, target, scope, url, data, params })
+function _put (apiKey, target, scope, url, data, params = {}, priority = 5) {
+  return _exec({
+    method: 'PUT',
+    apiKey,
+    target,
+    scope,
+    url,
+    data,
+    params,
+    priority
+  })
 }
 
-function _delete (apiKey, target, scope, url) {
-  return _exec({ method: 'DELETE', apiKey, target, scope, url })
+function _delete (apiKey, target, scope, url, priority = 5) {
+  return _exec({ method: 'DELETE', apiKey, target, scope, url, priority })
 }
 
 function _getScope (scope) {
