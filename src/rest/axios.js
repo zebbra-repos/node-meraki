@@ -1,3 +1,4 @@
+const _ = require('lodash')
 const axios = require('axios')
 const Bottleneck = require('bottleneck')
 const debug = require('debug')('node-meraki:axios')
@@ -162,6 +163,14 @@ function _getScope (scope) {
             const config = error.response.config
             config.url = error.response.headers.location
             return instance(config)
+          } else if (
+            error.response.status === 429
+          ) {
+            const seconds = Number(_.get(error, 'response.headers.retry-after', 1))
+            if (settings.logger) {
+              settings.logger.debug(`Going to retry after ${seconds} seconds`)
+            }
+            return Promise.delay(seconds * 1000).then(() => instance(error.response.config))
           }
         }
 
