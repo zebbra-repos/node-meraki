@@ -32,7 +32,7 @@
     "node": ">= 8.9.x"
   },
   "dependencies": {
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "bottleneck": "^2.19.5",
     "debug": "^4.1.1",
     "json-bigint": "^0.3.0",
